@@ -1,7 +1,6 @@
 server.port: 8080
 
-common.password: 111111
-database.host: localhost
+database.host: 10.66.191.245
 
 spring:
   jpa:
