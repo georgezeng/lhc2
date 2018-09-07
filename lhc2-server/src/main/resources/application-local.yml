@@ -1,0 +1,17 @@
+server.port: 9090
+
+common.password: 111111
+database.host: localhost
+
+spring:
+  jpa:
+    show-sql: true
+  datasource:
+    password: ${common.password}
+    
+login:
+  password: ${common.password}
+    
+async.executor.poolSize: 10
+
+access.control.allow.origin: http://localhost:8080
