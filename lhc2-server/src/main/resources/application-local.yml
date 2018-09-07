@@ -2,6 +2,7 @@ server.port: 9090
 
 common.password: 111111
 database.host: localhost
+database.port: 3306
 
 spring:
   jpa:
