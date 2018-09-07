@@ -1,0 +1,17 @@
+server.port: 8080
+
+common.password: 111111
+database.host: localhost
+
+spring:
+  jpa:
+    show-sql: true
+  datasource:
+    password: "root!@#$"
+    
+login:
+  password: hslhc138
+    
+async.executor.poolSize: 50
+
+access.control.allow.origin: http://139.199.19.176
