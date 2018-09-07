@@ -1,7 +1,7 @@
 server.port: 8080
 
-database.host: 592807bd95cd4.gz.cdb.myqcloud.com
-database.port: 13773
+database.host: 172.16.128.2
+database.port: 3306
 
 spring:
   jpa:
