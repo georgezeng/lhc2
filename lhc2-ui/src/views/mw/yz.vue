@@ -33,10 +33,10 @@
         data() {
             const self = this;
             const cols = [];
-            for(let i = 0; i < 9; i++) {
-                cols.push({
+            const len = 10;
+            for (let i = 0; i < len; i++) {
+                const col = {
                     title: '位' + i,
-                    width: 60,
                     render(h, params) {
                         const style = {};
                         style['padding'] = '10px';
@@ -47,7 +47,13 @@
                         }
                         return h('span', {style}, data);
                     }
-                });
+                };
+                if (i < len - 1) {
+                    col.width = 60;
+                } else {
+                    col.minWidth = 60;
+                }
+                cols.push(col);
             }
             return {
                 loading: true,
@@ -65,21 +71,7 @@
                             return h('span', {}, `${params.row.num} (位${params.row.pos})`);
                         }
                     },
-                    ...cols,
-                    {
-                        title: '位9',
-                        minWidth: 60,
-                        render(h, params) {
-                            const style = {};
-                            style['padding'] = '10px';
-                            const data = params.row.w9;
-                            if (data == 0) {
-                                style['background-color'] = 'red';
-                                style['color'] = 'white';
-                            }
-                            return h('span', {style}, data);
-                        }
-                    }
+                    ...cols
                 ]
             }
         },

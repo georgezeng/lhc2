@@ -9,9 +9,15 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import lombok.Getter;
+import net.geozen.lhc2.service.bs.BsyzCalculationService;
+import net.geozen.lhc2.service.hs.HsyzCalculationService;
 import net.geozen.lhc2.service.mw.MwyzCalculationService;
+import net.geozen.lhc2.service.qq.QqyzCalculationService;
+import net.geozen.lhc2.service.seq.SeqyzCalculationService;
+import net.geozen.lhc2.service.slq.SlqyzCalculationService;
 import net.geozen.lhc2.service.sw.SwyzCalculationService;
 import net.geozen.lhc2.service.sx.SxyzCalculationService;
+import net.geozen.lhc2.service.zs.ZsyzCalculationService;
 
 @Service
 @Getter
@@ -27,12 +33,36 @@ public class CalculationService {
 	@Autowired
 	private MwyzCalculationService mwService;
 
+	@Autowired
+	private HsyzCalculationService hsService;
+
+	@Autowired
+	private BsyzCalculationService bsService;
+
+	@Autowired
+	private ZsyzCalculationService zsService;
+
+	@Autowired
+	private QqyzCalculationService qqService;
+
+	@Autowired
+	private SeqyzCalculationService seqService;
+	
+	@Autowired
+	private SlqyzCalculationService slqService;
+
 	@Async
 	public void process() {
 		futures.clear();
 		futures.add(sxService.process());
 		futures.add(swService.process());
 		futures.add(mwService.process());
+		futures.add(hsService.process());
+		futures.add(bsService.process());
+		futures.add(zsService.process());
+		futures.add(qqService.process());
+		futures.add(seqService.process());
+		futures.add(slqService.process());
 	}
 
 	public void addFuture(Future<Exception> future) {

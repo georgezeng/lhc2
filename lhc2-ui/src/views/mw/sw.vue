@@ -5,7 +5,7 @@
     <div class="layout">
         <Layout>
             <Header class="menus">
-                <Menus activeName="mxzf"/>
+                <Menus activeName="mxsw"/>
             </Header>
             <Content class="content">
                 <Card>
@@ -33,10 +33,10 @@
         data() {
             const self = this;
             const cols = [];
-            for(let i = 1; i < 10; i++) {
-                cols.push({
-                    title: '位' + i,
-                    width: 60,
+            const len = 11;
+            for(let i = 1; i < len; i++) {
+                const col = {
+                    title: '顺位' + i,
                     render(h, params) {
                         const style = {};
                         style['padding'] = '10px';
@@ -47,7 +47,13 @@
                         }
                         return h('span', {style}, data);
                     }
-                });
+                };
+                if (i < len - 1) {
+                    col.width = 60;
+                } else {
+                    col.minWidth = 60;
+                }
+                cols.push(col);
             }
             return {
                 loading: true,
@@ -65,21 +71,7 @@
                             return h('span', {}, `${params.row.num} (位${params.row.pos})`);
                         }
                     },
-                    ...cols,
-                    {
-                        title: '顺位10',
-                        minWidth: 60,
-                        render(h, params) {
-                            const style = {};
-                            style['padding'] = '10px';
-                            const data = params.row.sw10;
-                            if (data == 0) {
-                                style['background-color'] = 'red';
-                                style['color'] = 'white';
-                            }
-                            return h('span', {style}, data);
-                        }
-                    }
+                    ...cols
                 ]
             }
         },

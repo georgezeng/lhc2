@@ -5,13 +5,13 @@
     <div class="layout">
         <Layout>
             <Header class="menus">
-                <Menus activeName="sxzf"/>
+                <Menus activeName="swzf"/>
             </Header>
             <Content class="content">
                 <Card>
                     <p slot="title">
                         <Icon type="ios-albums-outline"/>
-                        末位振幅
+                        首位振幅
                     </p>
                     <Table stripe border size="small" :loading="loading" :columns="columns" :data="data"/>
                 </Card>
@@ -33,10 +33,10 @@
         data() {
             const self = this;
             const cols = [];
-            for(let i = 0; i < 4; i++) {
-                cols.push({
+            const len = 5;
+            for(let i = 0; i < len; i++) {
+                const col = {
                     title: '振幅' + i,
-                    width: 60,
                     render(h, params) {
                         const style = {};
                         style['padding'] = '10px';
@@ -47,7 +47,13 @@
                         }
                         return h('span', {style}, data);
                     }
-                });
+                }
+                if (i < len - 1) {
+                    col.width = 60;
+                } else {
+                    col.minWidth = 60;
+                }
+                cols.push(col);
             }
             return {
                 loading: true,
@@ -65,21 +71,7 @@
                             return h('span', {}, `${params.row.num} (位${params.row.pos})`);
                         }
                     },
-                    ...cols,
-                    {
-                        title: '振幅4',
-                        minWidth: 60,
-                        render(h, params) {
-                            const style = {};
-                            style['padding'] = '10px';
-                            const data = params.row.zf4;
-                            if (data == 0) {
-                                style['background-color'] = 'red';
-                                style['color'] = 'white';
-                            }
-                            return h('span', {style}, data);
-                        }
-                    }
+                    ...cols
                 ]
             }
         },

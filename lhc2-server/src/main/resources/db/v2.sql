@@ -19,10 +19,7 @@ CREATE TABLE `sxyz` (
 	`ji` int(11) NOT NULL,
 	`gou` int(11) NOT NULL,
 	`zhu` int(11) NOT NULL,
-	PRIMARY KEY (`id`),
-	INDEX `idx_sxyz_phase` (`phase`),
-	INDEX `idx_sxyz_num` (`num`),
-	INDEX `idx_sxyz_sx` (`sx`)
+	PRIMARY KEY (`id`)
 );
 
 
@@ -43,10 +40,7 @@ CREATE TABLE `sxzf` (
 	`zf9` int(11) NOT NULL,
 	`zf10` int(11) NOT NULL,
 	`zf11` int(11) NOT NULL,
-	PRIMARY KEY (`id`),
-	INDEX `idx_sxzf_phase` (`phase`),
-	INDEX `idx_sxzf_num` (`num`),
-	INDEX `idx_sxzf_sx` (`sx`)
+	PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `sxsw` (
@@ -78,8 +72,5 @@ CREATE TABLE `sxsw` (
 	`sw10` int(11) NOT NULL,
 	`sw11` int(11) NOT NULL,
 	`sw12` int(11) NOT NULL,
-	PRIMARY KEY (`id`),
-	INDEX `idx_sxsw_phase` (`phase`),
-	INDEX `idx_sxsw_num` (`num`),
-	INDEX `idx_sxsw_sx` (`sx`)
+	PRIMARY KEY (`id`)
 );

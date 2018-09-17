@@ -1,6 +1,7 @@
 package net.geozen.lhc2.service.base;
 
 import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -14,30 +15,35 @@ import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.extern.slf4j.Slf4j;
-import net.geozen.lhc2.domain.PosBaseEntity;
+import net.geozen.lhc2.domain.base.PosBaseEntity;
 
 @Slf4j
 public abstract class BaseSwCalculationService<Y extends PosBaseEntity, S extends PosBaseEntity> {
 
 	protected abstract PagingAndSortingRepository<S, Long> getRepository();
 
-	protected abstract Class<S> getSwClass();
+	protected abstract CalculationHandler getHandler();
 
-	protected abstract int getLength();
+	protected Class<S> swClass;
+
+	@SuppressWarnings("unchecked")
+	public BaseSwCalculationService() {
+		swClass = (Class<S>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[1];
+	}
 
 	@Transactional
 	@Async
 	public Future<Exception> process(List<Y> yzList) {
 		Exception t = null;
 		try {
-			S lastSw = getSwClass().newInstance();
+			S lastSw = swClass.newInstance();
 			List<S> list = new ArrayList<>();
 			for (int i = 1; i < yzList.size(); i++) {
 				Y lastYz = yzList.get(i - 1);
 				Y yz = yzList.get(i);
 				List<PosYzInfo> lastInfoList = new ArrayList<>();
-				for (int j = 0; j < getLength(); j++) {
-					Method getMethod = yz.getClass().getDeclaredMethod("getW" + j);
+				for (int j = 0; j < getHandler().getLength(); j++) {
+					Method getMethod = yz.getClass().getDeclaredMethod("get" + getHandler().getIndexStr(j));
 					PosYzInfo info = new PosYzInfo(j, (int) getMethod.invoke(lastYz));
 					lastInfoList.add(info);
 				}
@@ -64,7 +70,7 @@ public abstract class BaseSwCalculationService<Y extends PosBaseEntity, S extend
 					}
 				}
 				infoList.add(0, lastInfoList.get(pos));
-				S sw = getSwClass().newInstance();
+				S sw = swClass.newInstance();
 				sw.setPhase(yz.getPhase());
 				sw.setNum(yz.getNum());
 				sw.setPos(redPointPos);

@@ -12,9 +12,7 @@ CREATE TABLE `swyz` (
 	`w2` int(11) NOT NULL,
 	`w3` int(11) NOT NULL,
 	`w4` int(11) NOT NULL,
-	PRIMARY KEY (`id`),
-	INDEX `idx_swyz_phase` (`phase`),
-	INDEX `idx_swyz_num` (`num`)
+	PRIMARY KEY (`id`)
 );
 
 
@@ -28,9 +26,7 @@ CREATE TABLE `swzf` (
 	`zf2` int(11) NOT NULL,
 	`zf3` int(11) NOT NULL,
 	`zf4` int(11) NOT NULL,
-	PRIMARY KEY (`id`),
-	INDEX `idx_swzf_phase` (`phase`),
-	INDEX `idx_swzf_num` (`num`)
+	PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `swsw` (
@@ -43,7 +39,5 @@ CREATE TABLE `swsw` (
 	`sw3` int(11) NOT NULL,
 	`sw4` int(11) NOT NULL,
 	`sw5` int(11) NOT NULL,
-	PRIMARY KEY (`id`),
-	INDEX `idx_swsw_phase` (`phase`),
-	INDEX `idx_swsw_num` (`num`)
+	PRIMARY KEY (`id`)
 );

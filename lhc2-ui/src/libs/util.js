@@ -19,7 +19,7 @@ const ajaxUrl = env === 'development'
 
 util.ajax = axios.create({
     baseURL: ajaxUrl,
-    headers: { 'Access-Control-Allow-Origin': '*' },
+    // headers: { 'Access-Control-Allow-Origin': '*' },
     withCredentials: true
 });
 

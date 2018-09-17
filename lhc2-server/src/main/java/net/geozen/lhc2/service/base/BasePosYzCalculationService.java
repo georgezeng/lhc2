@@ -15,8 +15,8 @@ import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.extern.slf4j.Slf4j;
-import net.geozen.lhc2.domain.PosBaseEntity;
 import net.geozen.lhc2.domain.Tm;
+import net.geozen.lhc2.domain.base.PosBaseEntity;
 import net.geozen.lhc2.jpa.TmRepository;
 import net.geozen.lhc2.service.CalculationService;
 import net.geozen.lhc2.utils.SystemConstants;
@@ -57,11 +57,11 @@ public abstract class BasePosYzCalculationService<Y extends PosBaseEntity> {
 				int pos = getHandler().getPos(data.getNum());
 				yz.setPos(pos);
 				for (int j = 0; j < getHandler().getLength(); j++) {
-					Method setMethod = yz.getClass().getDeclaredMethod("setW" + j, int.class);
+					Method setMethod = yz.getClass().getDeclaredMethod("set" + getHandler().getIndexStr(j), int.class);
 					if (pos == j) {
 						setMethod.invoke(yz, 0);
 					} else {
-						Method getMethod = yz.getClass().getDeclaredMethod("getW" + j);
+						Method getMethod = yz.getClass().getDeclaredMethod("get" + getHandler().getIndexStr(j));
 						int value = (int) getMethod.invoke(lastYz);
 						setMethod.invoke(yz, value + 1);
 					}

@@ -105,6 +105,150 @@ const RouterConfig = {
                 title: `${prefix}末位顺位`
             },
             component: (resolve) => require(['./views/mw/sw.vue'], resolve)
+        },
+        {
+            path: '/hsyz',
+            name: 'hsyz',
+            meta: {
+                title: `${prefix}合数遗值`
+            },
+            component: (resolve) => require(['./views/hs/yz.vue'], resolve)
+        },
+        {
+            path: '/hszf',
+            name: 'hszf',
+            meta: {
+                title: `${prefix}合数振幅`
+            },
+            component: (resolve) => require(['./views/hs/zf.vue'], resolve)
+        },
+        {
+            path: '/hssw',
+            name: 'hssw',
+            meta: {
+                title: `${prefix}合数顺位`
+            },
+            component: (resolve) => require(['./views/hs/sw.vue'], resolve)
+        },
+        {
+            path: '/bsyz',
+            name: 'bsyz',
+            meta: {
+                title: `${prefix}波色遗值`
+            },
+            component: (resolve) => require(['./views/bs/yz.vue'], resolve)
+        },
+        {
+            path: '/bszf',
+            name: 'bszf',
+            meta: {
+                title: `${prefix}波色振幅`
+            },
+            component: (resolve) => require(['./views/bs/zf.vue'], resolve)
+        },
+        {
+            path: '/bssw',
+            name: 'bssw',
+            meta: {
+                title: `${prefix}波色顺位`
+            },
+            component: (resolve) => require(['./views/bs/sw.vue'], resolve)
+        },
+        {
+            path: '/zsyz',
+            name: 'zsyz',
+            meta: {
+                title: `${prefix}质数遗值`
+            },
+            component: (resolve) => require(['./views/zs/yz.vue'], resolve)
+        },
+        {
+            path: '/zszf',
+            name: 'zszf',
+            meta: {
+                title: `${prefix}质数振幅`
+            },
+            component: (resolve) => require(['./views/zs/zf.vue'], resolve)
+        },
+        {
+            path: '/zssw',
+            name: 'zssw',
+            meta: {
+                title: `${prefix}质数顺位`
+            },
+            component: (resolve) => require(['./views/zs/sw.vue'], resolve)
+        },
+        {
+            path: '/qqyz',
+            name: 'qqyz',
+            meta: {
+                title: `${prefix}七区遗值`
+            },
+            component: (resolve) => require(['./views/qq/yz.vue'], resolve)
+        },
+        {
+            path: '/qqzf',
+            name: 'qqzf',
+            meta: {
+                title: `${prefix}七区振幅`
+            },
+            component: (resolve) => require(['./views/qq/zf.vue'], resolve)
+        },
+        {
+            path: '/qqsw',
+            name: 'qqsw',
+            meta: {
+                title: `${prefix}七区顺位`
+            },
+            component: (resolve) => require(['./views/qq/sw.vue'], resolve)
+        },
+        {
+            path: '/seqyz',
+            name: 'seqyz',
+            meta: {
+                title: `${prefix}十二区遗值`
+            },
+            component: (resolve) => require(['./views/seq/yz.vue'], resolve)
+        },
+        {
+            path: '/seqzf',
+            name: 'seqzf',
+            meta: {
+                title: `${prefix}十二区振幅`
+            },
+            component: (resolve) => require(['./views/seq/zf.vue'], resolve)
+        },
+        {
+            path: '/seqsw',
+            name: 'seqsw',
+            meta: {
+                title: `${prefix}十二区顺位`
+            },
+            component: (resolve) => require(['./views/seq/sw.vue'], resolve)
+        },
+        {
+            path: '/slqyz',
+            name: 'slqyz',
+            meta: {
+                title: `${prefix}十六区遗值`
+            },
+            component: (resolve) => require(['./views/slq/yz.vue'], resolve)
+        },
+        {
+            path: '/slqzf',
+            name: 'slqzf',
+            meta: {
+                title: `${prefix}十六区振幅`
+            },
+            component: (resolve) => require(['./views/slq/zf.vue'], resolve)
+        },
+        {
+            path: '/slqsw',
+            name: 'slqsw',
+            meta: {
+                title: `${prefix}十六区顺位`
+            },
+            component: (resolve) => require(['./views/slq/sw.vue'], resolve)
         }
     ]
 };
@@ -113,7 +257,7 @@ const router = new VueRouter(RouterConfig);
 router.beforeEach((to, from, next) => {
     iView.LoadingBar.start();
     Util.title(to.meta.title);
-    if (from.fullPath === '/' && to.fullPath !== '/tm') {
+    if (from.fullPath === '/' && to.fullPath === '/') {
         next('/tm');
         return;
     }

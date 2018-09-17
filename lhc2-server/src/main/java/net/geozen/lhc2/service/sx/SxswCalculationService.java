@@ -15,8 +15,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.extern.slf4j.Slf4j;
-import net.geozen.lhc2.domain.Sxsw;
-import net.geozen.lhc2.domain.Sxyz;
+import net.geozen.lhc2.domain.sx.Sxsw;
+import net.geozen.lhc2.domain.sx.Sxyz;
 import net.geozen.lhc2.enums.SX;
 import net.geozen.lhc2.jpa.sx.SxswRepository;
 import net.geozen.lhc2.service.base.SxYzInfo;

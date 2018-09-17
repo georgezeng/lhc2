@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import net.geozen.lhc2.domain.Swsw;
-import net.geozen.lhc2.domain.Swyz;
-import net.geozen.lhc2.domain.Swzf;
+import net.geozen.lhc2.domain.sw.Swsw;
+import net.geozen.lhc2.domain.sw.Swyz;
+import net.geozen.lhc2.domain.sw.Swzf;
 import net.geozen.lhc2.dto.Result;
 import net.geozen.lhc2.jpa.sw.SwswRepository;
 import net.geozen.lhc2.jpa.sw.SwyzRepository;
