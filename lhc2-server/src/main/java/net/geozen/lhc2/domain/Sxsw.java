@@ -13,7 +13,7 @@ import net.geozen.lhc2.enums.SX;
 @Table(name = "sxsw")
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class Sxsw extends BaseEntity {
+public class Sxsw extends SxBaseEntity {
 	@Enumerated(EnumType.STRING)
 	private SX sw1sx;
 	@Enumerated(EnumType.STRING)

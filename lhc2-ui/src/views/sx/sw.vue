@@ -221,7 +221,7 @@
         },
         methods: {
             loadData() {
-                API.getSxswList().then(data => {
+                API.getSwList('sx').then(data => {
                     this.loading = false;
                     this.data = data;
                 }).catch(ex => {

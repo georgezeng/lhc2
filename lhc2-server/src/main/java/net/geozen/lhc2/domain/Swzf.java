@@ -7,20 +7,13 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Entity
-@Table(name = "sxzf")
+@Table(name = "swzf")
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class Sxzf extends SxBaseEntity {
+public class Swzf extends PosBaseEntity {
 	private int zf0;
 	private int zf1;
 	private int zf2;
 	private int zf3;
 	private int zf4;
-	private int zf5;
-	private int zf6;
-	private int zf7;
-	private int zf8;
-	private int zf9;
-	private int zf10;
-	private int zf11;
 }

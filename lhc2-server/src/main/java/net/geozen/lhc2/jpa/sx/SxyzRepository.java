@@ -1,4 +1,4 @@
-package net.geozen.lhc2.jpa;
+package net.geozen.lhc2.jpa.sx;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 

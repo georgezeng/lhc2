@@ -1,4 +1,4 @@
-package net.geozen.lhc2.service;
+package net.geozen.lhc2.service.sx;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -14,19 +14,19 @@ import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.geozen.lhc2.domain.Sxsw;
 import net.geozen.lhc2.domain.Sxyz;
 import net.geozen.lhc2.enums.SX;
-import net.geozen.lhc2.jpa.SxswRepository;
+import net.geozen.lhc2.jpa.sx.SxswRepository;
+import net.geozen.lhc2.service.base.SxYzInfo;
 
 @Service
 @Slf4j
-public class SXSWCalculationService {
+public class SxswCalculationService {
 
 	@Autowired
-	private SxswRepository sxswRepository;
+	private SxswRepository swRepository;
 
 	@Transactional
 	@Async
@@ -38,26 +38,26 @@ public class SXSWCalculationService {
 			for (int i = 1; i < yzList.size(); i++) {
 				Sxyz lastYz = yzList.get(i - 1);
 				Sxyz yz = yzList.get(i);
-				List<YzInfo> lastInfoList = new ArrayList<>();
+				List<SxYzInfo> lastInfoList = new ArrayList<>();
 				for (SX sx : SX.seq()) {
 					Method getMethod = yz.getClass().getDeclaredMethod("get" + sx.getColumn());
-					YzInfo info = new YzInfo(sx, (int) getMethod.invoke(lastYz));
+					SxYzInfo info = new SxYzInfo(sx, (int) getMethod.invoke(lastYz));
 					lastInfoList.add(info);
 				}
-				Collections.sort(lastInfoList, new Comparator<YzInfo>() {
+				Collections.sort(lastInfoList, new Comparator<SxYzInfo>() {
 
 					@Override
-					public int compare(YzInfo o1, YzInfo o2) {
-						return Integer.valueOf(o1.yz).compareTo(Integer.valueOf(o2.yz));
+					public int compare(SxYzInfo o1, SxYzInfo o2) {
+						return Integer.valueOf(o1.getYz()).compareTo(Integer.valueOf(o2.getYz()));
 					}
 
 				});
 				SX redPointSx = yz.getSx();
 				int pos = 0;
-				List<YzInfo> infoList = new LinkedList<>();
+				List<SxYzInfo> infoList = new LinkedList<>();
 				boolean found = false;
-				for (YzInfo info : lastInfoList) {
-					if (info.sx.equals(redPointSx)) {
+				for (SxYzInfo info : lastInfoList) {
+					if (info.getSx().equals(redPointSx)) {
 						found = true;
 					} else {
 						infoList.add(info);
@@ -73,7 +73,7 @@ public class SXSWCalculationService {
 				sw.setSx(yz.getSx());
 				for (int j = 0; j < infoList.size(); j++) {
 					Method setSxMethod = sw.getClass().getDeclaredMethod("setSw" + (j + 1) + "sx", SX.class);
-					setSxMethod.invoke(sw, infoList.get(j).sx);
+					setSxMethod.invoke(sw, infoList.get(j).getSx());
 					Method setYzMethod = sw.getClass().getDeclaredMethod("setSw" + (j + 1), int.class);
 					if (pos != j) {
 						Method getMethod = sw.getClass().getDeclaredMethod("getSw" + (j + 1));
@@ -86,8 +86,8 @@ public class SXSWCalculationService {
 				lastSw = sw;
 				list.add(sw);
 			}
-			sxswRepository.deleteAll();
-			sxswRepository.saveAll(list);
+			swRepository.deleteAll();
+			swRepository.saveAll(list);
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 			t = e;
@@ -95,10 +95,4 @@ public class SXSWCalculationService {
 		return new AsyncResult<>(t);
 	}
 
-}
-
-@AllArgsConstructor
-class YzInfo {
-	SX sx;
-	int yz;
 }

@@ -5,13 +5,13 @@
     <div class="layout">
         <Layout>
             <Header class="menus">
-                <Menus activeName="swyz"/>
+                <Menus activeName="mxzf"/>
             </Header>
             <Content class="content">
                 <Card>
                     <p slot="title">
                         <Icon type="ios-albums-outline"/>
-                        首位遗值
+                        末位顺位
                     </p>
                     <Table stripe border size="small" :loading="loading" :columns="columns" :data="data"/>
                 </Card>
@@ -33,14 +33,14 @@
         data() {
             const self = this;
             const cols = [];
-            for(let i = 0; i < 4; i++) {
+            for(let i = 1; i < 10; i++) {
                 cols.push({
                     title: '位' + i,
                     width: 60,
                     render(h, params) {
                         const style = {};
                         style['padding'] = '10px';
-                        const data = params.row[`w${i}`];
+                        const data = params.row[`sw${i}`];
                         if (data == 0) {
                             style['background-color'] = 'red';
                             style['color'] = 'white';
@@ -67,12 +67,12 @@
                     },
                     ...cols,
                     {
-                        title: '位4',
+                        title: '顺位10',
                         minWidth: 60,
                         render(h, params) {
                             const style = {};
                             style['padding'] = '10px';
-                            const data = params.row.w4;
+                            const data = params.row.sw10;
                             if (data == 0) {
                                 style['background-color'] = 'red';
                                 style['color'] = 'white';
@@ -85,7 +85,7 @@
         },
         methods: {
             loadData() {
-                API.getYzList('sw').then(data => {
+                API.getSwList('mw').then(data => {
                     this.loading = false;
                     this.data = data;
                 }).catch(ex => {

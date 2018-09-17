@@ -10,7 +10,7 @@ import lombok.EqualsAndHashCode;
 @Table(name = "sxyz")
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class Sxyz extends BaseEntity {
+public class Sxyz extends SxBaseEntity {
 	private int shu;
 	private int niu;
 	private int hu;

@@ -270,7 +270,7 @@
         },
         methods: {
             loadData() {
-                API.getSxyzList().then(data => {
+                API.getYzList('sx').then(data => {
                     this.loading = false;
                     this.data = data;
                 }).catch(ex => {

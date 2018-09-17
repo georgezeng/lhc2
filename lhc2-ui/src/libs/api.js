@@ -8,7 +8,7 @@ export default {
 
     getSxList() {
         return new Promise((resolve, reject) => {
-            util.ajax.get('/sxList/').then(data => {
+            util.ajax.get('/sx/seq/').then(data => {
                 resolve(data);
             }).catch(ex => {
                 reject(ex);
@@ -46,6 +46,17 @@ export default {
         });
     },
 
+
+    clearTm() {
+        return new Promise((resolve, reject) => {
+            util.ajax.get('/tm/clear/').then(data => {
+                resolve(data);
+            }).catch(ex => {
+                reject(ex);
+            });
+        });
+    },
+
     calculate() {
         return new Promise((resolve, reject) => {
             util.ajax.get(`/calculate/`).then(data => {
@@ -66,9 +77,9 @@ export default {
         });
     },
 
-    getSxyzList() {
+    getYzList(prefix) {
         return new Promise((resolve, reject) => {
-            util.ajax.get('/sx/yz/list').then(data => {
+            util.ajax.get(`/${prefix}/yz/list`).then(data => {
                 resolve(data);
             }).catch(ex => {
                 reject(ex);
@@ -76,9 +87,9 @@ export default {
         });
     },
 
-    getSxzfList() {
+    getZfList(prefix) {
         return new Promise((resolve, reject) => {
-            util.ajax.get('/sx/zf/list').then(data => {
+            util.ajax.get(`/${prefix}/zf/list`).then(data => {
                 resolve(data);
             }).catch(ex => {
                 reject(ex);
@@ -86,9 +97,9 @@ export default {
         });
     },
 
-    getSxswList() {
+    getSwList(prefix) {
         return new Promise((resolve, reject) => {
-            util.ajax.get('/sx/sw/list').then(data => {
+            util.ajax.get(`/${prefix}/sw/list`).then(data => {
                 resolve(data);
             }).catch(ex => {
                 reject(ex);

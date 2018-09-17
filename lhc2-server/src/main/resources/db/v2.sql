@@ -4,8 +4,8 @@
 
 CREATE TABLE `sxyz` (
 	`id` bigint(20) NOT NULL AUTO_INCREMENT,
-	`phase` varchar(20) NOT NULL,
-	`num` varchar(5) NOT NULL,
+	`phase` int(11) NOT NULL,
+	`num` int(11) NOT NULL,
 	`sx` varchar(5) NOT NULL,
 	`shu` int(11) NOT NULL,
 	`niu` int(11) NOT NULL,
@@ -28,8 +28,8 @@ CREATE TABLE `sxyz` (
 
 CREATE TABLE `sxzf` (
 	`id` bigint(20) NOT NULL AUTO_INCREMENT,
-	`phase` varchar(20) NOT NULL,
-	`num` varchar(5) NOT NULL,
+	`phase` int(11) NOT NULL,
+	`num` int(11) NOT NULL,
 	`sx` varchar(5) NOT NULL,
 	`zf0` int(11) NOT NULL,
 	`zf1` int(11) NOT NULL,
@@ -51,8 +51,8 @@ CREATE TABLE `sxzf` (
 
 CREATE TABLE `sxsw` (
 	`id` bigint(20) NOT NULL AUTO_INCREMENT,
-	`phase` varchar(20) NOT NULL,
-	`num` varchar(5) NOT NULL,
+	`phase` int(11) NOT NULL,
+	`num` int(11) NOT NULL,
 	`sx` varchar(5) NOT NULL,
 	`sw1sx` varchar(5) NOT NULL,
 	`sw2sx` varchar(5) NOT NULL,

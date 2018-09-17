@@ -222,7 +222,7 @@
         },
         methods: {
             loadData() {
-                API.getSxzfList().then(data => {
+                API.getZfList('sx').then(data => {
                     this.loading = false;
                     this.data = data;
                 }).catch(ex => {

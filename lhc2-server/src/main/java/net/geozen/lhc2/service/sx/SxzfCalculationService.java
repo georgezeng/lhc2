@@ -1,4 +1,4 @@
-package net.geozen.lhc2.service;
+package net.geozen.lhc2.service.sx;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -15,14 +15,14 @@ import lombok.extern.slf4j.Slf4j;
 import net.geozen.lhc2.domain.Sxyz;
 import net.geozen.lhc2.domain.Sxzf;
 import net.geozen.lhc2.enums.SX;
-import net.geozen.lhc2.jpa.SxzfRepository;
+import net.geozen.lhc2.jpa.sx.SxzfRepository;
 
 @Service
 @Slf4j
-public class SXZFCalculationService {
+public class SxzfCalculationService {
 
 	@Autowired
-	private SxzfRepository sxzfRepository;
+	private SxzfRepository zfRepository;
 
 	@Transactional
 	@Async
@@ -56,8 +56,8 @@ public class SXZFCalculationService {
 				lastZf = zf;
 				list.add(zf);
 			}
-			sxzfRepository.deleteAll();
-			sxzfRepository.saveAll(list);
+			zfRepository.deleteAll();
+			zfRepository.saveAll(list);
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 			t = e;

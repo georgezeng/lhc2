@@ -7,8 +7,13 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Entity
-@Table(name = "tm")
+@Table(name = "swsw")
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class Tm extends SxBaseEntity {
+public class Swsw extends PosBaseEntity {
+	private int sw1;
+	private int sw2;
+	private int sw3;
+	private int sw4;
+	private int sw5;
 }

@@ -20,13 +20,7 @@
                             <i-input v-model="modal.data.phase"/>
                         </FormItem>
                         <FormItem required label="号码" prop="num">
-                            <Select v-model="modal.data.num">
-                                <Option v-for="num in nums"
-                                        :value="num"
-                                        :key="num">
-                                    {{ num }}
-                                </Option>
-                            </Select>
+                            <i-input v-model="modal.data.num"/>
                         </FormItem>
                         <FormItem required label="生肖" prop="sx">
                             <Select v-model="selectedSX">
@@ -47,7 +41,10 @@
                     <p slot="title" style="height: 35px;">
                         <Icon type="ios-albums-outline"/>
                         特码管理
-                        <Button style="margin: 0 10px;" type="primary" @click="toAdd">新增+</Button>
+                        <Poptip confirm transfer title="确定要清除所有吗" @on-ok="clear">
+                            <Button style="margin: 0 10px;" type="error">清除</Button>
+                        </Poptip>
+                        <Button style="margin: 0 10px 0 0;" type="primary" @click="toAdd">新增+</Button>
                         <Button :loading="calculation.loading" type="success" @click="calculate">{{calculation.text}}
                         </Button>
                     </p>
@@ -264,6 +261,12 @@
                     }
                     setTimeout(this.loadCalculationStatus, 3000);
                 });
+            },
+            clear() {
+                API.clearTm().then(data => {
+                    this.$Message.success('清除成功！');
+                    this.loadData();
+                });
             }
         },
         watch: {
@@ -275,14 +278,6 @@
             this.loadSxList();
             this.loadData();
             this.loadCalculationStatus();
-            this.nums = [];
-            for (let i = 1; i < 50; i++) {
-                if (i < 10) {
-                    this.nums.push('0' + i);
-                } else {
-                    this.nums.push(i + '');
-                }
-            }
         }
     }
 </script>
