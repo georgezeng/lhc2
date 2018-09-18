@@ -81,10 +81,10 @@
                 <MenuItem name="dszf">振幅表</MenuItem>
                 <MenuItem name="dssw">顺表</MenuItem>
             </MenuGroup>
-            <MenuGroup title="配合">
-                <MenuItem name="phyz">遗值表</MenuItem>
-                <MenuItem name="phzf">振幅表</MenuItem>
-                <MenuItem name="phsw">顺表</MenuItem>
+            <MenuGroup title="配对">
+                <MenuItem name="pdyz">遗值表</MenuItem>
+                <MenuItem name="pdzf">振幅表</MenuItem>
+                <MenuItem name="pdsw">顺表</MenuItem>
             </MenuGroup>
             <MenuGroup title="杂2">
                 <MenuItem name="z2yz">遗值表</MenuItem>

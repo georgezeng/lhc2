@@ -17,7 +17,7 @@
         },
         data() {
             return {
-                cols: datatable.cols(1, 10, (i) => {
+                cols: datatable.cols(1, 11, (i) => {
                     let txt = '';
                     switch(i) {
                         case 1: txt = "0单"; break;

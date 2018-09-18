@@ -5,7 +5,7 @@ database.port: 3306
 
 spring:
   jpa:
-    show-sql: true
+    show-sql: false
   datasource:
     password: "root!@#$"
     
