@@ -21,7 +21,8 @@
                     return "振幅" + index;
                 }, (index) => {
                     return "zf" + index;
-                }, (i) => {
+                }, null, (row) => {
+                    let i = row.pos;
                     let txt = null;
                     let index = 0;
                     if (i < 3) {

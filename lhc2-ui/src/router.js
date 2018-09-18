@@ -345,6 +345,30 @@ const RouterConfig = {
                 title: `${prefix}杂13顺位`
             },
             component: (resolve) => require(['./views/z13/sw.vue'], resolve)
+        },
+        {
+            path: '/dsyz',
+            name: 'dsyz',
+            meta: {
+                title: `${prefix}单双遗值`
+            },
+            component: (resolve) => require(['./views/ds/yz.vue'], resolve)
+        },
+        {
+            path: '/dszf',
+            name: 'dszf',
+            meta: {
+                title: `${prefix}单双振幅`
+            },
+            component: (resolve) => require(['./views/ds/zf.vue'], resolve)
+        },
+        {
+            path: '/dssw',
+            name: 'dssw',
+            meta: {
+                title: `${prefix}单双顺位`
+            },
+            component: (resolve) => require(['./views/ds/sw.vue'], resolve)
         }
     ]
 };

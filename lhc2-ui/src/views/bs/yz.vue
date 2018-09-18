@@ -65,7 +65,8 @@
                         }
                     }
                     return field + index;
-                }, null, (i) => {
+                }, null, (row) => {
+                    let i = row.pos;
                     let txt = null;
                     let index = 0;
                     if (i < 3) {

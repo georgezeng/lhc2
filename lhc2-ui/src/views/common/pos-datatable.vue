@@ -45,7 +45,7 @@
                 columns: [
                     {
                         title: '期数',
-                        width: 80,
+                        width: 60,
                         key: 'phase',
                     },
                     ...this.cols
