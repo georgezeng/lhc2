@@ -49,6 +49,8 @@
                         case 11: return 'zhu';
                         default: return '';
                     }
+                }, null, (row) => {
+                    return row.sx.text;
                 })
             }
         }

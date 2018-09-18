@@ -229,13 +229,12 @@
                     content: '计算需要比较长的时间，是否确定开始计算 ?',
                     onOk() {
                         self.errors = null;
-                        API.calculate().then(data => {
-                            Cookies.set('calLoading', 'true');
-                            self.calculation = {
-                                loading: true,
-                                text: '计算中...'
-                            }
-                        });
+                        Cookies.set('calLoading', 'true');
+                        self.calculation = {
+                            loading: true,
+                            text: '计算中...'
+                        }
+                        API.calculate();
                     }
                 });
             },

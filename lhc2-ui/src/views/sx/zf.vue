@@ -21,6 +21,8 @@
                     return "振幅" + index;
                 }, (index) => {
                     return "zf" + index;
+                }, null, (row) => {
+                    return row.sx.text;
                 })
             }
         }

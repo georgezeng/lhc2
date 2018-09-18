@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Datatable activeName="phyz"
+        <Datatable activeName="pdyz"
                    title="配对遗值"
                    :cols="cols"
                    func="getYzList"

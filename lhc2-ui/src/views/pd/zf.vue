@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Datatable activeName="phzf"
+        <Datatable activeName="pdzf"
                    title="配对振幅"
                    :cols="cols"
                    func="getZfList"

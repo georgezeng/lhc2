@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Datatable activeName="phsw"
+        <Datatable activeName="pdsw"
                    title="配对顺位"
                    :cols="cols"
                    func="getSwList"
