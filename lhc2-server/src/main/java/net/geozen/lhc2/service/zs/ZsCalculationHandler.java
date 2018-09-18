@@ -33,20 +33,13 @@ public class ZsCalculationHandler implements CalculationHandler {
 	}
 
 	@Override
-	public int getPos(int num) {
-		int index = 0;
-		for (List<Integer> list : lists) {
-			if (list.contains(num)) {
-				return index;
-			}
-			index++;
-		}
-		throw new RuntimeException("号码[" + num + "]有误");
+	public int getLength() {
+		return 9;
 	}
 
 	@Override
-	public int getLength() {
-		return 9;
+	public List<List<Integer>> getLists() {
+		return lists;
 	}
 
 }

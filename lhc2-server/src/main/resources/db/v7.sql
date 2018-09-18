@@ -51,5 +51,14 @@ CREATE TABLE `zssw` (
 	`sw7` int(11) NOT NULL,
 	`sw8` int(11) NOT NULL,
 	`sw9` int(11) NOT NULL,
+	`sw1pos` int(11) NOT NULL,
+	`sw2pos` int(11) NOT NULL,
+	`sw3pos` int(11) NOT NULL,
+	`sw4pos` int(11) NOT NULL,
+	`sw5pos` int(11) NOT NULL,
+	`sw6pos` int(11) NOT NULL,
+	`sw7pos` int(11) NOT NULL,
+	`sw8pos` int(11) NOT NULL,
+	`sw9pos` int(11) NOT NULL,
 	PRIMARY KEY (`id`)
 );

@@ -12,6 +12,15 @@ import net.geozen.lhc2.domain.base.PosBaseEntity;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class Bssw extends PosBaseEntity {
+	private int sw1Pos;
+	private int sw2Pos;
+	private int sw3Pos;
+	private int sw4Pos;
+	private int sw5Pos;
+	private int sw6Pos;
+	private int sw7Pos;
+	private int sw8Pos;
+	private int sw9Pos;
 	private int sw1;
 	private int sw2;
 	private int sw3;

@@ -8,6 +8,6 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @MappedSuperclass
-public class PosBaseEntity extends BaseEntity {
+public abstract class PosBaseEntity extends BaseEntity {
 	private int pos;
 }

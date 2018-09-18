@@ -12,11 +12,15 @@ import lombok.Getter;
 import net.geozen.lhc2.service.bs.BsyzCalculationService;
 import net.geozen.lhc2.service.hs.HsyzCalculationService;
 import net.geozen.lhc2.service.mw.MwyzCalculationService;
+import net.geozen.lhc2.service.pd.PdyzCalculationService;
 import net.geozen.lhc2.service.qq.QqyzCalculationService;
 import net.geozen.lhc2.service.seq.SeqyzCalculationService;
 import net.geozen.lhc2.service.slq.SlqyzCalculationService;
 import net.geozen.lhc2.service.sw.SwyzCalculationService;
 import net.geozen.lhc2.service.sx.SxyzCalculationService;
+import net.geozen.lhc2.service.z13.Z13yzCalculationService;
+import net.geozen.lhc2.service.z2.Z2yzCalculationService;
+import net.geozen.lhc2.service.z7.Z7yzCalculationService;
 import net.geozen.lhc2.service.zs.ZsyzCalculationService;
 
 @Service
@@ -47,9 +51,21 @@ public class CalculationService {
 
 	@Autowired
 	private SeqyzCalculationService seqService;
-	
+
 	@Autowired
 	private SlqyzCalculationService slqService;
+
+	@Autowired
+	private PdyzCalculationService pdService;
+
+	@Autowired
+	private Z2yzCalculationService z2Service;
+
+	@Autowired
+	private Z7yzCalculationService z7Service;
+
+	@Autowired
+	private Z13yzCalculationService z13Service;
 
 	@Async
 	public void process() {
@@ -63,6 +79,10 @@ public class CalculationService {
 		futures.add(qqService.process());
 		futures.add(seqService.process());
 		futures.add(slqService.process());
+		futures.add(pdService.process());
+		futures.add(z2Service.process());
+		futures.add(z7Service.process());
+		futures.add(z13Service.process());
 	}
 
 	public void addFuture(Future<Exception> future) {

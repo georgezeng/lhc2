@@ -46,9 +46,4 @@ public class SeqyzCalculationService extends BasePosYzCalculationService<Seqyz> 
 		return handler;
 	}
 
-	@Override
-	protected Class<Seqyz> getYzClass() {
-		return Seqyz.class;
-	}
-
 }

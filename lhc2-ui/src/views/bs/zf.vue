@@ -1,92 +1,53 @@
-<style scoped>
-    @import "../../styles/common.less";
-</style>
 <template>
-    <div class="layout">
-        <Layout>
-            <Header class="menus">
-                <Menus activeName="bszf"/>
-            </Header>
-            <Content class="content">
-                <Card>
-                    <p slot="title">
-                        <Icon type="ios-albums-outline"/>
-                        波色振幅
-                    </p>
-                    <Table stripe border size="small" :loading="loading" :columns="columns" :data="data"/>
-                </Card>
-            </Content>
-            <Footer/>
-        </Layout>
+    <div>
+        <Datatable activeName="bszf"
+                   title="波色振幅"
+                   :cols="cols"
+                   func="getZfList"
+                   module="bs"/>
     </div>
 </template>
 <script>
-    import Menus from '../index/menus.vue';
-    import Footer from '../index/footer.vue';
-    import API from '../../libs/api';
+    import Datatable from '../common/pos-datatable.vue';
+    import datatable from '../common/pos-datatable';
 
     export default {
         components: {
-            Menus,
-            Footer
+            Datatable
         },
         data() {
-            const self = this;
-            const cols = [];
-            const len = 9;
-            for(let i = 0; i < len; i++) {
-                const col = {
-                    title: '振幅' + i,
-                    render(h, params) {
-                        const style = {};
-                        style['padding'] = '10px';
-                        const data = params.row[`zf${i}`];
-                        if (data == 0) {
-                            style['background-color'] = 'red';
-                            style['color'] = 'white';
-                        }
-                        return h('span', {style}, data);
-                    }
-                }
-                if (i < len - 1) {
-                    col.width = 60;
-                } else {
-                    col.minWidth = 60;
-                }
-                cols.push(col);
-            }
             return {
-                loading: true,
-                data: [],
-                columns: [
-                    {
-                        title: '期数',
-                        width: 60,
-                        key: 'phase',
-                    },
-                    {
-                        title: '特码',
-                        width: 60,
-                        render(h, params) {
-                            return h('span', {}, `${params.row.num} (位${params.row.pos})`);
+                cols: datatable.cols(0, 9, (index) => {
+                    return "振幅" + index;
+                }, (index) => {
+                    return "zf" + index;
+                }, (i) => {
+                    let txt = null;
+                    let index = 0;
+                    if (i < 3) {
+                        i++;
+                        txt = '红';
+                        index = i;
+                    } else if (i < 6) {
+                        txt = '蓝';
+                        const pos = ++i % 3;
+                        if (pos != 0) {
+                            index = pos;
+                        } else {
+                            index = 3;
                         }
-                    },
-                    ...cols
-                ]
+                    } else {
+                        txt = '绿';
+                        const pos = ++i % 3;
+                        if (pos != 0) {
+                            index = pos;
+                        } else {
+                            index = 3;
+                        }
+                    }
+                    return txt + index;
+                })
             }
-        },
-        methods: {
-            loadData() {
-                API.getZfList('bs').then(data => {
-                    this.loading = false;
-                    this.data = data;
-                }).catch(ex => {
-                    this.loading = false;
-                });
-            }
-        },
-        created() {
-            this.loadData();
         }
     }
 </script>

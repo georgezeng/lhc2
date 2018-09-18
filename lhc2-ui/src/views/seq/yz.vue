@@ -1,92 +1,28 @@
-<style scoped>
-    @import "../../styles/common.less";
-</style>
 <template>
-    <div class="layout">
-        <Layout>
-            <Header class="menus">
-                <Menus activeName="seqyz"/>
-            </Header>
-            <Content class="content">
-                <Card>
-                    <p slot="title">
-                        <Icon type="ios-albums-outline"/>
-                        十二区遗值
-                    </p>
-                    <Table stripe border size="small" :loading="loading" :columns="columns" :data="data"/>
-                </Card>
-            </Content>
-            <Footer/>
-        </Layout>
+    <div>
+        <Datatable activeName="seqyz"
+                   title="十二区遗值"
+                   :cols="cols"
+                   func="getYzList"
+                   module="seq"/>
     </div>
 </template>
 <script>
-    import Menus from '../index/menus.vue';
-    import Footer from '../index/footer.vue';
-    import API from '../../libs/api';
+    import Datatable from '../common/pos-datatable.vue';
+    import datatable from '../common/pos-datatable';
 
     export default {
         components: {
-            Menus,
-            Footer
+            Datatable
         },
         data() {
-            const self = this;
-            const cols = [];
-            const len = 12;
-            for (let i = 0; i < len; i++) {
-                const col = {
-                    title: '位' + i,
-                    render(h, params) {
-                        const style = {};
-                        style['padding'] = '10px';
-                        const data = params.row[`w${i}`];
-                        if (data == 0) {
-                            style['background-color'] = 'red';
-                            style['color'] = 'white';
-                        }
-                        return h('span', {style}, data);
-                    }
-                };
-                if (i < len - 1) {
-                    col.width = 60;
-                } else {
-                    col.minWidth = 60;
-                }
-                cols.push(col);
-            }
             return {
-                loading: true,
-                data: [],
-                columns: [
-                    {
-                        title: '期数',
-                        width: 60,
-                        key: 'phase',
-                    },
-                    {
-                        title: '特码',
-                        width: 60,
-                        render(h, params) {
-                            return h('span', {}, `${params.row.num} (位${params.row.pos})`);
-                        }
-                    },
-                    ...cols
-                ]
+                cols: datatable.cols(0, 12, (index) => {
+                    return "位" + index;
+                }, (index) => {
+                    return "w" + index;
+                })
             }
-        },
-        methods: {
-            loadData() {
-                API.getYzList('seq').then(data => {
-                    this.loading = false;
-                    this.data = data;
-                }).catch(ex => {
-                    this.loading = false;
-                });
-            }
-        },
-        created() {
-            this.loadData();
         }
     }
 </script>

@@ -20,26 +20,22 @@ public class SlqCalculationHandler implements CalculationHandler {
 			reverse *= -1;
 			indexNum = indexNum + i * reverse;
 			list.add(indexNum);
+			if (i == 16) {
+				list.add(25);
+			}
 			list.add(backNum--);
 			lists.add(list);
 		}
 	}
 
 	@Override
-	public int getPos(int num) {
-		int index = 0;
-		for (List<Integer> list : lists) {
-			if (list.contains(num)) {
-				return index;
-			}
-			index++;
-		}
-		throw new RuntimeException("号码[" + num + "]有误");
+	public int getLength() {
+		return 16;
 	}
 
 	@Override
-	public int getLength() {
-		return 16;
+	public List<List<Integer>> getLists() {
+		return lists;
 	}
 
 }

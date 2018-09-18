@@ -1,6 +1,7 @@
 package net.geozen.lhc2.service.base;
 
 import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Future;
@@ -25,7 +26,7 @@ import net.geozen.lhc2.utils.SystemConstants;
 public abstract class BasePosYzCalculationService<Y extends PosBaseEntity> {
 
 	@Autowired
-	private TmRepository tmRepository;
+	protected TmRepository tmRepository;
 
 	protected abstract PagingAndSortingRepository<Y, Long> getRepository();
 
@@ -35,10 +36,15 @@ public abstract class BasePosYzCalculationService<Y extends PosBaseEntity> {
 
 	protected abstract CalculationHandler getHandler();
 
-	protected abstract Class<Y> getYzClass();
-
 	@Autowired
-	private CalculationService calService;
+	protected CalculationService calService;
+
+	protected Class<Y> yzClass;
+
+	@SuppressWarnings("unchecked")
+	public BasePosYzCalculationService() {
+		yzClass = (Class<Y>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+	}
 
 	@Transactional
 	@Async
@@ -47,11 +53,11 @@ public abstract class BasePosYzCalculationService<Y extends PosBaseEntity> {
 		try {
 			Pageable pageable = PageRequest.of(0, SystemConstants.CALCULATION_SIZE, Direction.DESC, "phase");
 			List<Tm> datas = tmRepository.findAll(pageable).getContent();
-			Y lastYz = getYzClass().newInstance();
+			Y lastYz = yzClass.newInstance();
 			List<Y> yzList = new ArrayList<>();
 			for (int i = datas.size() - 1; i > -1; i--) {
 				Tm data = datas.get(i);
-				Y yz = getYzClass().newInstance();
+				Y yz = yzClass.newInstance();
 				yz.setPhase(data.getPhase());
 				yz.setNum(data.getNum());
 				int pos = getHandler().getPos(data.getNum());

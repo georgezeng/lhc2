@@ -80,19 +80,19 @@
                 <MenuItem name="phsw">顺表</MenuItem>
             </MenuGroup>
             <MenuGroup title="杂2">
-                <MenuItem name="zeyz">遗值表</MenuItem>
-                <MenuItem name="zezf">振幅表</MenuItem>
-                <MenuItem name="zesw">顺表</MenuItem>
+                <MenuItem name="z2yz">遗值表</MenuItem>
+                <MenuItem name="z2zf">振幅表</MenuItem>
+                <MenuItem name="z2sw">顺表</MenuItem>
             </MenuGroup>
             <MenuGroup title="杂7">
-                <MenuItem name="zqyz">遗值表</MenuItem>
-                <MenuItem name="zqzf">振幅表</MenuItem>
-                <MenuItem name="zqsw">顺表</MenuItem>
+                <MenuItem name="z7yz">遗值表</MenuItem>
+                <MenuItem name="z7zf">振幅表</MenuItem>
+                <MenuItem name="z7sw">顺表</MenuItem>
             </MenuGroup>
             <MenuGroup title="杂13">
-                <MenuItem name="zssyz">遗值表</MenuItem>
-                <MenuItem name="zsszf">振幅表</MenuItem>
-                <MenuItem name="zsssw">顺表</MenuItem>
+                <MenuItem name="z13yz">遗值表</MenuItem>
+                <MenuItem name="z13zf">振幅表</MenuItem>
+                <MenuItem name="z13sw">顺表</MenuItem>
             </MenuGroup>
         </Submenu>
     </Menu>

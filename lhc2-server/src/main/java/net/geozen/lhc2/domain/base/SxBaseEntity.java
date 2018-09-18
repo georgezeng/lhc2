@@ -11,7 +11,7 @@ import net.geozen.lhc2.enums.SX;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @MappedSuperclass
-public class SxBaseEntity extends BaseEntity {
+public abstract class SxBaseEntity extends BaseEntity {
 	@Enumerated(EnumType.STRING)
 	private SX sx;
 }

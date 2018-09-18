@@ -249,6 +249,102 @@ const RouterConfig = {
                 title: `${prefix}十六区顺位`
             },
             component: (resolve) => require(['./views/slq/sw.vue'], resolve)
+        },
+        {
+            path: '/pdyz',
+            name: 'pdyz',
+            meta: {
+                title: `${prefix}配对遗值`
+            },
+            component: (resolve) => require(['./views/pd/yz.vue'], resolve)
+        },
+        {
+            path: '/pdzf',
+            name: 'pdzf',
+            meta: {
+                title: `${prefix}配对振幅`
+            },
+            component: (resolve) => require(['./views/pd/zf.vue'], resolve)
+        },
+        {
+            path: '/pdsw',
+            name: 'pdsw',
+            meta: {
+                title: `${prefix}配对顺位`
+            },
+            component: (resolve) => require(['./views/pd/sw.vue'], resolve)
+        },
+        {
+            path: '/z2yz',
+            name: 'z2yz',
+            meta: {
+                title: `${prefix}杂2遗值`
+            },
+            component: (resolve) => require(['./views/z2/yz.vue'], resolve)
+        },
+        {
+            path: '/z2zf',
+            name: 'z2zf',
+            meta: {
+                title: `${prefix}杂2振幅`
+            },
+            component: (resolve) => require(['./views/z2/zf.vue'], resolve)
+        },
+        {
+            path: '/z2sw',
+            name: 'z2sw',
+            meta: {
+                title: `${prefix}杂2顺位`
+            },
+            component: (resolve) => require(['./views/z2/sw.vue'], resolve)
+        },
+        {
+            path: '/z7yz',
+            name: 'z7yz',
+            meta: {
+                title: `${prefix}杂7遗值`
+            },
+            component: (resolve) => require(['./views/z7/yz.vue'], resolve)
+        },
+        {
+            path: '/z7zf',
+            name: 'z7zf',
+            meta: {
+                title: `${prefix}杂7振幅`
+            },
+            component: (resolve) => require(['./views/z7/zf.vue'], resolve)
+        },
+        {
+            path: '/z7sw',
+            name: 'z7sw',
+            meta: {
+                title: `${prefix}杂7顺位`
+            },
+            component: (resolve) => require(['./views/z7/sw.vue'], resolve)
+        },
+        {
+            path: '/z13yz',
+            name: 'z13yz',
+            meta: {
+                title: `${prefix}杂13遗值`
+            },
+            component: (resolve) => require(['./views/z13/yz.vue'], resolve)
+        },
+        {
+            path: '/z13zf',
+            name: 'z13zf',
+            meta: {
+                title: `${prefix}杂13振幅`
+            },
+            component: (resolve) => require(['./views/z13/zf.vue'], resolve)
+        },
+        {
+            path: '/z13sw',
+            name: 'z13sw',
+            meta: {
+                title: `${prefix}杂13顺位`
+            },
+            component: (resolve) => require(['./views/z13/sw.vue'], resolve)
         }
     ]
 };

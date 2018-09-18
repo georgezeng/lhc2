@@ -60,5 +60,17 @@ CREATE TABLE `seqsw` (
 	`sw10` int(11) NOT NULL,
 	`sw11` int(11) NOT NULL,
 	`sw12` int(11) NOT NULL,
+	`sw1pos` int(11) NOT NULL,
+	`sw2pos` int(11) NOT NULL,
+	`sw3pos` int(11) NOT NULL,
+	`sw4pos` int(11) NOT NULL,
+	`sw5pos` int(11) NOT NULL,
+	`sw6pos` int(11) NOT NULL,
+	`sw7pos` int(11) NOT NULL,
+	`sw8pos` int(11) NOT NULL,
+	`sw9pos` int(11) NOT NULL,
+	`sw10pos` int(11) NOT NULL,
+	`sw11pos` int(11) NOT NULL,
+	`sw12pos` int(11) NOT NULL,
 	PRIMARY KEY (`id`)
 );

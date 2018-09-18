@@ -1,113 +1,97 @@
-<style scoped>
-    @import "../../styles/common.less";
-</style>
 <template>
-    <div class="layout">
-        <Layout>
-            <Header class="menus">
-                <Menus activeName="bsyz"/>
-            </Header>
-            <Content class="content">
-                <Card>
-                    <p slot="title">
-                        <Icon type="ios-albums-outline"/>
-                        波色遗值
-                    </p>
-                    <Table stripe border size="small" :loading="loading" :columns="columns" :data="data"/>
-                </Card>
-            </Content>
-            <Footer/>
-        </Layout>
+    <div>
+        <Datatable activeName="bsyz"
+                   title="波色遗值"
+                   :cols="cols"
+                   func="getYzList"
+                   module="bs"/>
     </div>
 </template>
 <script>
-    import Menus from '../index/menus.vue';
-    import Footer from '../index/footer.vue';
-    import API from '../../libs/api';
+    import Datatable from '../common/pos-datatable.vue';
+    import datatable from '../common/pos-datatable';
 
     export default {
         components: {
-            Menus,
-            Footer
+            Datatable
         },
         data() {
-            const self = this;
-            const cols = [];
-            const len = 9;
-            for (let i = 0; i < len; i++) {
-                let txt = null;
-                let field = null;
-                let index = 0;
-                if (i < 4) {
-                    txt = '红';
-                    field = 'red';
-                    index = i;
-                } else if (i < 7) {
-                    txt = '蓝';
-                    field = 'blue';
-                    const pos = i % 3;
-                    if (pos != 0) {
-                        index = pos;
-                    } else {
-                        index = 3;
-                    }
-                } else {
-                    txt = '绿';
-                    field = 'green';
-                    index = i % 3;
-                }
-                const col = {
-                    title: `${txt}${index}`,
-                    render(h, params) {
-                        const style = {};
-                        style['padding'] = '10px';
-                        const data = params.row[`${field}${index}`];
-                        if (data == 0) {
-                            style['background-color'] = 'red';
-                            style['color'] = 'white';
-                        }
-                        return h('span', {style}, data);
-                    }
-                };
-                if (i < len - 1) {
-                    col.width = 60;
-                } else {
-                    col.minWidth = 60;
-                }
-                cols.push(col);
-            }
             return {
-                loading: true,
-                data: [],
-                columns: [
-                    {
-                        title: '期数',
-                        width: 60,
-                        key: 'phase',
-                    },
-                    {
-                        title: '特码',
-                        width: 60,
-                        render(h, params) {
-                            return h('span', {}, `${params.row.num} (位${params.row.pos})`);
+                cols: datatable.cols(1, 10, (i) => {
+                    let txt = null;
+                    let index = 0;
+                    if (i < 4) {
+                        txt = '红';
+                        index = i;
+                    } else if (i < 7) {
+                        txt = '蓝';
+                        const pos = i % 3;
+                        if (pos != 0) {
+                            index = pos;
+                        } else {
+                            index = 3;
                         }
-                    },
-                    ...cols
-                ]
+                    } else {
+                        txt = '绿';
+                        const pos = i % 3;
+                        if (pos != 0) {
+                            index = i % 3;
+                        } else {
+                            index = 3;
+                        }
+                    }
+                    return txt + index;
+                }, (i) => {
+                    let field = null;
+                    let index = 0;
+                    if (i < 4) {
+                        field = 'red';
+                        index = i;
+                    } else if (i < 7) {
+                        field = 'blue';
+                        const pos = i % 3;
+                        if (pos != 0) {
+                            index = pos;
+                        } else {
+                            index = 3;
+                        }
+                    } else {
+                        field = 'green';
+                        const pos = i % 3;
+                        if (pos != 0) {
+                            index = pos;
+                        } else {
+                            index = 3;
+                        }
+                    }
+                    return field + index;
+                }, null, (i) => {
+                    let txt = null;
+                    let index = 0;
+                    if (i < 3) {
+                        i++;
+                        txt = '红';
+                        index = i;
+                    } else if (i < 6) {
+                        txt = '蓝';
+                        const pos = ++i % 3;
+                        if (pos != 0) {
+                            index = pos;
+                        } else {
+                            index = 3;
+                        }
+                    } else {
+                        txt = '绿';
+                        const pos = ++i % 3;
+                        if (pos != 0) {
+                            index = pos;
+                        } else {
+                            index = 3;
+                        }
+                    }
+                    return txt + index;
+                })
             }
-        },
-        methods: {
-            loadData() {
-                API.getYzList('bs').then(data => {
-                    this.loading = false;
-                    this.data = data;
-                }).catch(ex => {
-                    this.loading = false;
-                });
-            }
-        },
-        created() {
-            this.loadData();
         }
     }
 </script>

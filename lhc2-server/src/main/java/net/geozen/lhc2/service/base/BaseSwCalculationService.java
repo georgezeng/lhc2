@@ -75,6 +75,8 @@ public abstract class BaseSwCalculationService<Y extends PosBaseEntity, S extend
 				sw.setNum(yz.getNum());
 				sw.setPos(redPointPos);
 				for (int j = 0; j < infoList.size(); j++) {
+					Method setPosMethod = sw.getClass().getDeclaredMethod("setSw" + (j + 1) + "Pos", int.class);
+					setPosMethod.invoke(sw, infoList.get(j).getPos());
 					Method setMethod = sw.getClass().getDeclaredMethod("setSw" + (j + 1), int.class);
 					if (pos != j) {
 						Method getMethod = sw.getClass().getDeclaredMethod("getSw" + (j + 1));

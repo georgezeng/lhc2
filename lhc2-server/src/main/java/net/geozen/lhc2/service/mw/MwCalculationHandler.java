@@ -1,6 +1,7 @@
 package net.geozen.lhc2.service.mw;
 
 import java.text.DecimalFormat;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 
@@ -18,6 +19,11 @@ public class MwCalculationHandler implements CalculationHandler {
 	@Override
 	public int getLength() {
 		return 10;
+	}
+
+	@Override
+	public List<List<Integer>> getLists() {
+		return null;
 	}
 
 }

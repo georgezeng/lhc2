@@ -1,6 +1,7 @@
 package net.geozen.lhc2.service.hs;
 
 import java.text.DecimalFormat;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 
@@ -19,6 +20,11 @@ public class HsCalculationHandler implements CalculationHandler {
 	@Override
 	public int getLength() {
 		return 10;
+	}
+
+	@Override
+	public List<List<Integer>> getLists() {
+		return null;
 	}
 
 }

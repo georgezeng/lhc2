@@ -46,9 +46,4 @@ public class ZsyzCalculationService extends BasePosYzCalculationService<Zsyz> {
 		return handler;
 	}
 
-	@Override
-	protected Class<Zsyz> getYzClass() {
-		return Zsyz.class;
-	}
-
 }

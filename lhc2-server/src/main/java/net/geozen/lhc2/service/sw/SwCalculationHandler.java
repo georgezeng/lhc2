@@ -1,5 +1,7 @@
 package net.geozen.lhc2.service.sw;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import net.geozen.lhc2.service.base.CalculationHandler;
@@ -24,6 +26,11 @@ public class SwCalculationHandler implements CalculationHandler {
 	@Override
 	public int getLength() {
 		return 5;
+	}
+
+	@Override
+	public List<List<Integer>> getLists() {
+		return null;
 	}
 
 }
