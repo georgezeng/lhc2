@@ -114,6 +114,7 @@ public class CombineService {
 			count(infos, combine(E, B, G, H));
 			count(infos, combine(E, F, C, H));
 			count(infos, combine(E, F, G, D));
+
 			List<StatInfo> list = new ArrayList<>(infos.values());
 			Collections.sort(list, new Comparator<StatInfo>() {
 
@@ -162,7 +163,13 @@ public class CombineService {
 		for (Set<Integer> set : sets) {
 			combine.addAll(set);
 		}
-		return combine;
+		Set<Integer> temp = new HashSet<>();
+		for (int i = 1; i < 50; i++) {
+			if (!combine.contains(i)) {
+				temp.add(i);
+			}
+		}
+		return temp;
 	}
 
 	private void count(Map<Integer, StatInfo> infos, Set<Integer> set) {
