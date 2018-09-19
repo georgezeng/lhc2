@@ -17,14 +17,14 @@
                 <Modal ref="modal" v-model="modal.show" :footer-hide="true" title="编辑特码" :mask-closable="false">
                     <Form ref="form" :rules="modal.rules" :model="modal.data" :label-width="60">
                         <FormItem required label="期数" prop="phase">
-                            <i-input v-model="modal.data.phase"/>
+                            <i-input size="large" v-model="modal.data.phase"/>
                         </FormItem>
                         <FormItem required label="号码" prop="num">
-                            <i-input v-model="modal.data.num"/>
+                            <i-input size="large" v-model="modal.data.num"/>
                         </FormItem>
                         <FormItem required label="生肖" prop="sx">
                             <Select v-model="selectedSX">
-                                <Option v-for="sx in modal.sxList"
+                                <Option v-for="sx in sxList"
                                         :value="sx.name"
                                         :key="sx.name">
                                     {{ sx.text }}
@@ -32,7 +32,7 @@
                             </Select>
                         </FormItem>
                         <FormItem>
-                            <Button type="primary" :loading="modal.loading" @click="save" style="float:right;">保存
+                            <Button type="primary" :loading="modal.loading" @click="add" style="float:right;">保存
                             </Button>
                         </FormItem>
                     </Form>
@@ -68,6 +68,7 @@
     import API from '../libs/api';
     import Cookies from 'js-cookie';
     import extend from 'lodash/extend';
+    import SxSelect from './index/sx-select.vue';
 
     export default {
         components: {
@@ -79,6 +80,7 @@
             return {
                 selectedSX: null,
                 errors: null,
+                sxList: [],
                 modal: {
                     rules: {
                         phase: [
@@ -91,7 +93,6 @@
                             {required: true, message: '不能为空', trigger: 'blur'}
                         ],
                     },
-                    sxList: [],
                     data: {
                         id: null,
                         phase: '',
@@ -120,18 +121,51 @@
                     {
                         title: '期数',
                         width: 100,
-                        key: 'phase',
+                        render(h, params) {
+                            return h('i-input', {
+                                props: {
+                                    value: params.row.phase
+                                },
+                                on: {
+                                    'on-change'(e) {
+                                        params.row.num = e.target.value;
+                                    }
+                                }
+                            });
+                        }
                     },
                     {
                         title: '号码',
                         width: 100,
-                        key: 'num',
+                        render(h, params) {
+                            return h('i-input', {
+                                props: {
+                                    value: params.row.num
+                                },
+                                on: {
+                                    'on-change'(e) {
+                                        params.row.num = e.target.value;
+                                    }
+                                }
+                            });
+                        }
                     },
                     {
                         title: '生肖',
                         width: 100,
                         render(h, params) {
-                            return h('span', {}, params.row.sx.text);
+                            return h(SxSelect, {
+                                props: {
+                                    list: self.sxList,
+                                    sx: params.row.sx.name
+                                },
+                                on: {
+                                    change(sx) {
+                                        params.row.sx = sx;
+                                    }
+                                }
+
+                            });
                         }
                     },
                     {
@@ -147,14 +181,16 @@
                                     },
                                     on: {
                                         click: () => {
-                                            self.modal.data = extend({}, params.row);
-                                            self.selectedSX = params.row.sx.name;
-                                            self.modal.data.sx = self.selectedSX;
-                                            self.modal.data.num = params.row.num;
-                                            self.modal.show = true;
+                                            // self.modal.data = extend({}, params.row);
+                                            // self.selectedSX = params.row.sx.name;
+                                            // self.modal.data.sx = self.selectedSX;
+                                            // self.modal.data.num = params.row.num;
+                                            // self.modal.show = true;
+                                            self.update(extend({}, params.row,
+                                                {sx: params.row.sx.name ? params.row.sx.name : params.row.sx}));
                                         }
                                     }
-                                }, '编辑'),
+                                }, '保存'),
                                 ' ',
                                 h('Poptip', {
                                     props: {
@@ -186,7 +222,7 @@
         methods: {
             loadSxList() {
                 API.getSxList().then(data => {
-                    this.modal.sxList = data || [];
+                    this.sxList = data || [];
                 })
             },
             loadData() {
@@ -209,17 +245,22 @@
                 this.selectedSX = null;
                 this.modal.show = true;
             },
-            save() {
+            add() {
                 this.$refs.form.validate((valid) => {
                     if (valid) {
                         this.modal.loading = true;
                         API.saveTm(this.modal.data).then(data => {
                             this.loadData();
                             this.modal.loading = false;
-                            this.modal.show = false;
+                            // this.modal.show = false;
                             this.$Message.success('保存成功');
                         });
                     }
+                });
+            },
+            update(data) {
+                API.saveTm(data).then(data => {
+                    this.$Message.success('保存成功');
                 });
             },
             calculate() {
@@ -258,7 +299,7 @@
                             this.calculationFinish(data.errors);
                         }
                     }
-                    setTimeout(this.loadCalculationStatus, 3000);
+                    setTimeout(this.loadCalculationStatus, 1000);
                 });
             },
             clear() {

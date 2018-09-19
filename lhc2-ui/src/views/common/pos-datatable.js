@@ -3,7 +3,7 @@ export default {
         const cols = [
             {
                 title: '特码',
-                width: 60,
+                width: 70,
                 render(h, params) {
                     if (!tmPos) {
                         return h('span', {}, `${params.row.num} (位${params.row.pos})`);

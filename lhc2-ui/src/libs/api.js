@@ -105,5 +105,15 @@ export default {
                 reject(ex);
             });
         });
+    },
+
+    getStats() {
+        return new Promise((resolve, reject) => {
+            util.ajax.get(`/statInfo`).then(data => {
+                resolve(data);
+            }).catch(ex => {
+                reject(ex);
+            });
+        });
     }
 }

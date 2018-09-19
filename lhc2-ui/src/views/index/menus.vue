@@ -19,10 +19,10 @@
             <Icon type="ios-paper" />
             特码管理
         </MenuItem>
-        <Submenu name="stat">
+        <Submenu name="analyze">
             <template slot="title">
                 <Icon type="ios-stats" />
-                统计分析
+                数据分析
             </template>
             <MenuGroup title="生肖">
                 <MenuItem name="sxyz">遗值表</MenuItem>
@@ -102,6 +102,10 @@
                 <MenuItem name="z13sw">顺表</MenuItem>
             </MenuGroup>
         </Submenu>
+        <MenuItem name="stat">
+            <Icon type="ios-stats" />
+            数据统计
+        </MenuItem>
     </Menu>
 </template>
 <script>

@@ -35,6 +35,14 @@ const RouterConfig = {
             component: (resolve) => require(['./views/tm.vue'], resolve)
         },
         {
+            path: '/stat',
+            name: 'stat',
+            meta: {
+                title: `${prefix}单双顺位`
+            },
+            component: (resolve) => require(['./views/stat.vue'], resolve)
+        },
+        {
             path: '/sxyz',
             name: 'sxyz',
             meta: {

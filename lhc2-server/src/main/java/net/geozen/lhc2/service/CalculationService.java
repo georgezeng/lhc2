@@ -67,9 +67,12 @@ public class CalculationService {
 
 	@Autowired
 	private Z13yzCalculationService z13Service;
-	
+
 	@Autowired
 	private DsyzCalculationService dsService;
+
+	@Autowired
+	private CombineService combineService;
 
 	@Async
 	public void process() {
@@ -92,6 +95,11 @@ public class CalculationService {
 
 	public void addFuture(Future<Exception> future) {
 		futures.add(future);
+	}
+
+	public void combine() {
+		futures.clear();
+		futures.add(combineService.process());
 	}
 
 }
