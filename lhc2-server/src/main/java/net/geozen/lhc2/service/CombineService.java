@@ -168,10 +168,21 @@ public class CombineService {
 				}
 			}
 		} else {
-			for (int i = 1; i < 11; i++) {
+			for (int i = 0; i < 11; i++) {
 				switch (i) {
+				case 0: {
+					List<StatInfo> all = new ArrayList<>();
+					for (int j = 1; j < 50; j++) {
+						all.add(new StatInfo(j, 0));
+					}
+					StatTotallyInfo totallYInfo = new StatTotallyInfo();
+					totallYInfo.setCount(i);
+					count(totallYInfo, all);
+					totallyList.add(totallYInfo);
+				}
+					break;
 				case 5:
-				case 6:
+				case 7:
 				case 8:
 				case 9:
 				case 10: {
@@ -180,6 +191,7 @@ public class CombineService {
 					count(totallYInfo, list);
 					totallyList.add(totallYInfo);
 				}
+					break;
 				}
 			}
 		}
