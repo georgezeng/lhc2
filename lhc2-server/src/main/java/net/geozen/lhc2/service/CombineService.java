@@ -84,10 +84,16 @@ public class CombineService {
 	@Autowired
 	private Z7swRepository z7Repository;
 
-	private List<StatTotallyInfo> totallyList = new ArrayList<>();
+	private List<StatTotallyInfo> totallyList1 = new ArrayList<>();
 
-	public List<StatTotallyInfo> list() {
-		return totallyList;
+	private List<StatTotallyInfo> totallyList2 = new ArrayList<>();
+
+	public List<StatTotallyInfo> list1() {
+		return totallyList1;
+	}
+
+	public List<StatTotallyInfo> list2() {
+		return totallyList2;
 	}
 
 	@Async
@@ -102,47 +108,8 @@ public class CombineService {
 			Set<Integer> F = getF();
 			Set<Integer> G = getG();
 			Set<Integer> H = getH();
-
-			Map<Integer, StatInfo> infos = new HashMap<Integer, StatInfo>();
-			count(infos, combine(A, B, C, D));
-			count(infos, combine(E, B, C, D));
-			count(infos, combine(A, F, C, D));
-			count(infos, combine(A, B, G, D));
-			count(infos, combine(A, B, C, H));
-			count(infos, combine(E, F, G, H));
-			count(infos, combine(A, F, G, H));
-			count(infos, combine(E, B, G, H));
-			count(infos, combine(E, F, C, H));
-			count(infos, combine(E, F, G, D));
-
-			List<StatInfo> list = new ArrayList<>(infos.values());
-			Collections.sort(list, new Comparator<StatInfo>() {
-
-				@Override
-				public int compare(StatInfo o1, StatInfo o2) {
-					if (o1.getCount() != o2.getCount()) {
-						return Integer.valueOf(o1.getCount()).compareTo(Integer.valueOf(o2.getCount()));
-					} else {
-						return Integer.valueOf(o1.getNum()).compareTo(Integer.valueOf(o2.getNum()));
-					}
-				}
-
-			});
-			totallyList.clear();
-			for (int i = 1; i < 11; i++) {
-				switch (i) {
-				case 1:
-				case 2:
-				case 3:
-				case 5:
-				case 10: {
-					StatTotallyInfo totallYInfo = new StatTotallyInfo();
-					totallYInfo.setCount(i);
-					count(totallYInfo, list);
-					totallyList.add(totallYInfo);
-				}
-				}
-			}
+			count(A, B, C, D, E, F, G, H, true, totallyList1);
+			count(A, B, C, D, E, F, G, H, false, totallyList2);
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 			t = e;
@@ -158,18 +125,64 @@ public class CombineService {
 		}
 	}
 
-	private Set<Integer> combine(Set<Integer>... sets) {
+	private void count(Set<Integer> A, Set<Integer> B, Set<Integer> C, Set<Integer> D, Set<Integer> E, Set<Integer> F, Set<Integer> G, Set<Integer> H,
+			boolean revert, List<StatTotallyInfo> totallyList) {
+		Map<Integer, StatInfo> infos = new HashMap<Integer, StatInfo>();
+		count(infos, combine(revert, A, B, C, D));
+		count(infos, combine(revert, E, B, C, D));
+		count(infos, combine(revert, A, F, C, D));
+		count(infos, combine(revert, A, B, G, D));
+		count(infos, combine(revert, A, B, C, H));
+		count(infos, combine(revert, E, F, G, H));
+		count(infos, combine(revert, A, F, G, H));
+		count(infos, combine(revert, E, B, G, H));
+		count(infos, combine(revert, E, F, C, H));
+		count(infos, combine(revert, E, F, G, D));
+		List<StatInfo> list = new ArrayList<>(infos.values());
+		Collections.sort(list, new Comparator<StatInfo>() {
+
+			@Override
+			public int compare(StatInfo o1, StatInfo o2) {
+				if (o1.getCount() != o2.getCount()) {
+					return Integer.valueOf(o1.getCount()).compareTo(Integer.valueOf(o2.getCount()));
+				} else {
+					return Integer.valueOf(o1.getNum()).compareTo(Integer.valueOf(o2.getNum()));
+				}
+			}
+
+		});
+		totallyList.clear();
+		for (int i = 1; i < 11; i++) {
+			switch (i) {
+			case 1:
+			case 2:
+			case 3:
+			case 5:
+			case 10: {
+				StatTotallyInfo totallYInfo = new StatTotallyInfo();
+				totallYInfo.setCount(i);
+				count(totallYInfo, list);
+				totallyList.add(totallYInfo);
+			}
+			}
+		}
+	}
+
+	private Set<Integer> combine(boolean revert, Set<Integer>... sets) {
 		Set<Integer> combine = new HashSet<Integer>();
 		for (Set<Integer> set : sets) {
 			combine.addAll(set);
 		}
-		Set<Integer> temp = new HashSet<>();
-		for (int i = 1; i < 50; i++) {
-			if (!combine.contains(i)) {
-				temp.add(i);
+		if (revert) {
+			Set<Integer> temp = new HashSet<>();
+			for (int i = 1; i < 50; i++) {
+				if (!combine.contains(i)) {
+					temp.add(i);
+				}
 			}
+			return temp;
 		}
-		return temp;
+		return combine;
 	}
 
 	private void count(Map<Integer, StatInfo> infos, Set<Integer> set) {

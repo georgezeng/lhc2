@@ -107,9 +107,19 @@ export default {
         });
     },
 
-    getStats() {
+    getStats1() {
         return new Promise((resolve, reject) => {
-            util.ajax.get(`/statInfo`).then(data => {
+            util.ajax.get(`/statInfo/1`).then(data => {
+                resolve(data);
+            }).catch(ex => {
+                reject(ex);
+            });
+        });
+    },
+
+    getStats2() {
+        return new Promise((resolve, reject) => {
+            util.ajax.get(`/statInfo/2`).then(data => {
                 resolve(data);
             }).catch(ex => {
                 reject(ex);

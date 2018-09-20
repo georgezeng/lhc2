@@ -11,9 +11,16 @@
                 <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
-                        数据统计
+                        49-统计
                     </p>
-                    <Table stripe border size="small" :loading="loading" :columns="columns" :data="data"/>
+                    <Table stripe border size="small" :loading="loading1" :columns="columns" :data="data1"/>
+                </Card>
+                <Card>
+                    <p slot="title">
+                        <Icon type="ios-stats-outline"/>
+                        非49-统计
+                    </p>
+                    <Table stripe border size="small" :loading="loading2" :columns="columns" :data="data2"/>
                 </Card>
             </Content>
             <Footer/>
@@ -35,8 +42,10 @@
         data() {
             const self = this;
             return {
-                loading: true,
-                data: [],
+                loading1: true,
+                loading2: true,
+                data1: [],
+                data2: [],
                 columns: [
                     {
                         title: '次数',
@@ -70,13 +79,27 @@
         },
         methods: {
             loadData() {
-                API.getStats().then(data => {
-                    this.loading = false;
+                API.getStats1().then(data => {
+                    this.loading1 = false;
                     let total = 0;
                     data.map(it => {
                         total += it.nums.length;
                     });
-                    this.data = [
+                    this.data1 = [
+                        ...data,
+                        {
+                            count: '总数',
+                            num: total,
+                        }
+                    ];
+                });
+                API.getStats2().then(data => {
+                    this.loading2 = false;
+                    let total = 0;
+                    data.map(it => {
+                        total += it.nums.length;
+                    });
+                    this.data2 = [
                         ...data,
                         {
                             count: '总数',

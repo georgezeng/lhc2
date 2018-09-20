@@ -259,7 +259,7 @@
             },
             loadCalculationStatus() {
                 API.loadCalculationStatus().then(data => {
-                    if (Cookies.get('calLoading') === 'true' && data.finished) {
+                    if (data.finished > 1) {
                         if (!data.errors || data.errors.length == 0) {
                             this.calculationFinish();
                             this.$Message.success('计算完成！');
@@ -267,6 +267,8 @@
                             this.calculationFinish(data.errors);
                         }
                         Cookies.set('calLoading', 'false');
+                    } else if(data.finished == 0) {
+                        this.calculationFinish();
                     }
                     setTimeout(this.loadCalculationStatus, 1000);
                 });
