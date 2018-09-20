@@ -173,7 +173,16 @@ public class CombineService {
 				case 0: {
 					List<StatInfo> all = new ArrayList<>();
 					for (int j = 1; j < 50; j++) {
-						all.add(new StatInfo(j, 0));
+						boolean zeroCount = true;
+						for (StatInfo info : list) {
+							if (info.getNum() == j) {
+								zeroCount = false;
+								break;
+							}
+						}
+						if (zeroCount) {
+							all.add(new StatInfo(j, 0));
+						}
 					}
 					StatTotallyInfo totallYInfo = new StatTotallyInfo();
 					totallYInfo.setCount(i);
