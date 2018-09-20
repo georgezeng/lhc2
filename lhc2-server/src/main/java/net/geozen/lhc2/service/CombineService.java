@@ -38,7 +38,6 @@ import net.geozen.lhc2.jpa.z2.Z2swRepository;
 import net.geozen.lhc2.jpa.z7.Z7swRepository;
 import net.geozen.lhc2.jpa.zs.ZsswRepository;
 import net.geozen.lhc2.nums.BsNums;
-import net.geozen.lhc2.nums.DsNums;
 import net.geozen.lhc2.nums.HsNums;
 import net.geozen.lhc2.nums.MwNums;
 import net.geozen.lhc2.nums.PdNums;

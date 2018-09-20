@@ -54,7 +54,7 @@ public class IndexController {
 			}
 		}
 		result.put("errors", errors);
-		result.put("finished", finished == 2);
+		result.put("finished", finished > 1);
 		return Result.genSuccessResult(result);
 	}
 
