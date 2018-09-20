@@ -14,29 +14,6 @@
                 </Alert>
             </Header>
             <Content class="content">
-                <Modal ref="modal" v-model="modal.show" :footer-hide="true" title="编辑特码" :mask-closable="false">
-                    <Form ref="form" :rules="modal.rules" :model="modal.data" :label-width="60">
-                        <FormItem required label="期数" prop="phase">
-                            <i-input size="large" v-model="modal.data.phase"/>
-                        </FormItem>
-                        <FormItem required label="号码" prop="num">
-                            <i-input size="large" v-model="modal.data.num"/>
-                        </FormItem>
-                        <FormItem required label="生肖" prop="sx">
-                            <Select v-model="selectedSX">
-                                <Option v-for="sx in sxList"
-                                        :value="sx.name"
-                                        :key="sx.name">
-                                    {{ sx.text }}
-                                </Option>
-                            </Select>
-                        </FormItem>
-                        <FormItem>
-                            <Button type="primary" :loading="modal.loading" @click="add" style="float:right;">保存
-                            </Button>
-                        </FormItem>
-                    </Form>
-                </Modal>
                 <Card>
                     <p slot="title" style="height: 35px;">
                         <Icon type="ios-albums-outline"/>
@@ -44,10 +21,28 @@
                         <Poptip confirm transfer title="确定要清除所有吗" @on-ok="clear">
                             <Button style="margin: 0 10px;" type="error">清除</Button>
                         </Poptip>
-                        <Button style="margin: 0 10px 0 0;" type="primary" @click="toAdd">新增+</Button>
+
                         <Button :loading="calculation.loading" type="success" @click="calculate">{{calculation.text}}
                         </Button>
                     </p>
+                    <div style="margin-bottom: 10px;">
+                        <div style="float: left; width: 100px; margin-right: 10px;">
+                            <i-input v-model="modal.data.phase"/>
+                        </div>
+                        <div style="float: left; width: 100px; margin-right: 10px;">
+                            <i-input v-model="modal.data.num"/>
+                        </div>
+                        <div style="float: left; width: 100px; margin-right: 10px;">
+                            <Select style="margin-right: 10px;" v-model="modal.data.sx">
+                                <Option v-for="sx in sxList"
+                                        :value="sx.name"
+                                        :key="sx.name">
+                                    {{ sx.text }}
+                                </Option>
+                            </Select>
+                        </div>
+                        <Button type="primary" @click="add">新增+</Button>
+                    </div>
                     <Table stripe border size="small" :loading="loading" :columns="columns" :data="data"/>
                     <div class="page">
                         <Page :total="total"
@@ -69,9 +64,11 @@
     import Cookies from 'js-cookie';
     import extend from 'lodash/extend';
     import SxSelect from './index/sx-select.vue';
+    import ICol from "iview/src/components/grid/col";
 
     export default {
         components: {
+            ICol,
             Menus,
             Footer
         },
@@ -82,24 +79,12 @@
                 errors: null,
                 sxList: [],
                 modal: {
-                    rules: {
-                        phase: [
-                            {required: true, message: '不能为空', trigger: 'blur'}
-                        ],
-                        num: [
-                            {required: true, message: '不能为空', trigger: 'blur'}
-                        ],
-                        sx: [
-                            {required: true, message: '不能为空', trigger: 'blur'}
-                        ],
-                    },
                     data: {
                         id: null,
                         phase: '',
                         num: null,
                         sx: null
                     },
-                    show: false,
                     loading: false
                 },
                 calculation: {
@@ -181,11 +166,6 @@
                                     },
                                     on: {
                                         click: () => {
-                                            // self.modal.data = extend({}, params.row);
-                                            // self.selectedSX = params.row.sx.name;
-                                            // self.modal.data.sx = self.selectedSX;
-                                            // self.modal.data.num = params.row.num;
-                                            // self.modal.show = true;
                                             self.update(extend({}, params.row,
                                                 {sx: params.row.sx.name ? params.row.sx.name : params.row.sx}));
                                         }
@@ -239,23 +219,12 @@
                 this.queryInfo.page.num = pageNo;
                 this.loadData();
             },
-            toAdd() {
-                this.$refs.form.resetFields();
-                this.modal.data.id = null;
-                this.selectedSX = null;
-                this.modal.show = true;
-            },
             add() {
-                this.$refs.form.validate((valid) => {
-                    if (valid) {
-                        this.modal.loading = true;
-                        API.saveTm(this.modal.data).then(data => {
-                            this.loadData();
-                            this.modal.loading = false;
-                            // this.modal.show = false;
-                            this.$Message.success('保存成功');
-                        });
-                    }
+                this.modal.loading = true;
+                API.saveTm(this.modal.data).then(data => {
+                    this.loadData();
+                    this.modal.loading = false;
+                    this.$Message.success('保存成功');
                 });
             },
             update(data) {
@@ -291,13 +260,13 @@
             loadCalculationStatus() {
                 API.loadCalculationStatus().then(data => {
                     if (Cookies.get('calLoading') === 'true' && data.finished) {
-                        Cookies.set('calLoading', 'false');
                         if (!data.errors || data.errors.length == 0) {
                             this.calculationFinish();
                             this.$Message.success('计算完成！');
                         } else {
                             this.calculationFinish(data.errors);
                         }
+                        Cookies.set('calLoading', 'false');
                     }
                     setTimeout(this.loadCalculationStatus, 1000);
                 });

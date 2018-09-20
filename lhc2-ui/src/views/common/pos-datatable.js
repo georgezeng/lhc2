@@ -1,14 +1,18 @@
 export default {
-    cols(startIndex, length, colTitle, fieldName, dataTxt, tmPos) {
+    cols(startIndex, length, colTitle, fieldName, dataTxt, tmPos, customWidth, tmWidth) {
+        customWidth = customWidth ? customWidth : 60;
+        tmWidth = tmWidth ? tmWidth : 70;
         const cols = [
             {
                 title: '特码',
-                width: 70,
+                width: tmWidth,
                 render(h, params) {
                     if (!tmPos) {
                         return h('span', {}, `${params.row.num} (位${params.row.pos})`);
                     } else {
-                        return h('span', {}, `${params.row.num} (${tmPos(params.row)})`);
+                        let posTxt = tmPos(params.row);
+                        posTxt = posTxt ? "(" + posTxt + ")" : '';
+                        return h('span', {}, `${params.row.num} ${posTxt}`);
                     }
                 }
             }
@@ -32,9 +36,9 @@ export default {
                     }
                 }
             };
-            let width = 60;
+            let width = customWidth;
             if (dataTxt) {
-                width = 80;
+                width = customWidth + 20;
             }
             if (i < length - 1) {
                 col.width = width;

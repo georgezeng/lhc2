@@ -36,7 +36,7 @@ public abstract class BaseSwCalculationService<Y extends PosBaseEntity, S extend
 	public Future<Exception> process(List<Y> yzList) {
 		Exception t = null;
 		try {
-			S lastSw = swClass.newInstance();
+			S lastSw = initLastSw();
 			List<S> list = new ArrayList<>();
 			for (int i = 1; i < yzList.size(); i++) {
 				Y lastYz = yzList.get(i - 1);
@@ -75,16 +75,7 @@ public abstract class BaseSwCalculationService<Y extends PosBaseEntity, S extend
 				sw.setNum(yz.getNum());
 				sw.setPos(redPointPos);
 				for (int j = 0; j < infoList.size(); j++) {
-					Method setPosMethod = sw.getClass().getDeclaredMethod("setSw" + (j + 1) + "Pos", int.class);
-					setPosMethod.invoke(sw, infoList.get(j).getPos());
-					Method setMethod = sw.getClass().getDeclaredMethod("setSw" + (j + 1), int.class);
-					if (pos != j) {
-						Method getMethod = sw.getClass().getDeclaredMethod("getSw" + (j + 1));
-						int value = (int) getMethod.invoke(lastSw);
-						setMethod.invoke(sw, value + 1);
-					} else {
-						setMethod.invoke(sw, 0);
-					}
+					dealInfoList(sw, lastSw, infoList, pos);
 				}
 				lastSw = sw;
 				list.add(sw);
@@ -96,6 +87,25 @@ public abstract class BaseSwCalculationService<Y extends PosBaseEntity, S extend
 			t = e;
 		}
 		return new AsyncResult<>(t);
+	}
+
+	protected S initLastSw() throws Exception {
+		return swClass.newInstance();
+	}
+
+	protected void dealInfoList(S sw, S lastSw, List<PosYzInfo> infoList, int pos) throws Exception {
+		for (int j = 0; j < infoList.size(); j++) {
+			Method setPosMethod = sw.getClass().getDeclaredMethod("setSw" + (j + 1) + "Pos", int.class);
+			setPosMethod.invoke(sw, infoList.get(j).getPos());
+			Method setMethod = sw.getClass().getDeclaredMethod("setSw" + (j + 1), int.class);
+			if (pos != j) {
+				Method getMethod = sw.getClass().getDeclaredMethod("getSw" + (j + 1));
+				int value = (int) getMethod.invoke(lastSw);
+				setMethod.invoke(sw, value + 1);
+			} else {
+				setMethod.invoke(sw, 0);
+			}
+		}
 	}
 
 }

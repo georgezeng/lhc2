@@ -377,6 +377,22 @@ const RouterConfig = {
                 title: `${prefix}单双顺位`
             },
             component: (resolve) => require(['./views/ds/sw.vue'], resolve)
+        },
+        {
+            path: '/fdyz',
+            name: 'fdyz',
+            meta: {
+                title: `${prefix}十二分段遗值`
+            },
+            component: (resolve) => require(['./views/fd/yz.vue'], resolve)
+        },
+        {
+            path: '/fdsw',
+            name: 'fdsw',
+            meta: {
+                title: `${prefix}十二分段顺位`
+            },
+            component: (resolve) => require(['./views/fd/sw.vue'], resolve)
         }
     ]
 };

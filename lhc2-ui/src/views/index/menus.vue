@@ -69,13 +69,10 @@
                 <MenuItem name="slqzf">振幅表</MenuItem>
                 <MenuItem name="slqsw">顺表</MenuItem>
             </MenuGroup>
-            <!--
             <MenuGroup title="十二分段">
-                <MenuItem name="sefdyz">遗值表</MenuItem>
-                <MenuItem name="sefdzf">振幅表</MenuItem>
-                <MenuItem name="sefdsw">顺表</MenuItem>
+                <MenuItem name="fdyz">遗值表</MenuItem>
+                <MenuItem name="fdsw">顺表</MenuItem>
             </MenuGroup>
-            -->
             <MenuGroup title="单双">
                 <MenuItem name="dsyz">遗值表</MenuItem>
                 <MenuItem name="dszf">振幅表</MenuItem>

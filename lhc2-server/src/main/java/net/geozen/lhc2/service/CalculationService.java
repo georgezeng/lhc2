@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import lombok.Getter;
 import net.geozen.lhc2.service.bs.BsyzCalculationService;
 import net.geozen.lhc2.service.ds.DsyzCalculationService;
+import net.geozen.lhc2.service.fd.FdyzCalculationService;
 import net.geozen.lhc2.service.hs.HsyzCalculationService;
 import net.geozen.lhc2.service.mw.MwyzCalculationService;
 import net.geozen.lhc2.service.pd.PdyzCalculationService;
@@ -72,6 +73,9 @@ public class CalculationService {
 	private DsyzCalculationService dsService;
 
 	@Autowired
+	private FdyzCalculationService fdService;
+
+	@Autowired
 	private CombineService combineService;
 
 	@Async
@@ -91,6 +95,7 @@ public class CalculationService {
 		futures.add(z7Service.process());
 		futures.add(z13Service.process());
 		futures.add(dsService.process());
+		futures.add(fdService.process());
 	}
 
 	public void addFuture(Future<Exception> future) {

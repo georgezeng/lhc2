@@ -17,13 +17,14 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import lombok.extern.slf4j.Slf4j;
 import net.geozen.lhc2.dto.StatInfo;
 import net.geozen.lhc2.dto.StatTotallyInfo;
 import net.geozen.lhc2.enums.SX;
 import net.geozen.lhc2.jpa.bs.BsswRepository;
-import net.geozen.lhc2.jpa.ds.DsswRepository;
+import net.geozen.lhc2.jpa.fd.FdswRepository;
 import net.geozen.lhc2.jpa.hs.HsswRepository;
 import net.geozen.lhc2.jpa.mw.MwswRepository;
 import net.geozen.lhc2.jpa.pd.PdswRepository;
@@ -70,7 +71,7 @@ public class CombineService {
 	@Autowired
 	private BsswRepository bsRepository;
 	@Autowired
-	private DsswRepository dsRepository;
+	private FdswRepository fdRepository;
 	@Autowired
 	private Z2swRepository z2Repository;
 	@Autowired
@@ -220,8 +221,13 @@ public class CombineService {
 		set.addAll(list);
 		list = BsNums.LISTS.get(bsRepository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw2Pos());
 		set.addAll(list);
-		list = DsNums.LISTS.get(dsRepository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw2Pos());
-		set.addAll(list);
+		String[] arr = StringUtils
+				.commaDelimitedListToStringArray(fdRepository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw2Arr());
+		List<Integer> nums = new ArrayList<>();
+		for (String num : arr) {
+			nums.add(Integer.valueOf(num));
+		}
+		set.addAll(nums);
 		return set;
 	}
 
@@ -233,8 +239,13 @@ public class CombineService {
 		set.addAll(list);
 		list = BsNums.LISTS.get(bsRepository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw3Pos());
 		set.addAll(list);
-		list = DsNums.LISTS.get(dsRepository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw3Pos());
-		set.addAll(list);
+		String[] arr = StringUtils
+				.commaDelimitedListToStringArray(fdRepository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw3Arr());
+		List<Integer> nums = new ArrayList<>();
+		for (String num : arr) {
+			nums.add(Integer.valueOf(num));
+		}
+		set.addAll(nums);
 		return set;
 	}
 

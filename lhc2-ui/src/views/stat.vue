@@ -23,12 +23,14 @@
 <script>
     import Menus from './index/menus.vue';
     import Footer from './index/footer.vue';
+    import StatColumn from './index/stat-column.vue';
     import API from '../libs/api';
 
     export default {
         components: {
             Menus,
-            Footer
+            Footer,
+
         },
         data() {
             const self = this;
@@ -42,10 +44,25 @@
                         key: 'count'
                     },
                     {
+                        title: '个数',
+                        width: 50,
+                        render(h, params) {
+                            return h('span', {}, params.row.nums ? params.row.nums.length : params.row.num);
+                        }
+                    },
+                    {
                         title: '号码',
                         minWidth: 300,
                         render(h, params) {
-                            return h('span', {}, params.row.nums.join(' '));
+                            if (params.row.nums) {
+                                return h(StatColumn, {
+                                    props: {
+                                        nums: params.row.nums
+                                    }
+                                });
+                            } else {
+                                return h('span', {}, '');
+                            }
                         }
                     },
                 ]
@@ -55,7 +72,17 @@
             loadData() {
                 API.getStats().then(data => {
                     this.loading = false;
-                    this.data = data || [];
+                    let total = 0;
+                    data.map(it => {
+                        total += it.nums.length;
+                    });
+                    this.data = [
+                        ...data,
+                        {
+                            count: '总数',
+                            num: total,
+                        }
+                    ];
                 });
             }
         },

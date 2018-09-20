@@ -2,7 +2,6 @@ import env from '../config/env';
 import axios from 'axios';
 import { Message } from 'iview';
 import router from '../router';
-
 let util = {
 
 };

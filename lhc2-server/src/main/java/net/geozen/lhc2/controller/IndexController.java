@@ -47,6 +47,7 @@ public class IndexController {
 			}
 		}
 		if (count == calService.getFutures().size()) {
+			calService.getFutures().clear();
 			finished++;
 			if (finished == 1) {
 				calService.combine();
