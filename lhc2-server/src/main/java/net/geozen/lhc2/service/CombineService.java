@@ -152,18 +152,35 @@ public class CombineService {
 
 		});
 		totallyList.clear();
-		for (int i = 1; i < 11; i++) {
-			switch (i) {
-			case 1:
-			case 2:
-			case 3:
-			case 5:
-			case 10: {
-				StatTotallyInfo totallYInfo = new StatTotallyInfo();
-				totallYInfo.setCount(i);
-				count(totallYInfo, list);
-				totallyList.add(totallYInfo);
+		if (revert) {
+			for (int i = 1; i < 11; i++) {
+				switch (i) {
+				case 1:
+				case 2:
+				case 3:
+				case 5:
+				case 10: {
+					StatTotallyInfo totallYInfo = new StatTotallyInfo();
+					totallYInfo.setCount(i);
+					count(totallYInfo, list);
+					totallyList.add(totallYInfo);
+				}
+				}
 			}
+		} else {
+			for (int i = 1; i < 11; i++) {
+				switch (i) {
+				case 5:
+				case 6:
+				case 8:
+				case 9:
+				case 10: {
+					StatTotallyInfo totallYInfo = new StatTotallyInfo();
+					totallYInfo.setCount(i);
+					count(totallYInfo, list);
+					totallyList.add(totallYInfo);
+				}
+				}
 			}
 		}
 	}
