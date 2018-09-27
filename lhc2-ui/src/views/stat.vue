@@ -97,7 +97,9 @@
                     this.loading2 = false;
                     let total = 0;
                     data.map(it => {
-                        total += it.nums.length;
+                        if (it.count > 0) {
+                            total += it.nums.length;
+                        }
                     });
                     this.data2 = [
                         ...data,

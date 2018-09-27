@@ -1,6 +1,7 @@
 package net.geozen.lhc2.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -24,6 +25,7 @@ import net.geozen.lhc2.dto.StatInfo;
 import net.geozen.lhc2.dto.StatTotallyInfo;
 import net.geozen.lhc2.enums.SX;
 import net.geozen.lhc2.jpa.bs.BsswRepository;
+import net.geozen.lhc2.jpa.ds.DsswRepository;
 import net.geozen.lhc2.jpa.fd.FdswRepository;
 import net.geozen.lhc2.jpa.hs.HsswRepository;
 import net.geozen.lhc2.jpa.mw.MwswRepository;
@@ -31,13 +33,13 @@ import net.geozen.lhc2.jpa.pd.PdswRepository;
 import net.geozen.lhc2.jpa.qq.QqswRepository;
 import net.geozen.lhc2.jpa.seq.SeqswRepository;
 import net.geozen.lhc2.jpa.slq.SlqswRepository;
-import net.geozen.lhc2.jpa.sw.SwswRepository;
 import net.geozen.lhc2.jpa.sx.SxswRepository;
 import net.geozen.lhc2.jpa.z13.Z13swRepository;
 import net.geozen.lhc2.jpa.z2.Z2swRepository;
 import net.geozen.lhc2.jpa.z7.Z7swRepository;
 import net.geozen.lhc2.jpa.zs.ZsswRepository;
 import net.geozen.lhc2.nums.BsNums;
+import net.geozen.lhc2.nums.DsNums;
 import net.geozen.lhc2.nums.HsNums;
 import net.geozen.lhc2.nums.MwNums;
 import net.geozen.lhc2.nums.PdNums;
@@ -80,7 +82,7 @@ public class CombineService {
 	@Autowired
 	private ZsswRepository zsRepository;
 	@Autowired
-	private SwswRepository swRepository;
+	private DsswRepository dsRepository;
 	@Autowired
 	private Z7swRepository z7Repository;
 
@@ -244,8 +246,9 @@ public class CombineService {
 		set.addAll(list);
 		list = SlqNums.LISTS.get(slqRepository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw2Pos());
 		set.addAll(list);
-		list = QqNums.LISTS.get(qqRepository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw2Pos());
-		set.addAll(list);
+		for (String num : fdRepository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw2Arr().split(",\\s*")) {
+			set.add(Integer.valueOf(num));
+		}
 		return set;
 	}
 
@@ -258,8 +261,9 @@ public class CombineService {
 		set.addAll(list);
 		list = SlqNums.LISTS.get(slqRepository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw3Pos());
 		set.addAll(list);
-		list = QqNums.LISTS.get(qqRepository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw3Pos());
-		set.addAll(list);
+		for (String num : fdRepository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw3Arr().split(",\\s*")) {
+			set.add(Integer.valueOf(num));
+		}
 		return set;
 	}
 
@@ -271,13 +275,8 @@ public class CombineService {
 		set.addAll(list);
 		list = BsNums.LISTS.get(bsRepository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw2Pos());
 		set.addAll(list);
-		String[] arr = StringUtils
-				.commaDelimitedListToStringArray(fdRepository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw2Arr());
-		List<Integer> nums = new ArrayList<>();
-		for (String num : arr) {
-			nums.add(Integer.valueOf(num));
-		}
-		set.addAll(nums);
+		list = DsNums.LISTS.get(dsRepository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw2Pos());
+		set.addAll(list);
 		return set;
 	}
 
@@ -289,13 +288,8 @@ public class CombineService {
 		set.addAll(list);
 		list = BsNums.LISTS.get(bsRepository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw3Pos());
 		set.addAll(list);
-		String[] arr = StringUtils
-				.commaDelimitedListToStringArray(fdRepository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw3Arr());
-		List<Integer> nums = new ArrayList<>();
-		for (String num : arr) {
-			nums.add(Integer.valueOf(num));
-		}
-		set.addAll(nums);
+		list = DsNums.LISTS.get(dsRepository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw3Pos());
+		set.addAll(list);
 		return set;
 	}
 
@@ -327,7 +321,7 @@ public class CombineService {
 
 	private Set<Integer> getD() {
 		Set<Integer> set = new HashSet<>();
-		List<Integer> list = SwNums.LISTS.get(swRepository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw2Pos());
+		List<Integer> list = QqNums.LISTS.get(qqRepository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw2Pos());
 		set.addAll(list);
 		list = Z7Nums.LISTS.get(z7Repository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw2Pos());
 		set.addAll(list);
@@ -336,7 +330,7 @@ public class CombineService {
 
 	private Set<Integer> getH() {
 		Set<Integer> set = new HashSet<>();
-		List<Integer> list = SwNums.LISTS.get(swRepository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw3Pos());
+		List<Integer> list = QqNums.LISTS.get(qqRepository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw3Pos());
 		set.addAll(list);
 		list = Z7Nums.LISTS.get(z7Repository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw3Pos());
 		set.addAll(list);
