@@ -1,7 +1,6 @@
 package net.geozen.lhc2.service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -18,7 +17,6 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import lombok.extern.slf4j.Slf4j;
 import net.geozen.lhc2.dto.StatInfo;
@@ -46,7 +44,6 @@ import net.geozen.lhc2.nums.PdNums;
 import net.geozen.lhc2.nums.QqNums;
 import net.geozen.lhc2.nums.SeqNums;
 import net.geozen.lhc2.nums.SlqNums;
-import net.geozen.lhc2.nums.SwNums;
 import net.geozen.lhc2.nums.Z13Nums;
 import net.geozen.lhc2.nums.Z2Nums;
 import net.geozen.lhc2.nums.Z7Nums;

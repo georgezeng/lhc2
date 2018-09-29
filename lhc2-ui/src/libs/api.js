@@ -46,10 +46,19 @@ export default {
         });
     },
 
-
     clearTm() {
         return new Promise((resolve, reject) => {
             util.ajax.get('/tm/clear/').then(data => {
+                resolve(data);
+            }).catch(ex => {
+                reject(ex);
+            });
+        });
+    },
+
+    clearTmWithPage(pageInfo) {
+        return new Promise((resolve, reject) => {
+            util.ajax.post('/tm/clear/', pageInfo).then(data => {
                 resolve(data);
             }).catch(ex => {
                 reject(ex);

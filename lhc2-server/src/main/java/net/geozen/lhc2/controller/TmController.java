@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import net.geozen.lhc2.domain.Tm;
+import net.geozen.lhc2.dto.PageInfo;
 import net.geozen.lhc2.dto.PageResult;
 import net.geozen.lhc2.dto.QueryInfo;
 import net.geozen.lhc2.dto.Result;
@@ -54,6 +55,12 @@ public class TmController {
 	@RequestMapping(value = "/clear", method = RequestMethod.GET)
 	public void clear() {
 		tmRepository.deleteAll();
+	}
+
+	@RequestMapping(value = "/clear", method = RequestMethod.POST)
+	public void clearPage(@RequestBody PageInfo pageInfo) {
+		Page<Tm> result = tmRepository.findAll(pageInfo.pageable());
+		tmRepository.deleteAll(result.getContent());
 	}
 
 }

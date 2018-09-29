@@ -18,12 +18,6 @@
                     <p slot="title" style="height: 35px;">
                         <Icon type="ios-albums-outline"/>
                         特码管理
-                        <Poptip confirm transfer title="确定要清除所有吗" @on-ok="clear">
-                            <Button style="margin: 0 10px;" type="error">清除</Button>
-                        </Poptip>
-
-                        <Button :loading="calculation.loading" type="success" @click="calculate">{{calculation.text}}
-                        </Button>
                     </p>
                     <div style="margin-bottom: 10px;">
                         <div style="float: left; width: 100px; margin-right: 10px;">
@@ -41,7 +35,15 @@
                                 </Option>
                             </Select>
                         </div>
-                        <Button type="primary" @click="add">新增+</Button>
+                        <Button style="margin: 0 10px;" type="primary" @click="add">新增+</Button>
+                        <Poptip confirm transfer title="确定要清除所有吗" @on-ok="clear">
+                            <Button type="error">清除所有</Button>
+                        </Poptip>
+                        <Poptip confirm transfer title="确定要清除当前页面吗" @on-ok="clearPage">
+                            <Button style="margin: 0 10px;" type="warning">清除整页</Button>
+                        </Poptip>
+                        <Button :loading="calculation.loading" type="success" @click="calculate">{{calculation.text}}
+                        </Button>
                     </div>
                     <Table stripe border size="small" :loading="loading" :columns="columns" :data="data"/>
                     <div class="page">
@@ -267,10 +269,17 @@
                             this.calculationFinish(data.errors);
                         }
                         Cookies.set('calLoading', 'false');
-                    } else if(data.finished == 0) {
+                    } else if (data.finished == 0) {
                         this.calculationFinish();
                     }
                     setTimeout(this.loadCalculationStatus, 1000);
+                });
+            },
+            clearPage() {
+                API.clearTmWithPage(this.queryInfo.page).then(data => {
+                    this.$Message.success('删除成功！');
+                    this.queryInfo.page.num = 1;
+                    this.loadData();
                 });
             },
             clear() {
