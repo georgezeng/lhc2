@@ -179,10 +179,11 @@ public class PickNumService {
 				List<List<Integer>> nums = new ArrayList<List<Integer>>();
 				// Pageable current = PageRequest.of(pageNumForCurrent, 1);
 				Pageable current = PageRequest.of(1, 20, Direction.DESC, "phase");
+				Map<String, Boolean> counter = new HashMap<String, Boolean>();
 				int count = 0;
-				boolean reached = countNumbers(nums, tm, current, offsetForLast20, size, count, expected, true);
-				if (!reached) {
-					reached = countNumbers(nums, tm, current, offsetForLast20, size, count, expected, false);
+				count = countNumbers(nums, tm, current, offsetForLast20, size, count, expected, counter, true);
+				if (count < expected) {
+					countNumbers(nums, tm, current, offsetForLast20, size, count, expected, counter, false);
 				}
 				Map<Integer, PickNumCountInfo> map = new HashMap<Integer, PickNumCountInfo>();
 				for (List<Integer> numArr : nums) {
@@ -221,141 +222,161 @@ public class PickNumService {
 		// } while (pResult.hasNext());
 	}
 
-	private boolean countNumbers(List<List<Integer>> nums, Tm tm, Pageable current, int offset, int size, int count, int expected, boolean compare)
-			throws Exception {
-		count = getNumbersFromSxyz(nums, tm, current, offset, size, count, expected, compare);
-		count = getNumbersFromSxzf(nums, tm, current, offset, size, count, expected, compare);
-		count = getNumbersFromYz(seqyzCalculationService, nums, SeqNums.class, tm, current, offset, size, count, expected, compare);
-		count = getNumbersFromYz(seqzfCalculationService, nums, SeqNums.class, tm, current, offset, size, count, expected, compare);
-		count = getNumbersFromYz(slqyzCalculationService, nums, SlqNums.class, tm, current, offset, size, count, expected, compare);
-		count = getNumbersFromYz(slqzfCalculationService, nums, SlqNums.class, tm, current, offset, size, count, expected, compare);
-		count = getNumbersFromFdsw(nums, tm, current, offset, size, count, expected, compare);
-		count = getNumbersFromYz(pdyzCalculationService, nums, PdNums.class, tm, current, offset, size, count, expected, compare);
-		count = getNumbersFromYz(pdzfCalculationService, nums, PdNums.class, tm, current, offset, size, count, expected, compare);
-		count = getNumbersFromYz(z2yzCalculationService, nums, Z2Nums.class, tm, current, offset, size, count, expected, compare);
-		count = getNumbersFromYz(z2zfCalculationService, nums, Z2Nums.class, tm, current, offset, size, count, expected, compare);
-		count = getNumbersFromYz(z13yzCalculationService, nums, Z13Nums.class, tm, current, offset, size, count, expected, compare);
-		count = getNumbersFromYz(z13zfCalculationService, nums, Z13Nums.class, tm, current, offset, size, count, expected, compare);
-		count = getNumbersFromYz(dsyzCalculationService, nums, DsNums.class, tm, current, offset, size, count, expected, compare);
-		count = getNumbersFromYz(dszfCalculationService, nums, DsNums.class, tm, current, offset, size, count, expected, compare);
-		count = getNumbersFromYz(mwyzCalculationService, nums, MwNums.class, tm, current, offset, size, count, expected, compare);
-		count = getNumbersFromYz(mwzfCalculationService, nums, MwNums.class, tm, current, offset, size, count, expected, compare);
-		count = getNumbersFromYz(hsyzCalculationService, nums, HsNums.class, tm, current, offset, size, count, expected, compare);
-		count = getNumbersFromYz(hszfCalculationService, nums, HsNums.class, tm, current, offset, size, count, expected, compare);
-		count = getNumbersFromYz(bsyzCalculationService, nums, BsNums.class, tm, current, offset, size, count, expected, compare);
-		count = getNumbersFromYz(bszfCalculationService, nums, BsNums.class, tm, current, offset, size, count, expected, compare);
-		count = getNumbersFromYz(zsyzCalculationService, nums, ZsNums.class, tm, current, offset, size, count, expected, compare);
-		count = getNumbersFromYz(zszfCalculationService, nums, ZsNums.class, tm, current, offset, size, count, expected, compare);
-		count = getNumbersFromYz(z7yzCalculationService, nums, Z7Nums.class, tm, current, offset, size, count, expected, compare);
-		count = getNumbersFromYz(z7zfCalculationService, nums, Z7Nums.class, tm, current, offset, size, count, expected, compare);
-		return count >= expected;
+	private int countNumbers(List<List<Integer>> nums, Tm tm, Pageable current, int offset, int size, int count, int expected,
+			Map<String, Boolean> counter, boolean compare) throws Exception {
+		count = getNumbersFromSxyz(nums, tm, current, offset, size, count, expected, counter, compare);
+		count = getNumbersFromSxzf(nums, tm, current, offset, size, count, expected, counter, compare);
+		count = getNumbersFromYz(seqyzCalculationService, nums, SeqNums.class, tm, current, offset, size, count, expected, counter, "seqyz", compare);
+		count = getNumbersFromZf(seqzfCalculationService, nums, SeqNums.class, tm, current, offset, size, count, expected, counter, "seqzf", compare);
+		count = getNumbersFromYz(slqyzCalculationService, nums, SlqNums.class, tm, current, offset, size, count, expected, counter, "slqyz", compare);
+		count = getNumbersFromZf(slqzfCalculationService, nums, SlqNums.class, tm, current, offset, size, count, expected, counter, "slqzf", compare);
+		count = getNumbersFromFdsw(nums, tm, current, offset, size, count, expected, counter, compare);
+		count = getNumbersFromYz(pdyzCalculationService, nums, PdNums.class, tm, current, offset, size, count, expected, counter, "pdyz", compare);
+		count = getNumbersFromZf(pdzfCalculationService, nums, PdNums.class, tm, current, offset, size, count, expected, counter, "pdzf", compare);
+		count = getNumbersFromYz(z2yzCalculationService, nums, Z2Nums.class, tm, current, offset, size, count, expected, counter, "z2yz", compare);
+		count = getNumbersFromZf(z2zfCalculationService, nums, Z2Nums.class, tm, current, offset, size, count, expected, counter, "z2zf", compare);
+		count = getNumbersFromYz(z13yzCalculationService, nums, Z13Nums.class, tm, current, offset, size, count, expected, counter, "z13yz", compare);
+		count = getNumbersFromZf(z13zfCalculationService, nums, Z13Nums.class, tm, current, offset, size, count, expected, counter, "z13zf", compare);
+		count = getNumbersFromYz(dsyzCalculationService, nums, DsNums.class, tm, current, offset, size, count, expected, counter, "dsyz", compare);
+		count = getNumbersFromZf(dszfCalculationService, nums, DsNums.class, tm, current, offset, size, count, expected, counter, "dszf", compare);
+		count = getNumbersFromYz(mwyzCalculationService, nums, MwNums.class, tm, current, offset, size, count, expected, counter, "mwyz", compare);
+		count = getNumbersFromZf(mwzfCalculationService, nums, MwNums.class, tm, current, offset, size, count, expected, counter, "mwzf", compare);
+		count = getNumbersFromYz(hsyzCalculationService, nums, HsNums.class, tm, current, offset, size, count, expected, counter, "hsyz", compare);
+		count = getNumbersFromZf(hszfCalculationService, nums, HsNums.class, tm, current, offset, size, count, expected, counter, "hszf", compare);
+		count = getNumbersFromYz(bsyzCalculationService, nums, BsNums.class, tm, current, offset, size, count, expected, counter, "bsyz", compare);
+		count = getNumbersFromZf(bszfCalculationService, nums, BsNums.class, tm, current, offset, size, count, expected, counter, "bszf", compare);
+		count = getNumbersFromYz(zsyzCalculationService, nums, ZsNums.class, tm, current, offset, size, count, expected, counter, "zsyz", compare);
+		count = getNumbersFromZf(zszfCalculationService, nums, ZsNums.class, tm, current, offset, size, count, expected, counter, "zszf", compare);
+		count = getNumbersFromYz(z7yzCalculationService, nums, Z7Nums.class, tm, current, offset, size, count, expected, counter, "z7yz", compare);
+		count = getNumbersFromZf(z7zfCalculationService, nums, Z7Nums.class, tm, current, offset, size, count, expected, counter, "z7zf", compare);
+		return count;
 	}
 
-	private int getNumbersFromSxyz(List<List<Integer>> nums, Tm tm, Pageable current, int offset, int size, int count, int expected, boolean compare)
-			throws Exception {
-		if (count < expected) {
-			int delta = 15;
-			int avgForLast20 = sxyzCalculationService.getTotalAvgForLastPhases(offset, size);
-			int avgForCurrent = sxyzCalculationService.getTotalAvgForLastPhases(current.getPageNumber(), current.getPageSize());
-			boolean toCount = !compare;
-			if (avgForCurrent < avgForLast20) {
-				int avg = avgForCurrent / 12;
+	private int getNumbersFromSxyz(List<List<Integer>> nums, Tm tm, Pageable current, int offset, int size, int count, int expected,
+			Map<String, Boolean> counter, boolean compare) throws Exception {
+		Boolean hasCounted = counter.get("sxyz");
+		if (hasCounted == null || !hasCounted) {
+			if (count < expected) {
+				int delta = 15;
+				int avgForLast20 = sxyzCalculationService.getTotalAvgForLastPhases(offset, size);
+				int avgForCurrent = sxyzCalculationService.getTotalAvgForLastPhases(current.getPageNumber(), current.getPageSize());
+				boolean toCount = !compare;
 				MaxInfo max = sxyzCalculationService.getMax(tm.getPhase());
-				if (!compare || avg - max.getYz() < delta) {
+				if (avgForCurrent < avgForLast20) {
+					int avg = avgForCurrent / 12;
+					if (!compare || avg - max.getYz() < delta) {
+						toCount = true;
+					}
+				}
+				if (toCount) {
+					count++;
 					nums.add(sxyzCalculationService.getNumbers(max));
-					toCount = true;
+					counter.put("sxyz", true);
 				}
-			}
-			if (toCount) {
-				count++;
 			}
 		}
 		return count;
 	}
 
-	private int getNumbersFromSxzf(List<List<Integer>> nums, Tm tm, Pageable current, int offset, int size, int count, int expected, boolean compare)
-			throws Exception {
-		if (count < expected) {
-			int delta = 15;
-			int avgForLast20 = sxzfCalculationService.getTotalAvgForLastPhases(offset, size);
-			int avgForCurrent = sxzfCalculationService.getTotalAvgForLastPhases(current.getPageNumber(), current.getPageSize());
-			boolean toCount = !compare;
-			if (avgForCurrent < avgForLast20) {
-				int avg = avgForCurrent / 12;
+	private int getNumbersFromSxzf(List<List<Integer>> nums, Tm tm, Pageable current, int offset, int size, int count, int expected,
+			Map<String, Boolean> counter, boolean compare) throws Exception {
+		Boolean hasCounted = counter.get("sxzf");
+		if (hasCounted == null || !hasCounted) {
+			if (count < expected) {
+				int delta = 15;
+				int avgForLast20 = sxzfCalculationService.getTotalAvgForLastPhases(offset, size);
+				int avgForCurrent = sxzfCalculationService.getTotalAvgForLastPhases(current.getPageNumber(), current.getPageSize());
+				boolean toCount = !compare;
 				MaxInfo max = sxzfCalculationService.getMax(tm.getPhase());
-				if (avg - max.getYz() < delta) {
-					nums.add(sxzfCalculationService.getNumbers(max));
-					toCount = true;
+				if (avgForCurrent < avgForLast20) {
+					int avg = avgForCurrent / 12;
+					if (avg - max.getYz() < delta) {
+						toCount = true;
+					}
 				}
-			}
-			if (toCount) {
-				count++;
+				if (toCount) {
+					count++;
+					nums.add(sxzfCalculationService.getNumbers(max));
+					counter.put("sxzf", true);
+				}
 			}
 		}
 		return count;
 	}
 
-	private int getNumbersFromFdsw(List<List<Integer>> nums, Tm tm, Pageable current, int offset, int size, int count, int expected, boolean compare)
-			throws Exception {
-		if (count < expected) {
-			int delta = 15;
-			int avgForLast20 = fdswCalculationService.getTotalAvgForLastPhases(offset, size);
-			int avgForCurrent = fdswCalculationService.getTotalAvgForLastPhases(current.getPageNumber(), current.getPageSize());
-			boolean toCount = !compare;
-			if (avgForCurrent < avgForLast20) {
-				int avg = avgForCurrent / 12;
+	private int getNumbersFromFdsw(List<List<Integer>> nums, Tm tm, Pageable current, int offset, int size, int count, int expected,
+			Map<String, Boolean> counter, boolean compare) throws Exception {
+		Boolean hasCounted = counter.get("fdsw");
+		if (hasCounted == null || !hasCounted) {
+			if (count < expected) {
+				int delta = 15;
+				int avgForLast20 = fdswCalculationService.getTotalAvgForLastPhases(offset, size);
+				int avgForCurrent = fdswCalculationService.getTotalAvgForLastPhases(current.getPageNumber(), current.getPageSize());
+				boolean toCount = !compare;
 				MaxInfo max = fdswCalculationService.getMax(tm.getPhase());
-				if (avg - max.getYz() < delta) {
-					nums.add(max.getNums());
-					toCount = true;
+				if (avgForCurrent < avgForLast20) {
+					int avg = avgForCurrent / 12;
+					if (avg - max.getYz() < delta) {
+						toCount = true;
+					}
 				}
-			}
-			if (toCount) {
-				count++;
+				if (toCount) {
+					count++;
+					nums.add(max.getNums());
+					counter.put("fdsw", true);
+				}
 			}
 		}
 		return count;
 	}
 
 	private int getNumbersFromYz(BasePosYzCalculationService<?> yzService, List<List<Integer>> nums, Class<?> numsClass, Tm tm, Pageable current,
-			int offset, int size, int count, int expected, boolean compare) throws Exception {
-		if (count < expected) {
-			int delta = 15;
-			int avgForLast20 = yzService.getTotalAvgForLastPhases(offset, size);
-			int avgForCurrent = yzService.getTotalAvgForLastPhases(current.getPageNumber(), current.getPageSize());
-			boolean toCount = !compare;
-			if (avgForCurrent < avgForLast20) {
-				int avg = avgForCurrent / (yzService.getEndPos() + 1);
+			int offset, int size, int count, int expected, Map<String, Boolean> counter, String key, boolean compare) throws Exception {
+		Boolean hasCounted = counter.get(key);
+		if (hasCounted == null || !hasCounted) {
+			if (count < expected) {
+				int delta = 15;
+				int avgForLast20 = yzService.getTotalAvgForLastPhases(offset, size);
+				int avgForCurrent = yzService.getTotalAvgForLastPhases(current.getPageNumber(), current.getPageSize());
+				boolean toCount = !compare;
 				MaxInfo max = yzService.getMax(tm.getPhase());
-				if (avg - max.getYz() < delta) {
-					nums.add(yzService.getNumbers(numsClass, max));
-					toCount = true;
+				if (avgForCurrent < avgForLast20) {
+					int avg = avgForCurrent / (yzService.getEndPos() + 1);
+					if (avg - max.getYz() < delta) {
+						toCount = true;
+					}
 				}
-			}
-			if (toCount) {
-				count++;
+				if (toCount) {
+					count++;
+					nums.add(yzService.getNumbers(numsClass, max));
+					counter.put(key, true);
+				}
 			}
 		}
 		return count;
 	}
 
-	private int getNumbersFromYz(BaseZfCalculationService<?, ?> zfService, List<List<Integer>> nums, Class<?> numsClass, Tm tm, Pageable current,
-			int offset, int size, int count, int expected, boolean compare) throws Exception {
-		if (count < expected) {
-			int delta = 15;
-			int avgForLast20 = zfService.getTotalAvgForLastPhases(offset, size);
-			int avgForCurrent = zfService.getTotalAvgForLastPhases(current.getPageNumber(), current.getPageSize());
-			boolean toCount = !compare;
-			if (avgForCurrent < avgForLast20) {
-				int avg = avgForCurrent / (zfService.getEndPos() + 1);
+	private int getNumbersFromZf(BaseZfCalculationService<?, ?> zfService, List<List<Integer>> nums, Class<?> numsClass, Tm tm, Pageable current,
+			int offset, int size, int count, int expected, Map<String, Boolean> counter, String key, boolean compare) throws Exception {
+		Boolean hasCounted = counter.get(key);
+		if (hasCounted == null || !hasCounted) {
+			if (count < expected) {
+				int delta = 15;
+				int avgForLast20 = zfService.getTotalAvgForLastPhases(offset, size);
+				int avgForCurrent = zfService.getTotalAvgForLastPhases(current.getPageNumber(), current.getPageSize());
+				boolean toCount = !compare;
 				MaxInfo max = zfService.getMax(tm.getPhase());
-				if (avg - max.getYz() < delta) {
-					nums.add(zfService.getNumbers(numsClass, max));
-					toCount = true;
+				if (avgForCurrent < avgForLast20) {
+					int avg = avgForCurrent / (zfService.getEndPos() + 1);
+					if (avg - max.getYz() < delta) {
+						toCount = true;
+					}
 				}
-			}
-			if (toCount) {
-				count++;
+				if (toCount) {
+					count++;
+					nums.add(zfService.getNumbers(numsClass, max));
+					counter.put(key, true);
+				}
 			}
 		}
 		return count;

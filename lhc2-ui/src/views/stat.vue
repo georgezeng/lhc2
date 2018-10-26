@@ -122,6 +122,13 @@
                         }
                     },
                     {
+                        title: '个数',
+                        width: 50,
+                        render(h, params) {
+                            return h('span', {}, params.row.nums.length);
+                        }
+                    },
+                    {
                         title: '#',
                         render(h, params) {
                             if (params.row.nums) {

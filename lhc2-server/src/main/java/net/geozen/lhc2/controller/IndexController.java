@@ -25,11 +25,14 @@ public class IndexController {
 	@Autowired
 	private CombineService combineService;
 
-	private boolean isFinished;
+	private boolean allFinished;
+
+	private boolean summaryInit;
 
 	@RequestMapping(value = "/calculate", method = RequestMethod.GET)
 	public void calculate() {
-		isFinished = false;
+		allFinished = false;
+		summaryInit = false;
 		calService.process();
 	}
 
@@ -41,23 +44,23 @@ public class IndexController {
 		for (Future<Exception> f : calService.getFutures()) {
 			if (f.isDone()) {
 				if (f.get() != null) {
-					isFinished = true;
+					allFinished = true;
 					errors.add(f.get().getMessage());
+					break;
 				}
 				count++;
 			}
 		}
 		if (errors.isEmpty() && count > 0 && count == calService.getFutures().size()) {
-			isFinished = count == 2;
-			if (!isFinished) {
+			allFinished = count == 2;
+			if (!allFinished && !summaryInit) {
+				summaryInit = true;
 				calService.summary();
-			} else {
-				calService.getFutures().clear();
 			}
 		}
 		result.put("errors", errors);
-		result.put("finished", isFinished);
-		isFinished = false;
+		result.put("finished", allFinished);
+		allFinished = false;
 		return Result.genSuccessResult(result);
 	}
 
