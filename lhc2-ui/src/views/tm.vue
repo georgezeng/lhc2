@@ -68,6 +68,7 @@
     import SxSelect from './index/sx-select.vue';
     import ICol from "iview/src/components/grid/col";
 
+    let clearId;
     export default {
         components: {
             ICol,
@@ -249,6 +250,8 @@
                         API.calculate();
                     }
                 });
+                //window.clearTimeout(clearId);
+                //this.loadCalculationStatus();
             },
             calculationFinish(errors) {
                 this.calculation = {
@@ -261,7 +264,7 @@
             },
             loadCalculationStatus() {
                 API.loadCalculationStatus().then(data => {
-                    if (data.finished > 1) {
+                    if (data.finished) {
                         if (!data.errors || data.errors.length == 0) {
                             this.calculationFinish();
                             this.$Message.success('计算完成！');
@@ -269,9 +272,10 @@
                             this.calculationFinish(data.errors);
                         }
                         Cookies.set('calLoading', 'false');
-                    } else if (data.finished == 0) {
+                    } else {
                         this.calculationFinish();
                     }
+                    //clearId = setTimeout(this.loadCalculationStatus, 1000);
                     setTimeout(this.loadCalculationStatus, 1000);
                 });
             },

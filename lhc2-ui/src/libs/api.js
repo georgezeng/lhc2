@@ -134,5 +134,15 @@ export default {
                 reject(ex);
             });
         });
+    },
+
+    getPickNums(queryInfo) {
+        return new Promise((resolve, reject) => {
+            util.ajax.post(`/pickNum/list`, queryInfo).then(data => {
+                resolve(data);
+            }).catch(ex => {
+                reject(ex);
+            });
+        });
     }
 }

@@ -2,6 +2,7 @@ package net.geozen.lhc2.service.sx;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Future;
 
@@ -12,10 +13,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.extern.slf4j.Slf4j;
+import net.geozen.lhc2.def.jpa.impl.CommonDAO;
 import net.geozen.lhc2.domain.sx.Sxyz;
 import net.geozen.lhc2.domain.sx.Sxzf;
+import net.geozen.lhc2.dto.MaxInfo;
 import net.geozen.lhc2.enums.SX;
+import net.geozen.lhc2.jpa.sx.SxyzRepository;
 import net.geozen.lhc2.jpa.sx.SxzfRepository;
+import net.geozen.lhc2.utils.SxUtil;
 
 @Service
 @Slf4j
@@ -23,6 +28,12 @@ public class SxzfCalculationService {
 
 	@Autowired
 	private SxzfRepository zfRepository;
+
+	@Autowired
+	private SxyzRepository yzRepository;
+
+	@Autowired
+	private CommonDAO commonDAO;
 
 	@Transactional
 	@Async
@@ -63,6 +74,48 @@ public class SxzfCalculationService {
 			t = e;
 		}
 		return new AsyncResult<>(t);
+	}
+
+	public int getTotalAvgForLastPhases(int offset, int size) throws Exception {
+		List<Sxzf> list = commonDAO.findAllByOffsetAndSize(Sxzf.class, offset, size);
+		int total = 0;
+		for (Sxzf zf : list) {
+			for (int i = 0; i < 12; i++) {
+				Method m = Sxzf.class.getDeclaredMethod("getZf" + i);
+				Integer value = (Integer) m.invoke(zf);
+				total += value;
+			}
+		}
+		return total / size;
+	}
+
+	public MaxInfo getMax(int phase) throws Exception {
+		Sxzf zf = zfRepository.findByPhase(phase);
+		if (zf == null) {
+			return new MaxInfo(phase, 0, 0);
+		}
+		int max = 0;
+		int pos = 0;
+		for (int i = 0; i < 12; i++) {
+			Method m = Sxzf.class.getDeclaredMethod("getZf" + i);
+			Integer value = (Integer) m.invoke(zf);
+			if (value > max) {
+				max = value;
+				pos = i;
+			}
+		}
+		return new MaxInfo(phase, max, pos);
+	}
+
+	public List<Integer> getNumbers(MaxInfo info) throws Exception {
+		int endPos = 12;
+		Sxyz yz = yzRepository.findByPhase(info.getPhase());
+		int pos = yz.getSx().getPos() + info.getPos();
+		if (pos >= endPos) {
+			pos = pos - endPos;
+		}
+		SX bmnSx = SxUtil.getSxByYear(new Date());
+		return SxUtil.getSxNums(bmnSx, SX.posOf(pos + 1));
 	}
 
 }

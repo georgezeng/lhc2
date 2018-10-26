@@ -10,14 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.extern.slf4j.Slf4j;
+import net.geozen.lhc2.def.jpa.BaseYzRepository;
+import net.geozen.lhc2.def.jpa.impl.CommonDAO;
 import net.geozen.lhc2.domain.Tm;
 import net.geozen.lhc2.domain.base.PosBaseEntity;
+import net.geozen.lhc2.dto.MaxInfo;
 import net.geozen.lhc2.jpa.TmRepository;
 import net.geozen.lhc2.service.CalculationService;
 import net.geozen.lhc2.utils.SystemConstants;
@@ -28,13 +30,22 @@ public abstract class BasePosYzCalculationService<Y extends PosBaseEntity> {
 	@Autowired
 	protected TmRepository tmRepository;
 
-	protected abstract PagingAndSortingRepository<Y, Long> getRepository();
+	@Autowired
+	private CommonDAO commonDAO;
+
+	protected abstract BaseYzRepository<Y> getRepository();
 
 	protected abstract BaseZfCalculationService<Y, ?> getZfCalculationService();
 
 	protected abstract BaseSwCalculationService<Y, ?> getSwCalculationService();
 
 	protected abstract CalculationHandler getHandler();
+
+	public abstract int getEndPos();
+
+	public int getStartPos() {
+		return 0;
+	}
 
 	@Autowired
 	protected CalculationService calService;
@@ -44,6 +55,44 @@ public abstract class BasePosYzCalculationService<Y extends PosBaseEntity> {
 	@SuppressWarnings("unchecked")
 	public BasePosYzCalculationService() {
 		yzClass = (Class<Y>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+	}
+
+	public int getTotalAvgForLastPhases(int offset, int size) throws Exception {
+		List<Y> list = commonDAO.findAllByOffsetAndSize(yzClass, offset, size);
+		int total = 0;
+		for (Y yz : list) {
+			for (int i = getStartPos(); i < getEndPos(); i++) {
+				Method m = yzClass.getDeclaredMethod("getW" + i);
+				Integer value = (Integer) m.invoke(yz);
+				total += value;
+			}
+		}
+		return total / size;
+	}
+
+	public MaxInfo getMax(int phase) throws Exception {
+		Y yz = getRepository().findByPhase(phase);
+		int max = 0;
+		int pos = 0;
+		for (int i = getStartPos(); i < getEndPos(); i++) {
+			Method m = yzClass.getDeclaredMethod("getW" + i);
+			Integer value = (Integer) m.invoke(yz);
+			if (value > max) {
+				max = value;
+				if (getStartPos() == 0) {
+					pos = i;
+				} else {
+					pos = i - 1;
+				}
+			}
+		}
+		return new MaxInfo(phase, max, pos);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Integer> getNumbers(Class<?> numsClass, MaxInfo info) throws Exception {
+		List<List<Integer>> nums = (List<List<Integer>>) numsClass.getDeclaredField("LISTS").get(null);
+		return nums.get(info.getPos());
 	}
 
 	@Transactional

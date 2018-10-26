@@ -1,8 +1,7 @@
 package net.geozen.lhc2.jpa.hs;
 
-import org.springframework.data.repository.PagingAndSortingRepository;
-
+import net.geozen.lhc2.def.jpa.BaseYzRepository;
 import net.geozen.lhc2.domain.hs.Hsyz;
 
-public interface HsyzRepository extends PagingAndSortingRepository<Hsyz, Long> {
+public interface HsyzRepository extends BaseYzRepository<Hsyz> {
 }

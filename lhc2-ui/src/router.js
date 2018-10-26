@@ -38,7 +38,7 @@ const RouterConfig = {
             path: '/stat',
             name: 'stat',
             meta: {
-                title: `${prefix}单双顺位`
+                title: `${prefix}数据统计`
             },
             component: (resolve) => require(['./views/stat.vue'], resolve)
         },

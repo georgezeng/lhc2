@@ -2,6 +2,7 @@ package net.geozen.lhc2.service.sx;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Future;
 
@@ -15,12 +16,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.extern.slf4j.Slf4j;
+import net.geozen.lhc2.def.jpa.impl.CommonDAO;
 import net.geozen.lhc2.domain.Tm;
 import net.geozen.lhc2.domain.sx.Sxyz;
+import net.geozen.lhc2.dto.MaxInfo;
 import net.geozen.lhc2.enums.SX;
 import net.geozen.lhc2.jpa.TmRepository;
 import net.geozen.lhc2.jpa.sx.SxyzRepository;
 import net.geozen.lhc2.service.CalculationService;
+import net.geozen.lhc2.utils.SxUtil;
 import net.geozen.lhc2.utils.SystemConstants;
 
 @Service
@@ -41,6 +45,9 @@ public class SxyzCalculationService {
 
 	@Autowired
 	private CalculationService calService;
+
+	@Autowired
+	private CommonDAO commonDAO;
 
 	@Transactional
 	@Async
@@ -79,6 +86,39 @@ public class SxyzCalculationService {
 			t = e;
 		}
 		return new AsyncResult<>(t);
+	}
+
+	public int getTotalAvgForLastPhases(int offset, int size) throws Exception {
+		List<Sxyz> list = commonDAO.findAllByOffsetAndSize(Sxyz.class, offset, size);
+		int total = 0;
+		for (Sxyz yz : list) {
+			for (SX sx : SX.seq()) {
+				Method m = Sxyz.class.getDeclaredMethod("get" + sx.getColumn());
+				Integer value = (Integer) m.invoke(yz);
+				total += value;
+			}
+		}
+		return total / size;
+	}
+
+	public MaxInfo getMax(int phase) throws Exception {
+		Sxyz yz = yzRepository.findByPhase(phase);
+		int max = 0;
+		SX currentSX = null;
+		for (SX sx : SX.seq()) {
+			Method m = Sxyz.class.getDeclaredMethod("get" + sx.getColumn());
+			Integer value = (Integer) m.invoke(yz);
+			if (value > max) {
+				max = value;
+				currentSX = sx;
+			}
+		}
+		return new MaxInfo(phase, max, currentSX);
+	}
+
+	public List<Integer> getNumbers(MaxInfo info) throws Exception {
+		SX bmnSx = SxUtil.getSxByYear(new Date());
+		return SxUtil.getSxNums(bmnSx, info.getSx());
 	}
 
 }

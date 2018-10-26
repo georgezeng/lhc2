@@ -76,6 +76,9 @@ public class CalculationService {
 	private FdyzCalculationService fdService;
 
 	@Autowired
+	private PickNumService pickNumService;
+
+	@Autowired
 	private CombineService combineService;
 
 	@Async
@@ -102,9 +105,10 @@ public class CalculationService {
 		futures.add(future);
 	}
 
-	public void combine() {
+	public void summary() {
 		futures.clear();
 		futures.add(combineService.process());
+		futures.add(pickNumService.process());
 	}
 
 }

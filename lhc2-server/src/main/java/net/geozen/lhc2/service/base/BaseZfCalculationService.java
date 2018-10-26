@@ -6,26 +6,80 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Future;
 
-import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.extern.slf4j.Slf4j;
+import net.geozen.lhc2.def.jpa.BaseYzRepository;
+import net.geozen.lhc2.def.jpa.BaseZfRepository;
+import net.geozen.lhc2.def.jpa.impl.CommonDAO;
 import net.geozen.lhc2.domain.base.PosBaseEntity;
+import net.geozen.lhc2.dto.MaxInfo;
 
 @Slf4j
 public abstract class BaseZfCalculationService<Y extends PosBaseEntity, Z extends PosBaseEntity> {
 
-	protected abstract PagingAndSortingRepository<Z, Long> getRepository();
+	protected abstract BaseYzRepository<Y> getYzRepository();
+
+	protected abstract BaseZfRepository<Z> getRepository();
 
 	protected Class<Z> zfClass;
+
+	@Autowired
+	private CommonDAO commonDAO;
 
 	protected abstract CalculationHandler getHandler();
 
 	@SuppressWarnings("unchecked")
 	public BaseZfCalculationService() {
 		zfClass = (Class<Z>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[1];
+	}
+
+	public abstract int getEndPos();
+
+	public int getTotalAvgForLastPhases(int offset, int size) throws Exception {
+		List<Z> list = commonDAO.findAllByOffsetAndSize(zfClass, offset, size);
+		int total = 0;
+		for (Z zf : list) {
+			for (int i = 0; i < getEndPos(); i++) {
+				Method m = zfClass.getDeclaredMethod("getZf" + i);
+				Integer value = (Integer) m.invoke(zf);
+				total += value;
+			}
+		}
+		return total / size;
+	}
+
+	public MaxInfo getMax(int phase) throws Exception {
+		Z zf = getRepository().findByPhase(phase);
+		if (zf == null) {
+			return new MaxInfo(phase, 0, 0);
+		}
+		int max = 0;
+		int pos = 0;
+		for (int i = 0; i < getEndPos(); i++) {
+			Method m = zfClass.getDeclaredMethod("getZf" + i);
+			Integer value = (Integer) m.invoke(zf);
+			if (value > max) {
+				max = value;
+				pos = i;
+			}
+		}
+		return new MaxInfo(phase, max, pos);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Integer> getNumbers(Class<?> numsClass, MaxInfo info) throws Exception {
+		int endPos = getEndPos();
+		Y yz = getYzRepository().findByPhase(info.getPhase());
+		int pos = yz.getPos() + info.getPos();
+		if (pos >= endPos) {
+			pos = pos - endPos;
+		}
+		List<List<Integer>> nums = (List<List<Integer>>) numsClass.getDeclaredField("LISTS").get(null);
+		return nums.get(pos);
 	}
 
 	@Transactional

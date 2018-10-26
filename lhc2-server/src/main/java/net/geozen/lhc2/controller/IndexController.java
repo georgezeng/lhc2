@@ -25,11 +25,11 @@ public class IndexController {
 	@Autowired
 	private CombineService combineService;
 
-	private int finishCount = 0;
+	private boolean isFinished;
 
 	@RequestMapping(value = "/calculate", method = RequestMethod.GET)
 	public void calculate() {
-		finishCount = 0;
+		isFinished = false;
 		calService.process();
 	}
 
@@ -41,23 +41,23 @@ public class IndexController {
 		for (Future<Exception> f : calService.getFutures()) {
 			if (f.isDone()) {
 				if (f.get() != null) {
+					isFinished = true;
 					errors.add(f.get().getMessage());
 				}
 				count++;
 			}
 		}
-		if (count > 0 && count == calService.getFutures().size()) {
-			calService.getFutures().clear();
-			finishCount++;
-			if (finishCount == 1) {
-				calService.combine();
+		if (errors.isEmpty() && count > 0 && count == calService.getFutures().size()) {
+			isFinished = count == 2;
+			if (!isFinished) {
+				calService.summary();
+			} else {
+				calService.getFutures().clear();
 			}
 		}
 		result.put("errors", errors);
-		result.put("finished", finishCount);
-		if (finishCount > 1) {
-			finishCount = 0;
-		}
+		result.put("finished", isFinished);
+		isFinished = false;
 		return Result.genSuccessResult(result);
 	}
 
@@ -65,7 +65,7 @@ public class IndexController {
 	public Result<List<StatTotallyInfo>> getStatInfo1() {
 		return Result.genSuccessResult(combineService.list1());
 	}
-	
+
 	@RequestMapping(value = "/statInfo/2", method = RequestMethod.GET)
 	public Result<List<StatTotallyInfo>> getStatInfo2() {
 		return Result.genSuccessResult(combineService.list2());

@@ -1,9 +1,9 @@
 package net.geozen.lhc2.service.sw;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Service;
 
+import net.geozen.lhc2.def.jpa.BaseYzRepository;
 import net.geozen.lhc2.domain.sw.Swyz;
 import net.geozen.lhc2.jpa.sw.SwyzRepository;
 import net.geozen.lhc2.service.base.BasePosYzCalculationService;
@@ -27,7 +27,7 @@ public class SwyzCalculationService extends BasePosYzCalculationService<Swyz> {
 	private SwCalculationHandler handler;
 
 	@Override
-	protected PagingAndSortingRepository<Swyz, Long> getRepository() {
+	protected BaseYzRepository<Swyz> getRepository() {
 		return yzRepository;
 	}
 
@@ -44,6 +44,11 @@ public class SwyzCalculationService extends BasePosYzCalculationService<Swyz> {
 	@Override
 	protected CalculationHandler getHandler() {
 		return handler;
+	}
+
+	@Override
+	public int getEndPos() {
+		return 5;
 	}
 
 }

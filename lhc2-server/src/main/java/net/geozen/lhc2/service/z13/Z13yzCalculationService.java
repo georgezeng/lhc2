@@ -1,9 +1,9 @@
 package net.geozen.lhc2.service.z13;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Service;
 
+import net.geozen.lhc2.def.jpa.BaseYzRepository;
 import net.geozen.lhc2.domain.z13.Z13yz;
 import net.geozen.lhc2.jpa.z13.Z13yzRepository;
 import net.geozen.lhc2.service.base.BasePosYzCalculationService;
@@ -27,7 +27,7 @@ public class Z13yzCalculationService extends BasePosYzCalculationService<Z13yz> 
 	private Z13CalculationHandler handler;
 
 	@Override
-	protected PagingAndSortingRepository<Z13yz, Long> getRepository() {
+	protected BaseYzRepository<Z13yz> getRepository() {
 		return yzRepository;
 	}
 
@@ -44,6 +44,11 @@ public class Z13yzCalculationService extends BasePosYzCalculationService<Z13yz> 
 	@Override
 	protected CalculationHandler getHandler() {
 		return handler;
+	}
+
+	@Override
+	public int getEndPos() {
+		return 12;
 	}
 
 }
