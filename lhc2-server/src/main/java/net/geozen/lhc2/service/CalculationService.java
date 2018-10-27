@@ -81,7 +81,7 @@ public class CalculationService {
 	@Autowired
 	private CombineService combineService;
 
-	@Async
+//	@Async
 	public void process() {
 		futures.clear();
 		futures.add(sxService.process());

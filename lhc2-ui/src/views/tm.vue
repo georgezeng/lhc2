@@ -275,7 +275,11 @@
                     } else {
                         this.calculationFinish();
                     }
+                    console.log(1);
                     //clearId = setTimeout(this.loadCalculationStatus, 1000);
+                    setTimeout(this.loadCalculationStatus, 1000);
+                }).catch(ex => {
+                    console.log(1);
                     setTimeout(this.loadCalculationStatus, 1000);
                 });
             },

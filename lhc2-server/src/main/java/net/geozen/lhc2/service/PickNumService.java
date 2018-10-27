@@ -262,7 +262,7 @@ public class PickNumService {
 				int avgForCurrent = sxyzCalculationService.getTotalAvgForLastPhases(current.getPageNumber(), current.getPageSize());
 				boolean toCount = !compare;
 				MaxInfo max = sxyzCalculationService.getMax(tm.getPhase());
-				if (avgForCurrent < avgForLast20) {
+				if (avgForCurrent - avgForLast20 < 7) {
 					int avg = avgForCurrent / 12;
 					if (!compare || avg - max.getYz() < delta) {
 						toCount = true;
@@ -288,7 +288,7 @@ public class PickNumService {
 				int avgForCurrent = sxzfCalculationService.getTotalAvgForLastPhases(current.getPageNumber(), current.getPageSize());
 				boolean toCount = !compare;
 				MaxInfo max = sxzfCalculationService.getMax(tm.getPhase());
-				if (avgForCurrent < avgForLast20) {
+				if (avgForCurrent - avgForLast20 < 7) {
 					int avg = avgForCurrent / 12;
 					if (avg - max.getYz() < delta) {
 						toCount = true;
@@ -314,7 +314,7 @@ public class PickNumService {
 				int avgForCurrent = fdswCalculationService.getTotalAvgForLastPhases(current.getPageNumber(), current.getPageSize());
 				boolean toCount = !compare;
 				MaxInfo max = fdswCalculationService.getMax(tm.getPhase());
-				if (avgForCurrent < avgForLast20) {
+				if (avgForCurrent - avgForLast20 < 7) {
 					int avg = avgForCurrent / 12;
 					if (avg - max.getYz() < delta) {
 						toCount = true;
@@ -340,7 +340,7 @@ public class PickNumService {
 				int avgForCurrent = yzService.getTotalAvgForLastPhases(current.getPageNumber(), current.getPageSize());
 				boolean toCount = !compare;
 				MaxInfo max = yzService.getMax(tm.getPhase());
-				if (avgForCurrent < avgForLast20) {
+				if (avgForCurrent - avgForLast20 < 7) {
 					int avg = avgForCurrent / (yzService.getEndPos() + 1);
 					if (avg - max.getYz() < delta) {
 						toCount = true;
@@ -366,7 +366,7 @@ public class PickNumService {
 				int avgForCurrent = zfService.getTotalAvgForLastPhases(current.getPageNumber(), current.getPageSize());
 				boolean toCount = !compare;
 				MaxInfo max = zfService.getMax(tm.getPhase());
-				if (avgForCurrent < avgForLast20) {
+				if (avgForCurrent - avgForLast20 < 7) {
 					int avg = avgForCurrent / (zfService.getEndPos() + 1);
 					if (avg - max.getYz() < delta) {
 						toCount = true;
