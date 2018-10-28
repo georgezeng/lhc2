@@ -158,6 +158,7 @@ public class PickNumService {
 			process(14);
 			process(10);
 			process(7);
+			process(5);
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 			t = e;
