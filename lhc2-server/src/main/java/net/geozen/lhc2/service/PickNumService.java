@@ -155,6 +155,7 @@ public class PickNumService {
 		Exception t = null;
 		try {
 			pickNumRepository.deleteAll();
+			process(16);
 			process(14);
 			process(10);
 			process(7);

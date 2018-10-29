@@ -27,6 +27,14 @@
                 <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
+                        16表选号
+                    </p>
+                    <Table stripe border size="small" :loading="loading9" :columns="columns2" :data="data9"/>
+                </Card>
+                <br/>
+                <Card>
+                    <p slot="title">
+                        <Icon type="ios-stats-outline"/>
                         14表选号
                     </p>
                     <Table stripe border size="small" :loading="loading3" :columns="columns2" :data="data3"/>
@@ -106,6 +114,7 @@
                 loading6: true,
                 loading7: true,
                 loading8: true,
+                loading9: true,
                 dataFor14: [],
                 dataFor7: [],
                 dataFor5: [],
@@ -117,6 +126,7 @@
                 data6: [],
                 data7: [],
                 data8: [],
+                data9: [],
                 columns1: [
                     {
                         title: '次数',
@@ -210,6 +220,10 @@
                         }
                     ];
                 });
+                this.changePage(1, 16, () => {
+                    this.data9 = [];
+                    return this.data9
+                }, () => this.loading9 = true, () => this.loading9 = false);
                 this.changePage(1, 14, () => {
                     this.data3 = [];
                     return this.data3
