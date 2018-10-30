@@ -67,6 +67,14 @@
                 <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
+                        16表/5表选号-合并
+                    </p>
+                    <Table stripe border size="small" :loading="loading10" :columns="columns2" :data="data10"/>
+                </Card>
+                <br/>
+                <Card>
+                    <p slot="title">
+                        <Icon type="ios-stats-outline"/>
                         14表/7表选号-合并
                     </p>
                     <Table stripe border size="small" :loading="loading7" :columns="columns2" :data="data7"/>
@@ -115,6 +123,8 @@
                 loading7: true,
                 loading8: true,
                 loading9: true,
+                loading10: true,
+                dataFor16: [],
                 dataFor14: [],
                 dataFor7: [],
                 dataFor5: [],
@@ -127,6 +137,7 @@
                 data7: [],
                 data8: [],
                 data9: [],
+                data10: [],
                 columns1: [
                     {
                         title: '次数',
@@ -255,23 +266,33 @@
                 }).then(result => {
                     stopLoading();
                     const data = this.setupData(result.list, initData());
-                    switch(expected) {
-                        case 5: this.dataFor5 = data; break;
-                        case 7: this.dataFor7 = data; break;
-                        case 14: this.dataFor14 = data; break;
+                    switch (expected) {
+                        case 5:
+                            this.dataFor5 = data;
+                            break;
+                        case 7:
+                            this.dataFor7 = data;
+                            break;
+                        case 14:
+                            this.dataFor14 = data;
+                            break;
+                        case 16:
+                            this.dataFor16 = data;
+                            break;
                     }
                 });
             },
             loadCombine() {
-                if(this.dataFor5.numArr0 && this.dataFor5.numArr0.length > 0
+                if (this.dataFor5.numArr0 && this.dataFor5.numArr0.length > 0
                     && this.dataFor7.numArr0 && this.dataFor7.numArr0.length > 0
-                    && this.dataFor14.numArr12 && this.dataFor14.numArr12.length > 0) {
+                    && this.dataFor14.numArr12 && this.dataFor14.numArr12.length > 0
+                    && this.dataFor16.numArr12 && this.dataFor16.numArr12.length > 0) {
                     let data = [];
-                    for(let i = 0; i < this.dataFor14.numArr12.length; i++) {
+                    for (let i = 0; i < this.dataFor14.numArr12.length; i++) {
                         const numIn12 = this.dataFor14.numArr12[i];
-                        for(let j = 0; j < this.dataFor7.numArr0.length; j++) {
+                        for (let j = 0; j < this.dataFor7.numArr0.length; j++) {
                             const numIn0 = this.dataFor7.numArr0[j];
-                            if(numIn12 == numIn0) {
+                            if (numIn12 == numIn0) {
                                 data.push(numIn12);
                                 break;
                             }
@@ -280,11 +301,11 @@
                     this.data7.push({colName: '0-12', nums: data});
                     this.loading7 = false;
                     data = [];
-                    for(let i = 0; i < this.dataFor14.numArr12.length; i++) {
+                    for (let i = 0; i < this.dataFor14.numArr12.length; i++) {
                         const numIn12 = this.dataFor14.numArr12[i];
-                        for(let j = 0; j < this.dataFor5.numArr0.length; j++) {
+                        for (let j = 0; j < this.dataFor5.numArr0.length; j++) {
                             const numIn0 = this.dataFor5.numArr0[j];
-                            if(numIn12 == numIn0) {
+                            if (numIn12 == numIn0) {
                                 data.push(numIn12);
                                 break;
                             }
@@ -292,6 +313,29 @@
                     }
                     this.data8.push({colName: '0-12', nums: data});
                     this.loading8 = false;
+                    data = [];
+                    for (let i = 0; i < this.dataFor16.numArr12.length; i++) {
+                        const numIn12 = this.dataFor16.numArr12[i];
+                        for (let j = 0; j < this.dataFor5.numArr0.length; j++) {
+                            const numIn0 = this.dataFor5.numArr0[j];
+                            if (numIn12 == numIn0) {
+                                data.push(numIn12);
+                                break;
+                            }
+                        }
+                    }
+                    for (let i = 0; i < this.dataFor16.numArr34.length; i++) {
+                        const numIn34 = this.dataFor16.numArr34[i];
+                        for (let j = 0; j < this.dataFor5.numArr0.length; j++) {
+                            const numIn0 = this.dataFor5.numArr0[j];
+                            if (numIn34 == numIn0) {
+                                data.push(numIn34);
+                                break;
+                            }
+                        }
+                    }
+                    this.data10.push({colName: '0-12-34', nums: data});
+                    this.loading10 = false;
                 } else {
                     setTimeout(this.loadCombine, 1000);
                 }
