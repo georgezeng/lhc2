@@ -9,13 +9,14 @@
             </Header>
             <Content class="content">
                 <Card>
-                    <Button :loading="calculation.loading" type="success" @click="calculate">{{calculation.text}}
+                    <Button :loading="calculation.loading" type="success" @click="calculate" style="float: left;">{{calculation.text}}
                     </Button>
-                    <Alert v-if="errors" type="error" show-icon closable>
-                        <ul>
+                    <Alert v-if="errors" type="error" show-icon closable style="float: left; margin-left: 10px;">
+                        <ul style="list-style-type:none">
                             <li v-for="error in errors">{{error}}</li>
                         </ul>
                     </Alert>
+                    <div style="clear:both;"></div>
                 </Card>
                 <br/>
                 <Card>
@@ -323,6 +324,7 @@
                             }
                         }
                     }
+                    this.data7 = [];
                     this.data7.push({colName: '0-12', nums: data});
                     this.loading7 = false;
                     data = [];
@@ -336,6 +338,7 @@
                             }
                         }
                     }
+                    this.data8 = [];
                     this.data8.push({colName: '0-12', nums: data});
                     this.loading8 = false;
                     data = [];
@@ -369,6 +372,7 @@
                             }
                         }
                     }
+                    this.data10 = [];
                     this.data10.push({
                         colName: '0-12-34-5', nums: data.sort((a, b) => {
                             return parseInt(a) - parseInt(b);
