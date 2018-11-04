@@ -8,7 +8,7 @@
                 <Menus activeName="stat"/>
             </Header>
             <Content class="content">
-                <Card>
+                <Card style="position: fixed; z-index: 100000; width: 100%;">
                     <Button :loading="calculation.loading" type="success" @click="calculate" style="float: left;">{{calculation.text}}
                     </Button>
                     <Alert v-if="errors" type="error" show-icon closable style="float: left; margin-left: 10px;">
@@ -16,6 +16,9 @@
                             <li v-for="error in errors">{{error}}</li>
                         </ul>
                     </Alert>
+                    <div style="clear:both;"></div>
+                </Card>
+                <Card style="visibility: hidden; margin-bottom: 30px;">
                     <div style="clear:both;"></div>
                 </Card>
                 <br/>
