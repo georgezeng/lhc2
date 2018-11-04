@@ -51,6 +51,8 @@ public class IndexController {
 		}
 		if (!finished && count > 0 && count == calService.getFutures().size()) {
 			if (summaryInit) {
+				summaryInit = false;
+				calService.getFutures().clear();
 				finished = true;
 			}
 			if (!summaryInit) {

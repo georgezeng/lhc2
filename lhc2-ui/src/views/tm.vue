@@ -273,13 +273,18 @@
                         }
                         Cookies.set('calLoading', 'false');
                     } else {
-                        this.calculationFinish();
+                        if(Cookies.get('calLoading') == 'true') {
+                            this.calculation = {
+                                loading: true,
+                                text: '计算中...'
+                            }
+                        } else {
+                            this.calculationFinish();
+                        }
                     }
-                    console.log(1);
                     //clearId = setTimeout(this.loadCalculationStatus, 1000);
                     setTimeout(this.loadCalculationStatus, 1000);
                 }).catch(ex => {
-                    console.log(1);
                     setTimeout(this.loadCalculationStatus, 1000);
                 });
             },
