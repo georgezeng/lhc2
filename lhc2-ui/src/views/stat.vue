@@ -9,6 +9,17 @@
             </Header>
             <Content class="content">
                 <Card>
+                    <Button :loading="calculation.loading" type="success" @click="calculate">{{calculation.text}}
+                    </Button>
+                    <Alert v-if="errors" type="error" show-icon closable
+                           style="position: fixed; top: 70px; left: 20px; z-index: 100000;">
+                        <ul>
+                            <li v-for="error in errors">{{error}}</li>
+                        </ul>
+                    </Alert>
+                </Card>
+                <br/>
+                <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
                         49-统计
@@ -106,6 +117,11 @@
         data() {
             const self = this;
             return {
+                errors: null,
+                calculation: {
+                    loading: false,
+                    text: '计算'
+                },
                 queryInfo: {
                     page: {
                         num: 1,
@@ -201,6 +217,16 @@
         },
         methods: {
             loadData() {
+                this.loading1 = true;
+                this.loading2 = true;
+                this.loading3 = true;
+                this.loading4 = true;
+                this.loading5 = true;
+                this.loading6 = true;
+                this.loading7 = true;
+                this.loading8 = true;
+                this.loading9 = true;
+                this.loading10 = true;
                 API.getStats1().then(data => {
                     this.loading1 = false;
                     let total = 0;
@@ -384,9 +410,62 @@
 
                 return result;
             },
+            calculate() {
+                let self = this;
+                this.$Modal.confirm({
+                    title: '确认对话框',
+                    content: '计算需要比较长的时间，是否确定开始计算 ?',
+                    onOk() {
+                        self.errors = null;
+                        self.calculation = {
+                            loading: true,
+                            text: '计算中...'
+                        }
+                        API.calculate();
+                    }
+                });
+                //window.clearTimeout(clearId);
+                //this.loadCalculationStatus();
+            },
+            calculationFinish(errors) {
+                this.calculation = {
+                    loading: false,
+                    text: '计算'
+                }
+                if (errors && errors.length > 0) {
+                    this.errors = errors;
+                }
+            },
+            loadCalculationStatus() {
+                API.loadCalculationStatus().then(data => {
+                    if (data.status == 2) {
+                        if (!data.errors || data.errors.length == 0) {
+                            this.calculationFinish();
+                            this.$Message.success('计算完成！');
+                            this.loadData();
+                        } else {
+                            this.calculationFinish(data.errors);
+                        }
+                    } else {
+                        if(data.status == 1) {
+                            this.calculation = {
+                                loading: true,
+                                text: '计算中...'
+                            }
+                        } else {
+                            this.calculationFinish();
+                        }
+                    }
+                    //clearId = setTimeout(this.loadCalculationStatus, 1000);
+                    setTimeout(this.loadCalculationStatus, 1000);
+                }).catch(ex => {
+                    setTimeout(this.loadCalculationStatus, 1000);
+                });
+            }
         },
         created() {
             this.loadData();
+            this.loadCalculationStatus();
         }
     }
 </script>

@@ -6,12 +6,6 @@
         <Layout>
             <Header class="menus">
                 <Menus activeName="tm"/>
-                <Alert v-if="errors" type="error" show-icon closable
-                       style="position: fixed; top: 70px; left: 20px; z-index: 100000;">
-                    <ul>
-                        <li v-for="error in errors">{{error}}</li>
-                    </ul>
-                </Alert>
             </Header>
             <Content class="content">
                 <Card>
@@ -42,8 +36,10 @@
                         <Poptip confirm transfer title="确定要清除当前页面吗" @on-ok="clearPage">
                             <Button style="margin: 0 10px;" type="warning">清除整页</Button>
                         </Poptip>
+                        <!--
                         <Button :loading="calculation.loading" type="success" @click="calculate">{{calculation.text}}
                         </Button>
+                        -->
                     </div>
                     <Table stripe border size="small" :loading="loading" :columns="columns" :data="data"/>
                     <div class="page">
@@ -63,12 +59,10 @@
     import Menus from './index/menus.vue';
     import Footer from './index/footer.vue';
     import API from '../libs/api';
-    import Cookies from 'js-cookie';
     import extend from 'lodash/extend';
     import SxSelect from './index/sx-select.vue';
     import ICol from "iview/src/components/grid/col";
 
-    let clearId;
     export default {
         components: {
             ICol,
@@ -91,8 +85,8 @@
                     loading: false
                 },
                 calculation: {
-                    loading: Cookies.get('calLoading') === 'true',
-                    text: Cookies.get('calLoading') === 'true' ? '计算中...' : '计算'
+                    loading: false,
+                    text: '计算'
                 },
                 loading: true,
                 queryInfo: {
@@ -249,8 +243,6 @@
                         API.calculate();
                     }
                 });
-                //window.clearTimeout(clearId);
-                //this.loadCalculationStatus();
             },
             calculationFinish(errors) {
                 this.calculation = {
@@ -280,7 +272,6 @@
                             this.calculationFinish();
                         }
                     }
-                    //clearId = setTimeout(this.loadCalculationStatus, 1000);
                     setTimeout(this.loadCalculationStatus, 1000);
                 }).catch(ex => {
                     setTimeout(this.loadCalculationStatus, 1000);
@@ -308,7 +299,7 @@
         created() {
             this.loadSxList();
             this.loadData();
-            this.loadCalculationStatus();
+            // this.loadCalculationStatus();
         }
     }
 </script>
