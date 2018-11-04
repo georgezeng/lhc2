@@ -6,15 +6,6 @@
         <Layout>
             <Header class="menus">
                 <Menus activeName="stat"/>
-                <div style="position: absolute; top: 14px; left: 450px; z-index: 100000;">
-                    <Button :loading="calculation.loading" type="success" @click="calculate" style="float: left;">{{calculation.text}}
-                    </Button>
-                    <Alert v-if="errors" type="error" show-icon closable style="float: left; margin-left: 10px;">
-                        <ul style="list-style-type:none">
-                            <li v-for="error in errors">{{error}}</li>
-                        </ul>
-                    </Alert>
-                </div>
             </Header>
             <Content class="content">
                 <Card>
@@ -115,11 +106,6 @@
         data() {
             const self = this;
             return {
-                errors: null,
-                calculation: {
-                    loading: false,
-                    text: '计算'
-                },
                 queryInfo: {
                     page: {
                         num: 1,
@@ -215,16 +201,6 @@
         },
         methods: {
             loadData() {
-                this.loading1 = true;
-                this.loading2 = true;
-                this.loading3 = true;
-                this.loading4 = true;
-                this.loading5 = true;
-                this.loading6 = true;
-                this.loading7 = true;
-                this.loading8 = true;
-                this.loading9 = true;
-                this.loading10 = true;
                 API.getStats1().then(data => {
                     this.loading1 = false;
                     let total = 0;
@@ -322,7 +298,6 @@
                             }
                         }
                     }
-                    this.data7 = [];
                     this.data7.push({colName: '0-12', nums: data});
                     this.loading7 = false;
                     data = [];
@@ -336,7 +311,6 @@
                             }
                         }
                     }
-                    this.data8 = [];
                     this.data8.push({colName: '0-12', nums: data});
                     this.loading8 = false;
                     data = [];
@@ -370,12 +344,7 @@
                             }
                         }
                     }
-                    this.data10 = [];
-                    this.data10.push({
-                        colName: '0-12-34-5', nums: data.sort((a, b) => {
-                            return parseInt(a) - parseInt(b);
-                        })
-                    });
+                    this.data10.push({colName: '0-12-34-5', nums: data.sort((a,b)=>{return parseInt(a) - parseInt(b);})});
                     this.loading10 = false;
                 } else {
                     setTimeout(this.loadCombine, 1000);
@@ -415,70 +384,9 @@
 
                 return result;
             },
-            calculate() {
-                let self = this;
-                // this.$Modal.confirm({
-                //     title: '确认对话框',
-                //     content: '计算需要比较长的时间，是否确定开始计算 ?',
-                //     onOk() {
-                //         self.errors = null;
-                //         self.calculation = {
-                //             loading: true,
-                //             text: '计算中...'
-                //         }
-                //         API.calculate();
-                //     }
-                // });
-
-                self.errors = null;
-                self.calculation = {
-                    loading: true,
-                    text: '计算中...'
-                }
-                API.calculate();
-            },
-            calculationFinish(errors) {
-                this.calculation = {
-                    loading: false,
-                    text: '计算'
-                }
-                if (errors && errors.length > 0) {
-                    this.errors = errors;
-                }
-            },
-            loadCalculationStatus() {
-                API.loadCalculationStatus().then(data => {
-                    switch (data.status) {
-                        case 1: {
-                            this.calculation = {
-                                loading: true,
-                                text: '计算中...'
-                            }
-                            break;
-                        }
-                        case 2: {
-                            if (!data.errors || data.errors.length == 0) {
-                                this.calculationFinish();
-                                this.$Message.success('计算完成！');
-                                this.loadData();
-                            } else {
-                                this.calculationFinish(data.errors);
-                            }
-                            break;
-                        }
-                        default: {
-                            this.calculationFinish();
-                        }
-                    }
-                    setTimeout(this.loadCalculationStatus, 1000);
-                }).catch(ex => {
-                    setTimeout(this.loadCalculationStatus, 1000);
-                });
-            }
         },
         created() {
             this.loadData();
-            this.loadCalculationStatus();
         }
     }
 </script>

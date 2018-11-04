@@ -6,6 +6,12 @@
         <Layout>
             <Header class="menus">
                 <Menus activeName="tm"/>
+                <Alert v-if="errors" type="error" show-icon closable
+                       style="position: fixed; top: 70px; left: 20px; z-index: 100000;">
+                    <ul>
+                        <li v-for="error in errors">{{error}}</li>
+                    </ul>
+                </Alert>
             </Header>
             <Content class="content">
                 <Card>
@@ -36,10 +42,8 @@
                         <Poptip confirm transfer title="确定要清除当前页面吗" @on-ok="clearPage">
                             <Button style="margin: 0 10px;" type="warning">清除整页</Button>
                         </Poptip>
-                        <!--
                         <Button :loading="calculation.loading" type="success" @click="calculate">{{calculation.text}}
                         </Button>
-                        -->
                     </div>
                     <Table stripe border size="small" :loading="loading" :columns="columns" :data="data"/>
                     <div class="page">
@@ -63,6 +67,7 @@
     import SxSelect from './index/sx-select.vue';
     import ICol from "iview/src/components/grid/col";
 
+    let clearId;
     export default {
         components: {
             ICol,
@@ -230,17 +235,30 @@
                 });
             },
             calculate() {
-                let self = this;
-                this.$Modal.confirm({
-                    title: '确认对话框',
-                    content: '计算需要比较长的时间，是否确定开始计算 ?',
-                    onOk() {
-                        self.errors = null;
-                        self.calculation = {
-                            loading: true,
-                            text: '计算中...'
-                        }
-                        API.calculate();
+                // let self = this;
+                // this.$Modal.confirm({
+                //     title: '确认对话框',
+                //     content: '计算需要比较长的时间，是否确定开始计算 ?',
+                //     onOk() {
+                //         self.errors = null;
+                //         self.calculation = {
+                //             loading: true,
+                //             text: '计算中...'
+                //         }
+                //         API.calculate();
+                //     }
+                // });
+                this.errors = null;
+                this.calculation = {
+                    loading: true,
+                    text: '计算中...'
+                }
+                API.calculate().then(errors => {
+                    if (errors.length == 0) {
+                        this.calculationFinish();
+                        this.$Message.success('计算完成！');
+                    } else {
+                        this.calculationFinish(errors);
                     }
                 });
             },

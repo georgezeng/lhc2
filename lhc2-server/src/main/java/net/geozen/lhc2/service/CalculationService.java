@@ -82,7 +82,7 @@ public class CalculationService {
 	private CombineService combineService;
 
 //	@Async
-	public void process() {
+	public void process(List<String> errors) throws Exception {
 		futures1.clear();
 		futures1.add(sxService.process());
 		futures1.add(swService.process());
@@ -99,16 +99,42 @@ public class CalculationService {
 		futures1.add(z13Service.process());
 		futures1.add(dsService.process());
 		futures1.add(fdService.process());
+		
+		int count = 0;
+		while(count < futures1.size()) {
+			for (Future<Exception> f : futures1) {
+				if (f.isDone()) {
+					if (f.get() != null) {
+						errors.add(f.get().getMessage());
+						break;
+					}
+					count++;
+				}
+			}
+		}
 	}
 
 	public void addFuture(Future<Exception> future) {
 		futures1.add(future);
 	}
 
-	public void summary() {
+	public void summary(List<String> errors) throws Exception {
 		futures2.clear();
 		futures2.add(combineService.process());
 		futures2.add(pickNumService.process());
+		
+		int count = 0;
+		while(count < futures2.size()) {
+			for (Future<Exception> f : futures2) {
+				if (f.isDone()) {
+					if (f.get() != null) {
+						errors.add(f.get().getMessage());
+						break;
+					}
+					count++;
+				}
+			}
+		}
 	}
 
 }
