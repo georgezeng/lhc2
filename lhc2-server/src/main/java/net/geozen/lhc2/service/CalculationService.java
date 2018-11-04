@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.concurrent.Future;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import lombok.Getter;
@@ -28,7 +27,8 @@ import net.geozen.lhc2.service.zs.ZsyzCalculationService;
 @Service
 @Getter
 public class CalculationService {
-	private final List<Future<Exception>> futures = new ArrayList<>();
+	private final List<Future<Exception>> futures1 = new ArrayList<>();
+	private final List<Future<Exception>> futures2 = new ArrayList<>();
 
 	@Autowired
 	private SxyzCalculationService sxService;
@@ -83,32 +83,32 @@ public class CalculationService {
 
 //	@Async
 	public void process() {
-		futures.clear();
-		futures.add(sxService.process());
-		futures.add(swService.process());
-		futures.add(mwService.process());
-		futures.add(hsService.process());
-		futures.add(bsService.process());
-		futures.add(zsService.process());
-		futures.add(qqService.process());
-		futures.add(seqService.process());
-		futures.add(slqService.process());
-		futures.add(pdService.process());
-		futures.add(z2Service.process());
-		futures.add(z7Service.process());
-		futures.add(z13Service.process());
-		futures.add(dsService.process());
-		futures.add(fdService.process());
+		futures1.clear();
+		futures1.add(sxService.process());
+		futures1.add(swService.process());
+		futures1.add(mwService.process());
+		futures1.add(hsService.process());
+		futures1.add(bsService.process());
+		futures1.add(zsService.process());
+		futures1.add(qqService.process());
+		futures1.add(seqService.process());
+		futures1.add(slqService.process());
+		futures1.add(pdService.process());
+		futures1.add(z2Service.process());
+		futures1.add(z7Service.process());
+		futures1.add(z13Service.process());
+		futures1.add(dsService.process());
+		futures1.add(fdService.process());
 	}
 
 	public void addFuture(Future<Exception> future) {
-		futures.add(future);
+		futures1.add(future);
 	}
 
 	public void summary() {
-		futures.clear();
-		futures.add(combineService.process());
-		futures.add(pickNumService.process());
+		futures2.clear();
+		futures2.add(combineService.process());
+		futures2.add(pickNumService.process());
 	}
 
 }

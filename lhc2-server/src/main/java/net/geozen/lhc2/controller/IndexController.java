@@ -39,7 +39,7 @@ public class IndexController {
 		boolean finished = false;
 		Map<String, Object> result = new HashMap<>();
 		List<String> errors = new ArrayList<>();
-		for (Future<Exception> f : calService.getFutures()) {
+		for (Future<Exception> f : calService.getFutures1()) {
 			if (f.isDone()) {
 				if (f.get() != null) {
 					finished = true;
@@ -49,15 +49,29 @@ public class IndexController {
 				count++;
 			}
 		}
-		if (!finished && count > 0 && count == calService.getFutures().size()) {
-			if (summaryInit) {
-				summaryInit = false;
-				calService.getFutures().clear();
-				finished = true;
-			}
+		if (!finished && count > 0 && count == calService.getFutures1().size()) {
+			calService.getFutures1().clear();
 			if (!summaryInit) {
 				summaryInit = true;
 				calService.summary();
+			}
+			count = 0;
+			errors = new ArrayList<>();
+			for (Future<Exception> f : calService.getFutures2()) {
+				if (f.isDone()) {
+					if (f.get() != null) {
+						finished = true;
+						errors.add(f.get().getMessage());
+						break;
+					}
+					count++;
+				}
+			}
+			if (!finished) {
+				finished = count > 0 && count == calService.getFutures2().size();
+			}
+			if (finished) {
+				calService.getFutures2().clear();
 			}
 		}
 		result.put("errors", errors);
