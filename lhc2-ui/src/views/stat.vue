@@ -6,9 +6,7 @@
         <Layout>
             <Header class="menus">
                 <Menus activeName="stat"/>
-            </Header>
-            <Content class="content">
-                <Card style="position: fixed; z-index: 100000; width: 100%;">
+                <div style="position: absolute; top: 14px; left: 450px; z-index: 100000;">
                     <Button :loading="calculation.loading" type="success" @click="calculate" style="float: left;">{{calculation.text}}
                     </Button>
                     <Alert v-if="errors" type="error" show-icon closable style="float: left; margin-left: 10px;">
@@ -16,12 +14,9 @@
                             <li v-for="error in errors">{{error}}</li>
                         </ul>
                     </Alert>
-                    <div style="clear:both;"></div>
-                </Card>
-                <Card style="visibility: hidden; margin-bottom: 30px;">
-                    <div style="clear:both;"></div>
-                </Card>
-                <br/>
+                </div>
+            </Header>
+            <Content class="content">
                 <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
