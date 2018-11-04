@@ -27,29 +27,32 @@ public class IndexController {
 
 	private boolean summaryInit;
 
+	private int status = 0;
+
 	@RequestMapping(value = "/calculate", method = RequestMethod.GET)
 	public void calculate() {
 		summaryInit = false;
+		status = 1;
 		calService.process();
 	}
 
 	@RequestMapping(value = "/calculation/status", method = RequestMethod.GET)
 	public Result<Map<String, Object>> calculationStatus() throws Exception {
 		int count = 0;
-		boolean finished = false;
+		int currentStatus = status;
 		Map<String, Object> result = new HashMap<>();
 		List<String> errors = new ArrayList<>();
 		for (Future<Exception> f : calService.getFutures1()) {
 			if (f.isDone()) {
 				if (f.get() != null) {
-					finished = true;
+					status = 2;
 					errors.add(f.get().getMessage());
 					break;
 				}
 				count++;
 			}
 		}
-		if (!finished && count > 0 && count == calService.getFutures1().size()) {
+		if (status == 1 && count > 0 && count == calService.getFutures1().size()) {
 			calService.getFutures1().clear();
 			if (!summaryInit) {
 				summaryInit = true;
@@ -60,22 +63,28 @@ public class IndexController {
 			for (Future<Exception> f : calService.getFutures2()) {
 				if (f.isDone()) {
 					if (f.get() != null) {
-						finished = true;
+						status = 2;
 						errors.add(f.get().getMessage());
 						break;
 					}
 					count++;
 				}
 			}
-			if (!finished) {
-				finished = count > 0 && count == calService.getFutures2().size();
+			if (status == 1) {
+				if (count > 0 && count == calService.getFutures2().size()) {
+					status = 2;
+				}
 			}
-			if (finished) {
+			if (status == 2) {
 				calService.getFutures2().clear();
 			}
 		}
+		currentStatus = status;
+		if (status == 2) {
+			status = 0;
+		}
 		result.put("errors", errors);
-		result.put("finished", finished);
+		result.put("status", currentStatus);
 		return Result.genSuccessResult(result);
 	}
 

@@ -242,7 +242,6 @@
                     content: '计算需要比较长的时间，是否确定开始计算 ?',
                     onOk() {
                         self.errors = null;
-                        Cookies.set('calLoading', 'true');
                         self.calculation = {
                             loading: true,
                             text: '计算中...'
@@ -264,16 +263,15 @@
             },
             loadCalculationStatus() {
                 API.loadCalculationStatus().then(data => {
-                    if (data.finished) {
+                    if (data.status == 2) {
                         if (!data.errors || data.errors.length == 0) {
                             this.calculationFinish();
                             this.$Message.success('计算完成！');
                         } else {
                             this.calculationFinish(data.errors);
                         }
-                        Cookies.set('calLoading', 'false');
                     } else {
-                        if(Cookies.get('calLoading') == 'true') {
+                        if(data.status == 1) {
                             this.calculation = {
                                 loading: true,
                                 text: '计算中...'
