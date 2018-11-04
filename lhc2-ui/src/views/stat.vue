@@ -370,7 +370,11 @@
                             }
                         }
                     }
-                    this.data10.push({colName: '0-12-34-5', nums: data.sort((a,b)=>{return parseInt(a) - parseInt(b);})});
+                    this.data10.push({
+                        colName: '0-12-34-5', nums: data.sort((a, b) => {
+                            return parseInt(a) - parseInt(b);
+                        })
+                    });
                     this.loading10 = false;
                 } else {
                     setTimeout(this.loadCombine, 1000);
@@ -424,8 +428,6 @@
                         API.calculate();
                     }
                 });
-                //window.clearTimeout(clearId);
-                //this.loadCalculationStatus();
             },
             calculationFinish(errors) {
                 this.calculation = {
@@ -438,25 +440,28 @@
             },
             loadCalculationStatus() {
                 API.loadCalculationStatus().then(data => {
-                    if (data.status == 2) {
-                        if (!data.errors || data.errors.length == 0) {
-                            this.calculationFinish();
-                            this.$Message.success('计算完成！');
-                            this.loadData();
-                        } else {
-                            this.calculationFinish(data.errors);
-                        }
-                    } else {
-                        if(data.status == 1) {
+                    switch (data.status) {
+                        case 1: {
                             this.calculation = {
                                 loading: true,
                                 text: '计算中...'
                             }
-                        } else {
+                            break;
+                        }
+                        case 2: {
+                            if (!data.errors || data.errors.length == 0) {
+                                this.calculationFinish();
+                                this.$Message.success('计算完成！');
+                                this.loadData();
+                            } else {
+                                this.calculationFinish(data.errors);
+                            }
+                            break;
+                        }
+                        default: {
                             this.calculationFinish();
                         }
                     }
-                    //clearId = setTimeout(this.loadCalculationStatus, 1000);
                     setTimeout(this.loadCalculationStatus, 1000);
                 }).catch(ex => {
                     setTimeout(this.loadCalculationStatus, 1000);
