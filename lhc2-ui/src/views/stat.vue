@@ -11,8 +11,7 @@
                 <Card>
                     <Button :loading="calculation.loading" type="success" @click="calculate">{{calculation.text}}
                     </Button>
-                    <Alert v-if="errors" type="error" show-icon closable
-                           style="position: fixed; top: 70px; left: 20px; z-index: 100000;">
+                    <Alert v-if="errors" type="error" show-icon closable>
                         <ul>
                             <li v-for="error in errors">{{error}}</li>
                         </ul>
@@ -416,18 +415,25 @@
             },
             calculate() {
                 let self = this;
-                this.$Modal.confirm({
-                    title: '确认对话框',
-                    content: '计算需要比较长的时间，是否确定开始计算 ?',
-                    onOk() {
-                        self.errors = null;
-                        self.calculation = {
-                            loading: true,
-                            text: '计算中...'
-                        }
-                        API.calculate();
-                    }
-                });
+                // this.$Modal.confirm({
+                //     title: '确认对话框',
+                //     content: '计算需要比较长的时间，是否确定开始计算 ?',
+                //     onOk() {
+                //         self.errors = null;
+                //         self.calculation = {
+                //             loading: true,
+                //             text: '计算中...'
+                //         }
+                //         API.calculate();
+                //     }
+                // });
+
+                self.errors = null;
+                self.calculation = {
+                    loading: true,
+                    text: '计算中...'
+                }
+                API.calculate();
             },
             calculationFinish(errors) {
                 this.calculation = {
