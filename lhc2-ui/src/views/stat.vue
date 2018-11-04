@@ -334,7 +334,17 @@
                             }
                         }
                     }
-                    this.data10.push({colName: '0-12-34', nums: data});
+                    for (let i = 0; i < this.dataFor16.numArr5Plus.length; i++) {
+                        const numIn5Plus = this.dataFor16.numArr5Plus[i];
+                        for (let j = 0; j < this.dataFor5.numArr0.length; j++) {
+                            const numIn0 = this.dataFor5.numArr0[j];
+                            if (numIn5Plus == numIn0) {
+                                data.push(numIn5Plus);
+                                break;
+                            }
+                        }
+                    }
+                    this.data10.push({colName: '0-12-34-5', nums: data.sort((a,b)=>{return parseInt(a) - parseInt(b);})});
                     this.loading10 = false;
                 } else {
                     setTimeout(this.loadCombine, 1000);
