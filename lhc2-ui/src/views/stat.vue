@@ -265,18 +265,21 @@
                     }
                 }).then(result => {
                     stopLoading();
-                    const data = this.setupData(result.list, initData());
                     switch (expected) {
                         case 5:
+                            const data = this.setupData2(result.list, initData());
                             this.dataFor5 = data;
                             break;
                         case 7:
+                            const data = this.setupData2(result.list, initData());
                             this.dataFor7 = data;
                             break;
                         case 14:
+                            const data = this.setupData1(result.list, initData());
                             this.dataFor14 = data;
                             break;
                         case 16:
+                            const data = this.setupData1(result.list, initData());
                             this.dataFor16 = data;
                             break;
                     }
@@ -287,6 +290,7 @@
                     && this.dataFor7.numArr0 && this.dataFor7.numArr0.length > 0
                     && this.dataFor14.numArr12 && this.dataFor14.numArr12.length > 0
                     && this.dataFor16.numArr12 && this.dataFor16.numArr12.length > 0) {
+
                     let data = [];
                     for (let i = 0; i < this.dataFor14.numArr12.length; i++) {
                         const numIn12 = this.dataFor14.numArr12[i];
@@ -300,6 +304,7 @@
                     }
                     this.data7.push({colName: '0-12', nums: data});
                     this.loading7 = false;
+
                     data = [];
                     for (let i = 0; i < this.dataFor14.numArr12.length; i++) {
                         const numIn12 = this.dataFor14.numArr12[i];
@@ -313,6 +318,7 @@
                     }
                     this.data8.push({colName: '0-12', nums: data});
                     this.loading8 = false;
+
                     data = [];
                     for (let i = 0; i < this.dataFor16.numArr12.length; i++) {
                         const numIn12 = this.dataFor16.numArr12[i];
@@ -346,11 +352,12 @@
                     }
                     this.data10.push({colName: '0-12-34-5', nums: data.sort((a,b)=>{return parseInt(a) - parseInt(b);})});
                     this.loading10 = false;
+
                 } else {
                     setTimeout(this.loadCombine, 1000);
                 }
             },
-            setupData(result, data) {
+            setupData1(result, data) {
                 // result.map(item => {
                 //
                 // });
@@ -384,6 +391,30 @@
 
                 return result;
             },
+            setupData2(result, data) {
+                result = result[0];
+                result.numArr0 = [];
+                result.numArr1 = [];
+                result.numArr2Plus = [];
+                result.infos.map(info => {
+                    switch (info.count) {
+                        case 0:
+                            result.numArr0.push(info.num);
+                            break;
+                        case 1:
+                            result.numArr1.push(info.num);
+                            break;
+                        default:
+                            result.numArr2Plus.push(info.num);
+                    }
+                });
+
+                data.push({colName: '0次', nums: result.numArr0});
+                data.push({colName: '1次', nums: result.numArr1});
+                data.push({colName: '2次+', nums: result.numArr2Plus});
+
+                return result;
+            }
         },
         created() {
             this.loadData();
