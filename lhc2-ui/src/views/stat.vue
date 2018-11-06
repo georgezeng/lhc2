@@ -272,15 +272,15 @@
                         case 7:
                             this.dataFor7 = this.setupData2(result.list, initData());
                             break;
-                        case 10:
-                            this.dataFor14 = this.setupData1(result.list, initData());
-                            break;
                         case 14:
                             this.dataFor14 = this.setupData1(result.list, initData());
                             break;
                         case 16:
                             this.dataFor16 = this.setupData1(result.list, initData());
                             break;
+                        default: {
+                            this.setupData1(result.list, initData());
+                        }
                     }
                 });
             },
