@@ -51,7 +51,7 @@
                 <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
-                        7表选号
+                        9表选号
                     </p>
                     <Table stripe border size="small" :loading="loading5" :columns="columns2" :data="data5"/>
                 </Card>
@@ -75,7 +75,16 @@
                 <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
-                        14表/7表选号-合并
+                        16表/9表选号-合并
+                    </p>
+                    <Table stripe border size="small" :loading="loading7" :columns="columns2" :data="data7"/>
+                </Card>
+                <!--
+                <br/>
+                <Card>
+                    <p slot="title">
+                        <Icon type="ios-stats-outline"/>
+                        14表/9表选号-合并
                     </p>
                     <Table stripe border size="small" :loading="loading7" :columns="columns2" :data="data7"/>
                 </Card>
@@ -87,6 +96,7 @@
                     </p>
                     <Table stripe border size="small" :loading="loading8" :columns="columns2" :data="data8"/>
                 </Card>
+                -->
             </Content>
             <Footer/>
         </Layout>
@@ -126,7 +136,7 @@
                 loading10: true,
                 dataFor16: [],
                 dataFor14: [],
-                dataFor7: [],
+                dataFor9: [],
                 dataFor4: [],
                 data1: [],
                 data2: [],
@@ -243,7 +253,7 @@
                     this.data4 = [];
                     return this.data4
                 }, () => this.loading4 = true, () => this.loading4 = false);
-                this.changePage(1, 7, () => {
+                this.changePage(1, 9, () => {
                     this.data5 = [];
                     return this.data5
                 }, () => this.loading5 = true, () => this.loading5 = false);
@@ -267,10 +277,10 @@
                     stopLoading();
                     switch (expected) {
                         case 4:
-                            this.dataFor5 = this.setupData2(result.list, initData());
+                            this.dataFor4 = this.setupData2(result.list, initData());
                             break;
-                        case 7:
-                            this.dataFor7 = this.setupData2(result.list, initData());
+                        case 9:
+                            this.dataFor9 = this.setupData2(result.list, initData());
                             break;
                         case 14:
                             this.dataFor14 = this.setupData1(result.list, initData());
@@ -286,39 +296,11 @@
             },
             loadCombine() {
                 if (this.dataFor4.numArr0 && this.dataFor4.numArr0.length > 0
-                    && this.dataFor7.numArr0 && this.dataFor7.numArr0.length > 0
-                    && this.dataFor14.numArr12 && this.dataFor14.numArr12.length > 0
+                    && this.dataFor9.numArr0 && this.dataFor9.numArr0.length > 0
+                    //&& this.dataFor14.numArr12 && this.dataFor14.numArr12.length > 0
                     && this.dataFor16.numArr12 && this.dataFor16.numArr12.length > 0) {
 
                     let data = [];
-                    for (let i = 0; i < this.dataFor14.numArr12.length; i++) {
-                        const numIn12 = this.dataFor14.numArr12[i];
-                        for (let j = 0; j < this.dataFor7.numArr0.length; j++) {
-                            const numIn0 = this.dataFor7.numArr0[j];
-                            if (numIn12 == numIn0) {
-                                data.push(numIn12);
-                                break;
-                            }
-                        }
-                    }
-                    this.data7.push({colName: '0-12', nums: data});
-                    this.loading7 = false;
-
-                    data = [];
-                    for (let i = 0; i < this.dataFor14.numArr12.length; i++) {
-                        const numIn12 = this.dataFor14.numArr12[i];
-                        for (let j = 0; j < this.dataFor5.numArr0.length; j++) {
-                            const numIn0 = this.dataFor5.numArr0[j];
-                            if (numIn12 == numIn0) {
-                                data.push(numIn12);
-                                break;
-                            }
-                        }
-                    }
-                    this.data8.push({colName: '0-12', nums: data});
-                    this.loading8 = false;
-
-                    data = [];
                     for (let i = 0; i < this.dataFor16.numArr12.length; i++) {
                         const numIn12 = this.dataFor16.numArr12[i];
                         for (let j = 0; j < this.dataFor4.numArr0.length; j++) {
@@ -341,15 +323,63 @@
                     }
                     for (let i = 0; i < this.dataFor16.numArr5Plus.length; i++) {
                         const numIn5Plus = this.dataFor16.numArr5Plus[i];
-                        for (let j = 0; j < this.dataFor5.numArr0.length; j++) {
-                            const numIn0 = this.dataFor5.numArr0[j];
+                        for (let j = 0; j < this.dataFor4.numArr0.length; j++) {
+                            const numIn0 = this.dataFor4.numArr0[j];
                             if (numIn5Plus == numIn0) {
                                 data.push(numIn5Plus);
                                 break;
                             }
                         }
                     }
-                    this.data10.push({colName: '0-12-34-5', nums: data.sort((a,b)=>{return parseInt(a) - parseInt(b);})});
+                    this.data7.push({colName: '0-12', nums: data});
+                    this.loading7 = false;
+
+                    // data = [];
+                    // for (let i = 0; i < this.dataFor14.numArr12.length; i++) {
+                    //     const numIn12 = this.dataFor14.numArr12[i];
+                    //     for (let j = 0; j < this.dataFor5.numArr0.length; j++) {
+                    //         const numIn0 = this.dataFor5.numArr0[j];
+                    //         if (numIn12 == numIn0) {
+                    //             data.push(numIn12);
+                    //             break;
+                    //         }
+                    //     }
+                    // }
+                    // this.data8.push({colName: '0-12', nums: data});
+                    // this.loading8 = false;
+
+                    data = [];
+                    for (let i = 0; i < this.dataFor16.numArr12.length; i++) {
+                        const numIn12 = this.dataFor16.numArr12[i];
+                        for (let j = 0; j < this.dataFor9.numArr0.length; j++) {
+                            const numIn0 = this.dataFor9.numArr0[j];
+                            if (numIn12 == numIn0) {
+                                data.push(numIn12);
+                                break;
+                            }
+                        }
+                    }
+                    for (let i = 0; i < this.dataFor16.numArr34.length; i++) {
+                        const numIn34 = this.dataFor16.numArr34[i];
+                        for (let j = 0; j < this.dataFor9.numArr0.length; j++) {
+                            const numIn0 = this.dataFor9.numArr0[j];
+                            if (numIn34 == numIn0) {
+                                data.push(numIn34);
+                                break;
+                            }
+                        }
+                    }
+                    for (let i = 0; i < this.dataFor16.numArr5Plus.length; i++) {
+                        const numIn5Plus = this.dataFor16.numArr5Plus[i];
+                        for (let j = 0; j < this.dataFor9.numArr0.length; j++) {
+                            const numIn0 = this.dataFor9.numArr0[j];
+                            if (numIn5Plus == numIn0) {
+                                data.push(numIn5Plus);
+                                break;
+                            }
+                        }
+                    }
+                    this.data10.push({colName: '0-12345+', nums: data.sort((a,b)=>{return parseInt(a) - parseInt(b);})});
                     this.loading10 = false;
 
                 } else {
