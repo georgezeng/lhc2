@@ -267,20 +267,19 @@
                     stopLoading();
                     switch (expected) {
                         case 5:
-                            const data = this.setupData2(result.list, initData());
-                            this.dataFor5 = data;
+                            this.dataFor5 = this.setupData2(result.list, initData());
                             break;
                         case 7:
-                            const data = this.setupData2(result.list, initData());
-                            this.dataFor7 = data;
+                            this.dataFor7 = this.setupData2(result.list, initData());
+                            break;
+                        case 10:
+                            this.dataFor14 = this.setupData1(result.list, initData());
                             break;
                         case 14:
-                            const data = this.setupData1(result.list, initData());
-                            this.dataFor14 = data;
+                            this.dataFor14 = this.setupData1(result.list, initData());
                             break;
                         case 16:
-                            const data = this.setupData1(result.list, initData());
-                            this.dataFor16 = data;
+                            this.dataFor16 = this.setupData1(result.list, initData());
                             break;
                     }
                 });
@@ -358,9 +357,6 @@
                 }
             },
             setupData1(result, data) {
-                // result.map(item => {
-                //
-                // });
                 result = result[0];
                 result.numArr0 = [];
                 result.numArr12 = [];
