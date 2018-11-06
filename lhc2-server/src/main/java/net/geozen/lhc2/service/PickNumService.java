@@ -159,7 +159,7 @@ public class PickNumService {
 			process(14, 7, 20, 15, 15);
 			process(10, 7, 20, 15, 15);
 			process(7, 10, 20, 8, 15);
-			process(5, 10, 20, 8, 15);
+			process(4, 10, 20, 8, 15);
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 			t = e;

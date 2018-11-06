@@ -59,7 +59,7 @@
                 <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
-                        5表选号
+                        4表选号
                     </p>
                     <Table stripe border size="small" :loading="loading6" :columns="columns2" :data="data6"/>
                 </Card>
@@ -67,7 +67,7 @@
                 <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
-                        16表/5表选号-合并
+                        16表/4表选号-合并
                     </p>
                     <Table stripe border size="small" :loading="loading10" :columns="columns2" :data="data10"/>
                 </Card>
@@ -83,7 +83,7 @@
                 <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
-                        14表/5表选号-合并
+                        14表/4表选号-合并
                     </p>
                     <Table stripe border size="small" :loading="loading8" :columns="columns2" :data="data8"/>
                 </Card>
@@ -127,7 +127,7 @@
                 dataFor16: [],
                 dataFor14: [],
                 dataFor7: [],
-                dataFor5: [],
+                dataFor4: [],
                 data1: [],
                 data2: [],
                 data3: [],
@@ -247,7 +247,7 @@
                     this.data5 = [];
                     return this.data5
                 }, () => this.loading5 = true, () => this.loading5 = false);
-                this.changePage(1, 5, () => {
+                this.changePage(1, 4, () => {
                     this.data6 = [];
                     return this.data6
                 }, () => this.loading6 = true, () => this.loading6 = false);
@@ -266,7 +266,7 @@
                 }).then(result => {
                     stopLoading();
                     switch (expected) {
-                        case 5:
+                        case 4:
                             this.dataFor5 = this.setupData2(result.list, initData());
                             break;
                         case 7:
@@ -285,7 +285,7 @@
                 });
             },
             loadCombine() {
-                if (this.dataFor5.numArr0 && this.dataFor5.numArr0.length > 0
+                if (this.dataFor4.numArr0 && this.dataFor4.numArr0.length > 0
                     && this.dataFor7.numArr0 && this.dataFor7.numArr0.length > 0
                     && this.dataFor14.numArr12 && this.dataFor14.numArr12.length > 0
                     && this.dataFor16.numArr12 && this.dataFor16.numArr12.length > 0) {
@@ -321,8 +321,8 @@
                     data = [];
                     for (let i = 0; i < this.dataFor16.numArr12.length; i++) {
                         const numIn12 = this.dataFor16.numArr12[i];
-                        for (let j = 0; j < this.dataFor5.numArr0.length; j++) {
-                            const numIn0 = this.dataFor5.numArr0[j];
+                        for (let j = 0; j < this.dataFor4.numArr0.length; j++) {
+                            const numIn0 = this.dataFor4.numArr0[j];
                             if (numIn12 == numIn0) {
                                 data.push(numIn12);
                                 break;
@@ -331,8 +331,8 @@
                     }
                     for (let i = 0; i < this.dataFor16.numArr34.length; i++) {
                         const numIn34 = this.dataFor16.numArr34[i];
-                        for (let j = 0; j < this.dataFor5.numArr0.length; j++) {
-                            const numIn0 = this.dataFor5.numArr0[j];
+                        for (let j = 0; j < this.dataFor4.numArr0.length; j++) {
+                            const numIn0 = this.dataFor4.numArr0[j];
                             if (numIn34 == numIn0) {
                                 data.push(numIn34);
                                 break;
