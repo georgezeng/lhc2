@@ -155,11 +155,12 @@ public class PickNumService {
 		Exception t = null;
 		try {
 			pickNumRepository.deleteAll();
+			process(19, 7, 20, 15, 15);
 			process(16, 7, 20, 15, 15);
-			process(14, 7, 20, 15, 15);
+			process(14, 10, 20, 8, 15);
 			process(10, 7, 20, 15, 15);
 			process(9, 10, 20, 8, 15);
-			process(4, 10, 20, 8, 15);
+			process(3, 10, 20, 8, 15);
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 			t = e;

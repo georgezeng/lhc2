@@ -29,21 +29,13 @@
                         <Icon type="ios-stats-outline"/>
                         16表选号
                     </p>
-                    <Table stripe border size="small" :loading="loading9" :columns="columns2" :data="data9"/>
-                </Card>
-                <br/>
-                <Card>
-                    <p slot="title">
-                        <Icon type="ios-stats-outline"/>
-                        14表选号
-                    </p>
                     <Table stripe border size="small" :loading="loading3" :columns="columns2" :data="data3"/>
                 </Card>
                 <br/>
                 <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
-                        10表选号
+                        16表选号
                     </p>
                     <Table stripe border size="small" :loading="loading4" :columns="columns2" :data="data4"/>
                 </Card>
@@ -51,7 +43,7 @@
                 <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
-                        9表选号
+                        14表选号
                     </p>
                     <Table stripe border size="small" :loading="loading5" :columns="columns2" :data="data5"/>
                 </Card>
@@ -59,7 +51,7 @@
                 <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
-                        4表选号
+                        10表选号
                     </p>
                     <Table stripe border size="small" :loading="loading6" :columns="columns2" :data="data6"/>
                 </Card>
@@ -67,9 +59,25 @@
                 <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
-                        16表/4表选号-合并
+                        9表选号
                     </p>
                     <Table stripe border size="small" :loading="loading7" :columns="columns2" :data="data7"/>
+                </Card>
+                <br/>
+                <Card>
+                    <p slot="title">
+                        <Icon type="ios-stats-outline"/>
+                        4表选号
+                    </p>
+                    <Table stripe border size="small" :loading="loading8" :columns="columns2" :data="data8"/>
+                </Card>
+                <br/>
+                <Card>
+                    <p slot="title">
+                        <Icon type="ios-stats-outline"/>
+                        19表/14表选号-合并
+                    </p>
+                    <Table stripe border size="small" :loading="loading9" :columns="columns2" :data="data9"/>
                 </Card>
                 <br/>
                 <Card>
@@ -79,24 +87,14 @@
                     </p>
                     <Table stripe border size="small" :loading="loading10" :columns="columns2" :data="data10"/>
                 </Card>
-                <!--
                 <br/>
                 <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
-                        14表/9表选号-合并
+                        19表/4表选号-合并
                     </p>
-                    <Table stripe border size="small" :loading="loading7" :columns="columns2" :data="data7"/>
+                    <Table stripe border size="small" :loading="loading11" :columns="columns2" :data="data11"/>
                 </Card>
-                <br/>
-                <Card>
-                    <p slot="title">
-                        <Icon type="ios-stats-outline"/>
-                        14表/4表选号-合并
-                    </p>
-                    <Table stripe border size="small" :loading="loading8" :columns="columns2" :data="data8"/>
-                </Card>
-                -->
             </Content>
             <Footer/>
         </Layout>
@@ -134,8 +132,9 @@
                 loading8: true,
                 loading9: true,
                 loading10: true,
+                loading11: true,
+                dataFor19: [],
                 dataFor16: [],
-                dataFor14: [],
                 dataFor9: [],
                 dataFor4: [],
                 data1: [],
@@ -148,6 +147,7 @@
                 data8: [],
                 data9: [],
                 data10: [],
+                data11: [],
                 columns1: [
                     {
                         title: '次数',
@@ -241,26 +241,30 @@
                         }
                     ];
                 });
-                this.changePage(1, 16, () => {
-                    this.data9 = [];
-                    return this.data9
-                }, () => this.loading9 = true, () => this.loading9 = false);
-                this.changePage(1, 14, () => {
+                this.changePage(1, 19, () => {
                     this.data3 = [];
                     return this.data3
                 }, () => this.loading3 = true, () => this.loading3 = false);
-                this.changePage(1, 10, () => {
+                this.changePage(1, 16, () => {
                     this.data4 = [];
                     return this.data4
                 }, () => this.loading4 = true, () => this.loading4 = false);
-                this.changePage(1, 9, () => {
+                this.changePage(1, 14, () => {
                     this.data5 = [];
                     return this.data5
                 }, () => this.loading5 = true, () => this.loading5 = false);
-                this.changePage(1, 4, () => {
+                this.changePage(1, 10, () => {
                     this.data6 = [];
                     return this.data6
                 }, () => this.loading6 = true, () => this.loading6 = false);
+                this.changePage(1, 9, () => {
+                    this.data7 = [];
+                    return this.data7
+                }, () => this.loading7 = true, () => this.loading7 = false);
+                this.changePage(1, 4, () => {
+                    this.data8 = [];
+                    return this.data8
+                }, () => this.loading8 = true, () => this.loading8 = false);
                 this.loadCombine();
             },
             changePage(pageNo, expected, initData, startLoading, stopLoading) {
@@ -282,11 +286,14 @@
                         case 9:
                             this.dataFor9 = this.setupData2(result.list, initData());
                             break;
-                        // case 14:
-                        //     this.dataFor14 = this.setupData1(result.list, initData());
-                        //     break;
+                        case 14:
+                            this.dataFor14 = this.setupData3(result.list, initData());
+                            breakreak;
                         case 16:
                             this.dataFor16 = this.setupData1(result.list, initData());
+                            break;
+                        case 19:
+                            this.dataFor19 = this.setupData3(result.list, initData());
                             break;
                         default: {
                             this.setupData1(result.list, initData());
@@ -295,134 +302,64 @@
                 });
             },
             loadCombine() {
-                if (this.dataFor4.numArr0 && this.dataFor4.numArr0.length > 0
-                    && this.dataFor9.numArr0 && this.dataFor9.numArr0.length > 0
-                    //&& this.dataFor14.numArr12 && this.dataFor14.numArr12.length > 0
-                    && this.dataFor16.numArr12 && this.dataFor16.numArr12.length > 0) {
-
-                    let data = [];
-                    for (let i = 0; i < this.dataFor16.numArr12.length; i++) {
-                        const numIn12 = this.dataFor16.numArr12[i];
-                        for (let j = 0; j < this.dataFor4.numArr0.length; j++) {
-                            const numIn0 = this.dataFor4.numArr0[j];
-                            if (numIn12 == numIn0) {
-                                data.push(numIn12);
-                                break;
-                            }
+                function loadNum(numArr, nums) {
+                    if(numArr && numArr.length > 0) {
+                        for(let i = 0; i < numArr.length; i++) {
+                            nums.push(numArr[i]);
                         }
                     }
-                    for (let i = 0; i < this.dataFor16.numArr34.length; i++) {
-                        const numIn34 = this.dataFor16.numArr34[i];
-                        for (let j = 0; j < this.dataFor4.numArr0.length; j++) {
-                            const numIn0 = this.dataFor4.numArr0[j];
-                            if (numIn34 == numIn0) {
-                                data.push(numIn34);
-                                break;
-                            }
-                        }
-                    }
-                    for (let i = 0; i < this.dataFor16.numArr5Plus.length; i++) {
-                        const numIn5Plus = this.dataFor16.numArr5Plus[i];
-                        for (let j = 0; j < this.dataFor4.numArr0.length; j++) {
-                            const numIn0 = this.dataFor4.numArr0[j];
-                            if (numIn5Plus == numIn0) {
-                                data.push(numIn5Plus);
-                                break;
-                            }
-                        }
-                    }
-                    this.data7.push({colName: '12345+-0', nums: data});
-                    this.loading7 = false;
-
-                    // data = [];
-                    // for (let i = 0; i < this.dataFor14.numArr12.length; i++) {
-                    //     const numIn12 = this.dataFor14.numArr12[i];
-                    //     for (let j = 0; j < this.dataFor5.numArr0.length; j++) {
-                    //         const numIn0 = this.dataFor5.numArr0[j];
-                    //         if (numIn12 == numIn0) {
-                    //             data.push(numIn12);
-                    //             break;
-                    //         }
-                    //     }
-                    // }
-                    // this.data8.push({colName: '0-12', nums: data});
-                    // this.loading8 = false;
-
-                    data = [];
-                    for (let i = 0; i < this.dataFor16.numArr12.length; i++) {
-                        const numIn12 = this.dataFor16.numArr12[i];
-                        let found = false;
-                        for (let j = 0; j < this.dataFor9.numArr0.length; j++) {
-                            const numIn0 = this.dataFor9.numArr0[j];
-                            if (numIn12 == numIn0) {
-                                data.push(numIn12);
-                                found = true;
-                                break;
-                            }
-                        }
-                        if (!found) {
-                            for (let j = 0; j < this.dataFor9.numArr1.length; j++) {
-                                const numIn1 = this.dataFor9.numArr1[j];
-                                if (numIn12 == numIn1) {
-                                    data.push(numIn12);
-                                    found = true;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                    for (let i = 0; i < this.dataFor16.numArr34.length; i++) {
-                        const numIn34 = this.dataFor16.numArr34[i];
-                        let found = false;
-                        for (let j = 0; j < this.dataFor9.numArr0.length; j++) {
-                            const numIn0 = this.dataFor9.numArr0[j];
-                            if (numIn34 == numIn0) {
-                                data.push(numIn34);
-                                break;
-                            }
-                        }
-                        if (!found) {
-                            for (let j = 0; j < this.dataFor9.numArr1.length; j++) {
-                                const numIn1 = this.dataFor9.numArr1[j];
-                                if (numIn34 == numIn1) {
-                                    data.push(numIn34);
-                                    found = true;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                    for (let i = 0; i < this.dataFor16.numArr5Plus.length; i++) {
-                        const numIn5Plus = this.dataFor16.numArr5Plus[i];
-                        let found = false;
-                        for (let j = 0; j < this.dataFor9.numArr0.length; j++) {
-                            const numIn0 = this.dataFor9.numArr0[j];
-                            if (numIn5Plus == numIn0) {
-                                data.push(numIn5Plus);
-                                break;
-                            }
-                        }
-                        if (!found) {
-                            for (let j = 0; j < this.dataFor9.numArr1.length; j++) {
-                                const numIn1 = this.dataFor9.numArr1[j];
-                                if (numIn5Plus == numIn1) {
-                                    data.push(numIn5Plus);
-                                    found = true;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                    this.data10.push({
-                        colName: '12345+-01', nums: data.sort((a, b) => {
-                            return parseInt(a) - parseInt(b);
-                        })
-                    });
-                    this.loading10 = false;
-
-                } else {
-                    setTimeout(this.loadCombine, 1000);
                 }
+
+                function loadData(numsForA, numsForB) {
+                    const data = [];
+                    for(let i = 0; i < numsForA.length; i++) {
+                        const numInA = this.numsForA[i];
+                        for(let j = 0; j < numsForB.length; j++) {
+                            const numInB = this.numsForB[j];
+                            if(numInA == numInB) {
+                                data.push(numInA);
+                                break;
+                            }
+                        }
+                    }
+                    return data;
+                }
+
+                const numsFor19_14 = [];
+                loadNum(this.dataFor19.numArr0, numsFor19_14);
+                loadNum(this.dataFor19.numArr1, numsFor19_14);
+                loadNum(this.dataFor19.numArr2, numsFor19_14);
+
+                const numsFor14 = [];
+                loadNum(this.dataFor14.numArr1, numsFor14);
+                loadNum(this.dataFor14.numArr2, numsFor14);
+                loadNum(this.dataFor14.numArr3Plus, numsFor14);
+
+                this.data9.push({colName: '012-123+', nums: loadData(numsFor19_14, numsFor14)});
+                this.loading9 = false;
+
+                const numsFor16 = [];
+                loadNum(this.dataFor16.numArr12, numsFor16);
+                loadNum(this.dataFor16.numArr34, numsFor16);
+                loadNum(this.dataFor16.numArr5Plus, numsFor16);
+
+                const numsFor9 = [];
+                loadNum(this.dataFor9.numArr0, numsFor9);
+                loadNum(this.dataFor9.numArr1, numsFor9);
+
+                this.data10.push({colName: '12345+-01', nums: loadData(numsFor16, numsFor9)});
+                this.loading10 = false;
+
+                const numsFor19_4 = [];
+                loadNum(this.dataFor19.numArr1, numsFor19_4);
+                loadNum(this.dataFor19.numArr2, numsFor19_4);
+                loadNum(this.dataFor19.numArr3T5, numsFor19_4);
+
+                const numsFor4 = [];
+                loadNum(this.dataFor4.numArr0, numsFor4);
+
+                this.data11.push({colName: '12345-0', nums: loadData(numsFor19_4, numsFor4)});
+                this.loading11 = false;
             },
             setupData1(result, data) {
                 result = result[0];
@@ -476,6 +413,41 @@
                 data.push({colName: '0次', nums: result.numArr0});
                 data.push({colName: '1次', nums: result.numArr1});
                 data.push({colName: '2次+', nums: result.numArr2Plus});
+
+                return result;
+            },
+            setupData3(result, data) {
+                result = result[0];
+                result.numArr0 = [];
+                result.numArr1 = [];
+                result.numArr2 = [];
+                result.numArr3T5 = [];
+                result.numArr3Plus = [];
+                result.infos.map(info => {
+                    switch (info.count) {
+                        case 0:
+                            result.numArr0.push(info.num);
+                            break;
+                        case 1:
+                            result.numArr1.push(info.num);
+                            break;
+                        case 2:
+                            result.numArr2.push(info.num);
+                            break;
+                        case 3:
+                        case 4:
+                        case 5:
+                            result.numArr3T5.push(info.num);
+                        default:
+                            result.numArr3Plus.push(info.num);
+                    }
+                });
+
+                data.push({colName: '0次', nums: result.numArr0});
+                data.push({colName: '1次', nums: result.numArr1});
+                data.push({colName: '2次', nums: result.numArr2});
+                data.push({colName: '3-5次', nums: result.numArr3T5});
+                data.push({colName: '3次+', nums: result.numArr3Plus});
 
                 return result;
             }
