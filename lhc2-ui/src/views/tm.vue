@@ -260,7 +260,7 @@
                         this.calculationFinish(errors);
                     }
                 }).catch(ex => {
-                    this.errors = [ex.message];
+                    this.calculationFinish([ex.message])
                 });
             },
             calculationFinish(errors) {

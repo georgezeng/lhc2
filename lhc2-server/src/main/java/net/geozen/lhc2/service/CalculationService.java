@@ -23,12 +23,11 @@ import net.geozen.lhc2.service.z13.Z13yzCalculationService;
 import net.geozen.lhc2.service.z2.Z2yzCalculationService;
 import net.geozen.lhc2.service.z7.Z7yzCalculationService;
 import net.geozen.lhc2.service.zs.ZsyzCalculationService;
+import net.geozen.lhc2.utils.CommonUtil;
 
 @Service
 @Getter
 public class CalculationService {
-	private final List<Future<Exception>> futures1 = new ArrayList<>();
-	private final List<Future<Exception>> futures2 = new ArrayList<>();
 
 	@Autowired
 	private SxyzCalculationService sxService;
@@ -81,57 +80,50 @@ public class CalculationService {
 	@Autowired
 	private CombineService combineService;
 
+	@Autowired
+	private TimesService timeService;
+
 	public void process(List<String> errors) throws Exception {
-		futures1.clear();
-		futures1.add(sxService.process());
-		futures1.add(swService.process());
-		futures1.add(mwService.process());
-		futures1.add(hsService.process());
-		futures1.add(bsService.process());
-		futures1.add(zsService.process());
-		futures1.add(qqService.process());
-		futures1.add(seqService.process());
-		futures1.add(slqService.process());
-		futures1.add(pdService.process());
-		futures1.add(z2Service.process());
-		futures1.add(z7Service.process());
-		futures1.add(z13Service.process());
-		futures1.add(dsService.process());
-		futures1.add(fdService.process());
+		List<Future<Exception>> futures = new ArrayList<>();
+		futures.add(sxService.process());
+		futures.add(swService.process());
+		futures.add(mwService.process());
+		futures.add(hsService.process());
+		futures.add(bsService.process());
+		futures.add(zsService.process());
+		futures.add(qqService.process());
+		futures.add(seqService.process());
+		futures.add(slqService.process());
+		futures.add(pdService.process());
+		futures.add(z2Service.process());
+		futures.add(z7Service.process());
+		futures.add(z13Service.process());
+		futures.add(dsService.process());
+		futures.add(fdService.process());
 
-		int count = 0;
-		while (count < futures1.size()) {
-			for (Future<Exception> f : futures1) {
-				if (f.isDone()) {
-					if (f.get() != null) {
-						errors.add(f.get().getMessage());
-						break;
-					}
-					count++;
-				}
-			}
-		}
-
+		CommonUtil.waitWithException(futures, ex -> {
+			errors.add(ex.getMessage());
+		});
 	}
 
 	public void summary(List<String> errors) throws Exception {
 		if (!errors.isEmpty()) {
 			return;
 		}
-		futures2.clear();
-		futures2.add(combineService.process());
-		pickNumFacade.process(futures2);
-		int count = 0;
-		while (count < futures2.size()) {
-			for (Future<Exception> f : futures2) {
-				if (f.isDone()) {
-					if (f.get() != null) {
-						errors.add(f.get().getMessage());
-						break;
-					}
-					count++;
-				}
-			}
+		List<Future<Exception>> futures = new ArrayList<>();
+		futures.add(combineService.process());
+		pickNumFacade.process(futures);
+
+		CommonUtil.waitWithException(futures, ex -> {
+			errors.add(ex.getMessage());
+		});
+
+		if (errors.isEmpty()) {
+			futures.clear();
+			futures.add(timeService.process());
+			CommonUtil.waitWithException(futures, ex -> {
+				errors.add(ex.getMessage());
+			});
 		}
 	}
 

@@ -195,6 +195,7 @@ public class PickNumService {
 						PickNumPayload payload = new PickNumPayload();
 						payload.setInfos(new ArrayList<>(map.values()));
 						PickNum pickNum = new PickNum();
+						pickNum.setTm(tm.getNum());
 						pickNum.setExpected(expected);
 						pickNum.setPhase(tm.getPhase());
 						pickNum.setPayload(new ObjectMapper().writeValueAsString(payload));

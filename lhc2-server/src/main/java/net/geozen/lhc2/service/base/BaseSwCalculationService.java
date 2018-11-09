@@ -9,7 +9,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.transaction.annotation.Transactional;
 
 import net.geozen.lhc2.domain.base.PosBaseEntity;
 
@@ -26,7 +25,6 @@ public abstract class BaseSwCalculationService<Y extends PosBaseEntity, S extend
 		swClass = (Class<S>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[1];
 	}
 
-	@Transactional
 	public void process(List<Y> yzList) throws Exception {
 		S lastSw = initLastSw();
 		List<S> list = new ArrayList<>();

@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import net.geozen.lhc2.def.jpa.impl.CommonDAO;
 import net.geozen.lhc2.domain.sx.Sxyz;
@@ -30,7 +29,6 @@ public class SxzfCalculationService {
 	@Autowired
 	private CommonDAO commonDAO;
 
-	@Transactional
 	public void process(List<Sxyz> yzList) throws Exception {
 		int len = SX.seq().length;
 		Sxzf lastZf = new Sxzf();

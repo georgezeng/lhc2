@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import net.geozen.lhc2.domain.sx.Sxsw;
 import net.geozen.lhc2.domain.sx.Sxyz;
@@ -23,7 +22,6 @@ public class SxswCalculationService {
 	@Autowired
 	private SxswRepository swRepository;
 
-	@Transactional
 	public void process(List<Sxyz> yzList) throws Exception {
 		Sxsw lastSw = new Sxsw();
 		List<Sxsw> list = new ArrayList<>();

@@ -9,14 +9,15 @@ import javax.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "pick_num")
+@Table(name = "times_yz")
 @Data
-public class PickNum {
+public class TimesYz {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private int phase;
-	private int tm;
-	private String payload;
-	private int expected;
+	private String tables; 
+	private int time0 = 1;
+	private int time12 = 1;
+	private int time3Plus = 1;
 }

@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 
 import net.geozen.lhc2.def.jpa.BaseYzRepository;
 import net.geozen.lhc2.def.jpa.BaseZfRepository;
@@ -77,7 +76,6 @@ public abstract class BaseZfCalculationService<Y extends PosBaseEntity, Z extend
 		return nums.get(pos);
 	}
 
-	@Transactional
 	public void process(List<Y> yzList) throws Exception {
 		int len = getHandler().getLength();
 		Z lastZf = zfClass.newInstance();

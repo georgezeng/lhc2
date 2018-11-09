@@ -3,6 +3,7 @@ package net.geozen.lhc2.utils;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.Future;
+import java.util.function.Consumer;
 
 import org.slf4j.MDC;
 
@@ -41,6 +42,27 @@ public class CommonUtil {
 				if (f.isDone()) {
 					if (f.get() != null) {
 						throw new RuntimeException(f.get().getMessage(), f.get());
+					}
+					count++;
+				}
+			}
+			if (count == futures.size()) {
+				break;
+			}
+			try {
+				Thread.sleep(1000l);
+			} catch (InterruptedException e) {
+			}
+		}
+	}
+
+	public static void waitWithException(List<Future<Exception>> futures, Consumer<Exception> c) throws Exception {
+		while (true) {
+			int count = 0;
+			for (Future<Exception> f : futures) {
+				if (f.isDone()) {
+					if (f.get() != null) {
+						c.accept(f.get());
 					}
 					count++;
 				}
