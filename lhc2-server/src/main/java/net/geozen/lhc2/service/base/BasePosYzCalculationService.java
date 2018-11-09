@@ -21,7 +21,6 @@ import net.geozen.lhc2.domain.Tm;
 import net.geozen.lhc2.domain.base.PosBaseEntity;
 import net.geozen.lhc2.dto.MaxInfo;
 import net.geozen.lhc2.jpa.TmRepository;
-import net.geozen.lhc2.service.CalculationService;
 import net.geozen.lhc2.utils.SystemConstants;
 
 @Slf4j
@@ -46,9 +45,6 @@ public abstract class BasePosYzCalculationService<Y extends PosBaseEntity> {
 	public int getStartPos() {
 		return 0;
 	}
-
-	@Autowired
-	protected CalculationService calService;
 
 	protected Class<Y> yzClass;
 
