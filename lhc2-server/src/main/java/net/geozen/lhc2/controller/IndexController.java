@@ -6,12 +6,17 @@ import java.util.Map;
 import java.util.concurrent.Future;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import net.geozen.lhc2.domain.ColorYz;
+import net.geozen.lhc2.domain.TimesYz;
 import net.geozen.lhc2.dto.Result;
 import net.geozen.lhc2.dto.StatTotallyInfo;
+import net.geozen.lhc2.jpa.ColorYzRepository;
+import net.geozen.lhc2.jpa.TimesYzRepository;
 import net.geozen.lhc2.service.CalculationService;
 import net.geozen.lhc2.service.CombineService;
 
@@ -23,6 +28,12 @@ public class IndexController {
 
 	@Autowired
 	private CombineService combineService;
+
+	@Autowired
+	private TimesYzRepository timesYzRepository;
+
+	@Autowired
+	private ColorYzRepository colorYzRepository;
 
 	private volatile Future<List<String>> future;
 
@@ -57,5 +68,15 @@ public class IndexController {
 	@RequestMapping(value = "/statInfo/2", method = RequestMethod.GET)
 	public Result<List<StatTotallyInfo>> getStatInfo2() {
 		return Result.genSuccessResult(combineService.list2());
+	}
+
+	@RequestMapping(value = "/comparision/times/{tables}", method = RequestMethod.GET)
+	public Result<List<TimesYz>> getComparisionTimes(@PathVariable("tables") String tables) {
+		return Result.genSuccessResult(timesYzRepository.findAllByTablesOrderByPhaseAsc(tables));
+	}
+
+	@RequestMapping(value = "/comparision/colors/{tables}", method = RequestMethod.GET)
+	public Result<List<ColorYz>> getComparisionColors(@PathVariable("tables") String tables) {
+		return Result.genSuccessResult(colorYzRepository.findAllByTablesOrderByPhaseAsc(tables));
 	}
 }

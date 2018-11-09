@@ -83,7 +83,7 @@ public class CalculationService {
 	private CombineService combineService;
 
 	@Autowired
-	private TimesService timeService;
+	private TimesColorService timeService;
 
 	@Async
 	public Future<List<String>> process() throws Exception {
@@ -124,6 +124,14 @@ public class CalculationService {
 		CommonUtil.waitWithException(futures, ex -> {
 			errors.add(ex.getMessage());
 		});
+
+		if (errors.isEmpty()) {
+			futures.clear();
+			futures.add(timeService.process());
+			CommonUtil.waitWithException(futures, ex -> {
+				errors.add(ex.getMessage());
+			});
+		}
 	}
 
 }

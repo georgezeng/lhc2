@@ -17,7 +17,7 @@ public class TimesYz {
 	private Long id;
 	private int phase;
 	private String tables; 
-	private int time0 = 1;
-	private int time12 = 1;
-	private int time3Plus = 1;
+	private int time0;
+	private int time12;
+	private int time3Plus;
 }

@@ -43,6 +43,14 @@ const RouterConfig = {
             component: (resolve) => require(['./views/stat.vue'], resolve)
         },
         {
+            path: '/comparision',
+            name: 'comparision',
+            meta: {
+                title: `${prefix}数据对比`
+            },
+            component: (resolve) => require(['./views/comparision.vue'], resolve)
+        },
+        {
             path: '/sxyz',
             name: 'sxyz',
             meta: {

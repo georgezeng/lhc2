@@ -144,5 +144,25 @@ export default {
                 reject(ex);
             });
         });
+    },
+
+    getTimes(tables) {
+        return new Promise((resolve, reject) => {
+            util.ajax.get(`/comparision/times/${tables}`).then(data => {
+                resolve(data);
+            }).catch(ex => {
+                reject(ex);
+            });
+        });
+    },
+
+    getColors(tables) {
+        return new Promise((resolve, reject) => {
+            util.ajax.get(`/comparision/colors/${tables}`).then(data => {
+                resolve(data);
+            }).catch(ex => {
+                reject(ex);
+            });
+        });
     }
 }

@@ -29,7 +29,7 @@ import net.geozen.lhc2.utils.SystemConstants;
 
 @Service
 @Slf4j
-public class TimesService {
+public class TimesColorService {
 	@Autowired
 	private TimesYzRepository timesYzRepository;
 
@@ -50,6 +50,7 @@ public class TimesService {
 			Pageable pageable = PageRequest.of(0, SystemConstants.CALCULATION_SIZE, Direction.DESC, "phase");
 			Page<PickNum> pResult = null;
 			ColorYz lastColorYz = new ColorYz();
+			TimesYz lastTimesYz = new TimesYz();
 			List<ColorYz> colorYzList = new ArrayList<>();
 			List<TimesYz> timesYzList = new ArrayList<>();
 			// do {
@@ -76,25 +77,26 @@ public class TimesService {
 				case 0: {
 					color = "green";
 					timesYz.setTime0(0);
-					timesYz.setTime12(timesYz.getTime12() + 1);
-					timesYz.setTime3Plus(timesYz.getTime3Plus() + 1);
+					timesYz.setTime12(lastTimesYz.getTime12() + 1);
+					timesYz.setTime3Plus(lastTimesYz.getTime3Plus() + 1);
 				}
 					break;
 				case 1:
 				case 2: {
 					color = "red";
-					timesYz.setTime0(timesYz.getTime0() + 1);
+					timesYz.setTime0(lastTimesYz.getTime0() + 1);
 					timesYz.setTime12(0);
-					timesYz.setTime3Plus(timesYz.getTime3Plus() + 1);
+					timesYz.setTime3Plus(lastTimesYz.getTime3Plus() + 1);
 				}
 					break;
 				default: {
 					color = "green";
-					timesYz.setTime0(timesYz.getTime0() + 1);
-					timesYz.setTime12(timesYz.getTime12() + 1);
+					timesYz.setTime0(lastTimesYz.getTime0() + 1);
+					timesYz.setTime12(lastTimesYz.getTime12() + 1);
 					timesYz.setTime3Plus(0);
 				}
 				}
+				lastTimesYz = timesYz;
 				timesYzList.add(timesYz);
 				colorYz.setYzColor(color);
 				if (color.equals(lastColorYz.getYzColor())) {
@@ -104,11 +106,11 @@ public class TimesService {
 				}
 
 				if (colorYz.getYzColor().equals("red")) {
-					colorYz.setR1(colorYz.getR1() + 1);
-					colorYz.setR2(colorYz.getR2() + 1);
-					colorYz.setR3(colorYz.getR3() + 1);
-					colorYz.setR4(colorYz.getR4() + 1);
-					colorYz.setR5(colorYz.getR5() + 1);
+					colorYz.setR1(lastColorYz.getR1() + 1);
+					colorYz.setR2(lastColorYz.getR2() + 1);
+					colorYz.setR3(lastColorYz.getR3() + 1);
+					colorYz.setR4(lastColorYz.getR4() + 1);
+					colorYz.setR5(lastColorYz.getR5() + 1);
 					colorYz.setR1Color("red");
 					colorYz.setR2Color("red");
 					colorYz.setR3Color("red");
@@ -117,11 +119,11 @@ public class TimesService {
 
 					switch (colorYz.getYz()) {
 					case 1: {
-						colorYz.setG1(colorYz.getG1() + 1);
-						colorYz.setG2(colorYz.getG2() + 1);
-						colorYz.setG3(colorYz.getG3() + 1);
-						colorYz.setG4(colorYz.getG4() + 1);
-						colorYz.setG5(colorYz.getG5() + 1);
+						colorYz.setG1(lastColorYz.getG1() + 1);
+						colorYz.setG2(lastColorYz.getG2() + 1);
+						colorYz.setG3(lastColorYz.getG3() + 1);
+						colorYz.setG4(lastColorYz.getG4() + 1);
+						colorYz.setG5(lastColorYz.getG5() + 1);
 						colorYz.setG1Color("green");
 						colorYz.setG2Color("green");
 						colorYz.setG3Color("green");
@@ -131,10 +133,10 @@ public class TimesService {
 						break;
 					case 2: {
 						colorYz.setG1(1);
-						colorYz.setG2(colorYz.getG2() + 1);
-						colorYz.setG3(colorYz.getG3() + 1);
-						colorYz.setG4(colorYz.getG4() + 1);
-						colorYz.setG5(colorYz.getG5() + 1);
+						colorYz.setG2(lastColorYz.getG2() + 1);
+						colorYz.setG3(lastColorYz.getG3() + 1);
+						colorYz.setG4(lastColorYz.getG4() + 1);
+						colorYz.setG5(lastColorYz.getG5() + 1);
 						colorYz.setG1Color("white");
 						colorYz.setG2Color("green");
 						colorYz.setG3Color("green");
@@ -145,9 +147,9 @@ public class TimesService {
 					case 3: {
 						colorYz.setG1(2);
 						colorYz.setG2(1);
-						colorYz.setG3(colorYz.getG3() + 1);
-						colorYz.setG4(colorYz.getG4() + 1);
-						colorYz.setG5(colorYz.getG5() + 1);
+						colorYz.setG3(lastColorYz.getG3() + 1);
+						colorYz.setG4(lastColorYz.getG4() + 1);
+						colorYz.setG5(lastColorYz.getG5() + 1);
 						colorYz.setG1Color("white");
 						colorYz.setG2Color("white");
 						colorYz.setG3Color("green");
@@ -159,8 +161,8 @@ public class TimesService {
 						colorYz.setG1(3);
 						colorYz.setG2(2);
 						colorYz.setG3(1);
-						colorYz.setG4(colorYz.getG4() + 1);
-						colorYz.setG5(colorYz.getG5() + 1);
+						colorYz.setG4(lastColorYz.getG4() + 1);
+						colorYz.setG5(lastColorYz.getG5() + 1);
 						colorYz.setG1Color("white");
 						colorYz.setG2Color("white");
 						colorYz.setG3Color("white");
@@ -173,7 +175,7 @@ public class TimesService {
 						colorYz.setG2(3);
 						colorYz.setG3(2);
 						colorYz.setG4(1);
-						colorYz.setG5(colorYz.getG5() + 1);
+						colorYz.setG5(lastColorYz.getG5() + 1);
 						colorYz.setG1Color("white");
 						colorYz.setG2Color("white");
 						colorYz.setG3Color("white");
@@ -195,11 +197,11 @@ public class TimesService {
 					}
 						break;
 					default: {
-						colorYz.setG1(colorYz.getG1() + 1);
-						colorYz.setG2(colorYz.getG2() + 1);
-						colorYz.setG3(colorYz.getG3() + 1);
-						colorYz.setG4(colorYz.getG4() + 1);
-						colorYz.setG5(colorYz.getG5() + 1);
+						colorYz.setG1(lastColorYz.getG1() + 1);
+						colorYz.setG2(lastColorYz.getG2() + 1);
+						colorYz.setG3(lastColorYz.getG3() + 1);
+						colorYz.setG4(lastColorYz.getG4() + 1);
+						colorYz.setG5(lastColorYz.getG5() + 1);
 						colorYz.setG1Color("white");
 						colorYz.setG2Color("white");
 						colorYz.setG3Color("white");
@@ -208,11 +210,11 @@ public class TimesService {
 					}
 					}
 				} else {
-					colorYz.setG1(colorYz.getG1() + 1);
-					colorYz.setG2(colorYz.getG2() + 1);
-					colorYz.setG3(colorYz.getG3() + 1);
-					colorYz.setG4(colorYz.getG4() + 1);
-					colorYz.setG5(colorYz.getG5() + 1);
+					colorYz.setG1(lastColorYz.getG1() + 1);
+					colorYz.setG2(lastColorYz.getG2() + 1);
+					colorYz.setG3(lastColorYz.getG3() + 1);
+					colorYz.setG4(lastColorYz.getG4() + 1);
+					colorYz.setG5(lastColorYz.getG5() + 1);
 					colorYz.setG1Color("green");
 					colorYz.setG2Color("green");
 					colorYz.setG3Color("green");
@@ -221,11 +223,11 @@ public class TimesService {
 
 					switch (colorYz.getYz()) {
 					case 1: {
-						colorYz.setR1(colorYz.getR1() + 1);
-						colorYz.setR2(colorYz.getR2() + 1);
-						colorYz.setR3(colorYz.getR3() + 1);
-						colorYz.setR4(colorYz.getR4() + 1);
-						colorYz.setR5(colorYz.getR5() + 1);
+						colorYz.setR1(lastColorYz.getR1() + 1);
+						colorYz.setR2(lastColorYz.getR2() + 1);
+						colorYz.setR3(lastColorYz.getR3() + 1);
+						colorYz.setR4(lastColorYz.getR4() + 1);
+						colorYz.setR5(lastColorYz.getR5() + 1);
 						colorYz.setR1Color("red");
 						colorYz.setR2Color("red");
 						colorYz.setR3Color("red");
@@ -235,10 +237,10 @@ public class TimesService {
 						break;
 					case 2: {
 						colorYz.setR1(1);
-						colorYz.setR2(colorYz.getR2() + 1);
-						colorYz.setR3(colorYz.getR3() + 1);
-						colorYz.setR4(colorYz.getR4() + 1);
-						colorYz.setR5(colorYz.getR5() + 1);
+						colorYz.setR2(lastColorYz.getR2() + 1);
+						colorYz.setR3(lastColorYz.getR3() + 1);
+						colorYz.setR4(lastColorYz.getR4() + 1);
+						colorYz.setR5(lastColorYz.getR5() + 1);
 						colorYz.setR1Color("white");
 						colorYz.setR2Color("red");
 						colorYz.setR3Color("red");
@@ -249,9 +251,9 @@ public class TimesService {
 					case 3: {
 						colorYz.setR1(2);
 						colorYz.setR2(1);
-						colorYz.setR3(colorYz.getR3() + 1);
-						colorYz.setR4(colorYz.getR4() + 1);
-						colorYz.setR5(colorYz.getR5() + 1);
+						colorYz.setR3(lastColorYz.getR3() + 1);
+						colorYz.setR4(lastColorYz.getR4() + 1);
+						colorYz.setR5(lastColorYz.getR5() + 1);
 						colorYz.setR1Color("white");
 						colorYz.setR2Color("white");
 						colorYz.setR3Color("red");
@@ -263,8 +265,8 @@ public class TimesService {
 						colorYz.setR1(3);
 						colorYz.setR2(2);
 						colorYz.setR3(1);
-						colorYz.setR4(colorYz.getR4() + 1);
-						colorYz.setR5(colorYz.getR5() + 1);
+						colorYz.setR4(lastColorYz.getR4() + 1);
+						colorYz.setR5(lastColorYz.getR5() + 1);
 						colorYz.setR1Color("white");
 						colorYz.setR2Color("white");
 						colorYz.setR3Color("white");
@@ -277,7 +279,7 @@ public class TimesService {
 						colorYz.setR2(3);
 						colorYz.setR3(2);
 						colorYz.setR4(1);
-						colorYz.setR5(colorYz.getR5() + 1);
+						colorYz.setR5(lastColorYz.getR5() + 1);
 						colorYz.setR1Color("white");
 						colorYz.setR2Color("white");
 						colorYz.setR3Color("white");
@@ -299,11 +301,11 @@ public class TimesService {
 					}
 						break;
 					default: {
-						colorYz.setR1(colorYz.getR1() + 1);
-						colorYz.setR2(colorYz.getR2() + 1);
-						colorYz.setR3(colorYz.getR3() + 1);
-						colorYz.setR4(colorYz.getR4() + 1);
-						colorYz.setR5(colorYz.getR5() + 1);
+						colorYz.setR1(lastColorYz.getR1() + 1);
+						colorYz.setR2(lastColorYz.getR2() + 1);
+						colorYz.setR3(lastColorYz.getR3() + 1);
+						colorYz.setR4(lastColorYz.getR4() + 1);
+						colorYz.setR5(lastColorYz.getR5() + 1);
 						colorYz.setR1Color("white");
 						colorYz.setR2Color("white");
 						colorYz.setR3Color("white");

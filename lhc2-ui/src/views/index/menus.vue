@@ -103,6 +103,10 @@
             <Icon type="ios-stats" />
             数据统计
         </MenuItem>
+        <MenuItem name="comparision">
+            <Icon type="ios-stats" />
+            数据对比
+        </MenuItem>
     </Menu>
 </template>
 <script>
