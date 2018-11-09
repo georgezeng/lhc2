@@ -24,7 +24,7 @@
                             <i-input v-model="modal.data.phase"/>
                         </div>
                         <div style="float: left; width: 100px; margin-right: 10px;">
-                            <i-input v-model="modal.data.num"/>
+                            <i-input v-model="modal.data.num" element-id="numInput" />
                         </div>
                         <div style="float: left; width: 100px; margin-right: 10px;">
                             <Select style="margin-right: 10px;" v-model="modal.data.sx">
@@ -115,7 +115,7 @@
                                 },
                                 on: {
                                     'on-change'(e) {
-                                        params.row.num = e.target.value;
+                                        params.row.phase = e.target.value;
                                     }
                                 }
                             });
@@ -169,7 +169,9 @@
                                     on: {
                                         click: () => {
                                             self.update(extend({}, params.row,
-                                                {sx: params.row.sx.name ? params.row.sx.name : params.row.sx}));
+                                                {
+                                                    sx: params.row.sx.name ? params.row.sx.name : params.row.sx
+                                                }));
                                         }
                                     }
                                 }, '保存'),
@@ -183,6 +185,9 @@
                                     on: {
                                         'on-ok': () => {
                                             API.deleteTm(params.row.id).then(data => {
+                                                self.modal.data.phase = null;
+                                                self.queryInfo.page.num = 1;
+                                                document.getElementById("numInput").focus();
                                                 self.loadData();
                                             });
                                         }
@@ -213,6 +218,9 @@
                     this.loading = false;
                     this.data = data.list;
                     this.total = data.total;
+                    if (!this.modal.data.phase) {
+                        this.modal.data.phase = this.data[0].phase + 1;
+                    }
                 }).catch(ex => {
                     this.loading = false;
                 });
@@ -226,6 +234,10 @@
                 API.saveTm(this.modal.data).then(data => {
                     this.loadData();
                     this.modal.loading = false;
+                    this.modal.data.phase++;
+                    this.modal.data.num = null;
+                    this.modal.data.sx = null;
+                    document.getElementById("numInput").focus();
                     this.$Message.success('保存成功');
                 });
             },
@@ -235,31 +247,20 @@
                 });
             },
             calculate() {
-                // let self = this;
-                // this.$Modal.confirm({
-                //     title: '确认对话框',
-                //     content: '计算需要比较长的时间，是否确定开始计算 ?',
-                //     onOk() {
-                //         self.errors = null;
-                //         self.calculation = {
-                //             loading: true,
-                //             text: '计算中...'
-                //         }
-                //         API.calculate();
-                //     }
-                // });
                 this.errors = null;
                 this.calculation = {
                     loading: true,
                     text: '计算中...'
                 }
                 API.calculate().then(errors => {
-                    if (errors.length == 0) {
+                    if (errors && errors.length == 0) {
                         this.calculationFinish();
                         this.$Message.success('计算完成！');
                     } else {
                         this.calculationFinish(errors);
                     }
+                }).catch(ex => {
+                    this.errors = [ex.message];
                 });
             },
             calculationFinish(errors) {
@@ -281,7 +282,7 @@
                             this.calculationFinish(data.errors);
                         }
                     } else {
-                        if(data.status == 1) {
+                        if (data.status == 1) {
                             this.calculation = {
                                 loading: true,
                                 text: '计算中...'
@@ -305,6 +306,9 @@
             clear() {
                 API.clearTm().then(data => {
                     this.$Message.success('清除成功！');
+                    this.modal.data.phase = null;
+                    this.queryInfo.page.num = 1;
+                    document.getElementById("numInput").focus();
                     this.loadData();
                 });
             }

@@ -14,7 +14,6 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -149,79 +148,68 @@ public class PickNumService {
 	@Autowired
 	private PickNumRepository pickNumRepository;
 
-	@Transactional
 	@Async
-	public Future<Exception> process() {
+	public Future<Exception> process(int expected, int avg, int size, int minDelta, int maxDelta) {
 		Exception t = null;
 		try {
-			pickNumRepository.deleteAll();
-			process(19, 7, 20, 15, 15);
-			process(16, 7, 20, 15, 15);
-			process(14, 10, 20, 8, 15);
-			process(10, 7, 20, 15, 15);
-			process(9, 10, 20, 8, 15);
-			process(3, 10, 20, 8, 15);
+			int offset = 0;
+			int pageNumForCurrent = size;
+			Pageable pageable = PageRequest.of(1, size, Direction.ASC, "phase");
+			// Pageable pageable = PageRequest.of(0, 1, Direction.DESC, "phase");
+			Page<Tm> pResult = null;
+			do {
+				pResult = tmRepository.findAll(pageable);
+				if (pResult.hasContent()) {
+					for (Tm tm : pResult.getContent()) {
+						List<List<Integer>> nums = new ArrayList<List<Integer>>();
+						Pageable current = PageRequest.of(pageNumForCurrent, 1);
+						// Pageable current = PageRequest.of(1, size, Direction.DESC, "phase");
+						Map<String, Boolean> counter = new HashMap<String, Boolean>();
+						int count = 0;
+						count = countNumbers(nums, tm, current, offset, size, count, expected, counter, true, avg, minDelta, maxDelta);
+						if (count < expected) {
+							countNumbers(nums, tm, current, offset, size, count, expected, counter, false, avg, minDelta, maxDelta);
+						}
+						Map<Integer, PickNumCountInfo> map = new HashMap<Integer, PickNumCountInfo>();
+						for (List<Integer> numArr : nums) {
+							for (Integer num : numArr) {
+								PickNumCountInfo info = map.get(num);
+								if (info == null) {
+									info = new PickNumCountInfo();
+									info.setCount(1);
+									info.setNum(num);
+									map.put(num, info);
+								} else {
+									info.setCount(info.getCount() + 1);
+								}
+							}
+						}
+						for (int i = 1; i < 50; i++) {
+							if (!map.containsKey(i)) {
+								PickNumCountInfo info = new PickNumCountInfo();
+								info.setCount(0);
+								info.setNum(i);
+								map.put(i, info);
+							}
+						}
+						PickNumPayload payload = new PickNumPayload();
+						payload.setInfos(new ArrayList<>(map.values()));
+						PickNum pickNum = new PickNum();
+						pickNum.setExpected(expected);
+						pickNum.setPhase(tm.getPhase());
+						pickNum.setPayload(new ObjectMapper().writeValueAsString(payload));
+						pickNumRepository.save(pickNum);
+						pageNumForCurrent++;
+						offset++;
+					}
+					pageable = pageable.next();
+				}
+			} while (pResult.hasNext());
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 			t = e;
 		}
-		return new AsyncResult<>(t);
-	}
-
-	private void process(int expected, int avg, int size, int minDelta, int maxDelta) throws Exception {
-		int offset = 0;
-		// int pageNumForCurrent = 20;
-		// Pageable pageable = PageRequest.of(1, size, Direction.ASC, "phase");
-		Pageable pageable = PageRequest.of(0, 1, Direction.DESC, "phase");
-		Page<Tm> pResult = null;
-		// do {
-		pResult = tmRepository.findAll(pageable);
-		if (pResult.hasContent()) {
-			for (Tm tm : pResult.getContent()) {
-				List<List<Integer>> nums = new ArrayList<List<Integer>>();
-				// Pageable current = PageRequest.of(pageNumForCurrent, 1);
-				Pageable current = PageRequest.of(1, size, Direction.DESC, "phase");
-				Map<String, Boolean> counter = new HashMap<String, Boolean>();
-				int count = 0;
-				count = countNumbers(nums, tm, current, offset, size, count, expected, counter, true, avg, minDelta, maxDelta);
-				if (count < expected) {
-					countNumbers(nums, tm, current, offset, size, count, expected, counter, false, avg, minDelta, maxDelta);
-				}
-				Map<Integer, PickNumCountInfo> map = new HashMap<Integer, PickNumCountInfo>();
-				for (List<Integer> numArr : nums) {
-					for (Integer num : numArr) {
-						PickNumCountInfo info = map.get(num);
-						if (info == null) {
-							info = new PickNumCountInfo();
-							info.setCount(1);
-							info.setNum(num);
-							map.put(num, info);
-						} else {
-							info.setCount(info.getCount() + 1);
-						}
-					}
-				}
-				for (int i = 1; i < 50; i++) {
-					if (!map.containsKey(i)) {
-						PickNumCountInfo info = new PickNumCountInfo();
-						info.setCount(0);
-						info.setNum(i);
-						map.put(i, info);
-					}
-				}
-				PickNumPayload payload = new PickNumPayload();
-				payload.setInfos(new ArrayList<>(map.values()));
-				PickNum pickNum = new PickNum();
-				pickNum.setExpected(expected);
-				pickNum.setPhase(tm.getPhase());
-				pickNum.setPayload(new ObjectMapper().writeValueAsString(payload));
-				pickNumRepository.save(pickNum);
-				// pageNumForCurrent++;
-				// offsetForLast20++;
-			}
-			// pageable = pageable.next();
-		}
-		// } while (pResult.hasNext());
+		return new AsyncResult<Exception>(t);
 	}
 
 	private int countNumbers(List<List<Integer>> nums, Tm tm, Pageable current, int offset, int size, int count, int expected,

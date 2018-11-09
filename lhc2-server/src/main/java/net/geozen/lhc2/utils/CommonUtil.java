@@ -34,4 +34,25 @@ public class CommonUtil {
 		}
 	}
 
+	public static void waitWithException(List<Future<Exception>> futures) throws Exception {
+		while (true) {
+			int count = 0;
+			for (Future<Exception> f : futures) {
+				if (f.isDone()) {
+					if (f.get() != null) {
+						throw new RuntimeException(f.get().getMessage(), f.get());
+					}
+					count++;
+				}
+			}
+			if (count == futures.size()) {
+				break;
+			}
+			try {
+				Thread.sleep(1000l);
+			} catch (InterruptedException e) {
+			}
+		}
+	}
+
 }

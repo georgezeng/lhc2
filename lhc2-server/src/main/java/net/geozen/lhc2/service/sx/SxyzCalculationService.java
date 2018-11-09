@@ -23,7 +23,6 @@ import net.geozen.lhc2.dto.MaxInfo;
 import net.geozen.lhc2.enums.SX;
 import net.geozen.lhc2.jpa.TmRepository;
 import net.geozen.lhc2.jpa.sx.SxyzRepository;
-import net.geozen.lhc2.service.CalculationService;
 import net.geozen.lhc2.utils.SxUtil;
 import net.geozen.lhc2.utils.SystemConstants;
 
@@ -42,9 +41,6 @@ public class SxyzCalculationService {
 
 	@Autowired
 	private SxswCalculationService swService;
-
-	@Autowired
-	private CalculationService calService;
 
 	@Autowired
 	private CommonDAO commonDAO;
@@ -79,8 +75,8 @@ public class SxyzCalculationService {
 			}
 			yzRepository.deleteAll();
 			yzRepository.saveAll(yzList);
-			calService.addFuture(zfService.process(yzList));
-			calService.addFuture(swService.process(yzList));
+			zfService.process(yzList);
+			swService.process(yzList);
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 			t = e;

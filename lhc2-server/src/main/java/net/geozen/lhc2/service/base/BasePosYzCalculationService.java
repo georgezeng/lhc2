@@ -127,10 +127,10 @@ public abstract class BasePosYzCalculationService<Y extends PosBaseEntity> {
 			getRepository().deleteAll();
 			getRepository().saveAll(yzList);
 			if (getZfCalculationService() != null) {
-				calService.addFuture(getZfCalculationService().process(yzList));
+				getZfCalculationService().process(yzList);
 			}
 			if (getSwCalculationService() != null) {
-				calService.addFuture(getSwCalculationService().process(yzList));
+				getSwCalculationService().process(yzList);
 			}
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);

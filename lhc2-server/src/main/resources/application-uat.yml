@@ -12,6 +12,6 @@ spring:
 login:
   password: hslhc138
     
-async.executor.poolSize: 50
+async.executor.poolSize: 100
 
 access.control.allow.origin: http://139.199.19.176

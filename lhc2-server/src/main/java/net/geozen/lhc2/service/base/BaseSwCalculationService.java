@@ -7,17 +7,12 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.Future;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.transaction.annotation.Transactional;
 
-import lombok.extern.slf4j.Slf4j;
 import net.geozen.lhc2.domain.base.PosBaseEntity;
 
-@Slf4j
 public abstract class BaseSwCalculationService<Y extends PosBaseEntity, S extends PosBaseEntity> {
 
 	protected abstract PagingAndSortingRepository<S, Long> getRepository();
@@ -32,61 +27,53 @@ public abstract class BaseSwCalculationService<Y extends PosBaseEntity, S extend
 	}
 
 	@Transactional
-	@Async
-	public Future<Exception> process(List<Y> yzList) {
-		Exception t = null;
-		try {
-			S lastSw = initLastSw();
-			List<S> list = new ArrayList<>();
-			for (int i = 1; i < yzList.size(); i++) {
-				Y lastYz = yzList.get(i - 1);
-				Y yz = yzList.get(i);
-				List<PosYzInfo> lastInfoList = new ArrayList<>();
-				for (int j = 0; j < getHandler().getLength(); j++) {
-					Method getMethod = yz.getClass().getDeclaredMethod("get" + getHandler().getIndexStr(j));
-					PosYzInfo info = new PosYzInfo(j, (int) getMethod.invoke(lastYz));
-					lastInfoList.add(info);
-				}
-				Collections.sort(lastInfoList, new Comparator<PosYzInfo>() {
-
-					@Override
-					public int compare(PosYzInfo o1, PosYzInfo o2) {
-						return Integer.valueOf(o1.getYz()).compareTo(Integer.valueOf(o2.getYz()));
-					}
-
-				});
-				int redPointPos = yz.getPos();
-				int pos = 0;
-				List<PosYzInfo> infoList = new LinkedList<>();
-				boolean found = false;
-				for (PosYzInfo info : lastInfoList) {
-					if (info.getPos() == redPointPos) {
-						found = true;
-					} else {
-						infoList.add(info);
-					}
-					if (!found) {
-						pos++;
-					}
-				}
-				infoList.add(0, lastInfoList.get(pos));
-				S sw = swClass.newInstance();
-				sw.setPhase(yz.getPhase());
-				sw.setNum(yz.getNum());
-				sw.setPos(redPointPos);
-				for (int j = 0; j < infoList.size(); j++) {
-					dealInfoList(sw, lastSw, infoList, pos);
-				}
-				lastSw = sw;
-				list.add(sw);
+	public void process(List<Y> yzList) throws Exception {
+		S lastSw = initLastSw();
+		List<S> list = new ArrayList<>();
+		for (int i = 1; i < yzList.size(); i++) {
+			Y lastYz = yzList.get(i - 1);
+			Y yz = yzList.get(i);
+			List<PosYzInfo> lastInfoList = new ArrayList<>();
+			for (int j = 0; j < getHandler().getLength(); j++) {
+				Method getMethod = yz.getClass().getDeclaredMethod("get" + getHandler().getIndexStr(j));
+				PosYzInfo info = new PosYzInfo(j, (int) getMethod.invoke(lastYz));
+				lastInfoList.add(info);
 			}
-			getRepository().deleteAll();
-			getRepository().saveAll(list);
-		} catch (Exception e) {
-			log.error(e.getMessage(), e);
-			t = e;
+			Collections.sort(lastInfoList, new Comparator<PosYzInfo>() {
+
+				@Override
+				public int compare(PosYzInfo o1, PosYzInfo o2) {
+					return Integer.valueOf(o1.getYz()).compareTo(Integer.valueOf(o2.getYz()));
+				}
+
+			});
+			int redPointPos = yz.getPos();
+			int pos = 0;
+			List<PosYzInfo> infoList = new LinkedList<>();
+			boolean found = false;
+			for (PosYzInfo info : lastInfoList) {
+				if (info.getPos() == redPointPos) {
+					found = true;
+				} else {
+					infoList.add(info);
+				}
+				if (!found) {
+					pos++;
+				}
+			}
+			infoList.add(0, lastInfoList.get(pos));
+			S sw = swClass.newInstance();
+			sw.setPhase(yz.getPhase());
+			sw.setNum(yz.getNum());
+			sw.setPos(redPointPos);
+			for (int j = 0; j < infoList.size(); j++) {
+				dealInfoList(sw, lastSw, infoList, pos);
+			}
+			lastSw = sw;
+			list.add(sw);
 		}
-		return new AsyncResult<>(t);
+		getRepository().deleteAll();
+		getRepository().saveAll(list);
 	}
 
 	protected S initLastSw() throws Exception {

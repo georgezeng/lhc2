@@ -27,7 +27,7 @@
                 <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
-                        16表选号
+                        19表选号
                     </p>
                     <Table stripe border size="small" :loading="loading3" :columns="columns2" :data="data3"/>
                 </Card>
@@ -67,7 +67,7 @@
                 <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
-                        4表选号
+                        3表选号
                     </p>
                     <Table stripe border size="small" :loading="loading8" :columns="columns2" :data="data8"/>
                 </Card>
@@ -91,7 +91,7 @@
                 <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
-                        19表/4表选号-合并
+                        19表/3表选号-合并
                     </p>
                     <Table stripe border size="small" :loading="loading11" :columns="columns2" :data="data11"/>
                 </Card>
@@ -117,7 +117,7 @@
                 queryInfo: {
                     page: {
                         num: 1,
-                        size: 20,
+                        size: 1,
                         property: 'phase',
                         order: 'DESC'
                     }
@@ -135,6 +135,7 @@
                 loading11: true,
                 dataFor19: [],
                 dataFor16: [],
+                dataFor14: [],
                 dataFor9: [],
                 dataFor4: [],
                 data1: [],
@@ -261,7 +262,7 @@
                     this.data7 = [];
                     return this.data7
                 }, () => this.loading7 = true, () => this.loading7 = false);
-                this.changePage(1, 4, () => {
+                this.changePage(1, 3, () => {
                     this.data8 = [];
                     return this.data8
                 }, () => this.loading8 = true, () => this.loading8 = false);
@@ -280,7 +281,7 @@
                 }).then(result => {
                     stopLoading();
                     switch (expected) {
-                        case 4:
+                        case 3:
                             this.dataFor4 = this.setupData2(result.list, initData());
                             break;
                         case 9:
@@ -288,12 +289,12 @@
                             break;
                         case 14:
                             this.dataFor14 = this.setupData3(result.list, initData());
-                            breakreak;
+                            break;
                         case 16:
                             this.dataFor16 = this.setupData1(result.list, initData());
                             break;
                         case 19:
-                            this.dataFor19 = this.setupData3(result.list, initData());
+                            this.dataFor19 = this.setupData1(result.list, initData());
                             break;
                         default: {
                             this.setupData1(result.list, initData());
@@ -302,6 +303,11 @@
                 });
             },
             loadCombine() {
+                if(this.loading3 || this.loading4 || this.loading5 || this.loading6 || this.loading7 || this.loading8) {
+                    setTimeout(this.loadCombine, 1000);
+                    return;
+                }
+
                 function loadNum(numArr, nums) {
                     if(numArr && numArr.length > 0) {
                         for(let i = 0; i < numArr.length; i++) {
@@ -313,9 +319,9 @@
                 function loadData(numsForA, numsForB) {
                     const data = [];
                     for(let i = 0; i < numsForA.length; i++) {
-                        const numInA = this.numsForA[i];
+                        const numInA = numsForA[i];
                         for(let j = 0; j < numsForB.length; j++) {
-                            const numInB = this.numsForB[j];
+                            const numInB = numsForB[j];
                             if(numInA == numInB) {
                                 data.push(numInA);
                                 break;
@@ -327,8 +333,7 @@
 
                 const numsFor19_14 = [];
                 loadNum(this.dataFor19.numArr0, numsFor19_14);
-                loadNum(this.dataFor19.numArr1, numsFor19_14);
-                loadNum(this.dataFor19.numArr2, numsFor19_14);
+                loadNum(this.dataFor19.numArr12, numsFor19_14);
 
                 const numsFor14 = [];
                 loadNum(this.dataFor14.numArr1, numsFor14);
@@ -350,15 +355,15 @@
                 this.data10.push({colName: '12345+-01', nums: loadData(numsFor16, numsFor9)});
                 this.loading10 = false;
 
-                const numsFor19_4 = [];
-                loadNum(this.dataFor19.numArr1, numsFor19_4);
-                loadNum(this.dataFor19.numArr2, numsFor19_4);
-                loadNum(this.dataFor19.numArr3T5, numsFor19_4);
+                const numsFor19_3 = [];
+                loadNum(this.dataFor19.numArr12, numsFor19_3);
+                loadNum(this.dataFor19.numArr34, numsFor19_3);
+                loadNum(this.dataFor19.numArr5Plus, numsFor19_3);
 
-                const numsFor4 = [];
-                loadNum(this.dataFor4.numArr0, numsFor4);
+                const numsFor3 = [];
+                loadNum(this.dataFor4.numArr0, numsFor3);
 
-                this.data11.push({colName: '12345-0', nums: loadData(numsFor19_4, numsFor4)});
+                this.data11.push({colName: '12345+-0', nums: loadData(numsFor19_3, numsFor3)});
                 this.loading11 = false;
             },
             setupData1(result, data) {
@@ -421,7 +426,6 @@
                 result.numArr0 = [];
                 result.numArr1 = [];
                 result.numArr2 = [];
-                result.numArr3T5 = [];
                 result.numArr3Plus = [];
                 result.infos.map(info => {
                     switch (info.count) {
@@ -434,10 +438,6 @@
                         case 2:
                             result.numArr2.push(info.num);
                             break;
-                        case 3:
-                        case 4:
-                        case 5:
-                            result.numArr3T5.push(info.num);
                         default:
                             result.numArr3Plus.push(info.num);
                     }
@@ -446,7 +446,6 @@
                 data.push({colName: '0次', nums: result.numArr0});
                 data.push({colName: '1次', nums: result.numArr1});
                 data.push({colName: '2次', nums: result.numArr2});
-                data.push({colName: '3-5次', nums: result.numArr3T5});
                 data.push({colName: '3次+', nums: result.numArr3Plus});
 
                 return result;

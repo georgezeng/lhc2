@@ -76,12 +76,11 @@ public class CalculationService {
 	private FdyzCalculationService fdService;
 
 	@Autowired
-	private PickNumService pickNumService;
+	private PickNumFacade pickNumFacade;
 
 	@Autowired
 	private CombineService combineService;
 
-//	@Async
 	public void process(List<String> errors) throws Exception {
 		futures1.clear();
 		futures1.add(sxService.process());
@@ -99,9 +98,9 @@ public class CalculationService {
 		futures1.add(z13Service.process());
 		futures1.add(dsService.process());
 		futures1.add(fdService.process());
-		
+
 		int count = 0;
-		while(count < futures1.size()) {
+		while (count < futures1.size()) {
 			for (Future<Exception> f : futures1) {
 				if (f.isDone()) {
 					if (f.get() != null) {
@@ -112,19 +111,18 @@ public class CalculationService {
 				}
 			}
 		}
-	}
 
-	public void addFuture(Future<Exception> future) {
-		futures1.add(future);
 	}
 
 	public void summary(List<String> errors) throws Exception {
+		if (!errors.isEmpty()) {
+			return;
+		}
 		futures2.clear();
 		futures2.add(combineService.process());
-		futures2.add(pickNumService.process());
-		
+		pickNumFacade.process(futures2);
 		int count = 0;
-		while(count < futures2.size()) {
+		while (count < futures2.size()) {
 			for (Future<Exception> f : futures2) {
 				if (f.isDone()) {
 					if (f.get() != null) {
