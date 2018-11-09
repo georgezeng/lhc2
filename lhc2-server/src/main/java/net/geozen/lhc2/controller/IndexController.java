@@ -1,7 +1,9 @@
 package net.geozen.lhc2.controller;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.Future;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,12 +24,29 @@ public class IndexController {
 	@Autowired
 	private CombineService combineService;
 
+	private volatile Future<List<String>> future;
+
+	private int status = 0;
+
 	@RequestMapping(value = "/calculate", method = RequestMethod.GET)
-	public Result<List<String>> calculate() throws Exception {
-		List<String> errors = new ArrayList<>();
-		calService.process(errors);
-		calService.summary(errors);
-		return Result.genSuccessResult(errors);
+	public void calculate() throws Exception {
+		status = 1;
+		future = calService.process();
+	}
+
+	@RequestMapping(value = "/calculation/status", method = RequestMethod.GET)
+	public Result<Map<String, Object>> calculationStatus() throws Exception {
+		Map<String, Object> result = new HashMap<>();
+		boolean finished = future != null && future.isDone();
+		if (finished) {
+			status = 0;
+			result.put("errors", future.get());
+			result.put("status", 2);
+			future = null;
+		} else {
+			result.put("status", status);
+		}
+		return Result.genSuccessResult(result);
 	}
 
 	@RequestMapping(value = "/statInfo/1", method = RequestMethod.GET)

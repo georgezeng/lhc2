@@ -252,16 +252,7 @@
                     loading: true,
                     text: '计算中...'
                 }
-                API.calculate().then(errors => {
-                    if (errors && errors.length == 0) {
-                        this.calculationFinish();
-                        this.$Message.success('计算完成！');
-                    } else {
-                        this.calculationFinish(errors);
-                    }
-                }).catch(ex => {
-                    this.calculationFinish([ex.message])
-                });
+                API.calculate();
             },
             calculationFinish(errors) {
                 this.calculation = {
@@ -274,22 +265,22 @@
             },
             loadCalculationStatus() {
                 API.loadCalculationStatus().then(data => {
-                    if (data.status == 2) {
-                        if (!data.errors || data.errors.length == 0) {
-                            this.calculationFinish();
-                            this.$Message.success('计算完成！');
-                        } else {
-                            this.calculationFinish(data.errors);
-                        }
-                    } else {
-                        if (data.status == 1) {
+                    switch(data.status) {
+                        case 1: {
                             this.calculation = {
                                 loading: true,
                                 text: '计算中...'
                             }
-                        } else {
-                            this.calculationFinish();
-                        }
+                        } break;
+                        case 2: {
+                            if (!data.errors || data.errors.length == 0) {
+                                this.calculationFinish();
+                                this.$Message.success('计算完成！');
+                            } else {
+                                this.calculationFinish(data.errors);
+                            }
+                        } break;
+                        default: this.calculationFinish();
                     }
                     setTimeout(this.loadCalculationStatus, 1000);
                 }).catch(ex => {
@@ -321,7 +312,7 @@
         created() {
             this.loadSxList();
             this.loadData();
-            // this.loadCalculationStatus();
+            this.loadCalculationStatus();
         }
     }
 </script>

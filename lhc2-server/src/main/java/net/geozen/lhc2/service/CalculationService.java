@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.concurrent.Future;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 
 import lombok.Getter;
@@ -83,7 +85,8 @@ public class CalculationService {
 	@Autowired
 	private TimesService timeService;
 
-	public void process(List<String> errors) throws Exception {
+	@Async
+	public Future<List<String>> process() throws Exception {
 		List<Future<Exception>> futures = new ArrayList<>();
 		futures.add(sxService.process());
 		futures.add(swService.process());
@@ -101,15 +104,19 @@ public class CalculationService {
 		futures.add(dsService.process());
 		futures.add(fdService.process());
 
+		List<String> errors = new ArrayList<>();
 		CommonUtil.waitWithException(futures, ex -> {
 			errors.add(ex.getMessage());
 		});
+
+		if (errors.isEmpty()) {
+			summary(errors);
+		}
+
+		return new AsyncResult<>(errors);
 	}
 
 	public void summary(List<String> errors) throws Exception {
-		if (!errors.isEmpty()) {
-			return;
-		}
 		List<Future<Exception>> futures = new ArrayList<>();
 		futures.add(combineService.process());
 		pickNumFacade.process(futures);
@@ -117,14 +124,6 @@ public class CalculationService {
 		CommonUtil.waitWithException(futures, ex -> {
 			errors.add(ex.getMessage());
 		});
-
-		if (errors.isEmpty()) {
-			futures.clear();
-			futures.add(timeService.process());
-			CommonUtil.waitWithException(futures, ex -> {
-				errors.add(ex.getMessage());
-			});
-		}
 	}
 
 }
