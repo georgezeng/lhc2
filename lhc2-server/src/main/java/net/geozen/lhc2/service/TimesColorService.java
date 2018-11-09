@@ -53,11 +53,19 @@ public class TimesColorService {
 			TimesYz lastTimesYz = new TimesYz();
 			List<ColorYz> colorYzList = new ArrayList<>();
 			List<TimesYz> timesYzList = new ArrayList<>();
+			PickNum nextNumInfo = null;
 			// do {
 			pResult = pickNumRepository.findAllByExpected(16, pageable);
 			for (int i = pResult.getContent().size() - 1; i > -1; i--) {
 				// for (PickNum numInfo : pResult.getContent()) {
 				PickNum numInfo = pResult.getContent().get(i);
+				nextNumInfo = null;
+				if (i < pResult.getContent().size() - 1) {
+					nextNumInfo = pResult.getContent().get(i + 1);
+				}
+				if (nextNumInfo == null) {
+					continue;
+				}
 				TimesYz timesYz = new TimesYz();
 				timesYz.setPhase(numInfo.getPhase());
 				timesYz.setTables("16");
@@ -67,7 +75,7 @@ public class TimesColorService {
 				PickNumPayload payload = mapper.readValue(numInfo.getPayload(), PickNumPayload.class);
 				PickNumCountInfo tmInfo = null;
 				for (PickNumCountInfo info : payload.getInfos()) {
-					if (numInfo.getTm() == info.getNum()) {
+					if (nextNumInfo.getTm() == info.getNum()) {
 						tmInfo = info;
 						break;
 					}

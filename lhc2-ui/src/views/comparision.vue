@@ -11,17 +11,13 @@
                 <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
-                        16表次数遗值表
+                        16表次数/颜色遗值表
                     </p>
-                    <Table stripe border size="small" :loading="loading1" :columns="columns1" :data="data1"/>
-                </Card>
-                <br/>
-                <Card>
-                    <p slot="title">
-                        <Icon type="ios-stats-outline"/>
-                        16表颜色遗值表
-                    </p>
-                    <Table stripe border size="small" :loading="loading2" :columns="columns2" :data="data2"/>
+                    <Table class="times-colors" style="float:left; width: 50%;" stripe border size="small" :loading="loading1"
+                           :columns="columns1" :data="data1"/>
+                    <Table class="times-colors" style="float:left; width: 50%;" stripe border size="small" :loading="loading2"
+                           :columns="columns2" :data="data2"/>
+                    <div style="clear:both;"></div>
                 </Card>
             </Content>
             <Footer/>

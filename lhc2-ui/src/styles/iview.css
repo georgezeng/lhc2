@@ -1,0 +1,13 @@
+.times-colors>.ivu-table {
+  overflow: visible;
+}
+
+.times-colors>.ivu-table>.ivu-table-header {
+  overflow: visible;
+}
+
+.times-colors>.ivu-table>.ivu-table-body {
+  overflow: visible;
+}
+
+
