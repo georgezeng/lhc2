@@ -73,10 +73,10 @@ public class TimesColorService {
 				ColorYz colorYz = new ColorYz();
 				colorYz.setPhase(numInfo.getPhase());
 				colorYz.setTables("16");
-				PickNumPayload payload = mapper.readValue(numInfo.getPayload(), PickNumPayload.class);
+				PickNumPayload payload = mapper.readValue(nextNumInfo.getPayload(), PickNumPayload.class);
 				PickNumCountInfo tmInfo = null;
 				for (PickNumCountInfo info : payload.getInfos()) {
-					if (nextNumInfo.getTm() == info.getNum()) {
+					if (numInfo.getTm() == info.getNum()) {
 						tmInfo = info;
 						break;
 					}
