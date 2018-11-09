@@ -13,9 +13,9 @@
                         <Icon type="ios-stats-outline"/>
                         16表次数/颜色遗值表
                     </p>
-                    <Table class="times-colors" style="float:left; width: 50%;" stripe border size="small" :loading="loading1"
+                    <Table class="times-colors" style="float:left; width: 30%;" stripe border size="small" :loading="loading1"
                            :columns="columns1" :data="data1"/>
-                    <Table class="times-colors" style="float:left; width: 50%;" stripe border size="small" :loading="loading2"
+                    <Table class="times-colors" style="float:left; width: 70%;" stripe border size="small" :loading="loading2"
                            :columns="columns2" :data="data2"/>
                     <div style="clear:both;"></div>
                 </Card>
@@ -46,6 +46,11 @@
                         title: '期数',
                         width: 50,
                         key: 'phase'
+                    },
+                    {
+                        title: '特码',
+                        width: 50,
+                        key: 'num'
                     },
                     {
                         title: '0次',
@@ -182,6 +187,13 @@
                         }
                     },
                     {
+                        title: '',
+                        width: 50,
+                        render(h, params) {
+                            return h('span', {}, '');
+                        }
+                    },
+                    {
                         title: '红绿',
                         width: 50,
                         render(h, params) {
@@ -195,6 +207,13 @@
                             }
                             style['font-weight'] = 'bold';
                             return h('span', {style}, data);
+                        }
+                    },
+                    {
+                        title: '',
+                        width: 50,
+                        render(h, params) {
+                            return h('span', {}, '');
                         }
                     },
                     {

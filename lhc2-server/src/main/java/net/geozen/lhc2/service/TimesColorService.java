@@ -69,6 +69,7 @@ public class TimesColorService {
 				TimesYz timesYz = new TimesYz();
 				timesYz.setPhase(numInfo.getPhase());
 				timesYz.setTables("16");
+				timesYz.setNum(numInfo.getTm());
 				ColorYz colorYz = new ColorYz();
 				colorYz.setPhase(numInfo.getPhase());
 				colorYz.setTables("16");
