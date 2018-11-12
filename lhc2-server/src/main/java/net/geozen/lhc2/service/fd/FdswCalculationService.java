@@ -45,20 +45,22 @@ public class FdswCalculationService extends BaseSwCalculationService<Fdyz, Fdsw>
 		List<Integer> nums = new ArrayList<>();
 		int count = 1;
 		for (int i = 0; i < infoList.size(); i++) {
+			int j = i + 1;
 			int num = infoList.get(i).getPos() + 1;
 			nums.add(num);
-			if (i > 0 && i % 4 == 0) {
+			if (j < 48 && j % 4 == 0 || j == 49) {
 				Method setMethod = sw.getClass().getDeclaredMethod("setSw" + count++ + "Arr", String.class);
 				setMethod.invoke(sw, StringUtils.collectionToCommaDelimitedString(nums));
-				if (i < 48) {
-					nums = new ArrayList<>();
-				}
+				nums = new ArrayList<>();
 			}
 
-			int index = i / 4;
-			if (i > 0 && i % 4 == 0) {
+			int index = j / 4;
+			if (j == 49) {
+				index = 12;
+			}
+			if (j < 48 && j % 4 == 0 || j == 49) {
 				Method setMethod = sw.getClass().getDeclaredMethod("setSw" + index, int.class);
-				if (pos / 4 != index) {
+				if (((pos + 1) / 4) + 1 != index) {
 					Method getMethod = sw.getClass().getDeclaredMethod("getSw" + index);
 					int value = (int) getMethod.invoke(lastSw);
 					setMethod.invoke(sw, value + 1);
