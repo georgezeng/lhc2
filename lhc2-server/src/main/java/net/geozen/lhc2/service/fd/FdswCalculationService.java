@@ -46,6 +46,7 @@ public class FdswCalculationService extends BaseSwCalculationService<Fdyz, Fdsw>
 		int count = 1;
 		for (int i = 0; i < infoList.size(); i++) {
 			int num = infoList.get(i).getPos() + 1;
+			nums.add(num);
 			if (i > 0 && i % 4 == 0) {
 				Method setMethod = sw.getClass().getDeclaredMethod("setSw" + count++ + "Arr", String.class);
 				setMethod.invoke(sw, StringUtils.collectionToCommaDelimitedString(nums));
@@ -53,7 +54,6 @@ public class FdswCalculationService extends BaseSwCalculationService<Fdyz, Fdsw>
 					nums = new ArrayList<>();
 				}
 			}
-			nums.add(num);
 
 			int index = i / 4;
 			if (i > 0 && i % 4 == 0) {
