@@ -115,11 +115,31 @@ public class TimesColorService {
 				}
 
 				if (colorYz.getYzColor().equals("red")) {
-					colorYz.setR1(lastColorYz.getR1() + 1);
-					colorYz.setR2(lastColorYz.getR2() + 1);
-					colorYz.setR3(lastColorYz.getR3() + 1);
-					colorYz.setR4(lastColorYz.getR4() + 1);
-					colorYz.setR5(lastColorYz.getR5() + 1);
+					if ("white".equals(lastColorYz.getR1Color())) {
+						colorYz.setR1(1);
+					} else {
+						colorYz.setR1(lastColorYz.getR1() + 1);
+					}
+					if ("white".equals(lastColorYz.getR2Color())) {
+						colorYz.setR2(1);
+					} else {
+						colorYz.setR2(lastColorYz.getR2() + 1);
+					}
+					if ("white".equals(lastColorYz.getR3Color())) {
+						colorYz.setR3(1);
+					} else {
+						colorYz.setR3(lastColorYz.getR3() + 1);
+					}
+					if ("white".equals(lastColorYz.getR4Color())) {
+						colorYz.setR4(1);
+					} else {
+						colorYz.setR4(lastColorYz.getR4() + 1);
+					}
+					if ("white".equals(lastColorYz.getR5Color())) {
+						colorYz.setR5(1);
+					} else {
+						colorYz.setR5(lastColorYz.getR5() + 1);
+					}
 					colorYz.setR1Color("red");
 					colorYz.setR2Color("red");
 					colorYz.setR3Color("red");
@@ -219,11 +239,31 @@ public class TimesColorService {
 					}
 					}
 				} else {
-					colorYz.setG1(lastColorYz.getG1() + 1);
-					colorYz.setG2(lastColorYz.getG2() + 1);
-					colorYz.setG3(lastColorYz.getG3() + 1);
-					colorYz.setG4(lastColorYz.getG4() + 1);
-					colorYz.setG5(lastColorYz.getG5() + 1);
+					if ("white".equals(lastColorYz.getG1Color())) {
+						colorYz.setG1(1);
+					} else {
+						colorYz.setG1(lastColorYz.getG1() + 1);
+					}
+					if ("white".equals(lastColorYz.getG2Color())) {
+						colorYz.setG2(1);
+					} else {
+						colorYz.setG2(lastColorYz.getG2() + 1);
+					}
+					if ("white".equals(lastColorYz.getG3Color())) {
+						colorYz.setG3(1);
+					} else {
+						colorYz.setG3(lastColorYz.getG3() + 1);
+					}
+					if ("white".equals(lastColorYz.getG4Color())) {
+						colorYz.setG4(1);
+					} else {
+						colorYz.setG4(lastColorYz.getG4() + 1);
+					}
+					if ("white".equals(lastColorYz.getG5Color())) {
+						colorYz.setG5(1);
+					} else {
+						colorYz.setG5(lastColorYz.getG5() + 1);
+					}
 					colorYz.setG1Color("green");
 					colorYz.setG2Color("green");
 					colorYz.setG3Color("green");

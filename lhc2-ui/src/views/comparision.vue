@@ -13,9 +13,9 @@
                         <Icon type="ios-stats-outline"/>
                         16表次数/颜色遗值表
                     </p>
-                    <Table class="times-colors" style="float:left; width: 30%;" stripe border size="small" :loading="loading1"
+                    <Table class="times-colors" style="float:left; width: 20%;" stripe border size="small" :loading="loading1"
                            :columns="columns1" :data="data1"/>
-                    <Table class="times-colors" style="float:left; width: 70%;" stripe border size="small" :loading="loading2"
+                    <Table class="times-colors" style="float:left; width: 80%;" stripe border size="small" :loading="loading2"
                            :columns="columns2" :data="data2"/>
                     <div style="clear:both;"></div>
                 </Card>
@@ -107,45 +107,13 @@
                 ],
                 columns2: [
                     {
-                        title: '绿1',
+                        title: '绿5',
                         width: 50,
                         render(h, params) {
                             const style = {};
                             style['padding'] = '10px';
-                            const data = params.row.g1;
-                            const color = params.row.g1Color;
-                            style['background-color'] = color;
-                            if (color != 'white') {
-                                style['color'] = 'white';
-                            }
-                            style['font-weight'] = 'bold';
-                            return h('span', {style}, data);
-                        }
-                    },
-                    {
-                        title: '绿2',
-                        width: 50,
-                        render(h, params) {
-                            const style = {};
-                            style['padding'] = '10px';
-                            const data = params.row.g2;
-                            const color = params.row.g2Color;
-                            style['background-color'] = color;
-                            if (color != 'white') {
-                                style['color'] = 'white';
-                            }
-                            style['font-weight'] = 'bold';
-                            return h('span', {style}, data);
-                        }
-                    },
-                    {
-                        title: '绿3',
-                        width: 50,
-                        render(h, params) {
-                            const style = {};
-                            style['padding'] = '10px';
-                            const data = params.row.g3;
-                            const color = params.row.g3Color;
+                            const data = params.row.g5;
+                            const color = params.row.g5Color;
                             style['background-color'] = color;
                             if (color != 'white') {
                                 style['color'] = 'white';
@@ -171,13 +139,45 @@
                         }
                     },
                     {
-                        title: '绿5',
+                        title: '绿3',
                         width: 50,
                         render(h, params) {
                             const style = {};
                             style['padding'] = '10px';
-                            const data = params.row.g5;
-                            const color = params.row.g5Color;
+                            const data = params.row.g3;
+                            const color = params.row.g3Color;
+                            style['background-color'] = color;
+                            if (color != 'white') {
+                                style['color'] = 'white';
+                            }
+                            style['font-weight'] = 'bold';
+                            return h('span', {style}, data);
+                        }
+                    },
+                    {
+                        title: '绿2',
+                        width: 50,
+                        render(h, params) {
+                            const style = {};
+                            style['padding'] = '10px';
+                            const data = params.row.g2;
+                            const color = params.row.g2Color;
+                            style['background-color'] = color;
+                            if (color != 'white') {
+                                style['color'] = 'white';
+                            }
+                            style['font-weight'] = 'bold';
+                            return h('span', {style}, data);
+                        }
+                    },
+                    {
+                        title: '绿1',
+                        width: 50,
+                        render(h, params) {
+                            const style = {};
+                            style['padding'] = '10px';
+                            const data = params.row.g1;
+                            const color = params.row.g1Color;
                             style['background-color'] = color;
                             if (color != 'white') {
                                 style['color'] = 'white';
