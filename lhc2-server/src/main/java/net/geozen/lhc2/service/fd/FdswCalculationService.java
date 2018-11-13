@@ -54,14 +54,14 @@ public class FdswCalculationService extends BaseSwCalculationService<Fdyz, Fdsw>
 				nums = new ArrayList<>();
 			}
 
-			int index = j / 4;
-			if (j == 49) {
-				index = 12;
+			int index = i / 4;
+			if (index == 12) {
+				index = 11;
 			}
 			if (j < 48 && j % 4 == 0 || j == 49) {
-				Method setMethod = sw.getClass().getDeclaredMethod("setSw" + index, int.class);
-				if (((pos + 1) / 4) + 1 != index) {
-					Method getMethod = sw.getClass().getDeclaredMethod("getSw" + index);
+				Method setMethod = sw.getClass().getDeclaredMethod("setSw" + (index + 1), int.class);
+				if ((pos / 4) != index) {
+					Method getMethod = sw.getClass().getDeclaredMethod("getSw" + (index + 1));
 					int value = (int) getMethod.invoke(lastSw);
 					setMethod.invoke(sw, value + 1);
 				} else {
