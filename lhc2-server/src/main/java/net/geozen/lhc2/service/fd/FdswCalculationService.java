@@ -57,6 +57,7 @@ public class FdswCalculationService extends BaseSwCalculationService<Fdyz, Fdsw>
 			int index = i / 4;
 			if (index == 12) {
 				index = 11;
+				pos--;
 			}
 			if (j < 48 && j % 4 == 0 || j == 49) {
 				Method setMethod = sw.getClass().getDeclaredMethod("setSw" + (index + 1), int.class);
