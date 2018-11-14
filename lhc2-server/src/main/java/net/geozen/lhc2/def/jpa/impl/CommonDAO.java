@@ -21,7 +21,7 @@ public class CommonDAO {
 	public <T extends BaseEntity> List<T> findAllByOffsetAndSize(Class<T> clazz, int offset, int size) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("select * from " + AnnotationUtils.findAnnotation(clazz, Table.class).name()).append("\n");
-		sql.append("order by phase desc").append("\n");
+		sql.append("order by phase asc").append("\n");
 		sql.append("limit ?, ?").append("\n");
 		Query query = em.createNativeQuery(sql.toString(), clazz);
 		query.setParameter(1, offset);

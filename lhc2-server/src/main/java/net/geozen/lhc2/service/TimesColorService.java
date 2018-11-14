@@ -53,17 +53,17 @@ public class TimesColorService {
 			TimesYz lastTimesYz = new TimesYz();
 			List<ColorYz> colorYzList = new ArrayList<>();
 			List<TimesYz> timesYzList = new ArrayList<>();
-			PickNum nextNumInfo = null;
+			PickNum prevNumInfo = null;
 			// do {
 			pResult = pickNumRepository.findAllByExpected(16, pageable);
 			for (int i = pResult.getContent().size() - 1; i > -1; i--) {
 				// for (PickNum numInfo : pResult.getContent()) {
 				PickNum numInfo = pResult.getContent().get(i);
-				nextNumInfo = null;
+				prevNumInfo = null;
 				if (i < pResult.getContent().size() - 1) {
-					nextNumInfo = pResult.getContent().get(i + 1);
+					prevNumInfo = pResult.getContent().get(i + 1);
 				}
-				if (nextNumInfo == null) {
+				if (prevNumInfo == null) {
 					continue;
 				}
 				TimesYz timesYz = new TimesYz();
@@ -73,7 +73,7 @@ public class TimesColorService {
 				ColorYz colorYz = new ColorYz();
 				colorYz.setPhase(numInfo.getPhase());
 				colorYz.setTables("16");
-				PickNumPayload payload = mapper.readValue(nextNumInfo.getPayload(), PickNumPayload.class);
+				PickNumPayload payload = mapper.readValue(prevNumInfo.getPayload(), PickNumPayload.class);
 				PickNumCountInfo tmInfo = null;
 				for (PickNumCountInfo info : payload.getInfos()) {
 					if (numInfo.getTm() == info.getNum()) {
