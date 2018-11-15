@@ -154,11 +154,14 @@ public class PickNumService {
 		try {
 			int offset = 0;
 			int pageNumForCurrent = size;
-			Pageable pageable = PageRequest.of(1, size, Direction.ASC, "phase");
+			Pageable pageable = PageRequest.of(1, size - 1, Direction.ASC, "phase");
 			// Pageable pageable = PageRequest.of(0, 1, Direction.DESC, "phase");
 			Page<Tm> pResult = null;
 			do {
 				pResult = tmRepository.findAll(pageable);
+				if (pageable.getPageSize() == size - 1) {
+					pageable = PageRequest.of(1, size, Direction.ASC, "phase");
+				}
 				if (pResult.hasContent()) {
 					for (Tm tm : pResult.getContent()) {
 						List<List<Integer>> nums = new ArrayList<List<Integer>>();
