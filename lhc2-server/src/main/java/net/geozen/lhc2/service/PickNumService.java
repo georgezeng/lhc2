@@ -154,7 +154,7 @@ public class PickNumService {
 		try {
 			int offset = 0;
 			int pageNumForCurrent = size;
-			Pageable pageable = PageRequest.of(0, size, Direction.ASC, "phase");
+			Pageable pageable = PageRequest.of(1, size, Direction.ASC, "phase");
 			// Pageable pageable = PageRequest.of(0, 1, Direction.DESC, "phase");
 			Page<Tm> pResult = null;
 			do {

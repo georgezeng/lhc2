@@ -108,7 +108,7 @@
                 columns2: [
                     {
                         title: '绿5',
-                        width: 50,
+                        width: 55,
                         render(h, params) {
                             const style = {};
                             style['padding'] = '10px';
@@ -124,7 +124,7 @@
                     },
                     {
                         title: '绿4',
-                        width: 50,
+                        width: 55,
                         render(h, params) {
                             const style = {};
                             style['padding'] = '10px';
@@ -140,7 +140,7 @@
                     },
                     {
                         title: '绿3',
-                        width: 50,
+                        width: 55,
                         render(h, params) {
                             const style = {};
                             style['padding'] = '10px';
@@ -156,7 +156,7 @@
                     },
                     {
                         title: '绿2',
-                        width: 50,
+                        width: 55,
                         render(h, params) {
                             const style = {};
                             style['padding'] = '10px';
@@ -172,7 +172,7 @@
                     },
                     {
                         title: '绿1',
-                        width: 50,
+                        width: 55,
                         render(h, params) {
                             const style = {};
                             style['padding'] = '10px';
@@ -188,7 +188,7 @@
                     },
                     {
                         title: '',
-                        width: 50,
+                        width: 30,
                         render(h, params) {
                             return h('span', {}, '');
                         }
@@ -211,14 +211,14 @@
                     },
                     {
                         title: '',
-                        width: 50,
+                        width: 30,
                         render(h, params) {
                             return h('span', {}, '');
                         }
                     },
                     {
                         title: '红1',
-                        width: 50,
+                        width: 55,
                         render(h, params) {
                             const style = {};
                             style['padding'] = '10px';
@@ -234,7 +234,7 @@
                     },
                     {
                         title: '红2',
-                        width: 50,
+                        width: 55,
                         render(h, params) {
                             const style = {};
                             style['padding'] = '10px';
@@ -250,7 +250,7 @@
                     },
                     {
                         title: '红3',
-                        width: 50,
+                        width: 55,
                         render(h, params) {
                             const style = {};
                             style['padding'] = '10px';
@@ -266,7 +266,7 @@
                     },
                     {
                         title: '红4',
-                        width: 50,
+                        width: 55,
                         render(h, params) {
                             const style = {};
                             style['padding'] = '10px';
@@ -282,7 +282,7 @@
                     },
                     {
                         title: '红5',
-                        width: 50,
+                        width: 55,
                         render(h, params) {
                             const style = {};
                             style['padding'] = '10px';
