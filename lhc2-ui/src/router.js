@@ -401,6 +401,14 @@ const RouterConfig = {
                 title: `${prefix}十二分段顺位`
             },
             component: (resolve) => require(['./views/fd/sw.vue'], resolve)
+        },
+        {
+            path: '/dxds',
+            name: 'dxds',
+            meta: {
+                title: `${prefix}小大单双`
+            },
+            component: (resolve) => require(['./views/dxds/yzzf.vue'], resolve)
         }
     ]
 };

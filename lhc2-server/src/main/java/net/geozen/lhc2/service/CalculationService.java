@@ -12,6 +12,9 @@ import org.springframework.stereotype.Service;
 import lombok.Getter;
 import net.geozen.lhc2.service.bs.BsyzCalculationService;
 import net.geozen.lhc2.service.ds.DsyzCalculationService;
+import net.geozen.lhc2.service.dxds.Dxds1ayzCalculationService;
+import net.geozen.lhc2.service.dxds.Dxds1byzCalculationService;
+import net.geozen.lhc2.service.dxds.Dxds2yzCalculationService;
 import net.geozen.lhc2.service.fd.FdyzCalculationService;
 import net.geozen.lhc2.service.hs.HsyzCalculationService;
 import net.geozen.lhc2.service.mw.MwyzCalculationService;
@@ -77,6 +80,15 @@ public class CalculationService {
 	private FdyzCalculationService fdService;
 
 	@Autowired
+	private Dxds1ayzCalculationService dxds1aService;
+
+	@Autowired
+	private Dxds1byzCalculationService dxds1bService;
+	
+	@Autowired
+	private Dxds2yzCalculationService dxds2Service;
+
+	@Autowired
 	private PickNumFacade pickNumFacade;
 
 	@Autowired
@@ -103,6 +115,8 @@ public class CalculationService {
 		futures.add(z13Service.process());
 		futures.add(dsService.process());
 		futures.add(fdService.process());
+		futures.add(dxds1aService.process());
+		futures.add(dxds2Service.process());
 
 		List<String> errors = new ArrayList<>();
 		CommonUtil.waitWithException(futures, ex -> {
@@ -110,7 +124,14 @@ public class CalculationService {
 		});
 
 		if (errors.isEmpty()) {
-			summary(errors);
+			futures.clear();
+			futures.add(dxds1bService.process());
+			CommonUtil.waitWithException(futures, ex -> {
+				errors.add(ex.getMessage());
+			});
+			if (errors.isEmpty()) {
+				summary(errors);
+			}
 		}
 
 		return new AsyncResult<>(errors);

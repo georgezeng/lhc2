@@ -98,6 +98,9 @@
                 <MenuItem name="z13zf">振幅表</MenuItem>
                 <MenuItem name="z13sw">顺表</MenuItem>
             </MenuGroup>
+            <MenuGroup title="小大单双">
+                <MenuItem name="dxds">遗值表/振幅表</MenuItem>
+            </MenuGroup>
         </Submenu>
         <MenuItem name="stat">
             <Icon type="ios-stats" />

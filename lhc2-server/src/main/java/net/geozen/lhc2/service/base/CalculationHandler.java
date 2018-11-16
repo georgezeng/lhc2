@@ -4,6 +4,14 @@ import java.util.List;
 
 public interface CalculationHandler {
 	List<List<Integer>> getLists();
+	
+	default boolean isDelete() {
+		return true;
+	}
+	
+	default boolean isFiltered(int num) {
+		return false;
+	}
 
 	default int getPos(int num) {
 		int index = 0;

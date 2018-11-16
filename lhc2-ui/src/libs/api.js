@@ -164,5 +164,35 @@ export default {
                 reject(ex);
             });
         });
+    },
+
+    getDxds1yz() {
+        return new Promise((resolve, reject) => {
+            util.ajax.get(`/dxds/yz1/list`).then(data => {
+                resolve(data);
+            }).catch(ex => {
+                reject(ex);
+            });
+        });
+    },
+
+    getDxds2yz() {
+        return new Promise((resolve, reject) => {
+            util.ajax.get(`/dxds/yz2/list`).then(data => {
+                resolve(data);
+            }).catch(ex => {
+                reject(ex);
+            });
+        });
+    },
+
+    getDxds2zf() {
+        return new Promise((resolve, reject) => {
+            util.ajax.get(`/dxds/zf2/list`).then(data => {
+                resolve(data);
+            }).catch(ex => {
+                reject(ex);
+            });
+        });
     }
 }

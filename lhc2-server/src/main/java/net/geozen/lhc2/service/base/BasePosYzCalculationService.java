@@ -102,9 +102,17 @@ public abstract class BasePosYzCalculationService<Y extends PosBaseEntity> {
 			List<Y> yzList = new ArrayList<>();
 			for (int i = datas.size() - 1; i > -1; i--) {
 				Tm data = datas.get(i);
-				Y yz = yzClass.newInstance();
-				yz.setPhase(data.getPhase());
-				yz.setNum(data.getNum());
+				if (getHandler().isFiltered(data.getNum())) {
+					continue;
+				}
+				Y yz = null;
+				if (getHandler().isDelete()) {
+					yz = yzClass.newInstance();
+					yz.setPhase(data.getPhase());
+					yz.setNum(data.getNum());
+				} else {
+					yz = getRepository().findByPhase(data.getPhase());
+				}
 				int pos = getHandler().getPos(data.getNum());
 				yz.setPos(pos);
 				for (int j = 0; j < getHandler().getLength(); j++) {
@@ -120,7 +128,9 @@ public abstract class BasePosYzCalculationService<Y extends PosBaseEntity> {
 				lastYz = yz;
 				yzList.add(yz);
 			}
-			getRepository().deleteAll();
+			if (getHandler().isDelete()) {
+				getRepository().deleteAll();
+			}
 			getRepository().saveAll(yzList);
 			if (getZfCalculationService() != null) {
 				getZfCalculationService().process(yzList);
