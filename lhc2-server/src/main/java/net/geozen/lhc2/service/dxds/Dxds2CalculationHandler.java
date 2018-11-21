@@ -14,7 +14,7 @@ public class Dxds2CalculationHandler implements CalculationHandler {
 	public int getLength() {
 		return Dxds2Nums.LISTS.size();
 	}
-
+	
 	@Override
 	public boolean isFiltered(int num) {
 		return num == 49;

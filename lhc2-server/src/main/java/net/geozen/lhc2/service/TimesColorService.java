@@ -1,5 +1,6 @@
 package net.geozen.lhc2.service;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Future;
@@ -86,12 +87,14 @@ public class TimesColorService {
 				case 0: {
 					color = "green";
 					timesYz.setTime0(0);
+					timesYz.setPos(0);
 					timesYz.setTime12(lastTimesYz.getTime12() + 1);
 					timesYz.setTime3Plus(lastTimesYz.getTime3Plus() + 1);
 				}
 					break;
 				case 1:
 				case 2: {
+					timesYz.setPos(1);
 					color = "red";
 					timesYz.setTime0(lastTimesYz.getTime0() + 1);
 					timesYz.setTime12(0);
@@ -99,6 +102,7 @@ public class TimesColorService {
 				}
 					break;
 				default: {
+					timesYz.setPos(2);
 					color = "green";
 					timesYz.setTime0(lastTimesYz.getTime0() + 1);
 					timesYz.setTime12(lastTimesYz.getTime12() + 1);
@@ -329,6 +333,8 @@ public class TimesColorService {
 						colorYz.setR3(2);
 						colorYz.setR4(1);
 						colorYz.setR5(lastColorYz.getR5() + 1);
+						colorYz.setWrColor("red");
+						colorYz.setWr(colorYz.getWr() + 1);
 						colorYz.setR1Color("white");
 						colorYz.setR2Color("white");
 						colorYz.setR3Color("white");
@@ -364,6 +370,23 @@ public class TimesColorService {
 					}
 				}
 
+				if (colorYz.getR1Color().equals("white") || colorYz.getG1Color().equals("white")) {
+					colorYz.setWrColor("red");
+					if ("white".equals(lastColorYz.getWrColor())) {
+						colorYz.setWr(1);
+					} else {
+						colorYz.setWr(lastColorYz.getWr() + 1);
+					}
+				} else {
+					colorYz.setWrColor("white");
+					if ("red".equals(lastColorYz.getWrColor())) {
+						colorYz.setWr(1);
+					} else {
+						colorYz.setWr(lastColorYz.getWr() + 1);
+					}
+
+				}
+
 				lastColorYz = colorYz;
 				colorYzList.add(colorYz);
 			}
@@ -371,6 +394,30 @@ public class TimesColorService {
 			// pageable = pageable.next();
 			// }
 			// } while (pResult.hasNext());
+
+			int len = 3;
+			for (int i = 1; i < timesYzList.size(); i++) {
+				TimesYz lastYz = timesYzList.get(i - 1);
+				TimesYz yz = timesYzList.get(i);
+				int delta = yz.getPos() - lastYz.getPos();
+				if (delta < 0) {
+					delta += len;
+				}
+				TimesYz zf = yz;
+				TimesYz lastZf = lastYz;
+				for (int j = 0; j < len; j++) {
+					Method setMethod = zf.getClass().getDeclaredMethod("setZf" + j, int.class);
+					if (j != delta) {
+						Method getMethod = zf.getClass().getDeclaredMethod("getZf" + j);
+						int value = (int) getMethod.invoke(lastZf);
+						setMethod.invoke(zf, value + 1);
+					} else {
+						setMethod.invoke(zf, 0);
+					}
+				}
+				lastZf = zf;
+			}
+
 			timesYzRepository.deleteAll();
 			colorYzRepository.deleteAll();
 			timesYzRepository.saveAll(timesYzList);

@@ -9,25 +9,15 @@
                     <Card>
                         <p slot="title">
                             <Icon type="ios-albums-outline"/>
-                            小大单双1-遗值
+                            小大单双1-遗值 / 小大单双2-遗值 / 小大单双2-振幅
                         </p>
-                        <Table stripe border size="small" :loading="loading1" :columns="columns1" :data="data1"/>
-                    </Card>
-                    <br/>
-                    <Card>
-                        <p slot="title">
-                            <Icon type="ios-albums-outline"/>
-                            小大单双2-遗值
-                        </p>
-                        <Table stripe border size="small" :loading="loading2" :columns="columns2" :data="data2"/>
-                    </Card>
-                    <br/>
-                    <Card>
-                        <p slot="title">
-                            <Icon type="ios-albums-outline"/>
-                            小大单双2-振幅
-                        </p>
-                        <Table stripe border size="small" :loading="loading3" :columns="columns3" :data="data3"/>
+                        <Table stripe border class="times-colors" size="small" style="float:left; width: 30%;"
+                               :loading="loading1" :columns="columns1" :data="data1"/>
+                        <Table stripe border class="times-colors" size="small" style="float:left; width: 30%;"
+                               :loading="loading2" :columns="columns2" :data="data2"/>
+                        <Table stripe border class="times-colors" size="small" style="float:left; width: 40%;"
+                               :loading="loading3" :columns="columns3" :data="data3"/>
+                        <div style="clear:both;"></div>
                     </Card>
                 </Content>
                 <Footer/>
@@ -50,7 +40,7 @@
                 const style = {};
                 style['padding'] = '10px';
                 const data = params.row[`${field}`];
-                if (data == 0) {
+                if (data != null && data == 0) {
                     style['background-color'] = 'red';
                     style['color'] = 'white';
                     style['font-weight'] = 'bold';
@@ -103,19 +93,16 @@
                         render(h, params) {
                             return renderColumn(h, params, 'even');
                         }
+                    },
+                    {
+                        title: '',
+                        minWidth: 30,
+                        render(h, params) {
+                            return h('span', {}, '');
+                        }
                     }
                 ],
                 columns2: [
-                    {
-                        title: '期数',
-                        width: 60,
-                        key: 'phase'
-                    },
-                    {
-                        title: '特码',
-                        width: 60,
-                        key: 'num'
-                    },
                     {
                         title: '小单',
                         width: 60,
@@ -139,49 +126,87 @@
                     },
                     {
                         title: '大双',
-                        minWidth: 60,
+                        width: 60,
                         render(h, params) {
                             return renderColumn(h, params, 'largeEven');
+                        }
+                    },
+                    {
+                        title: '红绿',
+                        width: 60,
+                        render(h, params) {
+                            const style = {};
+                            style['padding'] = '10px';
+                            const data = params.row.rg;
+                            if (data != null) {
+                                style['background-color'] = params.row.rgColor;
+                                style['color'] = 'white';
+                                style['font-weight'] = 'bold';
+                                return h('span', {style}, data);
+                            } else {
+                                return h('span', {style}, '');
+                            }
+                        }
+                    },
+                    {
+                        title: '',
+                        minWidth: 30,
+                        render(h, params) {
+                            return h('span', {}, '');
                         }
                     }
                 ],
                 columns3: [
                     {
-                        title: '期数',
-                        width: 60,
-                        key: 'phase'
-                    },
-                    {
-                        title: '特码',
-                        width: 60,
-                        key: 'num'
-                    },
-                    {
-                        title: '小单',
+                        title: '振0',
                         width: 60,
                         render(h, params) {
                             return renderColumn(h, params, 'zf0');
                         }
                     },
                     {
-                        title: '小双',
+                        title: '振1',
                         width: 60,
                         render(h, params) {
                             return renderColumn(h, params, 'zf1');
                         }
                     },
                     {
-                        title: '大单',
+                        title: '振2',
                         width: 60,
                         render(h, params) {
                             return renderColumn(h, params, 'zf2');
                         }
                     },
                     {
-                        title: '大双',
-                        minWidth: 60,
+                        title: '振3',
+                        width: 60,
                         render(h, params) {
                             return renderColumn(h, params, 'zf3');
+                        }
+                    },
+                    {
+                        title: '红绿',
+                        width: 60,
+                        render(h, params) {
+                            const style = {};
+                            style['padding'] = '10px';
+                            const data = params.row.rg;
+                            if (data != null) {
+                                style['background-color'] = params.row.rgColor;
+                                style['color'] = 'white';
+                                style['font-weight'] = 'bold';
+                                return h('span', {style}, data);
+                            } else {
+                                return h('span', {style}, '');
+                            }
+                        }
+                    },
+                    {
+                        title: '',
+                        minWidth: 30,
+                        render(h, params) {
+                            return h('span', {}, '');
                         }
                     }
                 ],
@@ -203,7 +228,15 @@
                 });
                 API.getDxds2zf().then(data => {
                     this.loading3 = false;
-                    this.data3 = data;
+                    this.data3 = [
+                        {
+                            zf0: null,
+                            zf1: null,
+                            zf2: null,
+                            zf3: null
+                        },
+                        ...data
+                    ];
                 }).catch(ex => {
                     this.loading3 = false;
                 });

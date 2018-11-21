@@ -13,9 +13,9 @@
                         <Icon type="ios-stats-outline"/>
                         16表次数/颜色遗值表
                     </p>
-                    <Table class="times-colors" style="float:left; width: 20%;" stripe border size="small" :loading="loading1"
+                    <Table class="times-colors" style="float:left; width: 30%;" stripe border size="small" :loading="loading1"
                            :columns="columns1" :data="data1"/>
-                    <Table class="times-colors" style="float:left; width: 80%;" stripe border size="small" :loading="loading2"
+                    <Table class="times-colors" style="float:left; width: 70%;" stripe border size="small" :loading="loading2"
                            :columns="columns2" :data="data2"/>
                     <div style="clear:both;"></div>
                 </Card>
@@ -98,8 +98,53 @@
                         }
                     },
                     {
+                        title: '振0',
+                        width: 50,
+                        render(h, params) {
+                            const style = {};
+                            style['padding'] = '10px';
+                            const data = params.row.zf0;
+                            if (data != null && data == 0) {
+                                style['background-color'] = 'red';
+                                style['color'] = 'white';
+                                style['font-weight'] = 'bold';
+                            }
+                            return h('span', {style}, data == null ? '' : data);
+                        }
+                    },
+                    {
+                        title: '振1',
+                        width: 50,
+                        render(h, params) {
+                            const style = {};
+                            style['padding'] = '10px';
+                            const data = params.row.zf1;
+                            if (data != null && data == 0) {
+                                style['background-color'] = 'red';
+                                style['color'] = 'white';
+                                style['font-weight'] = 'bold';
+                            }
+                            return h('span', {style}, data == null ? '' : data);
+                        }
+                    },
+                    {
+                        title: '振2',
+                        width: 50,
+                        render(h, params) {
+                            const style = {};
+                            style['padding'] = '10px';
+                            const data = params.row.zf2;
+                            if (data != null && data == 0) {
+                                style['background-color'] = 'red';
+                                style['color'] = 'white';
+                                style['font-weight'] = 'bold';
+                            }
+                            return h('span', {style}, data == null ? '' : data);
+                        }
+                    },
+                    {
                         title: '',
-                        minWidth: 300,
+                        minWidth: 30,
                         render(h, params) {
                             return h('span', {});
                         }
@@ -213,6 +258,29 @@
                         title: '',
                         width: 30,
                         render(h, params) {
+                            return h('span', {});
+                        }
+                    },
+                    {
+                        title: '红白',
+                        width: 55,
+                        render(h, params) {
+                            const style = {};
+                            style['padding'] = '10px';
+                            const data = params.row.wr;
+                            const color = params.row.wrColor;
+                            style['background-color'] = color;
+                            if (color != 'white') {
+                                style['color'] = 'white';
+                            }
+                            style['font-weight'] = 'bold';
+                            return h('span', {style}, data);
+                        }
+                    },
+                    {
+                        title: '',
+                        width: 30,
+                        render(h, params) {
                             return h('span', {}, '');
                         }
                     },
@@ -298,7 +366,7 @@
                     },
                     {
                         title: '',
-                        minWidth: 300,
+                        minWidth: 30,
                         render(h, params) {
                             return h('span', {});
                         }
@@ -311,6 +379,9 @@
                 API.getTimes("16").then(data => {
                     this.loading1 = false;
                     this.data1 = data;
+                    this.data1[0].zf0 = null;
+                    this.data1[0].zf1 = null;
+                    this.data1[0].zf2 = null;
                 });
                 API.getColors("16").then(data => {
                     this.loading2 = false;

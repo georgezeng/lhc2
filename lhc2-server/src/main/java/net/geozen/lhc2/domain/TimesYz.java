@@ -20,5 +20,9 @@ public class TimesYz {
 	private int time0;
 	private int time12;
 	private int time3Plus;
+	private int zf0;
+	private int zf1;
+	private int zf2;
 	private int num;
+	private int pos;
 }

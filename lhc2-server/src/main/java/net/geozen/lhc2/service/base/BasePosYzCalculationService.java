@@ -42,6 +42,10 @@ public abstract class BasePosYzCalculationService<Y extends PosBaseEntity> {
 
 	public abstract int getEndPos();
 
+	protected void calSmallAndLarge(int index, Y yz, Y lastYz) throws Exception {
+
+	}
+
 	public int getStartPos() {
 		return 0;
 	}
@@ -127,6 +131,12 @@ public abstract class BasePosYzCalculationService<Y extends PosBaseEntity> {
 				}
 				lastYz = yz;
 				yzList.add(yz);
+			}
+			lastYz = null;
+			for (int i = 0; i < yzList.size(); i++) {
+				Y yz = yzList.get(i);
+				calSmallAndLarge(i, yz, lastYz);
+				lastYz = yz;
 			}
 			if (getHandler().isDelete()) {
 				getRepository().deleteAll();

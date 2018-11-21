@@ -16,4 +16,6 @@ public class Dxds2zf extends PosBaseEntity {
 	private int zf1;
 	private int zf2;
 	private int zf3;
+	private String rgColor;
+	private Integer rg;
 }

@@ -25,6 +25,10 @@ public abstract class BaseZfCalculationService<Y extends PosBaseEntity, Z extend
 	private CommonDAO commonDAO;
 
 	protected abstract CalculationHandler getHandler();
+	
+protected void calSmallAndLarge(int index, Z yz, Z lastYz) throws Exception {
+		
+	}
 
 	@SuppressWarnings("unchecked")
 	public BaseZfCalculationService() {
@@ -101,9 +105,11 @@ public abstract class BaseZfCalculationService<Y extends PosBaseEntity, Z extend
 					setMethod.invoke(zf, 0);
 				}
 			}
+			calSmallAndLarge(i, zf, lastZf);
 			lastZf = zf;
 			list.add(zf);
 		}
+		
 		getRepository().deleteAll();
 		getRepository().saveAll(list);
 	}

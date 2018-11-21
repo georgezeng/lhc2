@@ -16,5 +16,6 @@ public class Dxds2yz extends PosBaseEntity {
 	private int smallEven;
 	private int largeOdd;
 	private int largeEven;
-
+	private String rgColor;
+	private Integer rg;
 }

@@ -1,5 +1,11 @@
 package net.geozen.lhc2.service.dxds;
 
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,4 +50,39 @@ public class Dxds2zfCalculationService extends BaseZfCalculationService<Dxds2yz,
 		return 10;
 	}
 
+	@Override
+	protected void calSmallAndLarge(int index, Dxds2zf zf, Dxds2zf lastZf) throws Exception {
+		if (index > 2) {
+			List<Dxds2Info> infos = new ArrayList<>();
+			infos.add(new Dxds2Info("Zf0", lastZf.getZf0()));
+			infos.add(new Dxds2Info("Zf1", lastZf.getZf1()));
+			infos.add(new Dxds2Info("Zf2", lastZf.getZf2()));
+			infos.add(new Dxds2Info("Zf3", lastZf.getZf3()));
+			Collections.sort(infos, new Comparator<Dxds2Info>() {
+
+				@Override
+				public int compare(Dxds2Info o1, Dxds2Info o2) {
+					return o1.getYz().compareTo(o2.getYz());
+				}
+
+			});
+			for (int i = 0; i < 2; i++) {
+				Dxds2Info info = infos.get(i);
+				Method m = zf.getClass().getDeclaredMethod("get" + info.getField());
+				Integer value = (Integer) m.invoke(zf);
+				if (value == 0) {
+					zf.setRgColor("green");
+					break;
+				}
+			}
+			if (zf.getRgColor() == null) {
+				zf.setRgColor("red");
+			}
+			if (lastZf.getRgColor() != null && lastZf.getRgColor().equals(zf.getRgColor())) {
+				zf.setRg(lastZf.getRg() + 1);
+			} else {
+				zf.setRg(1);
+			}
+		}
+	}
 }

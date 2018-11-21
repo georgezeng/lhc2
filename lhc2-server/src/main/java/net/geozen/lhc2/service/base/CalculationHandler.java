@@ -2,6 +2,8 @@ package net.geozen.lhc2.service.base;
 
 import java.util.List;
 
+import net.geozen.lhc2.domain.base.PosBaseEntity;
+
 public interface CalculationHandler {
 	List<List<Integer>> getLists();
 	
