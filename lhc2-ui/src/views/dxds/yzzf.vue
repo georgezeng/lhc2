@@ -89,7 +89,7 @@
                     },
                     {
                         title: '双',
-                        minWidth: 60,
+                        width: 60,
                         render(h, params) {
                             return renderColumn(h, params, 'even');
                         }
@@ -129,6 +129,13 @@
                         width: 60,
                         render(h, params) {
                             return renderColumn(h, params, 'largeEven');
+                        }
+                    },
+                    {
+                        title: '',
+                        width: 30,
+                        render(h, params) {
+                            return h('span', {}, '');
                         }
                     },
                     {
@@ -183,6 +190,13 @@
                         width: 60,
                         render(h, params) {
                             return renderColumn(h, params, 'zf3');
+                        }
+                    },
+                    {
+                        title: '',
+                        width: 30,
+                        render(h, params) {
+                            return h('span', {}, '');
                         }
                     },
                     {

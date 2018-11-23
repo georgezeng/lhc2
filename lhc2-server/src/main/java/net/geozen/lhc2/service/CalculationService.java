@@ -148,7 +148,8 @@ public class CalculationService {
 
 		if (errors.isEmpty()) {
 			futures.clear();
-			futures.add(timeService.process());
+			futures.add(timeService.process(10));
+			futures.add(timeService.process(16));
 			CommonUtil.waitWithException(futures, ex -> {
 				errors.add(ex.getMessage());
 			});

@@ -45,7 +45,7 @@ public class TimesColorService {
 
 	@Transactional
 	@Async
-	public Future<Exception> process() {
+	public Future<Exception> process(int tables) {
 		Exception t = null;
 		try {
 			Pageable pageable = PageRequest.of(0, SystemConstants.CALCULATION_SIZE, Direction.DESC, "phase");
@@ -56,7 +56,7 @@ public class TimesColorService {
 			List<TimesYz> timesYzList = new ArrayList<>();
 			PickNum prevNumInfo = null;
 			// do {
-			pResult = pickNumRepository.findAllByExpected(16, pageable);
+			pResult = pickNumRepository.findAllByExpected(tables, pageable);
 			for (int i = pResult.getContent().size() - 1; i > -1; i--) {
 				// for (PickNum numInfo : pResult.getContent()) {
 				PickNum numInfo = pResult.getContent().get(i);
@@ -69,11 +69,11 @@ public class TimesColorService {
 				}
 				TimesYz timesYz = new TimesYz();
 				timesYz.setPhase(numInfo.getPhase());
-				timesYz.setTables("16");
+				timesYz.setTables(tables + "");
 				timesYz.setNum(numInfo.getTm());
 				ColorYz colorYz = new ColorYz();
 				colorYz.setPhase(numInfo.getPhase());
-				colorYz.setTables("16");
+				colorYz.setTables(tables + "");
 				PickNumPayload payload = mapper.readValue(prevNumInfo.getPayload(), PickNumPayload.class);
 				PickNumCountInfo tmInfo = null;
 				for (PickNumCountInfo info : payload.getInfos()) {
@@ -418,8 +418,8 @@ public class TimesColorService {
 				lastZf = zf;
 			}
 
-			timesYzRepository.deleteAll();
-			colorYzRepository.deleteAll();
+			timesYzRepository.deleteAll(timesYzRepository.findAllByTablesOrderByPhaseAsc(tables + ""));
+			colorYzRepository.deleteAll(colorYzRepository.findAllByTablesOrderByPhaseAsc(tables + ""));
 			timesYzRepository.saveAll(timesYzList);
 			colorYzRepository.saveAll(colorYzList);
 		} catch (Exception e) {
