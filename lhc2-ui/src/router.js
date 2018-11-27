@@ -43,12 +43,20 @@ const RouterConfig = {
             component: (resolve) => require(['./views/stat.vue'], resolve)
         },
         {
-            path: '/comparision',
-            name: 'comparision',
+            path: '/comparision16',
+            name: 'comparision16',
             meta: {
-                title: `${prefix}数据对比`
+                title: `${prefix}数据对比-16`
             },
-            component: (resolve) => require(['./views/comparision.vue'], resolve)
+            component: (resolve) => require(['./views/comparision-16.vue'], resolve)
+        },
+        {
+            path: '/comparision10',
+            name: 'comparision10',
+            meta: {
+                title: `${prefix}数据对比-16`
+            },
+            component: (resolve) => require(['./views/comparision-10.vue'], resolve)
         },
         {
             path: '/sxyz',
@@ -243,28 +251,52 @@ const RouterConfig = {
             component: (resolve) => require(['./views/seq/sw.vue'], resolve)
         },
         {
-            path: '/slqyz',
-            name: 'slqyz',
+            path: '/slqayzzf',
+            name: 'slqayzzf',
             meta: {
-                title: `${prefix}十六区遗值`
+                title: `${prefix}十六区A`
             },
-            component: (resolve) => require(['./views/slq/yz.vue'], resolve)
+            component: (resolve) => require(['./views/slqa/yzzf.vue'], resolve)
         },
         {
-            path: '/slqzf',
-            name: 'slqzf',
+            path: '/slqbyzzf',
+            name: 'slqbyzzf',
             meta: {
-                title: `${prefix}十六区振幅`
+                title: `${prefix}十六区B`
             },
-            component: (resolve) => require(['./views/slq/zf.vue'], resolve)
+            component: (resolve) => require(['./views/slqb/yzzf.vue'], resolve)
         },
         {
-            path: '/slqsw',
-            name: 'slqsw',
+            path: '/slqcyzzf',
+            name: 'slqcyzzf',
             meta: {
-                title: `${prefix}十六区顺位`
+                title: `${prefix}十六区C`
             },
-            component: (resolve) => require(['./views/slq/sw.vue'], resolve)
+            component: (resolve) => require(['./views/slqc/yzzf.vue'], resolve)
+        },
+        {
+            path: '/slqdyzzf',
+            name: 'slqdyzzf',
+            meta: {
+                title: `${prefix}十六区D`
+            },
+            component: (resolve) => require(['./views/slqd/yzzf.vue'], resolve)
+        },
+        {
+            path: '/slqbsyzzf',
+            name: 'slqbsyzzf',
+            meta: {
+                title: `${prefix}十六区-波色`
+            },
+            component: (resolve) => require(['./views/slqbs/yzzf.vue'], resolve)
+        },
+        {
+            path: '/slqwxyzzf',
+            name: 'slqwxyzzf',
+            meta: {
+                title: `${prefix}十六区-五行`
+            },
+            component: (resolve) => require(['./views/slqwx/yzzf.vue'], resolve)
         },
         {
             path: '/pdyz',

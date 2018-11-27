@@ -21,7 +21,12 @@ import net.geozen.lhc2.service.mw.MwyzCalculationService;
 import net.geozen.lhc2.service.pd.PdyzCalculationService;
 import net.geozen.lhc2.service.qq.QqyzCalculationService;
 import net.geozen.lhc2.service.seq.SeqyzCalculationService;
-import net.geozen.lhc2.service.slq.SlqyzCalculationService;
+import net.geozen.lhc2.service.slq.a.SlqayzCalculationService;
+import net.geozen.lhc2.service.slq.b.SlqbyzCalculationService;
+import net.geozen.lhc2.service.slq.bs.SlqbsyzCalculationService;
+import net.geozen.lhc2.service.slq.c.SlqcyzCalculationService;
+import net.geozen.lhc2.service.slq.d.SlqdyzCalculationService;
+import net.geozen.lhc2.service.slq.wx.SlqwxyzCalculationService;
 import net.geozen.lhc2.service.sw.SwyzCalculationService;
 import net.geozen.lhc2.service.sx.SxyzCalculationService;
 import net.geozen.lhc2.service.z13.Z13yzCalculationService;
@@ -59,7 +64,22 @@ public class CalculationService {
 	private SeqyzCalculationService seqService;
 
 	@Autowired
-	private SlqyzCalculationService slqService;
+	private SlqayzCalculationService slqaService;
+
+	@Autowired
+	private SlqbyzCalculationService slqbService;
+
+	@Autowired
+	private SlqcyzCalculationService slqcService;
+
+	@Autowired
+	private SlqdyzCalculationService slqdService;
+	
+	@Autowired
+	private SlqbsyzCalculationService slqbsService;
+	
+	@Autowired
+	private SlqwxyzCalculationService slqwxService;
 
 	@Autowired
 	private PdyzCalculationService pdService;
@@ -84,7 +104,7 @@ public class CalculationService {
 
 	@Autowired
 	private Dxds1byzCalculationService dxds1bService;
-	
+
 	@Autowired
 	private Dxds2yzCalculationService dxds2Service;
 
@@ -108,7 +128,12 @@ public class CalculationService {
 		futures.add(zsService.process());
 		futures.add(qqService.process());
 		futures.add(seqService.process());
-		futures.add(slqService.process());
+		futures.add(slqaService.process());
+		futures.add(slqbService.process());
+		futures.add(slqcService.process());
+		futures.add(slqdService.process());
+		futures.add(slqbsService.process());
+		futures.add(slqwxService.process());
 		futures.add(pdService.process());
 		futures.add(z2Service.process());
 		futures.add(z7Service.process());

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ReflectionUtils;
 
 import net.geozen.lhc2.def.jpa.BaseYzRepository;
 import net.geozen.lhc2.def.jpa.BaseZfRepository;
@@ -25,9 +26,9 @@ public abstract class BaseZfCalculationService<Y extends PosBaseEntity, Z extend
 	private CommonDAO commonDAO;
 
 	protected abstract CalculationHandler getHandler();
-	
-protected void calSmallAndLarge(int index, Z yz, Z lastYz) throws Exception {
-		
+
+	protected void calSmallAndLarge(int index, Z yz, Z lastYz) throws Exception {
+
 	}
 
 	@SuppressWarnings("unchecked")
@@ -42,7 +43,7 @@ protected void calSmallAndLarge(int index, Z yz, Z lastYz) throws Exception {
 		int total = 0;
 		for (Z zf : list) {
 			for (int i = 0; i < getEndPos(); i++) {
-				Method m = zfClass.getDeclaredMethod("getZf" + i);
+				Method m = ReflectionUtils.findMethod(zfClass, "getZf" + i);
 				Integer value = (Integer) m.invoke(zf);
 				total += value;
 			}
@@ -58,7 +59,7 @@ protected void calSmallAndLarge(int index, Z yz, Z lastYz) throws Exception {
 		int max = 0;
 		int pos = 0;
 		for (int i = 0; i < getEndPos(); i++) {
-			Method m = zfClass.getDeclaredMethod("getZf" + i);
+			Method m = ReflectionUtils.findMethod(zfClass, "getZf" + i);
 			Integer value = (Integer) m.invoke(zf);
 			if (value > max) {
 				max = value;
@@ -96,9 +97,9 @@ protected void calSmallAndLarge(int index, Z yz, Z lastYz) throws Exception {
 			zf.setNum(yz.getNum());
 			zf.setPos(yz.getPos());
 			for (int j = 0; j < len; j++) {
-				Method setMethod = zf.getClass().getDeclaredMethod("setZf" + j, int.class);
+				Method setMethod = ReflectionUtils.findMethod(zf.getClass(), "setZf" + j, int.class);
 				if (j != delta) {
-					Method getMethod = zf.getClass().getDeclaredMethod("getZf" + j);
+					Method getMethod = ReflectionUtils.findMethod(zf.getClass(), "getZf" + j);
 					int value = (int) getMethod.invoke(lastZf);
 					setMethod.invoke(zf, value + 1);
 				} else {
@@ -109,7 +110,7 @@ protected void calSmallAndLarge(int index, Z yz, Z lastYz) throws Exception {
 			lastZf = zf;
 			list.add(zf);
 		}
-		
+
 		getRepository().deleteAll();
 		getRepository().saveAll(list);
 	}

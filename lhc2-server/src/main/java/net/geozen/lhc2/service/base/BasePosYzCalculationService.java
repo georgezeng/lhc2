@@ -13,6 +13,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ReflectionUtils;
 
 import lombok.extern.slf4j.Slf4j;
 import net.geozen.lhc2.def.jpa.BaseYzRepository;
@@ -62,7 +63,7 @@ public abstract class BasePosYzCalculationService<Y extends PosBaseEntity> {
 		int total = 0;
 		for (Y yz : list) {
 			for (int i = getStartPos(); i < getEndPos(); i++) {
-				Method m = yzClass.getDeclaredMethod("getW" + i);
+				Method m = ReflectionUtils.findMethod(yzClass, "getW" + i);
 				Integer value = (Integer) m.invoke(yz);
 				total += value;
 			}
@@ -75,7 +76,7 @@ public abstract class BasePosYzCalculationService<Y extends PosBaseEntity> {
 		int max = 0;
 		int pos = 0;
 		for (int i = getStartPos(); i < getEndPos(); i++) {
-			Method m = yzClass.getDeclaredMethod("getW" + i);
+			Method m = ReflectionUtils.findMethod(yzClass, "getW" + i);
 			Integer value = (Integer) m.invoke(yz);
 			if (value > max) {
 				max = value;
@@ -120,11 +121,11 @@ public abstract class BasePosYzCalculationService<Y extends PosBaseEntity> {
 				int pos = getHandler().getPos(data.getNum());
 				yz.setPos(pos);
 				for (int j = 0; j < getHandler().getLength(); j++) {
-					Method setMethod = yz.getClass().getDeclaredMethod("set" + getHandler().getIndexStr(j), int.class);
+					Method setMethod = ReflectionUtils.findMethod(yz.getClass(), "set" + getHandler().getIndexStr(j), int.class);
 					if (pos == j) {
 						setMethod.invoke(yz, 0);
 					} else {
-						Method getMethod = yz.getClass().getDeclaredMethod("get" + getHandler().getIndexStr(j));
+						Method getMethod = ReflectionUtils.findMethod(yz.getClass(), "get" + getHandler().getIndexStr(j));
 						int value = (int) getMethod.invoke(lastYz);
 						setMethod.invoke(yz, value + 1);
 					}

@@ -1,17 +1,15 @@
 package net.geozen.lhc2.domain.slq;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.MappedSuperclass;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import net.geozen.lhc2.domain.base.PosBaseEntity;
 
-@Entity
-@Table(name = "slqyz")
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class Slqyz extends PosBaseEntity {
+@MappedSuperclass
+public abstract class Slqyz extends PosBaseEntity {
 	private int w0;
 	private int w1;
 	private int w2;

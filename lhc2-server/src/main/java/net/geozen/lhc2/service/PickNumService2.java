@@ -31,7 +31,7 @@ import net.geozen.lhc2.nums.HsNums;
 import net.geozen.lhc2.nums.MwNums;
 import net.geozen.lhc2.nums.PdNums;
 import net.geozen.lhc2.nums.SeqNums;
-import net.geozen.lhc2.nums.SlqNums;
+import net.geozen.lhc2.nums.SlqdNums;
 import net.geozen.lhc2.nums.Z13Nums;
 import net.geozen.lhc2.nums.Z2Nums;
 import net.geozen.lhc2.nums.Z7Nums;
@@ -51,8 +51,8 @@ import net.geozen.lhc2.service.pd.PdyzCalculationService;
 import net.geozen.lhc2.service.pd.PdzfCalculationService;
 import net.geozen.lhc2.service.seq.SeqyzCalculationService;
 import net.geozen.lhc2.service.seq.SeqzfCalculationService;
-import net.geozen.lhc2.service.slq.SlqyzCalculationService;
-import net.geozen.lhc2.service.slq.SlqzfCalculationService;
+import net.geozen.lhc2.service.slq.d.SlqdyzCalculationService;
+import net.geozen.lhc2.service.slq.d.SlqdzfCalculationService;
 import net.geozen.lhc2.service.sx.SxyzCalculationService;
 import net.geozen.lhc2.service.sx.SxzfCalculationService;
 import net.geozen.lhc2.service.z13.Z13yzCalculationService;
@@ -104,10 +104,10 @@ public class PickNumService2 {
 	private SeqzfCalculationService seqzfCalculationService;
 
 	@Autowired
-	private SlqyzCalculationService slqyzCalculationService;
+	private SlqdyzCalculationService slqyzCalculationService;
 
 	@Autowired
-	private SlqzfCalculationService slqzfCalculationService;
+	private SlqdzfCalculationService slqzfCalculationService;
 
 	@Autowired
 	private SxyzCalculationService sxyzCalculationService;
@@ -228,9 +228,9 @@ public class PickNumService2 {
 				avgDelta, minDelta, maxDelta);
 		count = getNumbersFromZf(seqzfCalculationService, nums, SeqNums.class, tm, current, offset, size, count, expected, counter, "seqzf", compare,
 				avgDelta, minDelta, maxDelta);
-		count = getNumbersFromYz(slqyzCalculationService, nums, SlqNums.class, tm, current, offset, size, count, expected, counter, "slqyz", compare,
+		count = getNumbersFromYz(slqyzCalculationService, nums, SlqdNums.class, tm, current, offset, size, count, expected, counter, "slqyz", compare,
 				avgDelta, minDelta, maxDelta);
-		count = getNumbersFromZf(slqzfCalculationService, nums, SlqNums.class, tm, current, offset, size, count, expected, counter, "slqzf", compare,
+		count = getNumbersFromZf(slqzfCalculationService, nums, SlqdNums.class, tm, current, offset, size, count, expected, counter, "slqzf", compare,
 				avgDelta, minDelta, maxDelta);
 		count = getNumbersFromFdsw(nums, tm, current, offset, size, count, expected, counter, compare, avgDelta, minDelta, maxDelta);
 		count = getNumbersFromYz(pdyzCalculationService, nums, PdNums.class, tm, current, offset, size, count, expected, counter, "pdyz", compare,

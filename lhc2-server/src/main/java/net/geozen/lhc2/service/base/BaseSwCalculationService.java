@@ -9,6 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.util.ReflectionUtils;
 
 import net.geozen.lhc2.domain.base.PosBaseEntity;
 
@@ -33,7 +34,7 @@ public abstract class BaseSwCalculationService<Y extends PosBaseEntity, S extend
 			Y yz = yzList.get(i);
 			List<PosYzInfo> lastInfoList = new ArrayList<>();
 			for (int j = 0; j < getHandler().getLength(); j++) {
-				Method getMethod = yz.getClass().getDeclaredMethod("get" + getHandler().getIndexStr(j));
+				Method getMethod = ReflectionUtils.findMethod(yz.getClass(), "get" + getHandler().getIndexStr(j));
 				PosYzInfo info = new PosYzInfo(j, (int) getMethod.invoke(lastYz));
 				lastInfoList.add(info);
 			}
@@ -80,11 +81,11 @@ public abstract class BaseSwCalculationService<Y extends PosBaseEntity, S extend
 
 	protected void dealInfoList(S sw, S lastSw, List<PosYzInfo> infoList, int pos) throws Exception {
 		for (int j = 0; j < infoList.size(); j++) {
-			Method setPosMethod = sw.getClass().getDeclaredMethod("setSw" + (j + 1) + "Pos", int.class);
+			Method setPosMethod = ReflectionUtils.findMethod(sw.getClass(), "setSw" + (j + 1) + "Pos", int.class);
 			setPosMethod.invoke(sw, infoList.get(j).getPos());
-			Method setMethod = sw.getClass().getDeclaredMethod("setSw" + (j + 1), int.class);
+			Method setMethod = ReflectionUtils.findMethod(sw.getClass(), "setSw" + (j + 1), int.class);
 			if (pos != j) {
-				Method getMethod = sw.getClass().getDeclaredMethod("getSw" + (j + 1));
+				Method getMethod = ReflectionUtils.findMethod(sw.getClass(), "getSw" + (j + 1));
 				int value = (int) getMethod.invoke(lastSw);
 				setMethod.invoke(sw, value + 1);
 			} else {

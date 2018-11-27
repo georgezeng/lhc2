@@ -24,6 +24,17 @@
                 <Icon type="ios-stats" />
                 数据分析
             </template>
+            <MenuGroup title="小大单双">
+                <MenuItem name="dxds">遗值表/振幅表</MenuItem>
+            </MenuGroup>
+            <MenuGroup title="十六区">
+                <MenuItem name="slqayzzf">A 遗值表/振幅表</MenuItem>
+                <MenuItem name="slqbyzzf">B 遗值表/振幅表</MenuItem>
+                <MenuItem name="slqcyzzf">C 遗值表/振幅表</MenuItem>
+                <MenuItem name="slqdyzzf">D 遗值表/振幅表</MenuItem>
+                <MenuItem name="slqbsyzzf">波色 遗值表/振幅表</MenuItem>
+                <MenuItem name="slqwxyzzf">五行 遗值表/振幅表</MenuItem>
+            </MenuGroup>
             <MenuGroup title="生肖">
                 <MenuItem name="sxyz">遗值表</MenuItem>
                 <MenuItem name="sxzf">振幅表</MenuItem>
@@ -64,11 +75,6 @@
                 <MenuItem name="seqzf">振幅表</MenuItem>
                 <MenuItem name="seqsw">顺表</MenuItem>
             </MenuGroup>
-            <MenuGroup title="十六区">
-                <MenuItem name="slqyz">遗值表</MenuItem>
-                <MenuItem name="slqzf">振幅表</MenuItem>
-                <MenuItem name="slqsw">顺表</MenuItem>
-            </MenuGroup>
             <MenuGroup title="十二分段">
                 <MenuItem name="fdyz">遗值表</MenuItem>
                 <MenuItem name="fdsw">顺表</MenuItem>
@@ -98,18 +104,19 @@
                 <MenuItem name="z13zf">振幅表</MenuItem>
                 <MenuItem name="z13sw">顺表</MenuItem>
             </MenuGroup>
-            <MenuGroup title="小大单双">
-                <MenuItem name="dxds">遗值表/振幅表</MenuItem>
-            </MenuGroup>
         </Submenu>
         <MenuItem name="stat">
             <Icon type="ios-stats" />
             数据统计
         </MenuItem>
-        <MenuItem name="comparision">
-            <Icon type="ios-stats" />
-            数据对比
-        </MenuItem>
+        <Submenu name="comparision">
+            <template slot="title">
+                <Icon type="ios-stats" />
+                数据对比
+            </template>
+            <MenuItem name="comparision16">16表</MenuItem>
+            <MenuItem name="comparision10">10表</MenuItem>
+        </Submenu>
     </Menu>
 </template>
 <script>

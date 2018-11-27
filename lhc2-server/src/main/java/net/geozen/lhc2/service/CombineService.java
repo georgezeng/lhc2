@@ -30,7 +30,7 @@ import net.geozen.lhc2.jpa.mw.MwswRepository;
 import net.geozen.lhc2.jpa.pd.PdswRepository;
 import net.geozen.lhc2.jpa.qq.QqswRepository;
 import net.geozen.lhc2.jpa.seq.SeqswRepository;
-import net.geozen.lhc2.jpa.slq.SlqswRepository;
+import net.geozen.lhc2.jpa.slq.d.SlqdswRepository;
 import net.geozen.lhc2.jpa.sx.SxswRepository;
 import net.geozen.lhc2.jpa.z13.Z13swRepository;
 import net.geozen.lhc2.jpa.z2.Z2swRepository;
@@ -43,7 +43,7 @@ import net.geozen.lhc2.nums.MwNums;
 import net.geozen.lhc2.nums.PdNums;
 import net.geozen.lhc2.nums.QqNums;
 import net.geozen.lhc2.nums.SeqNums;
-import net.geozen.lhc2.nums.SlqNums;
+import net.geozen.lhc2.nums.SlqdNums;
 import net.geozen.lhc2.nums.Z13Nums;
 import net.geozen.lhc2.nums.Z2Nums;
 import net.geozen.lhc2.nums.Z7Nums;
@@ -59,7 +59,7 @@ public class CombineService {
 	@Autowired
 	private SeqswRepository seqRepository;
 	@Autowired
-	private SlqswRepository slqRepository;
+	private SlqdswRepository slqRepository;
 	@Autowired
 	private QqswRepository qqRepository;
 	@Autowired
@@ -241,7 +241,7 @@ public class CombineService {
 		set.addAll(list);
 		list = SeqNums.LISTS.get(seqRepository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw2Pos());
 		set.addAll(list);
-		list = SlqNums.LISTS.get(slqRepository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw2Pos());
+		list = SlqdNums.LISTS.get(slqRepository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw2Pos());
 		set.addAll(list);
 		for (String num : fdRepository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw2Arr().split(",\\s*")) {
 			set.add(Integer.valueOf(num));
@@ -256,7 +256,7 @@ public class CombineService {
 		set.addAll(list);
 		list = SeqNums.LISTS.get(seqRepository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw3Pos());
 		set.addAll(list);
-		list = SlqNums.LISTS.get(slqRepository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw3Pos());
+		list = SlqdNums.LISTS.get(slqRepository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw3Pos());
 		set.addAll(list);
 		for (String num : fdRepository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw3Arr().split(",\\s*")) {
 			set.add(Integer.valueOf(num));
