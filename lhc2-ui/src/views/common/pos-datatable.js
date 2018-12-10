@@ -8,7 +8,11 @@ export default {
                 width: tmWidth,
                 render(h, params) {
                     if (!tmPos) {
-                        return h('span', {}, `${params.row.num} (位${params.row.pos})`);
+                        if(params.row.pos != null) {
+                            return h('span', {}, `${params.row.num} (位${params.row.pos})`);
+                        } else {
+                            return h('span', {}, '');
+                        }
                     } else {
                         let posTxt = tmPos(params.row);
                         posTxt = posTxt ? "(" + posTxt + ")" : '';
@@ -24,7 +28,7 @@ export default {
                     const style = {};
                     style['padding'] = '10px';
                     const data = params.row[`${fieldName(i)}`];
-                    if (data == 0) {
+                    if (data != null && data == 0) {
                         style['background-color'] = 'red';
                         style['color'] = 'white';
                         style['font-weight'] = 'bold';

@@ -27,6 +27,7 @@ import net.geozen.lhc2.service.slq.bs.SlqbsyzCalculationService;
 import net.geozen.lhc2.service.slq.c.SlqcyzCalculationService;
 import net.geozen.lhc2.service.slq.d.SlqdyzCalculationService;
 import net.geozen.lhc2.service.slq.wx.SlqwxyzCalculationService;
+import net.geozen.lhc2.service.slq.zs.SlqzsyzCalculationService;
 import net.geozen.lhc2.service.sw.SwyzCalculationService;
 import net.geozen.lhc2.service.sx.SxyzCalculationService;
 import net.geozen.lhc2.service.z13.Z13yzCalculationService;
@@ -80,6 +81,9 @@ public class CalculationService {
 	
 	@Autowired
 	private SlqwxyzCalculationService slqwxService;
+	
+	@Autowired
+	private SlqzsyzCalculationService slqzsService;
 
 	@Autowired
 	private PdyzCalculationService pdService;
@@ -134,6 +138,7 @@ public class CalculationService {
 		futures.add(slqdService.process());
 		futures.add(slqbsService.process());
 		futures.add(slqwxService.process());
+		futures.add(slqzsService.process());
 		futures.add(pdService.process());
 		futures.add(z2Service.process());
 		futures.add(z7Service.process());

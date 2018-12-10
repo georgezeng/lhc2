@@ -7,21 +7,15 @@
             <Header class="menus">
                 <Menus :activeName="activeName"/>
             </Header>
-            <Content class="content">
-                <Card>
+            <Content class="content" style="overflow: auto;">
+                <Card style="width: 140%;">
                     <p slot="title">
                         <Icon type="ios-albums-outline"/>
-                        {{ title }}遗值表
+                        {{ title }}遗值表/振幅表
                     </p>
-                    <Table stripe border size="small" :loading="loading1" :columns="columns1" :data="data1"/>
-                </Card>
-                <br />
-                <Card>
-                    <p slot="title">
-                        <Icon type="ios-albums-outline"/>
-                        {{ title }}振幅表
-                    </p>
-                    <Table stripe border size="small" :loading="loading2" :columns="columns2" :data="data2"/>
+                    <Table class="times-colors" style="float:left; width: 50%" stripe border size="small" :loading="loading1" :columns="columns1" :data="data1"/>
+                    <Table class="times-colors" style="float:left; width: 50%" stripe border size="small" :loading="loading2" :columns="columns2" :data="data2"/>
+                    <div style="clear:both;"></div>
                 </Card>
             </Content>
             <Footer/>
@@ -82,7 +76,30 @@
                 });
                 API[this.zffunc].call(API, this.module).then(data => {
                     this.loading2 = false;
-                    this.data2 = data;
+                    this.data2 = [
+                        {
+                            phase: '',
+                            num: null,
+                            pos: null,
+                            zf0: null,
+                            zf1: null,
+                            zf2: null,
+                            zf3: null,
+                            zf4: null,
+                            zf5: null,
+                            zf6: null,
+                            zf7: null,
+                            zf8: null,
+                            zf9: null,
+                            zf10: null,
+                            zf11: null,
+                            zf12: null,
+                            zf13: null,
+                            zf14: null,
+                            zf15: null
+                        },
+                        ...data
+                    ]
                 }).catch(ex => {
                     this.loading2 = false;
                 });

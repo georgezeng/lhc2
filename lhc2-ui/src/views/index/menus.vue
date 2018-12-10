@@ -34,6 +34,7 @@
                 <MenuItem name="slqdyzzf">D 遗值表/振幅表</MenuItem>
                 <MenuItem name="slqbsyzzf">波色 遗值表/振幅表</MenuItem>
                 <MenuItem name="slqwxyzzf">五行 遗值表/振幅表</MenuItem>
+                <MenuItem name="slqzsyzzf">质素 遗值表/振幅表</MenuItem>
             </MenuGroup>
             <MenuGroup title="生肖">
                 <MenuItem name="sxyz">遗值表</MenuItem>

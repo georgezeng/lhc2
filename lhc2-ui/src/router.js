@@ -299,6 +299,14 @@ const RouterConfig = {
             component: (resolve) => require(['./views/slqwx/yzzf.vue'], resolve)
         },
         {
+            path: '/slqzsyzzf',
+            name: 'slqzsyzzf',
+            meta: {
+                title: `${prefix}十六区-质数`
+            },
+            component: (resolve) => require(['./views/slqzs/yzzf.vue'], resolve)
+        },
+        {
             path: '/pdyz',
             name: 'pdyz',
             meta: {
