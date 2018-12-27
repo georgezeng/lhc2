@@ -9,5 +9,5 @@ import net.geozen.lhc2.domain.PickNum;
 
 @Transactional
 public interface PickNumRepository extends PagingAndSortingRepository<PickNum, Long> {
-	Page<PickNum> findAllByExpected(int expected, Pageable pageable);
+	Page<PickNum> findAllByExpectedAndType(int expected, String type, Pageable pageable);
 }

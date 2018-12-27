@@ -5,7 +5,7 @@
     <div class="layout">
         <Layout>
             <Header class="menus">
-                <Menus activeName="stat"/>
+                <Menus activeName="stat-18-12"/>
             </Header>
             <Content class="content">
                 <Card>
@@ -88,11 +88,11 @@
         },
         methods: {
             loadData() {
-                this.changePage(1, 18, () => {
+                this.changePage(1, 16, () => {
                     this.data3 = [];
                     return this.data3
                 }, () => this.loading3 = true, () => this.loading3 = false);
-                this.changePage(1, 12, () => {
+                this.changePage(1, 11, () => {
                     this.data4 = [];
                     return this.data4
                 }, () => this.loading4 = true, () => this.loading4 = false);
@@ -100,7 +100,10 @@
             changePage(pageNo, expected, initData, startLoading, stopLoading) {
                 startLoading();
                 API.getPickNums({
-                    data: expected,
+                    data: {
+                        expected,
+                        type: "P2"
+                    },
                     page: {
                         num: pageNo,
                         size: this.queryInfo.page.size,

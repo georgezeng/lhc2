@@ -19,4 +19,5 @@ public class PickNum {
 	private int tm;
 	private String payload;
 	private int expected;
+	private String type;
 }

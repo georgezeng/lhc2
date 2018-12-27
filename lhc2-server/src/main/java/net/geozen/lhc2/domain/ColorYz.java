@@ -17,6 +17,7 @@ public class ColorYz {
 	private Long id;
 	private int phase;
 	private String tables;
+	private String type;
 	private String yzColor;
 	private String r1Color;
 	private String r2Color;

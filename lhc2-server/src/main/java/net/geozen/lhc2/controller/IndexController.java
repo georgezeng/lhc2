@@ -70,13 +70,13 @@ public class IndexController {
 		return Result.genSuccessResult(combineService.list2());
 	}
 
-	@RequestMapping(value = "/comparision/times/{tables}", method = RequestMethod.GET)
-	public Result<List<TimesYz>> getComparisionTimes(@PathVariable("tables") String tables) {
-		return Result.genSuccessResult(timesYzRepository.findAllByTablesOrderByPhaseAsc(tables));
+	@RequestMapping(value = "/comparision/times/{tables}/{type}", method = RequestMethod.GET)
+	public Result<List<TimesYz>> getComparisionTimes(@PathVariable("tables") String tables, @PathVariable("type") String type) {
+		return Result.genSuccessResult(timesYzRepository.findAllByTablesAndTypeOrderByPhaseAsc(tables, type));
 	}
 
-	@RequestMapping(value = "/comparision/colors/{tables}", method = RequestMethod.GET)
-	public Result<List<ColorYz>> getComparisionColors(@PathVariable("tables") String tables) {
-		return Result.genSuccessResult(colorYzRepository.findAllByTablesOrderByPhaseAsc(tables));
+	@RequestMapping(value = "/comparision/colors/{tables}/{type}", method = RequestMethod.GET)
+	public Result<List<ColorYz>> getComparisionColors(@PathVariable("tables") String tables, @PathVariable("type") String type) {
+		return Result.genSuccessResult(colorYzRepository.findAllByTablesAndTypeOrderByPhaseAsc(tables, type));
 	}
 }

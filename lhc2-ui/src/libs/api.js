@@ -146,9 +146,9 @@ export default {
         });
     },
 
-    getTimes(tables) {
+    getTimes(tables, type) {
         return new Promise((resolve, reject) => {
-            util.ajax.get(`/comparision/times/${tables}`).then(data => {
+            util.ajax.get(`/comparision/times/${tables}/${type}`).then(data => {
                 resolve(data);
             }).catch(ex => {
                 reject(ex);
@@ -156,9 +156,9 @@ export default {
         });
     },
 
-    getColors(tables) {
+    getColors(tables, type) {
         return new Promise((resolve, reject) => {
-            util.ajax.get(`/comparision/colors/${tables}`).then(data => {
+            util.ajax.get(`/comparision/colors/${tables}/${type}`).then(data => {
                 resolve(data);
             }).catch(ex => {
                 reject(ex);

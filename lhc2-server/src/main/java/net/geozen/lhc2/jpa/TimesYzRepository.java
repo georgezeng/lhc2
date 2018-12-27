@@ -7,5 +7,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import net.geozen.lhc2.domain.TimesYz;
 
 public interface TimesYzRepository extends PagingAndSortingRepository<TimesYz, Long> {
-	List<TimesYz> findAllByTablesOrderByPhaseAsc(String tables);
+	List<TimesYz> findAllByTablesAndTypeOrderByPhaseAsc(String tables, String type);
+	List<TimesYz> findAllByTablesAndType(String tables, String type);
 }

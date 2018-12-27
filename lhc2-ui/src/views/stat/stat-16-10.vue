@@ -5,7 +5,7 @@
     <div class="layout">
         <Layout>
             <Header class="menus">
-                <Menus activeName="stat"/>
+                <Menus activeName="stat-16-10"/>
             </Header>
             <Content class="content">
                 <Card>
@@ -192,7 +192,10 @@
             changePage(pageNo, expected, initData, startLoading, stopLoading) {
                 startLoading();
                 API.getPickNums({
-                    data: expected,
+                    data: {
+                        expected,
+                        type: "P1"
+                    },
                     page: {
                         num: pageNo,
                         size: this.queryInfo.page.size,

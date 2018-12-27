@@ -21,7 +21,8 @@
 
     export default {
         props: [
-            'tables'
+            'tables',
+            'type'
         ],
         data() {
             const self = this;
@@ -372,14 +373,14 @@
         },
         methods: {
             loadData() {
-                API.getTimes(this.tables).then(data => {
+                API.getTimes(this.tables, this.type).then(data => {
                     this.loading1 = false;
                     this.data1 = data;
                     this.data1[0].zf0 = null;
                     this.data1[0].zf1 = null;
                     this.data1[0].zf2 = null;
                 });
-                API.getColors(this.tables).then(data => {
+                API.getColors(this.tables, this.type).then(data => {
                     this.loading2 = false;
                     this.data2 = data;
                 });

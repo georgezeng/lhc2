@@ -208,8 +208,8 @@ public class ZValueCalService {
 								return o1.getZ().compareTo(o2.getZ());
 							}
 						});
-						pickNum(tm, infos.subList(0, 18), 18);
-						pickNum(tm, infos.subList(0, 12), 12);
+						pickNum(tm, infos.subList(0, 16), 16);
+						pickNum(tm, infos.subList(0, 11), 11);
 					}
 					pageable = pageable.next();
 				}
@@ -239,6 +239,7 @@ public class ZValueCalService {
 		pickNum.setPayload(map.writeValueAsString(payload));
 		pickNum.setPhase(tm.getPhase());
 		pickNum.setTm(tm.getNum());
+		pickNum.setType("P2");
 		pickNumRepository.save(pickNum);
 	}
 

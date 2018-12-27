@@ -8,7 +8,7 @@
                 <Menus activeName="comparision12"/>
             </Header>
             <Content class="content">
-                <ComparisionTable tables="12" />
+                <ComparisionTable tables="11" type="P2" />
             </Content>
             <Footer/>
         </Layout>

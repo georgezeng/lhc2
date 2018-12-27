@@ -16,7 +16,8 @@ public class TimesYz {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private int phase;
-	private String tables; 
+	private String tables;
+	private String type;
 	private int time0;
 	private int time12;
 	private int time3Plus;

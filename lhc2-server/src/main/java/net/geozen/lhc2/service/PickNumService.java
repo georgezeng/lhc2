@@ -205,6 +205,7 @@ public class PickNumService {
 						pickNum.setTm(tm.getNum());
 						pickNum.setExpected(expected);
 						pickNum.setPhase(tm.getPhase());
+						pickNum.setType("P1");
 						pickNum.setPayload(new ObjectMapper().writeValueAsString(payload));
 						pickNumRepository.save(pickNum);
 						pageNumForCurrent++;

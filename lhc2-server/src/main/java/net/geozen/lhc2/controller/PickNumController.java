@@ -28,9 +28,10 @@ public class PickNumController {
 	private PickNumRepository pickNumRepository;
 
 	@RequestMapping(value = "/list", method = RequestMethod.POST)
-	public Result<PageResult<PickNumPayload>> list(@RequestBody QueryInfo<Integer> queryInfo) throws Exception {
+	public Result<PageResult<PickNumPayload>> list(@RequestBody QueryInfo<PickNum> queryInfo) throws Exception {
 		ObjectMapper map = new ObjectMapper();
-		Page<PickNum> result = pickNumRepository.findAllByExpected(queryInfo.getData(), queryInfo.getPage().pageable());
+		Page<PickNum> result = pickNumRepository.findAllByExpectedAndType(queryInfo.getData().getExpected(), queryInfo.getData().getType(),
+				queryInfo.getPage().pageable());
 		List<PickNumPayload> payloads = new ArrayList<>();
 		for (PickNum num : result.getContent()) {
 			PickNumPayload payload = map.readValue(num.getPayload(), PickNumPayload.class);
