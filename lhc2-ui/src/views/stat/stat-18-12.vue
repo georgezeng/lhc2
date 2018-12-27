@@ -112,7 +112,7 @@
                     }
                 }).then(result => {
                     stopLoading();
-                    this.setupData1(result.list, initData());
+                    this.setupData4(result.list, initData());
                 });
             },
             setupData1(result, data) {
@@ -196,6 +196,32 @@
                 data.push({colName: '1次', nums: result.numArr1});
                 data.push({colName: '2次', nums: result.numArr2});
                 data.push({colName: '3次+', nums: result.numArr3Plus});
+
+                return result;
+            },
+            setupData4(result, data) {
+                result = result[0];
+                result.numArr0 = [];
+                result.numArr123 = [];
+                result.numArr4Plus = [];
+                result.infos.map(info => {
+                    switch (info.count) {
+                        case 0:
+                            result.numArr0.push(info.num);
+                            break;
+                        case 1:
+                        case 2:
+                        case 3:
+                            result.numArr123.push(info.num);
+                            break;
+                        default:
+                            result.numArr4Plus.push(info.num);
+                    }
+                });
+
+                data.push({colName: '0次', nums: result.numArr0});
+                data.push({colName: '1-3次', nums: result.numArr123});
+                data.push({colName: '4次+', nums: result.numArr4Plus});
 
                 return result;
             }
