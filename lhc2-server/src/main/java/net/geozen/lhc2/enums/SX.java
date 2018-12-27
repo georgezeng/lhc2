@@ -1,5 +1,8 @@
 package net.geozen.lhc2.enums;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 
@@ -35,6 +38,23 @@ public enum SX {
 
 	private final String column;
 
+	public static List<SX> list() {
+		List<SX> list = new ArrayList<>();
+		list.add(Shu);
+		list.add(Niu);
+		list.add(Hu);
+		list.add(Tu);
+		list.add(Long);
+		list.add(She);
+		list.add(Ma);
+		list.add(Yang);
+		list.add(Hou);
+		list.add(Ji);
+		list.add(Gou);
+		list.add(Zhu);
+		return list;
+	}
+	
 	public static SX[] seq() {
 		return new SX[] { Shu, Niu, Hu, Tu, Long, She, Ma, Yang, Hou, Ji, Gou, Zhu };
 	}

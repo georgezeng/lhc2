@@ -1,5 +1,6 @@
 package net.geozen.lhc2.utils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.Future;
@@ -33,6 +34,27 @@ public class CommonUtil {
 			} catch (InterruptedException e) {
 			}
 		}
+	}
+
+	public static <T> List<T> waitForResult(List<Future<T>> futures) throws Exception {
+		List<T> list = new ArrayList<>();
+		while (true) {
+			int count = 0;
+			for (Future<T> f : futures) {
+				if (f.isDone()) {
+					list.add(f.get());
+					count++;
+				}
+			}
+			if (count == futures.size()) {
+				break;
+			}
+			try {
+				Thread.sleep(1000l);
+			} catch (InterruptedException e) {
+			}
+		}
+		return list;
 	}
 
 	public static void waitWithException(List<Future<Exception>> futures) throws Exception {

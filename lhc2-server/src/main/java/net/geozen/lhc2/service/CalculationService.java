@@ -120,6 +120,9 @@ public class CalculationService {
 
 	@Autowired
 	private TimesColorService timeService;
+	
+	@Autowired
+	private ZValueCalService zvalueCalService;
 
 	@Async
 	public Future<List<String>> process() throws Exception {
@@ -171,6 +174,7 @@ public class CalculationService {
 		List<Future<Exception>> futures = new ArrayList<>();
 		futures.add(combineService.process());
 		pickNumFacade.process(futures);
+		zvalueCalService.process();
 
 		CommonUtil.waitWithException(futures, ex -> {
 			errors.add(ex.getMessage());
@@ -179,7 +183,9 @@ public class CalculationService {
 		if (errors.isEmpty()) {
 			futures.clear();
 			futures.add(timeService.process(10));
+			futures.add(timeService.process(12));
 			futures.add(timeService.process(16));
+			futures.add(timeService.process(18));
 			CommonUtil.waitWithException(futures, ex -> {
 				errors.add(ex.getMessage());
 			});

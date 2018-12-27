@@ -34,7 +34,7 @@
                 <MenuItem name="slqdyzzf">D 遗值表/振幅表</MenuItem>
                 <MenuItem name="slqbsyzzf">波色 遗值表/振幅表</MenuItem>
                 <MenuItem name="slqwxyzzf">五行 遗值表/振幅表</MenuItem>
-                <MenuItem name="slqzsyzzf">质素 遗值表/振幅表</MenuItem>
+                <MenuItem name="slqzsyzzf">质数 遗值表/振幅表</MenuItem>
             </MenuGroup>
             <MenuGroup title="生肖">
                 <MenuItem name="sxyz">遗值表</MenuItem>
@@ -106,16 +106,23 @@
                 <MenuItem name="z13sw">顺表</MenuItem>
             </MenuGroup>
         </Submenu>
-        <MenuItem name="stat">
-            <Icon type="ios-stats" />
-            数据统计
-        </MenuItem>
+        <Submenu name="stat">
+            <template slot="title">
+                <Icon type="ios-stats" />
+                数据统计
+            </template>
+            <MenuItem name="stat-s2-s3">顺2-顺3</MenuItem>
+            <MenuItem name="stat-16-10">16&10</MenuItem>
+            <MenuItem name="stat-18-12">18&12</MenuItem>
+        </Submenu>
         <Submenu name="comparision">
             <template slot="title">
                 <Icon type="ios-stats" />
                 数据对比
             </template>
+            <MenuItem name="comparision18">18表</MenuItem>
             <MenuItem name="comparision16">16表</MenuItem>
+            <MenuItem name="comparision12">12表</MenuItem>
             <MenuItem name="comparision10">10表</MenuItem>
         </Submenu>
     </Menu>

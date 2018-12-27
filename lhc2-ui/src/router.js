@@ -35,12 +35,36 @@ const RouterConfig = {
             component: (resolve) => require(['./views/tm.vue'], resolve)
         },
         {
-            path: '/stat',
-            name: 'stat',
+            path: '/stat-s2-s3',
+            name: 'stat-s2-s3',
             meta: {
-                title: `${prefix}数据统计`
+                title: `${prefix}数据统计-顺2-顺3`
             },
-            component: (resolve) => require(['./views/stat.vue'], resolve)
+            component: (resolve) => require(['./views/stat/stat-s2-s3.vue'], resolve)
+        },
+        {
+            path: '/stat-16-10',
+            name: 'stat-16-10',
+            meta: {
+                title: `${prefix}数据统计-16&10`
+            },
+            component: (resolve) => require(['./views/stat/stat-16-10.vue'], resolve)
+        },
+        {
+            path: '/stat-18-12',
+            name: 'stat-18-12',
+            meta: {
+                title: `${prefix}数据统计-18&12`
+            },
+            component: (resolve) => require(['./views/stat/stat-18-12.vue'], resolve)
+        },
+        {
+            path: '/comparision18',
+            name: 'comparision18',
+            meta: {
+                title: `${prefix}数据对比-18`
+            },
+            component: (resolve) => require(['./views/comparision/comparision-18.vue'], resolve)
         },
         {
             path: '/comparision16',
@@ -48,7 +72,15 @@ const RouterConfig = {
             meta: {
                 title: `${prefix}数据对比-16`
             },
-            component: (resolve) => require(['./views/comparision-16.vue'], resolve)
+            component: (resolve) => require(['./views/comparision/comparision-16.vue'], resolve)
+        },
+        {
+            path: '/comparision12',
+            name: 'comparision12',
+            meta: {
+                title: `${prefix}数据对比-12`
+            },
+            component: (resolve) => require(['./views/comparision/comparision-12.vue'], resolve)
         },
         {
             path: '/comparision10',
@@ -56,7 +88,7 @@ const RouterConfig = {
             meta: {
                 title: `${prefix}数据对比-16`
             },
-            component: (resolve) => require(['./views/comparision-10.vue'], resolve)
+            component: (resolve) => require(['./views/comparision/comparision-10.vue'], resolve)
         },
         {
             path: '/sxyz',
