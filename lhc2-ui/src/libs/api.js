@@ -166,6 +166,16 @@ export default {
         });
     },
 
+    getColors2(tables, type) {
+        return new Promise((resolve, reject) => {
+            util.ajax.get(`/comparision/colors2/${tables}/${type}`).then(data => {
+                resolve(data);
+            }).catch(ex => {
+                reject(ex);
+            });
+        });
+    },
+
     getDxds1yz() {
         return new Promise((resolve, reject) => {
             util.ajax.get(`/dxds/yz1/list`).then(data => {

@@ -19,10 +19,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.extern.slf4j.Slf4j;
 import net.geozen.lhc2.domain.ColorYz;
+import net.geozen.lhc2.domain.ColorYz2;
 import net.geozen.lhc2.domain.PickNum;
 import net.geozen.lhc2.domain.TimesYz;
 import net.geozen.lhc2.dto.PickNumCountInfo;
 import net.geozen.lhc2.dto.PickNumPayload;
+import net.geozen.lhc2.jpa.ColorYz2Repository;
 import net.geozen.lhc2.jpa.ColorYzRepository;
 import net.geozen.lhc2.jpa.PickNumRepository;
 import net.geozen.lhc2.jpa.TimesYzRepository;
@@ -36,6 +38,9 @@ public class TimesColorService {
 
 	@Autowired
 	private ColorYzRepository colorYzRepository;
+
+	@Autowired
+	private ColorYz2Repository colorYz2Repository;
 
 	@Autowired
 	private PickNumRepository pickNumRepository;
@@ -53,8 +58,10 @@ public class TimesColorService {
 			ColorYz lastColorYz = new ColorYz();
 			TimesYz lastTimesYz = new TimesYz();
 			List<ColorYz> colorYzList = new ArrayList<>();
+			List<ColorYz2> colorYz2List = new ArrayList<>();
 			List<TimesYz> timesYzList = new ArrayList<>();
 			PickNum prevNumInfo = null;
+			String initColor = null;
 			// do {
 			pResult = pickNumRepository.findAllByExpectedAndType(tables, type, pageable);
 			for (int i = pResult.getContent().size() - 1; i > -1; i--) {
@@ -85,7 +92,7 @@ public class TimesColorService {
 					}
 				}
 				String color = null;
-				if("P1".equals(type)) {
+				if ("P1".equals(type)) {
 					switch (tmInfo.getCount()) {
 					case 0: {
 						color = "green";
@@ -94,7 +101,7 @@ public class TimesColorService {
 						timesYz.setTime12(lastTimesYz.getTime12() + 1);
 						timesYz.setTime3Plus(lastTimesYz.getTime3Plus() + 1);
 					}
-					break;
+						break;
 					case 1:
 					case 2: {
 						timesYz.setPos(1);
@@ -103,7 +110,7 @@ public class TimesColorService {
 						timesYz.setTime12(0);
 						timesYz.setTime3Plus(lastTimesYz.getTime3Plus() + 1);
 					}
-					break;
+						break;
 					default: {
 						timesYz.setPos(2);
 						color = "green";
@@ -121,7 +128,7 @@ public class TimesColorService {
 						timesYz.setTime12(lastTimesYz.getTime12() + 1);
 						timesYz.setTime3Plus(lastTimesYz.getTime3Plus() + 1);
 					}
-					break;
+						break;
 					case 1:
 					case 2:
 					case 3: {
@@ -131,7 +138,7 @@ public class TimesColorService {
 						timesYz.setTime12(0);
 						timesYz.setTime3Plus(lastTimesYz.getTime3Plus() + 1);
 					}
-					break;
+						break;
 					default: {
 						timesYz.setPos(2);
 						color = "green";
@@ -140,6 +147,9 @@ public class TimesColorService {
 						timesYz.setTime3Plus(0);
 					}
 					}
+				}
+				if (initColor == null) {
+					initColor = color;
 				}
 				lastTimesYz = timesYz;
 				timesYzList.add(timesYz);
@@ -450,10 +460,302 @@ public class TimesColorService {
 				lastZf = zf;
 			}
 
+			int[] whiteTimes = { 1, 2, 5, 11, 23, 47 };
+			int[] redTimes = { 1, 2, 4, 6, 8 };
+			if ("P1".equals(type)) {
+				ColorYz2 lastYz = null;
+				for (ColorYz yz : colorYzList) {
+					ColorYz2 colorYz2 = new ColorYz2();
+					colorYz2.setPhase(yz.getPhase());
+					colorYz2.setTables(yz.getTables());
+					colorYz2.setType(yz.getType());
+
+					if (lastYz == null) {
+						colorYz2.setWr(1);
+						colorYz2.setWrPos(0);
+						colorYz2.setWrColor("white");
+						colorYz2.setYzr(1);
+						colorYz2.setYzrPos(0);
+						if ("red".equals(initColor)) {
+							colorYz2.setYzrColor("red");
+						} else {
+							colorYz2.setYzrColor("white");
+						}
+						colorYz2.setYzg(1);
+						colorYz2.setYzgPos(0);
+						if ("green".equals(initColor)) {
+							colorYz2.setYzgColor("red");
+						} else {
+							colorYz2.setYzgColor("white");
+						}
+					} else {
+						if (lastYz.getWrColor().equals("white")) {
+							if (yz.getWrColor().equals("red")) {
+								colorYz2.setWr(1);
+								colorYz2.setWrPos(0);
+								colorYz2.setWrColor("red");
+							} else {
+								int times = 0;
+								int pos = lastYz.getWrPos() + 1;
+								if (whiteTimes.length > pos) {
+									times = whiteTimes[pos];
+								}
+								colorYz2.setWr(lastYz.getWr() * times);
+								colorYz2.setWrPos(pos);
+								colorYz2.setWrColor("white");
+							}
+						} else {
+							if (yz.getWrColor().equals("red")) {
+								int pos = lastYz.getWrPos();
+								if (pos >= redTimes.length) {
+									pos = 0;
+								}
+								int times = redTimes[pos];
+								colorYz2.setWr(times);
+								colorYz2.setWrPos(pos);
+								colorYz2.setWrColor("red");
+							} else {
+								int times = 0;
+								int pos = 0;
+								if (whiteTimes.length > pos) {
+									times = whiteTimes[pos];
+								}
+								colorYz2.setWr(lastYz.getWr() * times);
+								colorYz2.setWrPos(pos);
+								colorYz2.setWrColor("white");
+							}
+						}
+
+						if (lastYz.getYzrColor().equals("white")) {
+							if (yz.getYzColor().equals("red")) {
+								colorYz2.setYzr(1);
+								colorYz2.setYzrPos(0);
+								colorYz2.setYzrColor("red");
+							} else {
+								int times = 0;
+								int pos = lastYz.getYzrPos() + 1;
+								if (whiteTimes.length > pos) {
+									times = whiteTimes[pos];
+								}
+								colorYz2.setYzr(lastYz.getYzr() * times);
+								colorYz2.setYzrPos(pos);
+								colorYz2.setYzrColor("white");
+							}
+						} else {
+							if (yz.getYzColor().equals("red")) {
+								int pos = lastYz.getYzrPos();
+								if (pos >= redTimes.length) {
+									pos = 0;
+								}
+								int times = redTimes[pos];
+								colorYz2.setYzr(times);
+								colorYz2.setYzrPos(pos);
+								colorYz2.setYzrColor("red");
+							} else {
+								int times = 0;
+								int pos = 0;
+								if (whiteTimes.length > pos) {
+									times = whiteTimes[pos];
+								}
+								colorYz2.setYzr(lastYz.getYzr() * times);
+								colorYz2.setYzrPos(pos);
+								colorYz2.setYzrColor("white");
+							}
+						}
+
+						if (lastYz.getYzgColor().equals("white")) {
+							if (yz.getYzColor().equals("green")) {
+								colorYz2.setYzg(1);
+								colorYz2.setYzgPos(0);
+								colorYz2.setYzgColor("red");
+							} else {
+								int times = 0;
+								int pos = lastYz.getYzgPos() + 1;
+								if (whiteTimes.length > pos) {
+									times = whiteTimes[pos];
+								}
+								colorYz2.setYzg(lastYz.getYzg() * times);
+								colorYz2.setYzgPos(pos);
+								colorYz2.setYzgColor("white");
+							}
+						} else {
+							if (yz.getYzColor().equals("green")) {
+								int pos = lastYz.getYzgPos();
+								if (pos >= redTimes.length) {
+									pos = 0;
+								}
+								int times = redTimes[pos];
+								colorYz2.setYzg(times);
+								colorYz2.setYzgPos(pos);
+								colorYz2.setYzgColor("red");
+							} else {
+								int times = 0;
+								int pos = 0;
+								if (whiteTimes.length > pos) {
+									times = whiteTimes[pos];
+								}
+								colorYz2.setYzg(lastYz.getYzg() * times);
+								colorYz2.setYzgPos(pos);
+								colorYz2.setYzgColor("white");
+							}
+						}
+					}
+
+					colorYz2List.add(colorYz2);
+					lastYz = colorYz2;
+				}
+			} else {
+				ColorYz2 lastYz = null;
+				int count = 0;
+				for (ColorYz yz : colorYzList) {
+					count++;
+					ColorYz2 colorYz2 = new ColorYz2();
+					colorYz2.setPhase(yz.getPhase());
+					colorYz2.setTables(yz.getTables());
+					colorYz2.setType(yz.getType());
+
+					if (count > 19) {
+						if (count == 20) {
+							colorYz2.setWr(1);
+							colorYz2.setWrPos(0);
+							colorYz2.setWrColor("white");
+
+							colorYz2.setYzr(1);
+							colorYz2.setYzrPos(0);
+							colorYz2.setYzrColor("red");
+
+							colorYz2.setYzg(1);
+							colorYz2.setYzgPos(0);
+							colorYz2.setYzgColor("white");
+						} else {
+							if (lastYz.getWrColor().equals("white")) {
+								if (yz.getWrColor().equals("red")) {
+									colorYz2.setWr(1);
+									colorYz2.setWrPos(0);
+									colorYz2.setWrColor("red");
+								} else {
+									int times = 0;
+									int pos = lastYz.getWrPos() + 1;
+									if (whiteTimes.length > pos) {
+										times = whiteTimes[pos];
+									}
+									colorYz2.setWr(lastYz.getWr() * times);
+									colorYz2.setWrPos(pos);
+									colorYz2.setWrColor("white");
+								}
+							} else {
+								if (yz.getWrColor().equals("red")) {
+									int pos = lastYz.getWrPos();
+									if (pos >= redTimes.length) {
+										pos = 0;
+									}
+									int times = redTimes[pos];
+									colorYz2.setWr(times);
+									colorYz2.setWrPos(pos);
+									colorYz2.setWrColor("red");
+								} else {
+									int times = 0;
+									int pos = 0;
+									if (whiteTimes.length > pos) {
+										times = whiteTimes[pos];
+									}
+									colorYz2.setWr(lastYz.getWr() * times);
+									colorYz2.setWrPos(pos);
+									colorYz2.setWrColor("white");
+								}
+							}
+
+							if (lastYz.getYzrColor().equals("white")) {
+								if (yz.getYzColor().equals("red")) {
+									colorYz2.setYzr(1);
+									colorYz2.setYzrPos(0);
+									colorYz2.setYzrColor("red");
+								} else {
+									int times = 0;
+									int pos = lastYz.getYzrPos() + 1;
+									if (whiteTimes.length > pos) {
+										times = whiteTimes[pos];
+									}
+									colorYz2.setYzr(lastYz.getYzr() * times);
+									colorYz2.setYzrPos(pos);
+									colorYz2.setYzrColor("white");
+								}
+							} else {
+								if (yz.getYzColor().equals("red")) {
+									int pos = lastYz.getYzrPos();
+									if (pos >= redTimes.length) {
+										pos = 0;
+									}
+									int times = redTimes[pos];
+									colorYz2.setYzr(times);
+									colorYz2.setYzrPos(pos);
+									colorYz2.setYzrColor("red");
+								} else {
+									int times = 0;
+									int pos = 0;
+									if (whiteTimes.length > pos) {
+										times = whiteTimes[pos];
+									}
+									colorYz2.setYzr(lastYz.getYzr() * times);
+									colorYz2.setYzrPos(pos);
+									colorYz2.setYzrColor("white");
+								}
+							}
+
+							if (lastYz.getYzgColor().equals("white")) {
+								if (yz.getYzColor().equals("green")) {
+									colorYz2.setYzg(1);
+									colorYz2.setYzgPos(0);
+									colorYz2.setYzgColor("red");
+								} else {
+									int times = 0;
+									int pos = lastYz.getYzgPos() + 1;
+									if (whiteTimes.length > pos) {
+										times = whiteTimes[pos];
+									}
+									colorYz2.setYzg(lastYz.getYzg() * times);
+									colorYz2.setYzgPos(pos);
+									colorYz2.setYzgColor("white");
+								}
+							} else {
+								if (yz.getYzColor().equals("green")) {
+									int pos = lastYz.getYzgPos();
+									if (pos >= redTimes.length) {
+										pos = 0;
+									}
+									int times = redTimes[pos];
+									colorYz2.setYzg(times);
+									colorYz2.setYzgPos(pos);
+									colorYz2.setYzgColor("red");
+								} else {
+									int times = 0;
+									int pos = 0;
+									if (whiteTimes.length > pos) {
+										times = whiteTimes[pos];
+									}
+									colorYz2.setYzg(lastYz.getYzg() * times);
+									colorYz2.setYzgPos(pos);
+									colorYz2.setYzgColor("white");
+								}
+							}
+						}
+					} else {
+						colorYz2.setWrColor("white");
+						colorYz2.setYzrColor("white");
+						colorYz2.setYzgColor("white");
+					}
+
+					colorYz2List.add(colorYz2);
+					lastYz = colorYz2;
+				}
+			}
+
 			timesYzRepository.deleteAll(timesYzRepository.findAllByTablesAndType(tables + "", type));
 			colorYzRepository.deleteAll(colorYzRepository.findAllByTablesAndType(tables + "", type));
+			colorYz2Repository.deleteAll(colorYz2Repository.findAllByTablesAndType(tables + "", type));
 			timesYzRepository.saveAll(timesYzList);
 			colorYzRepository.saveAll(colorYzList);
+			colorYz2Repository.saveAll(colorYz2List);
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 			t = e;

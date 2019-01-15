@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import net.geozen.lhc2.domain.ColorYz;
+import net.geozen.lhc2.domain.ColorYz2;
 import net.geozen.lhc2.domain.TimesYz;
 import net.geozen.lhc2.dto.Result;
 import net.geozen.lhc2.dto.StatTotallyInfo;
+import net.geozen.lhc2.jpa.ColorYz2Repository;
 import net.geozen.lhc2.jpa.ColorYzRepository;
 import net.geozen.lhc2.jpa.TimesYzRepository;
 import net.geozen.lhc2.service.CalculationService;
@@ -34,6 +36,9 @@ public class IndexController {
 
 	@Autowired
 	private ColorYzRepository colorYzRepository;
+
+	@Autowired
+	private ColorYz2Repository colorYz2Repository;
 
 	private volatile Future<List<String>> future;
 
@@ -78,5 +83,10 @@ public class IndexController {
 	@RequestMapping(value = "/comparision/colors/{tables}/{type}", method = RequestMethod.GET)
 	public Result<List<ColorYz>> getComparisionColors(@PathVariable("tables") String tables, @PathVariable("type") String type) {
 		return Result.genSuccessResult(colorYzRepository.findAllByTablesAndTypeOrderByPhaseAsc(tables, type));
+	}
+
+	@RequestMapping(value = "/comparision/colors2/{tables}/{type}", method = RequestMethod.GET)
+	public Result<List<ColorYz2>> getComparisionColors2(@PathVariable("tables") String tables, @PathVariable("type") String type) {
+		return Result.genSuccessResult(colorYz2Repository.findAllByTablesAndTypeOrderByPhaseAsc(tables, type));
 	}
 }
