@@ -22,9 +22,12 @@ public class ColorYz2 {
 	private String yzrColor;
 	private String yzgColor;
 	private int wr;
+	private int wrBase;
 	private int wrPos;
 	private int yzr;
+	private int yzrBase;
 	private int yzrPos;
 	private int yzg;
+	private int yzgBase;
 	private int yzgPos;
 }

@@ -9,12 +9,15 @@ CREATE TABLE `color_yz_2` (
 	`type` varchar(50) NOT NULL,
 	`wr` int(11) NOT NULL,
 	`wr_pos` int(11) NOT NULL,
+	`wr_base` int(11) NOT NULL,
 	`wr_color` varchar(50) NOT NULL,
 	`yzr` int(11) NOT NULL,
 	`yzr_pos` int(11) NOT NULL,
+	`yzr_base` int(11) NOT NULL,
 	`yzr_color` varchar(50) NOT NULL,
 	`yzg` int(11) NOT NULL,
 	`yzg_pos` int(11) NOT NULL,
+	`yzg_base` int(11) NOT NULL,
 	`yzg_color` varchar(50) NOT NULL,
 	PRIMARY KEY (`id`)
 );

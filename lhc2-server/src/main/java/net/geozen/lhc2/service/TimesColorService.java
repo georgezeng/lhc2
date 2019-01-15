@@ -14,6 +14,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ReflectionUtils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -61,7 +62,6 @@ public class TimesColorService {
 			List<ColorYz2> colorYz2List = new ArrayList<>();
 			List<TimesYz> timesYzList = new ArrayList<>();
 			PickNum prevNumInfo = null;
-			String initColor = null;
 			// do {
 			pResult = pickNumRepository.findAllByExpectedAndType(tables, type, pageable);
 			for (int i = pResult.getContent().size() - 1; i > -1; i--) {
@@ -147,9 +147,6 @@ public class TimesColorService {
 						timesYz.setTime3Plus(0);
 					}
 					}
-				}
-				if (initColor == null) {
-					initColor = color;
 				}
 				lastTimesYz = timesYz;
 				timesYzList.add(timesYz);
@@ -460,8 +457,6 @@ public class TimesColorService {
 				lastZf = zf;
 			}
 
-			int[] whiteTimes = { 1, 2, 5, 11, 23, 47 };
-			int[] redTimes = { 1, 2, 4, 6, 8 };
 			if ("P1".equals(type)) {
 				ColorYz2 lastYz = null;
 				for (ColorYz yz : colorYzList) {
@@ -473,132 +468,28 @@ public class TimesColorService {
 					if (lastYz == null) {
 						colorYz2.setWr(1);
 						colorYz2.setWrPos(0);
+						colorYz2.setWrBase(1);
 						colorYz2.setWrColor("white");
 						colorYz2.setYzr(1);
 						colorYz2.setYzrPos(0);
-						if ("red".equals(initColor)) {
+						colorYz2.setYzrBase(1);
+						if ("red".equals(yz.getYzColor())) {
 							colorYz2.setYzrColor("red");
 						} else {
 							colorYz2.setYzrColor("white");
 						}
 						colorYz2.setYzg(1);
 						colorYz2.setYzgPos(0);
-						if ("green".equals(initColor)) {
+						colorYz2.setYzgBase(1);
+						if ("green".equals(yz.getYzColor())) {
 							colorYz2.setYzgColor("red");
 						} else {
 							colorYz2.setYzgColor("white");
 						}
 					} else {
-						if (lastYz.getWrColor().equals("white")) {
-							if (yz.getWrColor().equals("red")) {
-								colorYz2.setWr(1);
-								colorYz2.setWrPos(0);
-								colorYz2.setWrColor("red");
-							} else {
-								int times = 0;
-								int pos = lastYz.getWrPos() + 1;
-								if (whiteTimes.length > pos) {
-									times = whiteTimes[pos];
-								}
-								colorYz2.setWr(lastYz.getWr() * times);
-								colorYz2.setWrPos(pos);
-								colorYz2.setWrColor("white");
-							}
-						} else {
-							if (yz.getWrColor().equals("red")) {
-								int pos = lastYz.getWrPos() + 1;
-								if (pos >= redTimes.length) {
-									pos = 0;
-								}
-								int times = redTimes[pos];
-								colorYz2.setWr(times);
-								colorYz2.setWrPos(pos);
-								colorYz2.setWrColor("red");
-							} else {
-								int times = 0;
-								int pos = 0;
-								if (whiteTimes.length > pos) {
-									times = whiteTimes[pos];
-								}
-								colorYz2.setWr(lastYz.getWr() * times);
-								colorYz2.setWrPos(pos);
-								colorYz2.setWrColor("white");
-							}
-						}
-
-						if (lastYz.getYzrColor().equals("white")) {
-							if (yz.getYzColor().equals("red")) {
-								colorYz2.setYzr(1);
-								colorYz2.setYzrPos(0);
-								colorYz2.setYzrColor("red");
-							} else {
-								int times = 0;
-								int pos = lastYz.getYzrPos() + 1;
-								if (whiteTimes.length > pos) {
-									times = whiteTimes[pos];
-								}
-								colorYz2.setYzr(lastYz.getYzr() * times);
-								colorYz2.setYzrPos(pos);
-								colorYz2.setYzrColor("white");
-							}
-						} else {
-							if (yz.getYzColor().equals("red")) {
-								int pos = lastYz.getYzrPos() + 1;
-								if (pos >= redTimes.length) {
-									pos = 0;
-								}
-								int times = redTimes[pos];
-								colorYz2.setYzr(times);
-								colorYz2.setYzrPos(pos);
-								colorYz2.setYzrColor("red");
-							} else {
-								int times = 0;
-								int pos = 0;
-								if (whiteTimes.length > pos) {
-									times = whiteTimes[pos];
-								}
-								colorYz2.setYzr(lastYz.getYzr() * times);
-								colorYz2.setYzrPos(pos);
-								colorYz2.setYzrColor("white");
-							}
-						}
-
-						if (lastYz.getYzgColor().equals("white")) {
-							if (yz.getYzColor().equals("green")) {
-								colorYz2.setYzg(1);
-								colorYz2.setYzgPos(0);
-								colorYz2.setYzgColor("red");
-							} else {
-								int times = 0;
-								int pos = lastYz.getYzgPos() + 1;
-								if (whiteTimes.length > pos) {
-									times = whiteTimes[pos];
-								}
-								colorYz2.setYzg(lastYz.getYzg() * times);
-								colorYz2.setYzgPos(pos);
-								colorYz2.setYzgColor("white");
-							}
-						} else {
-							if (yz.getYzColor().equals("green")) {
-								int pos = lastYz.getYzgPos() + 1;
-								if (pos >= redTimes.length) {
-									pos = 0;
-								}
-								int times = redTimes[pos];
-								colorYz2.setYzg(times);
-								colorYz2.setYzgPos(pos);
-								colorYz2.setYzgColor("red");
-							} else {
-								int times = 0;
-								int pos = 0;
-								if (whiteTimes.length > pos) {
-									times = whiteTimes[pos];
-								}
-								colorYz2.setYzg(lastYz.getYzg() * times);
-								colorYz2.setYzgPos(pos);
-								colorYz2.setYzgColor("white");
-							}
-						}
+						setColor2(lastYz, yz, colorYz2, "Wr", "red");
+						setColor2(lastYz, yz, colorYz2, "Yzr", "red");
+						setColor2(lastYz, yz, colorYz2, "Yzg", "green");
 					}
 
 					colorYz2List.add(colorYz2);
@@ -618,126 +509,28 @@ public class TimesColorService {
 						if (count == 20) {
 							colorYz2.setWr(1);
 							colorYz2.setWrPos(0);
+							colorYz2.setWrBase(1);
 							colorYz2.setWrColor("white");
-
 							colorYz2.setYzr(1);
+							colorYz2.setYzrBase(1);
 							colorYz2.setYzrPos(0);
-							colorYz2.setYzrColor("red");
-
+							if ("red".equals(yz.getYzColor())) {
+								colorYz2.setYzrColor("red");
+							} else {
+								colorYz2.setYzrColor("white");
+							}
 							colorYz2.setYzg(1);
+							colorYz2.setYzgBase(1);
 							colorYz2.setYzgPos(0);
-							colorYz2.setYzgColor("white");
+							if ("green".equals(yz.getYzColor())) {
+								colorYz2.setYzgColor("red");
+							} else {
+								colorYz2.setYzgColor("white");
+							}
 						} else {
-							if (lastYz.getWrColor().equals("white")) {
-								if (yz.getWrColor().equals("red")) {
-									colorYz2.setWr(1);
-									colorYz2.setWrPos(0);
-									colorYz2.setWrColor("red");
-								} else {
-									int times = 0;
-									int pos = lastYz.getWrPos() + 1;
-									if (whiteTimes.length > pos) {
-										times = whiteTimes[pos];
-									}
-									colorYz2.setWr(lastYz.getWr() * times);
-									colorYz2.setWrPos(pos);
-									colorYz2.setWrColor("white");
-								}
-							} else {
-								if (yz.getWrColor().equals("red")) {
-									int pos = lastYz.getWrPos() + 1;
-									if (pos >= redTimes.length) {
-										pos = 0;
-									}
-									int times = redTimes[pos];
-									colorYz2.setWr(times);
-									colorYz2.setWrPos(pos);
-									colorYz2.setWrColor("red");
-								} else {
-									int times = 0;
-									int pos = 0;
-									if (whiteTimes.length > pos) {
-										times = whiteTimes[pos];
-									}
-									colorYz2.setWr(lastYz.getWr() * times);
-									colorYz2.setWrPos(pos);
-									colorYz2.setWrColor("white");
-								}
-							}
-
-							if (lastYz.getYzrColor().equals("white")) {
-								if (yz.getYzColor().equals("red")) {
-									colorYz2.setYzr(1);
-									colorYz2.setYzrPos(0);
-									colorYz2.setYzrColor("red");
-								} else {
-									int times = 0;
-									int pos = lastYz.getYzrPos() + 1;
-									if (whiteTimes.length > pos) {
-										times = whiteTimes[pos];
-									}
-									colorYz2.setYzr(lastYz.getYzr() * times);
-									colorYz2.setYzrPos(pos);
-									colorYz2.setYzrColor("white");
-								}
-							} else {
-								if (yz.getYzColor().equals("red")) {
-									int pos = lastYz.getYzrPos() + 1;
-									if (pos >= redTimes.length) {
-										pos = 0;
-									}
-									int times = redTimes[pos];
-									colorYz2.setYzr(times);
-									colorYz2.setYzrPos(pos);
-									colorYz2.setYzrColor("red");
-								} else {
-									int times = 0;
-									int pos = 0;
-									if (whiteTimes.length > pos) {
-										times = whiteTimes[pos];
-									}
-									colorYz2.setYzr(lastYz.getYzr() * times);
-									colorYz2.setYzrPos(pos);
-									colorYz2.setYzrColor("white");
-								}
-							}
-
-							if (lastYz.getYzgColor().equals("white")) {
-								if (yz.getYzColor().equals("green")) {
-									colorYz2.setYzg(1);
-									colorYz2.setYzgPos(0);
-									colorYz2.setYzgColor("red");
-								} else {
-									int times = 0;
-									int pos = lastYz.getYzgPos() + 1;
-									if (whiteTimes.length > pos) {
-										times = whiteTimes[pos];
-									}
-									colorYz2.setYzg(lastYz.getYzg() * times);
-									colorYz2.setYzgPos(pos);
-									colorYz2.setYzgColor("white");
-								}
-							} else {
-								if (yz.getYzColor().equals("green")) {
-									int pos = lastYz.getYzgPos() + 1;
-									if (pos >= redTimes.length) {
-										pos = 0;
-									}
-									int times = redTimes[pos];
-									colorYz2.setYzg(times);
-									colorYz2.setYzgPos(pos);
-									colorYz2.setYzgColor("red");
-								} else {
-									int times = 0;
-									int pos = 0;
-									if (whiteTimes.length > pos) {
-										times = whiteTimes[pos];
-									}
-									colorYz2.setYzg(lastYz.getYzg() * times);
-									colorYz2.setYzgPos(pos);
-									colorYz2.setYzgColor("white");
-								}
-							}
+							setColor2(lastYz, yz, colorYz2, "Wr", "red");
+							setColor2(lastYz, yz, colorYz2, "Yzr", "red");
+							setColor2(lastYz, yz, colorYz2, "Yzg", "green");
 						}
 					} else {
 						colorYz2.setWrColor("white");
@@ -761,6 +554,74 @@ public class TimesColorService {
 			t = e;
 		}
 		return new AsyncResult<Exception>(t);
+	}
+
+	private int[] whiteTimes = { 1, 2, 5, 11, 23, 47 };
+	private int[] redTimes = { 1, 2, 4, 6, 8 };
+
+	private void setColor2(ColorYz2 lastYz, ColorYz yz, ColorYz2 colorYz2, String method, String specColor) throws Exception {
+		Method colorGm = null;
+		if (method.equals("Wr")) {
+			colorGm = ReflectionUtils.findMethod(ColorYz.class, "getWrColor");
+		} else {
+			colorGm = ReflectionUtils.findMethod(ColorYz.class, "getYzColor");
+		}
+		String yzColor = (String) colorGm.invoke(yz);
+		Method colorGm2 = ReflectionUtils.findMethod(ColorYz2.class, "get" + method + "Color");
+		String lastColor = (String) colorGm2.invoke(lastYz);
+		Method posGm = ReflectionUtils.findMethod(ColorYz2.class, "get" + method + "Pos");
+		Method baseGm = ReflectionUtils.findMethod(ColorYz2.class, "get" + method + "Base");
+		Method yzSm = ReflectionUtils.findMethod(ColorYz2.class, "set" + method, int.class);
+		Method posSm = ReflectionUtils.findMethod(ColorYz2.class, "set" + method + "Pos", int.class);
+		Method colorSm = ReflectionUtils.findMethod(ColorYz2.class, "set" + method + "Color", String.class);
+		Method baseSm = ReflectionUtils.findMethod(ColorYz2.class, "set" + method + "Base", int.class);
+		if (lastColor.equals("white")) {
+			if (yzColor.equals(specColor)) {
+				int times = 0;
+				int pos = (Integer) posGm.invoke(lastYz) + 1;
+				if (whiteTimes.length > pos) {
+					times = whiteTimes[pos];
+				}
+				int base = (Integer) baseGm.invoke(lastYz) * times;
+				yzSm.invoke(colorYz2, base);
+				posSm.invoke(colorYz2, -1);
+				baseSm.invoke(colorYz2, 1);
+				colorSm.invoke(colorYz2, "red");
+			} else {
+				int times = 0;
+				int pos = (Integer) posGm.invoke(lastYz) + 1;
+				if (whiteTimes.length > pos) {
+					times = whiteTimes[pos];
+				}
+				Integer base = (Integer) baseGm.invoke(lastYz);
+				yzSm.invoke(colorYz2, base * times);
+				posSm.invoke(colorYz2, pos);
+				baseSm.invoke(colorYz2, 1);
+				colorSm.invoke(colorYz2, "white");
+			}
+		} else {
+			if (yzColor.equals(specColor)) {
+				int pos = (Integer) posGm.invoke(lastYz) + 1;
+				if (pos >= redTimes.length) {
+					pos = 0;
+				}
+				int times = redTimes[pos];
+				yzSm.invoke(colorYz2, times);
+				posSm.invoke(colorYz2, pos);
+				baseSm.invoke(colorYz2, 1);
+				colorSm.invoke(colorYz2, "red");
+			} else {
+				int pos = (Integer) posGm.invoke(lastYz) + 1;
+				if (pos >= redTimes.length) {
+					pos = 1;
+				}
+				int base = redTimes[pos];
+				yzSm.invoke(colorYz2, base);
+				posSm.invoke(colorYz2, 0);
+				baseSm.invoke(colorYz2, base);
+				colorSm.invoke(colorYz2, "white");
+			}
+		}
 	}
 
 }

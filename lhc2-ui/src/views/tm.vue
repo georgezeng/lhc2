@@ -24,7 +24,7 @@
                             <i-input v-model="modal.data.phase"/>
                         </div>
                         <div style="float: left; width: 100px; margin-right: 10px;">
-                            <i-input v-model="modal.data.num" element-id="numInput" />
+                            <i-input v-model="modal.data.num" element-id="numInput"/>
                         </div>
                         <div style="float: left; width: 100px; margin-right: 10px;">
                             <Select style="margin-right: 10px;" v-model="modal.data.sx">
@@ -35,12 +35,13 @@
                                 </Option>
                             </Select>
                         </div>
-                        <Button style="margin: 0 10px;" type="primary" @click="add">新增+</Button>
+                        <Button :loading="calculation.loading" style="margin: 0 10px;" type="primary" @click="add">新增+
+                        </Button>
                         <Poptip confirm transfer title="确定要清除所有吗" @on-ok="clear">
-                            <Button type="error">清除所有</Button>
+                            <Button :loading="calculation.loading" type="error">清除所有</Button>
                         </Poptip>
                         <Poptip confirm transfer title="确定要清除当前页面吗" @on-ok="clearPage">
-                            <Button style="margin: 0 10px;" type="warning">清除整页</Button>
+                            <Button :loading="calculation.loading" style="margin: 0 10px;" type="warning">清除整页</Button>
                         </Poptip>
                         <Button :loading="calculation.loading" type="success" @click="calculate">{{calculation.text}}
                         </Button>
@@ -168,18 +169,20 @@
                                     },
                                     on: {
                                         click: () => {
-                                            self.update(extend({}, params.row,
-                                                {
-                                                    sx: params.row.sx.name ? params.row.sx.name : params.row.sx
-                                                }));
+                                            if (!self.calculation.loading) {
+                                                self.update(extend({}, params.row,
+                                                    {
+                                                        sx: params.row.sx.name ? params.row.sx.name : params.row.sx
+                                                    }));
+                                            }
                                         }
                                     }
                                 }, '保存'),
                                 ' ',
                                 h('Poptip', {
                                     props: {
-                                        confirm: true,
-                                        title: `您确定要删除记录吗`,
+                                        confirm: !self.calculation.loading,
+                                        title: !self.calculation.loading ? `您确定要删除记录吗` : '计算中不能删除记录',
                                         transfer: true
                                     },
                                     on: {
@@ -265,13 +268,14 @@
             },
             loadCalculationStatus() {
                 API.loadCalculationStatus().then(data => {
-                    switch(data.status) {
+                    switch (data.status) {
                         case 1: {
                             this.calculation = {
                                 loading: true,
                                 text: '计算中...'
                             }
-                        } break;
+                        }
+                            break;
                         case 2: {
                             if (!data.errors || data.errors.length == 0) {
                                 this.calculationFinish();
@@ -279,8 +283,10 @@
                             } else {
                                 this.calculationFinish(data.errors);
                             }
-                        } break;
-                        default: this.calculationFinish();
+                        }
+                            break;
+                        default:
+                            this.calculationFinish();
                     }
                     setTimeout(this.loadCalculationStatus, 1000);
                 }).catch(ex => {
