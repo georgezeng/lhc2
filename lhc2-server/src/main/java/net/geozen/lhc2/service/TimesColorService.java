@@ -506,7 +506,7 @@ public class TimesColorService {
 							}
 						} else {
 							if (yz.getWrColor().equals("red")) {
-								int pos = lastYz.getWrPos();
+								int pos = lastYz.getWrPos() + 1;
 								if (pos >= redTimes.length) {
 									pos = 0;
 								}
@@ -543,7 +543,7 @@ public class TimesColorService {
 							}
 						} else {
 							if (yz.getYzColor().equals("red")) {
-								int pos = lastYz.getYzrPos();
+								int pos = lastYz.getYzrPos() + 1;
 								if (pos >= redTimes.length) {
 									pos = 0;
 								}
@@ -580,7 +580,7 @@ public class TimesColorService {
 							}
 						} else {
 							if (yz.getYzColor().equals("green")) {
-								int pos = lastYz.getYzgPos();
+								int pos = lastYz.getYzgPos() + 1;
 								if (pos >= redTimes.length) {
 									pos = 0;
 								}
@@ -645,7 +645,7 @@ public class TimesColorService {
 								}
 							} else {
 								if (yz.getWrColor().equals("red")) {
-									int pos = lastYz.getWrPos();
+									int pos = lastYz.getWrPos() + 1;
 									if (pos >= redTimes.length) {
 										pos = 0;
 									}
@@ -682,7 +682,7 @@ public class TimesColorService {
 								}
 							} else {
 								if (yz.getYzColor().equals("red")) {
-									int pos = lastYz.getYzrPos();
+									int pos = lastYz.getYzrPos() + 1;
 									if (pos >= redTimes.length) {
 										pos = 0;
 									}
@@ -719,7 +719,7 @@ public class TimesColorService {
 								}
 							} else {
 								if (yz.getYzColor().equals("green")) {
-									int pos = lastYz.getYzgPos();
+									int pos = lastYz.getYzgPos() + 1;
 									if (pos >= redTimes.length) {
 										pos = 0;
 									}
