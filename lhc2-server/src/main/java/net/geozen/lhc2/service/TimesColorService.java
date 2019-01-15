@@ -469,7 +469,7 @@ public class TimesColorService {
 						colorYz2.setWr(1);
 						colorYz2.setWrPos(0);
 						colorYz2.setWrBase(1);
-						colorYz2.setWrColor("white");
+						colorYz2.setWrColor(yz.getWrColor());
 						colorYz2.setYzr(1);
 						colorYz2.setYzrPos(0);
 						colorYz2.setYzrBase(1);
@@ -510,7 +510,7 @@ public class TimesColorService {
 							colorYz2.setWr(1);
 							colorYz2.setWrPos(0);
 							colorYz2.setWrBase(1);
-							colorYz2.setWrColor("white");
+							colorYz2.setWrColor(yz.getWrColor());
 							colorYz2.setYzr(1);
 							colorYz2.setYzrBase(1);
 							colorYz2.setYzrPos(0);
