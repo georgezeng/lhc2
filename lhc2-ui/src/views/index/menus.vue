@@ -125,6 +125,16 @@
             <MenuItem name="comparision12">12表</MenuItem>
             <MenuItem name="comparision10">10表</MenuItem>
         </Submenu>
+        <Submenu name="emulate">
+            <template slot="title">
+                <Icon type="ios-stats" />
+                数据模拟
+            </template>
+            <MenuItem name="emulate18">18表</MenuItem>
+            <MenuItem name="emulate16">16表</MenuItem>
+            <MenuItem name="emulate12">12表</MenuItem>
+            <MenuItem name="emulate10">10表</MenuItem>
+        </Submenu>
     </Menu>
 </template>
 <script>

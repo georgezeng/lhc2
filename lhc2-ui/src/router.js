@@ -86,9 +86,41 @@ const RouterConfig = {
             path: '/comparision10',
             name: 'comparision10',
             meta: {
-                title: `${prefix}数据对比-16`
+                title: `${prefix}数据对比-10`
             },
             component: (resolve) => require(['./views/comparision/comparision-10.vue'], resolve)
+        },
+        {
+            path: '/emulate18',
+            name: 'emulate18',
+            meta: {
+                title: `${prefix}数据模拟-18`
+            },
+            component: (resolve) => require(['./views/emulate/emulate-18.vue'], resolve)
+        },
+        {
+            path: '/emulate16',
+            name: 'emulate16',
+            meta: {
+                title: `${prefix}数据模拟-16`
+            },
+            component: (resolve) => require(['./views/emulate/emulate-16.vue'], resolve)
+        },
+        {
+            path: '/emulate12',
+            name: 'emulate12',
+            meta: {
+                title: `${prefix}数据模拟-12`
+            },
+            component: (resolve) => require(['./views/emulate/emulate-12.vue'], resolve)
+        },
+        {
+            path: '/emulate10',
+            name: 'emulate10',
+            meta: {
+                title: `${prefix}数据模拟-10`
+            },
+            component: (resolve) => require(['./views/emulate/emulate-10.vue'], resolve)
         },
         {
             path: '/sxyz',

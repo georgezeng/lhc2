@@ -423,7 +423,58 @@ public class TimesColorService {
 					} else {
 						colorYz.setWr(lastColorYz.getWr() + 1);
 					}
-
+				}
+				
+				if (colorYz.getWrColor().equals("white")) {
+					if ("white".equals(lastColorYz.getWrColor())) {
+						colorYz.setLzColor("blue");
+						colorYz.setLz(colorYz.getWr() - 1);
+					} else {
+						colorYz.setLzColor("purple");
+						if ("blue".equals(lastColorYz.getLzColor())) {
+							colorYz.setLz(1);
+						} else {
+							colorYz.setLz(lastColorYz.getLz() + 1);
+						}
+					}
+				} else {
+					if ("red".equals(lastColorYz.getWrColor())) {
+						colorYz.setLzColor("blue");
+						colorYz.setLz(colorYz.getWr() - 1);
+					} else {
+						colorYz.setLzColor("purple");
+						if ("blue".equals(lastColorYz.getLzColor())) {
+							colorYz.setLz(1);
+						} else {
+							colorYz.setLz(lastColorYz.getLz() + 1);
+						}
+					}
+				}
+				
+				if (colorYz.getLzColor().equals("blue")) {
+					if ("blue".equals(lastColorYz.getLzColor())) {
+						colorYz.setChColor("orange");
+						colorYz.setCh(colorYz.getLz() - 1);
+					} else {
+						colorYz.setChColor("gray");
+						if ("orange".equals(lastColorYz.getChColor())) {
+							colorYz.setCh(1);
+						} else {
+							colorYz.setCh(lastColorYz.getCh() + 1);
+						}
+					}
+				} else {
+					if ("purple".equals(lastColorYz.getLzColor())) {
+						colorYz.setChColor("orange");
+						colorYz.setCh(colorYz.getLz() - 1);
+					} else {
+						colorYz.setChColor("gray");
+						if ("orange".equals(lastColorYz.getChColor())) {
+							colorYz.setCh(1);
+						} else {
+							colorYz.setCh(lastColorYz.getCh() + 1);
+						}
+					}
 				}
 
 				lastColorYz = colorYz;

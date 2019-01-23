@@ -30,6 +30,10 @@ public class ColorYz {
 	private String g4Color;
 	private String g5Color;
 	private String wrColor;
+	private String lzColor;
+	private String chColor;
+	private int ch;
+	private int lz;
 	private int wr;
 	private int yz;
 	private int r1;

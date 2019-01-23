@@ -9,16 +9,12 @@
         </p>
         <Table class="times-colors" style="float:left; width: 30%;" stripe border size="small" :loading="loading1"
                :columns="columns1" :data="data1"/>
-        <Table class="times-colors" style="float:left; width: 50%;" stripe border size="small" :loading="loading2"
+        <Table class="times-colors" style="float:left; width: 70%;" stripe border size="small" :loading="loading2"
                :columns="columns2" :data="data2"/>
-        <Table class="times-colors" style="float:left; width: 20%;" stripe border size="small" :loading="loading3"
-               :columns="columns3" :data="data3"/>
         <div style="clear:both;"></div>
     </Card>
 </template>
 <script>
-    import Menus from '../index/menus.vue';
-    import Footer from '../index/footer.vue';
     import API from '../../libs/api';
 
     export default {
@@ -31,10 +27,8 @@
             return {
                 loading1: true,
                 loading2: true,
-                loading3: true,
                 data1: [],
                 data2: [],
-                data3: [],
                 columns1: [
                     {
                         title: '期数',
@@ -366,22 +360,13 @@
                         }
                     },
                     {
-                        title: '',
-                        minWidth: 30,
-                        render(h, params) {
-                            return h('span', {});
-                        }
-                    }
-                ],
-                columns3: [
-                    {
-                        title: '红绿-红',
-                        width: 80,
+                        title: '蓝紫',
+                        width: 55,
                         render(h, params) {
                             const style = {};
                             style['padding'] = '10px';
-                            const data = params.row.yzr;
-                            const color = params.row.yzrColor;
+                            const data = params.row.lz;
+                            const color = params.row.lzColor;
                             style['background-color'] = color;
                             if (color != 'white') {
                                 style['color'] = 'white';
@@ -391,29 +376,13 @@
                         }
                     },
                     {
-                        title: '红绿-绿',
-                        width: 80,
+                        title: '橙灰',
+                        width: 55,
                         render(h, params) {
                             const style = {};
                             style['padding'] = '10px';
-                            const data = params.row.yzg;
-                            const color = params.row.yzgColor;
-                            style['background-color'] = color;
-                            if (color != 'white') {
-                                style['color'] = 'white';
-                            }
-                            style['font-weight'] = 'bold';
-                            return h('span', {style}, data);
-                        }
-                    },
-                    {
-                        title: '红白-红',
-                        width: 80,
-                        render(h, params) {
-                            const style = {};
-                            style['padding'] = '10px';
-                            const data = params.row.wr;
-                            const color = params.row.wrColor;
+                            const data = params.row.ch;
+                            const color = params.row.chColor;
                             style['background-color'] = color;
                             if (color != 'white') {
                                 style['color'] = 'white';
@@ -441,10 +410,6 @@
                 API.getColors(this.tables, this.type).then(data => {
                     this.loading2 = false;
                     this.data2 = data.slice(19);
-                });
-                API.getColors2(this.tables, this.type).then(data => {
-                    this.loading3 = false;
-                    this.data3 = data.slice(19);
                 });
             }
         },
