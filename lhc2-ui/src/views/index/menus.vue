@@ -118,22 +118,48 @@
         <Submenu name="comparision">
             <template slot="title">
                 <Icon type="ios-stats" />
-                数据对比
+                数据对比1
             </template>
-            <MenuItem name="comparision18">18表</MenuItem>
             <MenuItem name="comparision16">16表</MenuItem>
-            <MenuItem name="comparision12">12表</MenuItem>
             <MenuItem name="comparision10">10表</MenuItem>
+        </Submenu>
+        <Submenu name="comparision2">
+            <template slot="title">
+                <Icon type="ios-stats" />
+                数据对比2
+            </template>
+            <MenuItem name="comparision2-24">24表</MenuItem>
+            <MenuItem name="comparision2-20">20表</MenuItem>
+            <MenuItem name="comparision2-16">16表</MenuItem>
+            <MenuItem name="comparision2-12">12表</MenuItem>
+            <MenuItem name="comparision2-11">11表</MenuItem>
+            <MenuItem name="comparision2-10">10表</MenuItem>
+            <MenuItem name="comparision2-8">8表</MenuItem>
+            <MenuItem name="comparision2-6">6表</MenuItem>
+            <MenuItem name="comparision2-4">4表</MenuItem>
         </Submenu>
         <Submenu name="emulate">
             <template slot="title">
                 <Icon type="ios-stats" />
-                数据模拟
+                数据模拟1
             </template>
-            <MenuItem name="emulate18">18表</MenuItem>
             <MenuItem name="emulate16">16表</MenuItem>
-            <MenuItem name="emulate12">12表</MenuItem>
             <MenuItem name="emulate10">10表</MenuItem>
+        </Submenu>
+        <Submenu name="emulate2">
+            <template slot="title">
+                <Icon type="ios-stats" />
+                数据模拟2
+            </template>
+            <MenuItem name="emulate2-24">24表</MenuItem>
+            <MenuItem name="emulate2-20">20表</MenuItem>
+            <MenuItem name="emulate2-16">16表</MenuItem>
+            <MenuItem name="emulate2-12">12表</MenuItem>
+            <MenuItem name="emulate2-11">11表</MenuItem>
+            <MenuItem name="emulate2-10">10表</MenuItem>
+            <MenuItem name="emulate2-8">8表</MenuItem>
+            <MenuItem name="emulate2-6">6表</MenuItem>
+            <MenuItem name="emulate2-4">4表</MenuItem>
         </Submenu>
     </Menu>
 </template>

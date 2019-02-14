@@ -5,10 +5,10 @@
     <div class="layout">
         <Layout>
             <Header class="menus">
-                <Menus activeName="emulate12"/>
+                <Menus activeName="emulate2-24"/>
             </Header>
             <Content class="content">
-                <EmulateTable tables="11" type="P2" />
+                <EmulateTable tables="24" type="P2" />
             </Content>
             <Footer/>
         </Layout>

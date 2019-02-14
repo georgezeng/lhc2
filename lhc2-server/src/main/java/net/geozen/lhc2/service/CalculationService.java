@@ -183,9 +183,17 @@ public class CalculationService {
 		if (errors.isEmpty()) {
 			futures.clear();
 			futures.add(timeService.process(10, "P1"));
-			futures.add(timeService.process(11, "P2"));
 			futures.add(timeService.process(16, "P1"));
+			
+			futures.add(timeService.process(24, "P2"));
+			futures.add(timeService.process(20, "P2"));
 			futures.add(timeService.process(16, "P2"));
+			futures.add(timeService.process(12, "P2"));
+			futures.add(timeService.process(11, "P2"));
+			futures.add(timeService.process(10, "P2"));
+			futures.add(timeService.process(8, "P2"));
+			futures.add(timeService.process(6, "P2"));
+			futures.add(timeService.process(4, "P2"));
 			CommonUtil.waitWithException(futures, ex -> {
 				errors.add(ex.getMessage());
 			});

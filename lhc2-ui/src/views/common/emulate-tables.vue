@@ -27,6 +27,11 @@
                 data: [],
                 columns: [
                     {
+                        title: '期数',
+                        width: 50,
+                        key: 'phase'
+                    },
+                    {
                         title: '红绿-红',
                         width: 80,
                         render(h, params) {

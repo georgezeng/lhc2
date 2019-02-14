@@ -208,8 +208,15 @@ public class ZValueCalService {
 								return o1.getZ().compareTo(o2.getZ());
 							}
 						});
-						pickNum(tm, infos.subList(0, 16), 16);
+						pickNum(tm, infos.subList(0, 4), 4);
+						pickNum(tm, infos.subList(0, 6), 6);
+						pickNum(tm, infos.subList(0, 8), 8);
+						pickNum(tm, infos.subList(0, 10), 10);
 						pickNum(tm, infos.subList(0, 11), 11);
+						pickNum(tm, infos.subList(0, 12), 12);
+						pickNum(tm, infos.subList(0, 16), 16);
+						pickNum(tm, infos.subList(0, 20), 20);
+						pickNum(tm, infos.subList(0, 24), 24);
 					}
 					pageable = pageable.next();
 				}
