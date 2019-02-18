@@ -5,10 +5,10 @@
     <div class="layout">
         <Layout>
             <Header class="menus">
-                <Menus activeName="emulate2-11"/>
+                <Menus activeName="comparision2-33"/>
             </Header>
             <Content class="content">
-                <EmulateTable tables="11" type="P2" />
+                <ComparisionTable tables="33" type="P2" />
             </Content>
             <Footer/>
         </Layout>
@@ -17,13 +17,13 @@
 <script>
     import Menus from '../index/menus.vue';
     import Footer from '../index/footer.vue';
-    import EmulateTable from '../common/emulate-tables2.vue';
+    import ComparisionTable from '../common/comparison-tables2.vue';
 
     export default {
         components: {
             Menus,
             Footer,
-            EmulateTable
+            ComparisionTable
         }
     }
 </script>

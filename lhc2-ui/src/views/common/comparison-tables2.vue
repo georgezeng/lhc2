@@ -72,7 +72,7 @@
                     },
                     {
                         title: '4次+',
-                        width: 50,
+                        width: 60,
                         render(h, params) {
                             const style = {};
                             style['padding'] = '10px';

@@ -5,10 +5,10 @@
     <div class="layout">
         <Layout>
             <Header class="menus">
-                <Menus activeName="comparision2-6"/>
+                <Menus activeName="comparision2-2"/>
             </Header>
             <Content class="content">
-                <ComparisionTable tables="6" type="P2" />
+                <ComparisionTable tables="2" type="P2" />
             </Content>
             <Footer/>
         </Layout>

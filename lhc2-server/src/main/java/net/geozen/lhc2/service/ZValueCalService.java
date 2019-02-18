@@ -192,6 +192,8 @@ public class ZValueCalService {
 						futures.add(z7zfZValueCalService.process(tm));
 
 						List<ZInfo> infos = CommonUtil.waitForResult(futures);
+//						System.out.println("=============================");
+//						infos.stream().forEach(System.out::println);
 						Collections.sort(infos, new Comparator<ZInfo>() {
 
 							@Override
@@ -208,15 +210,24 @@ public class ZValueCalService {
 								return o1.getZ().compareTo(o2.getZ());
 							}
 						});
-						pickNum(tm, infos.subList(0, 4), 4);
-						pickNum(tm, infos.subList(0, 6), 6);
-						pickNum(tm, infos.subList(0, 8), 8);
-						pickNum(tm, infos.subList(0, 10), 10);
-						pickNum(tm, infos.subList(0, 11), 11);
-						pickNum(tm, infos.subList(0, 12), 12);
-						pickNum(tm, infos.subList(0, 16), 16);
-						pickNum(tm, infos.subList(0, 20), 20);
-						pickNum(tm, infos.subList(0, 24), 24);
+						// P2
+						pickNumForP2(tm, infos.subList(0, 2), 2);
+						pickNumForP2(tm, infos.subList(0, 4), 4);
+						pickNumForP2(tm, infos.subList(0, 8), 8);
+						pickNumForP2(tm, infos.subList(0, 10), 10);
+						pickNumForP2(tm, infos.subList(0, 12), 12);
+						pickNumForP2(tm, infos.subList(0, 16), 16);
+						pickNumForP2(tm, infos.subList(0, 20), 20);
+						pickNumForP2(tm, infos.subList(0, 24), 24);
+						pickNumForP2(tm, infos.subList(0, 33), 33);
+						
+						// P3
+						pickNumForP3(tm, infos.subList(31, 33), 2);
+						pickNumForP3(tm, infos.subList(30, 33), 3);
+						pickNumForP3(tm, infos.subList(29, 33), 4);
+						pickNumForP3(tm, infos.subList(25, 33), 8);
+						pickNumForP3(tm, infos.subList(17, 33), 16);
+						
 					}
 					pageable = pageable.next();
 				}
@@ -226,7 +237,7 @@ public class ZValueCalService {
 		}
 	}
 
-	private void pickNum(Tm tm, List<ZInfo> subInfos, int expected) throws Exception {
+	private void pickNumForP2(Tm tm, List<ZInfo> subInfos, int expected) throws Exception {
 		PickNumPayload payload = new PickNumPayload();
 		List<PickNumCountInfo> countInfos = new ArrayList<>();
 		for (int i = 1; i < 50; i++) {
@@ -247,6 +258,30 @@ public class ZValueCalService {
 		pickNum.setPhase(tm.getPhase());
 		pickNum.setTm(tm.getNum());
 		pickNum.setType("P2");
+		pickNumRepository.save(pickNum);
+	}
+	
+	private void pickNumForP3(Tm tm, List<ZInfo> subInfos, int expected) throws Exception {
+		PickNumPayload payload = new PickNumPayload();
+		List<PickNumCountInfo> countInfos = new ArrayList<>();
+		for (int i = 1; i < 50; i++) {
+			PickNumCountInfo countInfo = new PickNumCountInfo();
+			countInfo.setNum(i);
+			for (ZInfo info : subInfos) {
+				if (info != null && info.getMinNums() != null && info.getMinNums().contains(i)) {
+					countInfo.setCount(countInfo.getCount() + 1);
+				}
+			}
+			countInfos.add(countInfo);
+		}
+		payload.setInfos(countInfos);
+
+		PickNum pickNum = new PickNum();
+		pickNum.setExpected(expected);
+		pickNum.setPayload(map.writeValueAsString(payload));
+		pickNum.setPhase(tm.getPhase());
+		pickNum.setTm(tm.getNum());
+		pickNum.setType("P3");
 		pickNumRepository.save(pickNum);
 	}
 

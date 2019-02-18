@@ -51,12 +51,20 @@ const RouterConfig = {
             component: (resolve) => require(['./views/stat/stat-16-10.vue'], resolve)
         },
         {
-            path: '/stat-18-12',
-            name: 'stat-18-12',
+            path: '/stat-P2',
+            name: 'stat-P2',
             meta: {
-                title: `${prefix}数据统计-18&12`
+                title: `${prefix}数据统计-类型2`
             },
-            component: (resolve) => require(['./views/stat/stat-18-12.vue'], resolve)
+            component: (resolve) => require(['./views/stat/stat-P2.vue'], resolve)
+        },
+        {
+            path: '/stat-P3',
+            name: 'stat-P3',
+            meta: {
+                title: `${prefix}数据统计-类型3`
+            },
+            component: (resolve) => require(['./views/stat/stat-P3.vue'], resolve)
         },
         {
             path: '/comparision16',
@@ -73,6 +81,14 @@ const RouterConfig = {
                 title: `${prefix}数据对比-10`
             },
             component: (resolve) => require(['./views/comparision/comparision-10.vue'], resolve)
+        },
+        {
+            path: '/comparision2-33',
+            name: 'comparision2-33',
+            meta: {
+                title: `${prefix}数据对比2-33`
+            },
+            component: (resolve) => require(['./views/comparision2/comparision-33.vue'], resolve)
         },
         {
             path: '/comparision2-24',
@@ -107,14 +123,6 @@ const RouterConfig = {
             component: (resolve) => require(['./views/comparision2/comparision-12.vue'], resolve)
         },
         {
-            path: '/comparision2-11',
-            name: 'comparision2-11',
-            meta: {
-                title: `${prefix}数据对比2-11`
-            },
-            component: (resolve) => require(['./views/comparision2/comparision-11.vue'], resolve)
-        },
-        {
             path: '/comparision2-10',
             name: 'comparision2-10',
             meta: {
@@ -131,20 +139,60 @@ const RouterConfig = {
             component: (resolve) => require(['./views/comparision2/comparision-8.vue'], resolve)
         },
         {
-            path: '/comparision2-6',
-            name: 'comparision2-6',
-            meta: {
-                title: `${prefix}数据对比2-6`
-            },
-            component: (resolve) => require(['./views/comparision2/comparision-6.vue'], resolve)
-        },
-        {
             path: '/comparision2-4',
             name: 'comparision2-4',
             meta: {
                 title: `${prefix}数据对比2-4`
             },
             component: (resolve) => require(['./views/comparision2/comparision-4.vue'], resolve)
+        },
+        {
+            path: '/comparision2-2',
+            name: 'comparision2-2',
+            meta: {
+                title: `${prefix}数据对比2-2`
+            },
+            component: (resolve) => require(['./views/comparision2/comparision-2.vue'], resolve)
+        },
+        {
+            path: '/comparision3-16',
+            name: 'comparision3-16',
+            meta: {
+                title: `${prefix}数据对比3-16`
+            },
+            component: (resolve) => require(['./views/comparision3/comparision-16.vue'], resolve)
+        },
+        {
+            path: '/comparision3-8',
+            name: 'comparision3-8',
+            meta: {
+                title: `${prefix}数据对比3-8`
+            },
+            component: (resolve) => require(['./views/comparision3/comparision-8.vue'], resolve)
+        },
+        {
+            path: '/comparision3-4',
+            name: 'comparision3-4',
+            meta: {
+                title: `${prefix}数据对比3-4`
+            },
+            component: (resolve) => require(['./views/comparision3/comparision-4.vue'], resolve)
+        },
+        {
+            path: '/comparision3-3',
+            name: 'comparision3-3',
+            meta: {
+                title: `${prefix}数据对比3-3`
+            },
+            component: (resolve) => require(['./views/comparision3/comparision-3.vue'], resolve)
+        },
+        {
+            path: '/comparision3-2',
+            name: 'comparision3-2',
+            meta: {
+                title: `${prefix}数据对比3-2`
+            },
+            component: (resolve) => require(['./views/comparision3/comparision-2.vue'], resolve)
         },
         {
             path: '/emulate16',
@@ -161,6 +209,14 @@ const RouterConfig = {
                 title: `${prefix}数据模拟-10`
             },
             component: (resolve) => require(['./views/emulate/emulate-10.vue'], resolve)
+        },
+        {
+            path: '/emulate2-33',
+            name: 'emulate2-33',
+            meta: {
+                title: `${prefix}数据模拟2-33`
+            },
+            component: (resolve) => require(['./views/emulate2/emulate-33.vue'], resolve)
         },
         {
             path: '/emulate2-24',
@@ -195,14 +251,6 @@ const RouterConfig = {
             component: (resolve) => require(['./views/emulate2/emulate-12.vue'], resolve)
         },
         {
-            path: '/emulate2-11',
-            name: 'emulate2-11',
-            meta: {
-                title: `${prefix}数据模拟2-11`
-            },
-            component: (resolve) => require(['./views/emulate2/emulate-11.vue'], resolve)
-        },
-        {
             path: '/emulate2-10',
             name: 'emulate2-10',
             meta: {
@@ -219,20 +267,60 @@ const RouterConfig = {
             component: (resolve) => require(['./views/emulate2/emulate-8.vue'], resolve)
         },
         {
-            path: '/emulate2-6',
-            name: 'emulate2-6',
-            meta: {
-                title: `${prefix}数据模拟2-6`
-            },
-            component: (resolve) => require(['./views/emulate2/emulate-6.vue'], resolve)
-        },
-        {
             path: '/emulate2-4',
             name: 'emulate2-4',
             meta: {
                 title: `${prefix}数据模拟2-4`
             },
             component: (resolve) => require(['./views/emulate2/emulate-4.vue'], resolve)
+        },
+        {
+            path: '/emulate2-2',
+            name: 'emulate2-2',
+            meta: {
+                title: `${prefix}数据模拟2-2`
+            },
+            component: (resolve) => require(['./views/emulate2/emulate-2.vue'], resolve)
+        },
+        {
+            path: '/emulate3-16',
+            name: 'emulate3-16',
+            meta: {
+                title: `${prefix}数据模拟3-16`
+            },
+            component: (resolve) => require(['./views/emulate3/emulate-16.vue'], resolve)
+        },
+        {
+            path: '/emulate3-8',
+            name: 'emulate3-8',
+            meta: {
+                title: `${prefix}数据模拟3-8`
+            },
+            component: (resolve) => require(['./views/emulate3/emulate-8.vue'], resolve)
+        },
+        {
+            path: '/emulate3-4',
+            name: 'emulate3-4',
+            meta: {
+                title: `${prefix}数据模拟3-4`
+            },
+            component: (resolve) => require(['./views/emulate3/emulate-4.vue'], resolve)
+        },
+        {
+            path: '/emulate3-3',
+            name: 'emulate3-3',
+            meta: {
+                title: `${prefix}数据模拟3-3`
+            },
+            component: (resolve) => require(['./views/emulate3/emulate-3.vue'], resolve)
+        },
+        {
+            path: '/emulate3-2',
+            name: 'emulate3-2',
+            meta: {
+                title: `${prefix}数据模拟3-2`
+            },
+            component: (resolve) => require(['./views/emulate3/emulate-2.vue'], resolve)
         },
         {
             path: '/sxyz',

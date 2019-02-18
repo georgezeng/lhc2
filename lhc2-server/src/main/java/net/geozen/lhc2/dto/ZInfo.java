@@ -9,4 +9,5 @@ import lombok.Data;
 public class ZInfo {
 	private BigDecimal z;
 	private List<Integer> nums;
+	private List<Integer> minNums;
 }

@@ -48,22 +48,28 @@ public abstract class BaseYzZValueCalService<O, Y extends BaseEntity, S extends 
 			if (count >= len) {
 				avg = avg.divide(new BigDecimal(count), 2, RoundingMode.HALF_UP);
 				Y yz = getYzRepository().findByPhase(tm.getPhase());
-				BigDecimal b = BigDecimal.ZERO; // b for max
+				BigDecimal bmax = BigDecimal.ZERO; // b for max
+				BigDecimal bmin = new BigDecimal("999999");
 				BigDecimal c = BigDecimal.ZERO; // d for total
 				O max = null;
+				O min = null;
 				for (O o : getColumns()) {
 					Method m = ReflectionUtils.findMethod(yz.getClass(), "get" + getColumnName(o));
 					Integer value = (Integer) m.invoke(yz);
 					BigDecimal decimal = new BigDecimal(value);
-					if (b.compareTo(decimal) < 0) {
-						b = decimal;
+					if (bmax.compareTo(decimal) < 0) {
+						bmax = decimal;
 						max = o;
+					}
+					if(bmin.compareTo(decimal) > 0) {
+						bmin = decimal;
+						min = o;
 					}
 					c = c.add(decimal);
 				}
 
 				BigDecimal d = c.divide(new BigDecimal(getEndPos()), 2, RoundingMode.HALF_UP); // d for avg
-				BigDecimal x = d.divide(b, 2, RoundingMode.HALF_UP);
+				BigDecimal x = d.divide(bmax, 2, RoundingMode.HALF_UP);
 				S sw = getSwRepository().findByPhase(tm.getPhase());
 				BigDecimal f = BigDecimal.ZERO; // f for d1+d2+d3+d4+d5
 				for (int i = getEndPos() - 5; i < getEndPos(); i++) {
@@ -78,6 +84,7 @@ public abstract class BaseYzZValueCalService<O, Y extends BaseEntity, S extends 
 				info = new ZInfo();
 				info.setZ(z);
 				info.setNums(getNums(max));
+				info.setMinNums(getNums(min));
 			}
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);

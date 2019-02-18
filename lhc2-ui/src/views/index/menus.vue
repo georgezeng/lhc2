@@ -112,28 +112,40 @@
                 数据统计
             </template>
             <MenuItem name="stat-s2-s3">顺2-顺3</MenuItem>
+            <!--
             <MenuItem name="stat-16-10">16&10</MenuItem>
-            <MenuItem name="stat-18-12">18&12</MenuItem>
+            -->
+            <MenuItem name="stat-P2">类型2(2-33)</MenuItem>
+            <MenuItem name="stat-P3">类型3(2-16)</MenuItem>
         </Submenu>
         <Submenu name="comparision">
             <template slot="title">
                 <Icon type="ios-stats" />
                 数据对比
             </template>
+            <!--
             <MenuGroup title="类型1">
                 <MenuItem name="comparision16">16表</MenuItem>
                 <MenuItem name="comparision10">10表</MenuItem>
             </MenuGroup>
+            -->
             <MenuGroup title="类型2">
+                <MenuItem name="comparision2-33">33表</MenuItem>
                 <MenuItem name="comparision2-24">24表</MenuItem>
                 <MenuItem name="comparision2-20">20表</MenuItem>
                 <MenuItem name="comparision2-16">16表</MenuItem>
                 <MenuItem name="comparision2-12">12表</MenuItem>
-                <MenuItem name="comparision2-11">11表</MenuItem>
                 <MenuItem name="comparision2-10">10表</MenuItem>
                 <MenuItem name="comparision2-8">8表</MenuItem>
-                <MenuItem name="comparision2-6">6表</MenuItem>
                 <MenuItem name="comparision2-4">4表</MenuItem>
+                <MenuItem name="comparision2-2">2表</MenuItem>
+            </MenuGroup>
+            <MenuGroup title="类型3">
+                <MenuItem name="comparision3-16">16表</MenuItem>
+                <MenuItem name="comparision3-8">8表</MenuItem>
+                <MenuItem name="comparision3-4">4表</MenuItem>
+                <MenuItem name="comparision3-3">3表</MenuItem>
+                <MenuItem name="comparision3-2">2表</MenuItem>
             </MenuGroup>
         </Submenu>
         <Submenu name="emulate">
@@ -141,20 +153,29 @@
                 <Icon type="ios-stats" />
                 数据模拟
             </template>
+            <!--
             <MenuGroup title="类型1">
                 <MenuItem name="emulate16">16表</MenuItem>
                 <MenuItem name="emulate10">10表</MenuItem>
             </MenuGroup>
+            -->
             <MenuGroup title="类型2">
+                <MenuItem name="emulate2-33">33表</MenuItem>
                 <MenuItem name="emulate2-24">24表</MenuItem>
                 <MenuItem name="emulate2-20">20表</MenuItem>
                 <MenuItem name="emulate2-16">16表</MenuItem>
                 <MenuItem name="emulate2-12">12表</MenuItem>
-                <MenuItem name="emulate2-11">11表</MenuItem>
                 <MenuItem name="emulate2-10">10表</MenuItem>
                 <MenuItem name="emulate2-8">8表</MenuItem>
-                <MenuItem name="emulate2-6">6表</MenuItem>
                 <MenuItem name="emulate2-4">4表</MenuItem>
+                <MenuItem name="emulate2-2">2表</MenuItem>
+            </MenuGroup>
+            <MenuGroup title="类型3">
+                <MenuItem name="emulate3-16">16表</MenuItem>
+                <MenuItem name="emulate3-8">8表</MenuItem>
+                <MenuItem name="emulate3-4">4表</MenuItem>
+                <MenuItem name="emulate3-3">3表</MenuItem>
+                <MenuItem name="emulate3-2">2表</MenuItem>
             </MenuGroup>
         </Submenu>
     </Menu>

@@ -5,23 +5,47 @@
     <div class="layout">
         <Layout>
             <Header class="menus">
-                <Menus activeName="stat-18-12"/>
+                <Menus activeName="stat-P3"/>
             </Header>
             <Content class="content">
                 <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
-                        18表选号
+                        2表选号
                     </p>
-                    <Table stripe border size="small" :loading="loading3" :columns="columns2" :data="data3"/>
+                    <Table stripe border size="small" :loading="loading1" :columns="columns" :data="data1"/>
                 </Card>
                 <br/>
                 <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
-                        12表选号
+                        3表选号
                     </p>
-                    <Table stripe border size="small" :loading="loading4" :columns="columns2" :data="data4"/>
+                    <Table stripe border size="small" :loading="loading2" :columns="columns" :data="data2"/>
+                </Card>
+                <br/>
+                <Card>
+                    <p slot="title">
+                        <Icon type="ios-stats-outline"/>
+                        4表选号
+                    </p>
+                    <Table stripe border size="small" :loading="loading3" :columns="columns" :data="data3"/>
+                </Card>
+                <br/>
+                <Card>
+                    <p slot="title">
+                        <Icon type="ios-stats-outline"/>
+                        8表选号
+                    </p>
+                    <Table stripe border size="small" :loading="loading4" :columns="columns" :data="data4"/>
+                </Card>
+                <br/>
+                <Card>
+                    <p slot="title">
+                        <Icon type="ios-stats-outline"/>
+                        16表选号
+                    </p>
+                    <Table stripe border size="small" :loading="loading5" :columns="columns" :data="data5"/>
                 </Card>
             </Content>
             <Footer/>
@@ -50,11 +74,17 @@
                         order: 'DESC'
                     }
                 },
+                loading1: true,
+                loading2: true,
                 loading3: true,
                 loading4: true,
+                loading5: true,
+                data1: [],
+                data2: [],
                 data3: [],
                 data4: [],
-                columns2: [
+                data5: [],
+                columns: [
                     {
                         title: '定义',
                         width: 80,
@@ -88,21 +118,33 @@
         },
         methods: {
             loadData() {
-                this.changePage(1, 16, () => {
+                this.changePage(1, 2, () => {
+                    this.data1 = [];
+                    return this.data1
+                }, () => this.loading1 = true, () => this.loading1 = false);
+                this.changePage(1, 3, () => {
+                    this.data2 = [];
+                    return this.data2
+                }, () => this.loading2 = true, () => this.loading2 = false);
+                this.changePage(1, 4, () => {
                     this.data3 = [];
                     return this.data3
                 }, () => this.loading3 = true, () => this.loading3 = false);
-                this.changePage(1, 11, () => {
+                this.changePage(1, 8, () => {
                     this.data4 = [];
                     return this.data4
                 }, () => this.loading4 = true, () => this.loading4 = false);
+                this.changePage(1, 16, () => {
+                    this.data5 = [];
+                    return this.data5
+                }, () => this.loading5 = true, () => this.loading5 = false);
             },
             changePage(pageNo, expected, initData, startLoading, stopLoading) {
                 startLoading();
                 API.getPickNums({
                     data: {
                         expected,
-                        type: "P2"
+                        type: "P3"
                     },
                     page: {
                         num: pageNo,
@@ -112,94 +154,10 @@
                     }
                 }).then(result => {
                     stopLoading();
-                    this.setupData4(result.list, initData());
+                    this.setupData(result.list, initData());
                 });
             },
-            setupData1(result, data) {
-                result = result[0];
-                result.numArr0 = [];
-                result.numArr12 = [];
-                result.numArr34 = [];
-                result.numArr5Plus = [];
-                result.infos.map(info => {
-                    switch (info.count) {
-                        case 0:
-                            result.numArr0.push(info.num);
-                            break;
-                        case 1:
-                        case 2:
-                            result.numArr12.push(info.num);
-                            break;
-                        case 3:
-                        case 4:
-                            result.numArr34.push(info.num);
-                            break;
-                        default:
-                            result.numArr5Plus.push(info.num);
-                    }
-                });
-
-                data.push({colName: '0次', nums: result.numArr0});
-                data.push({colName: '1-2次', nums: result.numArr12});
-                data.push({colName: '3-4次', nums: result.numArr34});
-                data.push({colName: '5次+', nums: result.numArr5Plus});
-
-                return result;
-            },
-            setupData2(result, data) {
-                result = result[0];
-                result.numArr0 = [];
-                result.numArr1 = [];
-                result.numArr2Plus = [];
-                result.infos.map(info => {
-                    switch (info.count) {
-                        case 0:
-                            result.numArr0.push(info.num);
-                            break;
-                        case 1:
-                            result.numArr1.push(info.num);
-                            break;
-                        default:
-                            result.numArr2Plus.push(info.num);
-                    }
-                });
-
-                data.push({colName: '0次', nums: result.numArr0});
-                data.push({colName: '1次', nums: result.numArr1});
-                data.push({colName: '2次+', nums: result.numArr2Plus});
-
-                return result;
-            },
-            setupData3(result, data) {
-                result = result[0];
-                result.numArr0 = [];
-                result.numArr1 = [];
-                result.numArr2 = [];
-                result.numArr3Plus = [];
-                result.infos.map(info => {
-                    switch (info.count) {
-                        case 0:
-                            result.numArr0.push(info.num);
-                            break;
-                        case 1:
-                            result.numArr1.push(info.num);
-                            break;
-                        case 2:
-                            result.numArr2.push(info.num);
-                            break;
-                        default:
-                            result.numArr3Plus.push(info.num);
-                    }
-                });
-
-                data.push({colName: '0次', nums: result.numArr0});
-                data.push({colName: '1次', nums: result.numArr1});
-                data.push({colName: '2次', nums: result.numArr2});
-                data.push({colName: '3次+', nums: result.numArr3Plus});
-
-                return result;
-            },
-            setupData4(result, data) {
+            setupData(result, data) {
                 result = result[0];
                 result.numArr0 = [];
                 result.numArr123 = [];
