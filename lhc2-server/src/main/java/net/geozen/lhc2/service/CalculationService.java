@@ -185,9 +185,9 @@ public class CalculationService {
 //			futures.add(timeService.process(10, "P1"));
 //			futures.add(timeService.process(16, "P1"));
 			
-			futures.add(timeService.process(33, "P2"));
-			futures.add(timeService.process(24, "P2"));
-			futures.add(timeService.process(20, "P2"));
+//			futures.add(timeService.process(33, "P2"));
+//			futures.add(timeService.process(24, "P2"));
+//			futures.add(timeService.process(20, "P2"));
 			futures.add(timeService.process(16, "P2"));
 			futures.add(timeService.process(12, "P2"));
 			futures.add(timeService.process(10, "P2"));

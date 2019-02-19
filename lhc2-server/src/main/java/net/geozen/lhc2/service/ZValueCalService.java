@@ -142,54 +142,54 @@ public class ZValueCalService {
 						List<Future<ZInfo>> futures = new ArrayList<>();
 
 						futures.add(slqayzZValueCalService.process(tm));
-						futures.add(slqazfZValueCalService.process(tm));
+//						futures.add(slqazfZValueCalService.process(tm));
 
 						futures.add(slqbyzZValueCalService.process(tm));
-						futures.add(slqbzfZValueCalService.process(tm));
+//						futures.add(slqbzfZValueCalService.process(tm));
 
 						futures.add(slqcyzZValueCalService.process(tm));
-						futures.add(slqczfZValueCalService.process(tm));
+//						futures.add(slqczfZValueCalService.process(tm));
 
 						futures.add(slqdyzZValueCalService.process(tm));
-						futures.add(slqdzfZValueCalService.process(tm));
+//						futures.add(slqdzfZValueCalService.process(tm));
 
 						futures.add(slqbsyzZValueCalService.process(tm));
-						futures.add(slqbszfZValueCalService.process(tm));
+//						futures.add(slqbszfZValueCalService.process(tm));
 
 						futures.add(slqzsyzZValueCalService.process(tm));
-						futures.add(slqzszfZValueCalService.process(tm));
+//						futures.add(slqzszfZValueCalService.process(tm));
 
 						futures.add(slqwxyzZValueCalService.process(tm));
-						futures.add(slqwxzfZValueCalService.process(tm));
+//						futures.add(slqwxzfZValueCalService.process(tm));
 
 						futures.add(sxyzZValueCalService.process(tm));
-						futures.add(sxzfZValueCalService.process(tm));
+//						futures.add(sxzfZValueCalService.process(tm));
 
 						futures.add(seqyzZValueCalService.process(tm));
-						futures.add(seqzfZValueCalService.process(tm));
+//						futures.add(seqzfZValueCalService.process(tm));
 
 						futures.add(pdyzZValueCalService.process(tm));
-						futures.add(pdzfZValueCalService.process(tm));
+//						futures.add(pdzfZValueCalService.process(tm));
 
 						futures.add(z2yzZValueCalService.process(tm));
-						futures.add(z2zfZValueCalService.process(tm));
+//						futures.add(z2zfZValueCalService.process(tm));
 
 						futures.add(z13yzZValueCalService.process(tm));
-						futures.add(z13zfZValueCalService.process(tm));
+//						futures.add(z13zfZValueCalService.process(tm));
 
 						futures.add(mwyzZValueCalService.process(tm));
-						futures.add(mwzfZValueCalService.process(tm));
+//						futures.add(mwzfZValueCalService.process(tm));
 
 						futures.add(hsyzZValueCalService.process(tm));
-						futures.add(hszfZValueCalService.process(tm));
+//						futures.add(hszfZValueCalService.process(tm));
 
 						futures.add(dsyzZValueCalService.process(tm));
-						futures.add(dszfZValueCalService.process(tm));
+//						futures.add(dszfZValueCalService.process(tm));
 
 						futures.add(z7yzZValueCalService.process(tm));
-						futures.add(z7zfZValueCalService.process(tm));
+//						futures.add(z7zfZValueCalService.process(tm));
 
-						futures.add(z7zfZValueCalService.process(tm));
+//						futures.add(z7zfZValueCalService.process(tm));
 
 						List<ZInfo> infos = CommonUtil.waitForResult(futures);
 //						System.out.println("=============================");
@@ -216,18 +216,23 @@ public class ZValueCalService {
 						pickNumForP2(tm, infos.subList(0, 8), 8);
 						pickNumForP2(tm, infos.subList(0, 10), 10);
 						pickNumForP2(tm, infos.subList(0, 12), 12);
-						pickNumForP2(tm, infos.subList(0, 16), 16);
-						pickNumForP2(tm, infos.subList(0, 20), 20);
-						pickNumForP2(tm, infos.subList(0, 24), 24);
-						pickNumForP2(tm, infos.subList(0, 33), 33);
+						pickNumForP2(tm, infos, 16);
+//						pickNumForP2(tm, infos.subList(0, 16), 16);
+//						pickNumForP2(tm, infos.subList(0, 20), 20);
+//						pickNumForP2(tm, infos.subList(0, 24), 24);
+//						pickNumForP2(tm, infos.subList(0, 33), 33);
 						
 						// P3
-						pickNumForP3(tm, infos.subList(31, 33), 2);
-						pickNumForP3(tm, infos.subList(30, 33), 3);
-						pickNumForP3(tm, infos.subList(29, 33), 4);
-						pickNumForP3(tm, infos.subList(25, 33), 8);
-						pickNumForP3(tm, infos.subList(17, 33), 16);
-						
+//						pickNumForP3(tm, infos.subList(31, 33), 2);
+//						pickNumForP3(tm, infos.subList(30, 33), 3);
+//						pickNumForP3(tm, infos.subList(29, 33), 4);
+//						pickNumForP3(tm, infos.subList(25, 33), 8);
+//						pickNumForP3(tm, infos.subList(17, 33), 16);
+						pickNumForP3(tm, infos.subList(14, 16), 2);
+						pickNumForP3(tm, infos.subList(13, 16), 3);
+						pickNumForP3(tm, infos.subList(12, 16), 4);
+						pickNumForP3(tm, infos.subList(8, 16), 8);
+						pickNumForP3(tm, infos, 16);
 					}
 					pageable = pageable.next();
 				}
