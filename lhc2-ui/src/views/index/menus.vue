@@ -166,18 +166,20 @@
                 <MenuItem name="emulate2-33">33表</MenuItem>
                 <MenuItem name="emulate2-24">24表</MenuItem>
                 <MenuItem name="emulate2-20">20表</MenuItem>
-                -->
                 <MenuItem name="emulate2-16">16表</MenuItem>
-                <MenuItem name="emulate2-12">12表</MenuItem>
                 <MenuItem name="emulate2-10">10表</MenuItem>
+                -->
+                <MenuItem name="emulate2-12">12表</MenuItem>
                 <MenuItem name="emulate2-8">8表</MenuItem>
                 <MenuItem name="emulate2-4">4表</MenuItem>
                 <MenuItem name="emulate2-2">2表</MenuItem>
             </MenuGroup>
             <MenuGroup title="类型3">
-                <MenuItem name="emulate3-16">16表</MenuItem>
+                <!--
                 <MenuItem name="emulate3-8">8表</MenuItem>
                 <MenuItem name="emulate3-4">4表</MenuItem>
+                -->
+                <MenuItem name="emulate3-16">16表</MenuItem>
                 <MenuItem name="emulate3-3">3表</MenuItem>
                 <MenuItem name="emulate3-2">2表</MenuItem>
             </MenuGroup>
