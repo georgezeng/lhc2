@@ -134,18 +134,20 @@
                 <MenuItem name="comparision2-33">33表</MenuItem>
                 <MenuItem name="comparision2-24">24表</MenuItem>
                 <MenuItem name="comparision2-20">20表</MenuItem>
-                -->
                 <MenuItem name="comparision2-16">16表</MenuItem>
-                <MenuItem name="comparision2-12">12表</MenuItem>
                 <MenuItem name="comparision2-10">10表</MenuItem>
+                -->
+                <MenuItem name="comparision2-12">12表</MenuItem>
                 <MenuItem name="comparision2-8">8表</MenuItem>
                 <MenuItem name="comparision2-4">4表</MenuItem>
                 <MenuItem name="comparision2-2">2表</MenuItem>
             </MenuGroup>
             <MenuGroup title="类型3">
-                <MenuItem name="comparision3-16">16表</MenuItem>
+                <!--
                 <MenuItem name="comparision3-8">8表</MenuItem>
                 <MenuItem name="comparision3-4">4表</MenuItem>
+                -->
+                <MenuItem name="comparision3-16">16表</MenuItem>
                 <MenuItem name="comparision3-3">3表</MenuItem>
                 <MenuItem name="comparision3-2">2表</MenuItem>
             </MenuGroup>

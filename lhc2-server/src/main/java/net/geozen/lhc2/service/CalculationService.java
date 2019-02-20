@@ -10,6 +10,9 @@ import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 
 import lombok.Getter;
+import net.geozen.lhc2.jpa.ColorYz2Repository;
+import net.geozen.lhc2.jpa.ColorYzRepository;
+import net.geozen.lhc2.jpa.TimesYzRepository;
 import net.geozen.lhc2.service.bs.BsyzCalculationService;
 import net.geozen.lhc2.service.ds.DsyzCalculationService;
 import net.geozen.lhc2.service.dxds.Dxds1ayzCalculationService;
@@ -123,6 +126,15 @@ public class CalculationService {
 	
 	@Autowired
 	private ZValueCalService zvalueCalService;
+	
+	@Autowired
+	private TimesYzRepository timesYzRepository;
+
+	@Autowired
+	private ColorYzRepository colorYzRepository;
+
+	@Autowired
+	private ColorYz2Repository colorYz2Repository;
 
 	@Async
 	public Future<List<String>> process() throws Exception {
@@ -182,6 +194,11 @@ public class CalculationService {
 
 		if (errors.isEmpty()) {
 			futures.clear();
+			
+			timesYzRepository.deleteAll();
+			colorYzRepository.deleteAll();
+			colorYz2Repository.deleteAll();
+			
 //			futures.add(timeService.process(10, "P1"));
 //			futures.add(timeService.process(16, "P1"));
 			

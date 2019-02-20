@@ -32,14 +32,14 @@
                     <Table stripe border size="small" :loading="loading3" :columns="columns" :data="data3"/>
                 </Card>
                 <br/>
-                <Card>
-                    <p slot="title">
-                        <Icon type="ios-stats-outline"/>
-                        10表选号
-                    </p>
-                    <Table stripe border size="small" :loading="loading4" :columns="columns" :data="data4"/>
-                </Card>
-                <br/>
+                <!--<Card>-->
+                    <!--<p slot="title">-->
+                        <!--<Icon type="ios-stats-outline"/>-->
+                        <!--10表选号-->
+                    <!--</p>-->
+                    <!--<Table stripe border size="small" :loading="loading4" :columns="columns" :data="data4"/>-->
+                <!--</Card>-->
+                <!--<br/>-->
                 <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
@@ -47,38 +47,38 @@
                     </p>
                     <Table stripe border size="small" :loading="loading5" :columns="columns" :data="data5"/>
                 </Card>
-                <br/>
-                <Card>
-                    <p slot="title">
-                        <Icon type="ios-stats-outline"/>
-                        16表选号
-                    </p>
-                    <Table stripe border size="small" :loading="loading6" :columns="columns" :data="data6"/>
-                </Card>
-                <br/>
-                <Card>
-                    <p slot="title">
-                        <Icon type="ios-stats-outline"/>
-                        20表选号
-                    </p>
-                    <Table stripe border size="small" :loading="loading7" :columns="columns" :data="data7"/>
-                </Card>
-                <br/>
-                <Card>
-                    <p slot="title">
-                        <Icon type="ios-stats-outline"/>
-                        24表选号
-                    </p>
-                    <Table stripe border size="small" :loading="loading8" :columns="columns" :data="data8"/>
-                </Card>
-                <br/>
-                <Card>
-                    <p slot="title">
-                        <Icon type="ios-stats-outline"/>
-                        33表选号
-                    </p>
-                    <Table stripe border size="small" :loading="loading9" :columns="columns" :data="data9"/>
-                </Card>
+                <!--<br/>-->
+                <!--<Card>-->
+                    <!--<p slot="title">-->
+                        <!--<Icon type="ios-stats-outline"/>-->
+                        <!--16表选号-->
+                    <!--</p>-->
+                    <!--<Table stripe border size="small" :loading="loading6" :columns="columns" :data="data6"/>-->
+                <!--</Card>-->
+                <!--<br/>-->
+                <!--<Card>-->
+                    <!--<p slot="title">-->
+                        <!--<Icon type="ios-stats-outline"/>-->
+                        <!--20表选号-->
+                    <!--</p>-->
+                    <!--<Table stripe border size="small" :loading="loading7" :columns="columns" :data="data7"/>-->
+                <!--</Card>-->
+                <!--<br/>-->
+                <!--<Card>-->
+                    <!--<p slot="title">-->
+                        <!--<Icon type="ios-stats-outline"/>-->
+                        <!--24表选号-->
+                    <!--</p>-->
+                    <!--<Table stripe border size="small" :loading="loading8" :columns="columns" :data="data8"/>-->
+                <!--</Card>-->
+                <!--<br/>-->
+                <!--<Card>-->
+                    <!--<p slot="title">-->
+                        <!--<Icon type="ios-stats-outline"/>-->
+                        <!--33表选号-->
+                    <!--</p>-->
+                    <!--<Table stripe border size="small" :loading="loading9" :columns="columns" :data="data9"/>-->
+                <!--</Card>-->
             </Content>
             <Footer/>
         </Layout>
@@ -170,30 +170,30 @@
                     this.data3 = [];
                     return this.data3
                 }, () => this.loading3 = true, () => this.loading3 = false);
-                this.changePage(1, 10, () => {
-                    this.data4 = [];
-                    return this.data4
-                }, () => this.loading4 = true, () => this.loading4 = false);
+                // this.changePage(1, 10, () => {
+                //     this.data4 = [];
+                //     return this.data4
+                // }, () => this.loading4 = true, () => this.loading4 = false);
                 this.changePage(1, 12, () => {
                     this.data5 = [];
                     return this.data5
                 }, () => this.loading5 = true, () => this.loading5 = false);
-                this.changePage(1, 16, () => {
-                    this.data6 = [];
-                    return this.data6
-                }, () => this.loading6 = true, () => this.loading6 = false);
-                this.changePage(1, 20, () => {
-                    this.data7 = [];
-                    return this.data7
-                }, () => this.loading7 = true, () => this.loading7 = false);
-                this.changePage(1, 24, () => {
-                    this.data8 = [];
-                    return this.data8
-                }, () => this.loading8 = true, () => this.loading8 = false);
-                this.changePage(1, 33, () => {
-                    this.data9 = [];
-                    return this.data9
-                }, () => this.loading9 = true, () => this.loading9 = false);
+                // this.changePage(1, 16, () => {
+                //     this.data6 = [];
+                //     return this.data6
+                // }, () => this.loading6 = true, () => this.loading6 = false);
+                // this.changePage(1, 20, () => {
+                //     this.data7 = [];
+                //     return this.data7
+                // }, () => this.loading7 = true, () => this.loading7 = false);
+                // this.changePage(1, 24, () => {
+                //     this.data8 = [];
+                //     return this.data8
+                // }, () => this.loading8 = true, () => this.loading8 = false);
+                // this.changePage(1, 33, () => {
+                //     this.data9 = [];
+                //     return this.data9
+                // }, () => this.loading9 = true, () => this.loading9 = false);
             },
             changePage(pageNo, expected, initData, startLoading, stopLoading) {
                 startLoading();

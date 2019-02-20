@@ -594,9 +594,6 @@ public class TimesColorService {
 				}
 			}
 
-			timesYzRepository.deleteAll(timesYzRepository.findAllByTablesAndType(tables + "", type));
-			colorYzRepository.deleteAll(colorYzRepository.findAllByTablesAndType(tables + "", type));
-			colorYz2Repository.deleteAll(colorYz2Repository.findAllByTablesAndType(tables + "", type));
 			timesYzRepository.saveAll(timesYzList);
 			colorYzRepository.saveAll(colorYzList);
 			colorYz2Repository.saveAll(colorYz2List);
