@@ -15,6 +15,7 @@ import net.geozen.lhc2.dto.MaxInfo;
 import net.geozen.lhc2.enums.SX;
 import net.geozen.lhc2.jpa.sx.SxyzRepository;
 import net.geozen.lhc2.jpa.sx.SxzfRepository;
+import net.geozen.lhc2.nums.SxNums;
 import net.geozen.lhc2.utils.SxUtil;
 
 @Service
@@ -99,8 +100,9 @@ public class SxzfCalculationService {
 		if (pos >= endPos) {
 			pos = pos - endPos;
 		}
-		SX bmnSx = SxUtil.getSxByYear(new Date());
-		return SxUtil.getSxNums(bmnSx, SX.posOf(pos + 1));
+//		SX bmnSx = SxUtil.getSxByYear(new Date());
+//		return SxUtil.getSxNums(bmnSx, SX.posOf(pos + 1));
+		return SxNums.LISTS.get(SX.posOf(pos + 1).getNumsPos());
 	}
 
 }

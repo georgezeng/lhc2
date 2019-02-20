@@ -44,6 +44,7 @@ import net.geozen.lhc2.nums.PdNums;
 import net.geozen.lhc2.nums.QqNums;
 import net.geozen.lhc2.nums.SeqNums;
 import net.geozen.lhc2.nums.SlqdNums;
+import net.geozen.lhc2.nums.SxNums;
 import net.geozen.lhc2.nums.Z13Nums;
 import net.geozen.lhc2.nums.Z2Nums;
 import net.geozen.lhc2.nums.Z7Nums;
@@ -236,8 +237,9 @@ public class CombineService {
 
 	private Set<Integer> getA() {
 		Set<Integer> set = new HashSet<>();
-		SX bmnSx = SxUtil.getSxByYear(new Date());
-		List<Integer> list = SxUtil.getSxNums(bmnSx, sxRepository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw2sx());
+//		SX bmnSx = SxUtil.getSxByYear(new Date());
+//		List<Integer> list = SxUtil.getSxNums(bmnSx, sxRepository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw2sx());
+		List<Integer> list = SxNums.LISTS.get(sxRepository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw2sx().getNumsPos());
 		set.addAll(list);
 		list = SeqNums.LISTS.get(seqRepository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw2Pos());
 		set.addAll(list);
@@ -251,8 +253,9 @@ public class CombineService {
 
 	private Set<Integer> getE() {
 		Set<Integer> set = new HashSet<>();
-		SX bmnSx = SxUtil.getSxByYear(new Date());
-		List<Integer> list = SxUtil.getSxNums(bmnSx, sxRepository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw3sx());
+//		SX bmnSx = SxUtil.getSxByYear(new Date());
+//		List<Integer> list = SxUtil.getSxNums(bmnSx, sxRepository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw3sx());
+		List<Integer> list = SxNums.LISTS.get(sxRepository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw3sx().getNumsPos());
 		set.addAll(list);
 		list = SeqNums.LISTS.get(seqRepository.findAll(Sort.by(Direction.DESC, "phase")).iterator().next().getSw3Pos());
 		set.addAll(list);

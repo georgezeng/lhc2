@@ -192,8 +192,8 @@ public class ZValueCalService {
 //						futures.add(z7zfZValueCalService.process(tm));
 
 						List<ZInfo> infos = CommonUtil.waitForResult(futures);
-//						System.out.println("=============================");
-//						infos.stream().forEach(System.out::println);
+						System.out.println("=============================");
+						infos.stream().forEach(System.out::println);
 						Collections.sort(infos, new Comparator<ZInfo>() {
 
 							@Override

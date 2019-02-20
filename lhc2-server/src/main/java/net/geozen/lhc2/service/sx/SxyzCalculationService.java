@@ -23,6 +23,7 @@ import net.geozen.lhc2.dto.MaxInfo;
 import net.geozen.lhc2.enums.SX;
 import net.geozen.lhc2.jpa.TmRepository;
 import net.geozen.lhc2.jpa.sx.SxyzRepository;
+import net.geozen.lhc2.nums.SxNums;
 import net.geozen.lhc2.utils.SxUtil;
 import net.geozen.lhc2.utils.SystemConstants;
 
@@ -113,8 +114,9 @@ public class SxyzCalculationService {
 	}
 
 	public List<Integer> getNumbers(MaxInfo info) throws Exception {
-		SX bmnSx = SxUtil.getSxByYear(new Date());
-		return SxUtil.getSxNums(bmnSx, info.getSx());
+//		SX bmnSx = SxUtil.getSxByYear(new Date());
+//		return SxUtil.getSxNums(bmnSx, info.getSx());
+		return SxNums.LISTS.get(info.getSx().getNumsPos());
 	}
 
 }

@@ -13,18 +13,18 @@ import lombok.Getter;
 @AllArgsConstructor
 @JsonFormat(shape = Shape.OBJECT)
 public enum SX {
-	Shu(1, "鼠", 2, true, true, "Shu"), 
-	Niu(2, "牛", 3, false, true, "Niu"), 
-	Hu(3, "虎", 4, true, true, "Hu"), 
-	Tu(4, "兔", 3, false, true, "Tu"), 
-	Long(5, "龙", 4, true, true, "Lonng"), 
-	She(6, "蛇", 5, false, true, "She"), 
-	Ma(7, "马", 4, true, false, "Ma"), 
-	Yang(8, "羊", 5, false, false, "Yang"), 
-	Hou(9, "猴", 6, true, false, "Hou"), 
-	Ji(10, "鸡", 5, false, false, "Ji"), 
-	Gou(11, "狗", 6, true, false, "Gou"), 
-	Zhu(12, "猪", 7, false, false, "Zhu");
+	Shu(1, "鼠", 2, true, true, "Shu", 11), 
+	Niu(2, "牛", 3, false, true, "Niu", 10), 
+	Hu(3, "虎", 4, true, true, "Hu", 9), 
+	Tu(4, "兔", 3, false, true, "Tu", 8), 
+	Long(5, "龙", 4, true, true, "Lonng", 7), 
+	She(6, "蛇", 5, false, true, "She", 6), 
+	Ma(7, "马", 4, true, false, "Ma", 5), 
+	Yang(8, "羊", 5, false, false, "Yang", 4), 
+	Hou(9, "猴", 6, true, false, "Hou", 3), 
+	Ji(10, "鸡", 5, false, false, "Ji", 2), 
+	Gou(11, "狗", 6, true, false, "Gou", 1), 
+	Zhu(12, "猪", 7, false, false, "Zhu", 0);
 
 	private final int pos;
 
@@ -37,6 +37,8 @@ public enum SX {
 	private final boolean small;
 
 	private final String column;
+	
+	private final int numsPos;
 
 	public static List<SX> list() {
 		List<SX> list = new ArrayList<>();
