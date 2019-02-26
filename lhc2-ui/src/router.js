@@ -67,6 +67,14 @@ const RouterConfig = {
             component: (resolve) => require(['./views/stat/stat-P3.vue'], resolve)
         },
         {
+            path: '/stat-P2-P3',
+            name: 'stat-P2-P3',
+            meta: {
+                title: `${prefix}数据统计-类型2-类型3`
+            },
+            component: (resolve) => require(['./views/stat/stat-P2-P3.vue'], resolve)
+        },
+        {
             path: '/comparision16',
             name: 'comparision16',
             meta: {
@@ -155,6 +163,14 @@ const RouterConfig = {
             component: (resolve) => require(['./views/comparision2/comparision-2.vue'], resolve)
         },
         {
+            path: '/comparision2-1',
+            name: 'comparision2-1',
+            meta: {
+                title: `${prefix}数据对比2-2`
+            },
+            component: (resolve) => require(['./views/comparision2/comparision-1.vue'], resolve)
+        },
+        {
             path: '/comparision3-16',
             name: 'comparision3-16',
             meta: {
@@ -193,6 +209,14 @@ const RouterConfig = {
                 title: `${prefix}数据对比3-2`
             },
             component: (resolve) => require(['./views/comparision3/comparision-2.vue'], resolve)
+        },
+        {
+            path: '/comparision3-1',
+            name: 'comparision3-1',
+            meta: {
+                title: `${prefix}数据对比3-1`
+            },
+            component: (resolve) => require(['./views/comparision3/comparision-1.vue'], resolve)
         },
         {
             path: '/emulate16',
@@ -283,6 +307,14 @@ const RouterConfig = {
             component: (resolve) => require(['./views/emulate2/emulate-2.vue'], resolve)
         },
         {
+            path: '/emulate2-1',
+            name: 'emulate2-1',
+            meta: {
+                title: `${prefix}数据模拟2-1`
+            },
+            component: (resolve) => require(['./views/emulate2/emulate-1.vue'], resolve)
+        },
+        {
             path: '/emulate3-16',
             name: 'emulate3-16',
             meta: {
@@ -321,6 +353,14 @@ const RouterConfig = {
                 title: `${prefix}数据模拟3-2`
             },
             component: (resolve) => require(['./views/emulate3/emulate-2.vue'], resolve)
+        },
+        {
+            path: '/emulate3-1',
+            name: 'emulate3-1',
+            meta: {
+                title: `${prefix}数据模拟3-1`
+            },
+            component: (resolve) => require(['./views/emulate3/emulate-1.vue'], resolve)
         },
         {
             path: '/sxyz',

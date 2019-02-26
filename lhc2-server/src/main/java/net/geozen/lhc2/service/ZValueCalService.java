@@ -211,12 +211,13 @@ public class ZValueCalService {
 							}
 						});
 						// P2
-						pickNumForP2(tm, infos.subList(0, 2), 2);
-						pickNumForP2(tm, infos.subList(0, 4), 4);
-						pickNumForP2(tm, infos.subList(0, 8), 8);
+						pickNumForP2(tm, infos.subList(0, 1), 1);
+//						pickNumForP2(tm, infos.subList(0, 2), 2);
+//						pickNumForP2(tm, infos.subList(0, 4), 4);
+//						pickNumForP2(tm, infos.subList(0, 8), 8);
 //						pickNumForP2(tm, infos.subList(0, 10), 10);
-						pickNumForP2(tm, infos.subList(0, 12), 12);
-//						pickNumForP2(tm, infos, 16);
+//						pickNumForP2(tm, infos.subList(0, 12), 12);
+						pickNumForP2(tm, infos, 16);
 //						pickNumForP2(tm, infos.subList(0, 16), 16);
 //						pickNumForP2(tm, infos.subList(0, 20), 20);
 //						pickNumForP2(tm, infos.subList(0, 24), 24);
@@ -228,8 +229,8 @@ public class ZValueCalService {
 //						pickNumForP3(tm, infos.subList(29, 33), 4);
 //						pickNumForP3(tm, infos.subList(25, 33), 8);
 //						pickNumForP3(tm, infos.subList(17, 33), 16);
-						pickNumForP3(tm, infos.subList(14, 16), 2);
-						pickNumForP3(tm, infos.subList(13, 16), 3);
+						pickNumForP3(tm, infos.subList(15, 16), 1);
+//						pickNumForP3(tm, infos.subList(13, 16), 3);
 //						pickNumForP3(tm, infos.subList(12, 16), 4);
 //						pickNumForP3(tm, infos.subList(8, 16), 8);
 						pickNumForP3(tm, infos, 16);

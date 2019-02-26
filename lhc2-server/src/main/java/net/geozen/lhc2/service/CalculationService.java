@@ -205,18 +205,19 @@ public class CalculationService {
 //			futures.add(timeService.process(33, "P2"));
 //			futures.add(timeService.process(24, "P2"));
 //			futures.add(timeService.process(20, "P2"));
-//			futures.add(timeService.process(16, "P2"));
-			futures.add(timeService.process(12, "P2"));
+			futures.add(timeService.process(16, "P2"));
+//			futures.add(timeService.process(12, "P2"));
 //			futures.add(timeService.process(10, "P2"));
-			futures.add(timeService.process(8, "P2"));
-			futures.add(timeService.process(4, "P2"));
-			futures.add(timeService.process(2, "P2"));
+//			futures.add(timeService.process(8, "P2"));
+//			futures.add(timeService.process(4, "P2"));
+			futures.add(timeService.process(1, "P2"));
 			
 			futures.add(timeService.process(16, "P3"));
 //			futures.add(timeService.process(8, "P3"));
 //			futures.add(timeService.process(4, "P3"));
-			futures.add(timeService.process(3, "P3"));
-			futures.add(timeService.process(2, "P3"));
+//			futures.add(timeService.process(3, "P3"));
+//			futures.add(timeService.process(2, "P3"));
+			futures.add(timeService.process(1, "P3"));
 			CommonUtil.waitWithException(futures, ex -> {
 				errors.add(ex.getMessage());
 			});
