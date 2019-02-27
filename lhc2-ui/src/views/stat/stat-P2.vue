@@ -11,27 +11,27 @@
                 <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
-                        2表选号
+                        1表选号
                     </p>
                     <Table stripe border size="small" :loading="loading1" :columns="columns" :data="data1"/>
                 </Card>
-                <br/>
-                <Card>
-                    <p slot="title">
-                        <Icon type="ios-stats-outline"/>
-                        4表选号
-                    </p>
-                    <Table stripe border size="small" :loading="loading2" :columns="columns" :data="data2"/>
-                </Card>
-                <br/>
-                <Card>
-                    <p slot="title">
-                        <Icon type="ios-stats-outline"/>
-                        8表选号
-                    </p>
-                    <Table stripe border size="small" :loading="loading3" :columns="columns" :data="data3"/>
-                </Card>
-                <br/>
+                <!--<br/>-->
+                <!--<Card>-->
+                    <!--<p slot="title">-->
+                        <!--<Icon type="ios-stats-outline"/>-->
+                        <!--4表选号-->
+                    <!--</p>-->
+                    <!--<Table stripe border size="small" :loading="loading2" :columns="columns" :data="data2"/>-->
+                <!--</Card>-->
+                <!--<br/>-->
+                <!--<Card>-->
+                    <!--<p slot="title">-->
+                        <!--<Icon type="ios-stats-outline"/>-->
+                        <!--8表选号-->
+                    <!--</p>-->
+                    <!--<Table stripe border size="small" :loading="loading3" :columns="columns" :data="data3"/>-->
+                <!--</Card>-->
+                <!--<br/>-->
                 <!--<Card>-->
                     <!--<p slot="title">-->
                         <!--<Icon type="ios-stats-outline"/>-->
@@ -40,21 +40,21 @@
                     <!--<Table stripe border size="small" :loading="loading4" :columns="columns" :data="data4"/>-->
                 <!--</Card>-->
                 <!--<br/>-->
-                <Card>
-                    <p slot="title">
-                        <Icon type="ios-stats-outline"/>
-                        12表选号
-                    </p>
-                    <Table stripe border size="small" :loading="loading5" :columns="columns" :data="data5"/>
-                </Card>
-                <!--<br/>-->
                 <!--<Card>-->
                     <!--<p slot="title">-->
                         <!--<Icon type="ios-stats-outline"/>-->
-                        <!--16表选号-->
+                        <!--12表选号-->
                     <!--</p>-->
-                    <!--<Table stripe border size="small" :loading="loading6" :columns="columns" :data="data6"/>-->
+                    <!--<Table stripe border size="small" :loading="loading5" :columns="columns" :data="data5"/>-->
                 <!--</Card>-->
+                <br/>
+                <Card>
+                    <p slot="title">
+                        <Icon type="ios-stats-outline"/>
+                        16表选号
+                    </p>
+                    <Table stripe border size="small" :loading="loading6" :columns="columns" :data="data6"/>
+                </Card>
                 <!--<br/>-->
                 <!--<Card>-->
                     <!--<p slot="title">-->
@@ -158,30 +158,34 @@
         },
         methods: {
             loadData() {
-                this.changePage(1, 2, () => {
+                this.changePage(1, 1, () => {
                     this.data1 = [];
                     return this.data1
                 }, () => this.loading1 = true, () => this.loading1 = false);
-                this.changePage(1, 4, () => {
-                    this.data2 = [];
-                    return this.data2
-                }, () => this.loading2 = true, () => this.loading2 = false);
-                this.changePage(1, 8, () => {
-                    this.data3 = [];
-                    return this.data3
-                }, () => this.loading3 = true, () => this.loading3 = false);
+                // this.changePage(1, 2, () => {
+                //     this.data1 = [];
+                //     return this.data1
+                // }, () => this.loading1 = true, () => this.loading1 = false);
+                // this.changePage(1, 4, () => {
+                //     this.data2 = [];
+                //     return this.data2
+                // }, () => this.loading2 = true, () => this.loading2 = false);
+                // this.changePage(1, 8, () => {
+                //     this.data3 = [];
+                //     return this.data3
+                // }, () => this.loading3 = true, () => this.loading3 = false);
                 // this.changePage(1, 10, () => {
                 //     this.data4 = [];
                 //     return this.data4
                 // }, () => this.loading4 = true, () => this.loading4 = false);
-                this.changePage(1, 12, () => {
-                    this.data5 = [];
-                    return this.data5
-                }, () => this.loading5 = true, () => this.loading5 = false);
-                // this.changePage(1, 16, () => {
-                //     this.data6 = [];
-                //     return this.data6
-                // }, () => this.loading6 = true, () => this.loading6 = false);
+                // this.changePage(1, 12, () => {
+                //     this.data5 = [];
+                //     return this.data5
+                // }, () => this.loading5 = true, () => this.loading5 = false);
+                this.changePage(1, 16, () => {
+                    this.data6 = [];
+                    return this.data6
+                }, () => this.loading6 = true, () => this.loading6 = false);
                 // this.changePage(1, 20, () => {
                 //     this.data7 = [];
                 //     return this.data7

@@ -11,18 +11,18 @@
                 <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
-                        2表选号
+                        1表选号
                     </p>
                     <Table stripe border size="small" :loading="loading1" :columns="columns" :data="data1"/>
                 </Card>
-                <br/>
-                <Card>
-                    <p slot="title">
-                        <Icon type="ios-stats-outline"/>
-                        3表选号
-                    </p>
-                    <Table stripe border size="small" :loading="loading2" :columns="columns" :data="data2"/>
-                </Card>
+                <!--<br/>-->
+                <!--<Card>-->
+                    <!--<p slot="title">-->
+                        <!--<Icon type="ios-stats-outline"/>-->
+                        <!--3表选号-->
+                    <!--</p>-->
+                    <!--<Table stripe border size="small" :loading="loading2" :columns="columns" :data="data2"/>-->
+                <!--</Card>-->
                 <br/>
                 <!--<Card>-->
                     <!--<p slot="title">-->
@@ -118,14 +118,14 @@
         },
         methods: {
             loadData() {
-                this.changePage(1, 2, () => {
+                this.changePage(1, 1, () => {
                     this.data1 = [];
                     return this.data1
                 }, () => this.loading1 = true, () => this.loading1 = false);
-                this.changePage(1, 3, () => {
-                    this.data2 = [];
-                    return this.data2
-                }, () => this.loading2 = true, () => this.loading2 = false);
+                // this.changePage(1, 3, () => {
+                //     this.data2 = [];
+                //     return this.data2
+                // }, () => this.loading2 = true, () => this.loading2 = false);
                 // this.changePage(1, 4, () => {
                 //     this.data3 = [];
                 //     return this.data3
