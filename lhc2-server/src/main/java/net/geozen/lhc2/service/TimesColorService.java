@@ -119,7 +119,7 @@ public class TimesColorService {
 						timesYz.setTime3Plus(0);
 					}
 					}
-				} else {
+				} else if("P2".equals(type)){
 					switch (tmInfo.getCount()) {
 					case 0: {
 						color = "green";
@@ -132,6 +132,33 @@ public class TimesColorService {
 					case 1:
 					case 2:
 					case 3: {
+						timesYz.setPos(1);
+						color = "red";
+						timesYz.setTime0(lastTimesYz.getTime0() + 1);
+						timesYz.setTime12(0);
+						timesYz.setTime3Plus(lastTimesYz.getTime3Plus() + 1);
+					}
+						break;
+					default: {
+						timesYz.setPos(2);
+						color = "green";
+						timesYz.setTime0(lastTimesYz.getTime0() + 1);
+						timesYz.setTime12(lastTimesYz.getTime12() + 1);
+						timesYz.setTime3Plus(0);
+					}
+					}
+				} else {
+					switch (tmInfo.getCount()) {
+					case 0: {
+						color = "green";
+						timesYz.setTime0(0);
+						timesYz.setPos(0);
+						timesYz.setTime12(lastTimesYz.getTime12() + 1);
+						timesYz.setTime3Plus(lastTimesYz.getTime3Plus() + 1);
+					}
+						break;
+					case 1:
+					case 2: {
 						timesYz.setPos(1);
 						color = "red";
 						timesYz.setTime0(lastTimesYz.getTime0() + 1);
