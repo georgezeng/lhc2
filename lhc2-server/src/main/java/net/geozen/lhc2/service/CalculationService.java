@@ -217,7 +217,7 @@ public class CalculationService {
 //			futures.add(timeService.process(4, "P3"));
 //			futures.add(timeService.process(3, "P3"));
 //			futures.add(timeService.process(2, "P3"));
-			futures.add(timeService.process(1, "P3"));
+			futures.add(timeService.process(4, "P3"));
 			CommonUtil.waitWithException(futures, ex -> {
 				errors.add(ex.getMessage());
 			});

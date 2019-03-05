@@ -230,7 +230,7 @@ public class ZValueCalService {
 //						pickNumForP3(tm, infos.subList(29, 33), 4);
 //						pickNumForP3(tm, infos.subList(25, 33), 8);
 //						pickNumForP3(tm, infos.subList(17, 33), 16);
-						pickNumForP3(tm, infos.subList(32, 33), 1);
+						pickNumForP3(tm, infos.subList(29, 33), 4);
 //						pickNumForP3(tm, infos.subList(13, 16), 3);
 //						pickNumForP3(tm, infos.subList(12, 16), 4);
 //						pickNumForP3(tm, infos.subList(8, 16), 8);

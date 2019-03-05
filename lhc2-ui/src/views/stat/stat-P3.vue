@@ -11,7 +11,7 @@
                 <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
-                        1表选号
+                        4表选号
                     </p>
                     <Table stripe border size="small" :loading="loading1" :columns="columns" :data="data1"/>
                 </Card>
@@ -118,7 +118,7 @@
         },
         methods: {
             loadData() {
-                this.changePage(1, 1, () => {
+                this.changePage(1, 4, () => {
                     this.data1 = [];
                     return this.data1
                 }, () => this.loading1 = true, () => this.loading1 = false);
@@ -160,8 +160,8 @@
             setupData(result, data) {
                 result = result[0];
                 result.numArr0 = [];
-                result.numArr123 = [];
-                result.numArr4Plus = [];
+                result.numArr12 = [];
+                result.numArr3Plus = [];
                 result.infos.map(info => {
                     switch (info.count) {
                         case 0:
@@ -169,17 +169,16 @@
                             break;
                         case 1:
                         case 2:
-                        case 3:
-                            result.numArr123.push(info.num);
+                            result.numArr12.push(info.num);
                             break;
                         default:
-                            result.numArr4Plus.push(info.num);
+                            result.numArr3Plus.push(info.num);
                     }
                 });
 
                 data.push({colName: '0次', nums: result.numArr0});
-                data.push({colName: '1-3次', nums: result.numArr123});
-                data.push({colName: '4次+', nums: result.numArr4Plus});
+                data.push({colName: '1-2次', nums: result.numArr12});
+                data.push({colName: '3次+', nums: result.numArr3Plus});
 
                 return result;
             }
