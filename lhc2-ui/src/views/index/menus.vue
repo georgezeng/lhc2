@@ -147,12 +147,12 @@
             <MenuGroup title="类型3">
                 <!--
                 <MenuItem name="comparision3-8">8表</MenuItem>
-                <MenuItem name="comparision3-4">4表</MenuItem>
                 <MenuItem name="comparision3-3">3表</MenuItem>
+                <MenuItem name="comparision3-1">1表</MenuItem>
                 <MenuItem name="comparision3-2">2表</MenuItem>
                 -->
                 <MenuItem name="comparision3-16">16表</MenuItem>
-                <MenuItem name="comparision3-1">1表</MenuItem>
+                <MenuItem name="comparision3-4">4表</MenuItem>
             </MenuGroup>
         </Submenu>
         <Submenu name="emulate">
@@ -183,12 +183,12 @@
             <MenuGroup title="类型3">
                 <!--
                 <MenuItem name="emulate3-8">8表</MenuItem>
-                <MenuItem name="emulate3-4">4表</MenuItem>
                 <MenuItem name="emulate3-3">3表</MenuItem>
                 <MenuItem name="emulate3-2">2表</MenuItem>
+                <MenuItem name="emulate3-1">1表</MenuItem>
                 -->
                 <MenuItem name="emulate3-16">16表</MenuItem>
-                <MenuItem name="emulate3-1">1表</MenuItem>
+                <MenuItem name="emulate3-4">4表</MenuItem>
             </MenuGroup>
         </Submenu>
     </Menu>

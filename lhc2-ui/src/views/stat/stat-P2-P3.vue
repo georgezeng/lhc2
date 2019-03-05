@@ -27,7 +27,7 @@
                 <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
-                        类型3: 4(0次) - 类型2: 16表(1+次)
+                        类型3: 4表(0次) - 类型2: 16表(1+次)
                     </p>
                     <Table stripe border size="small" :loading="loading3" :columns="columns" :data="data3"/>
                 </Card>
@@ -215,7 +215,7 @@
                         let r1 = result1.list[0];
                         let r2 = result2.list[0];
                         r1.infos.map(info1 => {
-                            if (info1.count > 0) {
+                            if (info1.count == 0) {
                                 out: for (let i = 0; i < r2.infos.length; i++) {
                                     let info2 = r2.infos[i];
                                     if (info1.num == info2.num) {
