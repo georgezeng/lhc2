@@ -17,7 +17,7 @@
 <script>
     import Menus from '../index/menus.vue';
     import Footer from '../index/footer.vue';
-    import ComparisionTable from '../common/comparison-tables2.vue';
+    import ComparisionTable from '../common/comparison-tables3.vue';
 
     export default {
         components: {
