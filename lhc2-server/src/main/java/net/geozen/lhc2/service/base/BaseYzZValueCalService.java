@@ -29,7 +29,7 @@ public abstract class BaseYzZValueCalService<O, Y extends BaseEntity, S extends 
 	public Future<ZInfo> process(Tm tm) {
 		ZInfo info = null;
 		try {
-			int len = 7;
+			int len = 20;
 			int count = 0;
 			BigDecimal avg = BigDecimal.ZERO;
 			while (count < len) {
@@ -79,7 +79,7 @@ public abstract class BaseYzZValueCalService<O, Y extends BaseEntity, S extends 
 					f = f.add(decimal);
 				}
 				BigDecimal y = f.divide(c, 2, RoundingMode.HALF_UP);
-				BigDecimal z = avg.divide(x.add(y), 2, RoundingMode.HALF_UP);
+				BigDecimal z = avg.multiply(x.multiply(y));
 
 				info = new ZInfo();
 				info.setZ(z);

@@ -405,11 +405,11 @@
             loadData() {
                 API.getTimes(this.tables, this.type).then(data => {
                     this.loading1 = false;
-                    this.data1 = data.slice(19);
+                    this.data1 = data.slice(6);
                 });
                 API.getColors(this.tables, this.type).then(data => {
                     this.loading2 = false;
-                    this.data2 = data.slice(19);
+                    this.data2 = data.slice(6);
                 });
             }
         },

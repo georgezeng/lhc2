@@ -32,7 +32,7 @@ public abstract class BaseZfZValueCalService<Y extends BaseEntity, Z extends Bas
 	public Future<ZInfo> process(Tm tm) {
 		ZInfo info = null;
 		try {
-			int len = 7;
+			int len = 20;
 			int count = 0;
 			BigDecimal avg = BigDecimal.ZERO;
 			while (count < len) {
