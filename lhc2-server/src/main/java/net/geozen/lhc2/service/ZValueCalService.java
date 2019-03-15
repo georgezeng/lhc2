@@ -275,7 +275,7 @@ public class ZValueCalService {
 			PickNumCountInfo countInfo = new PickNumCountInfo();
 			countInfo.setNum(i);
 			for (ZInfo info : subInfos) {
-				if (info != null && info.getMinNums() != null && info.getMinNums().contains(i)) {
+				if (info != null && info.getNums() != null && info.getNums().contains(i)) {
 					countInfo.setCount(countInfo.getCount() + 1);
 				}
 			}
