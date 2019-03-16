@@ -234,7 +234,7 @@ public class ZValueCalService {
 //						pickNumForP3(tm, infos.subList(13, 16), 3);
 //						pickNumForP3(tm, infos.subList(12, 16), 4);
 //						pickNumForP3(tm, infos.subList(8, 16), 8);
-						pickNumForP3(tm, infos.subList(17, 33), 16);
+						pickNumForP3(tm, infos.subList(9, 25), 16);
 					}
 					pageable = pageable.next();
 				}
