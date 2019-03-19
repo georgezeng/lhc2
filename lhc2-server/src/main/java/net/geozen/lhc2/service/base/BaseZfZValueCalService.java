@@ -21,6 +21,7 @@ import net.geozen.lhc2.def.jpa.BaseZfRepository;
 import net.geozen.lhc2.domain.Tm;
 import net.geozen.lhc2.domain.base.BaseEntity;
 import net.geozen.lhc2.domain.base.PosBaseEntity;
+import net.geozen.lhc2.domain.sx.Sxyz;
 import net.geozen.lhc2.dto.ZInfo;
 
 @Slf4j
@@ -93,6 +94,7 @@ public abstract class BaseZfZValueCalService<Y extends BaseEntity, Z extends Bas
 			// info.setNums(getNums(getNumsClass(), max));
 			// info.setMinNums(getNums(getNumsClass(), min));
 			// }
+			info.setNums(getNums(getNumsClass(), tm.getPhase()));
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 		}
@@ -141,12 +143,23 @@ public abstract class BaseZfZValueCalService<Y extends BaseEntity, Z extends Bas
 		List<List<Integer>> nums = (List<List<Integer>>) numsClass.getDeclaredField("LISTS").get(null);
 
 		int endPos = getEndPos();
-		PosBaseEntity yz = (PosBaseEntity) getYzRepository().findByPhase(phase);
-		int pos = yz.getPos() + lessPos;
+		BaseEntity baseYz = getYzRepository().findByPhase(phase);
+		int pos = 0;
+		if(baseYz instanceof PosBaseEntity) {
+			PosBaseEntity yz = (PosBaseEntity) baseYz;
+			pos = yz.getPos() + lessPos;
+		} else {
+			pos = ((Sxyz) baseYz).getSx().getNumsPos() + lessPos;
+		}
 		if (pos >= endPos) {
 			pos = pos - endPos;
 		}
-		return nums.get(pos);
+		
+		List<Integer> numsList = nums.get(pos);
+//		if(numsList == null) {
+//			System.out.println("phase:"+phase+", pos: " + lessPos +", zpos: "+ pos + ", class: " + yz.getClass());
+//		}
+		return numsList;
 	}
 
 }

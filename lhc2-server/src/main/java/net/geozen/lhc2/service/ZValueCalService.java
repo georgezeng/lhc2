@@ -240,6 +240,13 @@ public class ZValueCalService {
 //						pickNumForP3(tm, infos.subList(12, 16), 4);
 //						pickNumForP3(tm, infos.subList(8, 16), 8);
 						pickNumForP3(tm, infos.subList(9, 25), 16);
+						
+//						String str = "phase: " + tm.getPhase() + ", infos:[";
+//						for(ZInfo info : infos) {
+//							str += info.toString() +",";
+//						}str+="]";
+//						System.out.println(str);
+						
 						index++;
 					}
 					pageable = pageable.next();

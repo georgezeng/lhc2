@@ -91,7 +91,12 @@ public abstract class BaseYzZValueCalService<O, Y extends BaseEntity, S extends 
 				info.setZ(z);
 //				info.setNums(getNums(max));
 //				info.setMinNums(getNums(min));
-				info.setNums(getNums(getPos(tm.getPhase())));
+				int pos = getPos(tm.getPhase());
+				List<Integer> list = getNums(pos);
+//				if(list == null) {
+//					System.out.println("phase:"+tm.getPhase()+", pos: " + pos + ", class: " + yz.getClass());
+//				}
+				info.setNums(list);
 //			}
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
