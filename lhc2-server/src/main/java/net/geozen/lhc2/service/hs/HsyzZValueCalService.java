@@ -38,13 +38,18 @@ public class HsyzZValueCalService extends BaseYzZValueCalService<Integer, Hsyz, 
 	}
 
 	@Override
-	protected List<Integer> getNums(Integer max) {
-		return HsNums.LISTS.get(max);
+	protected List<Integer> getNums(int pos) {
+		return HsNums.LISTS.get(pos);
 	}
 
 	@Override
 	protected int getEndPos() {
 		return 10;
+	}
+
+	@Override
+	protected String[] getFields() {
+		return new String[] { "w0", "w1", "w2", "w3", "w4", "w5", "w6", "w7", "w8", "w9" };
 	}
 
 }

@@ -53,20 +53,25 @@ public class SxzfZValueCalService extends BaseZfZValueCalService<Sxyz, Sxzf, Sxs
 	@Override
 	protected Class<?> getNumsClass() {
 		// TODO Auto-generated method stub
-		return null;
+		return SxNums.class;
 	}
 
+//	@Override
+//	protected List<Integer> getNums(Class<?> numsClass, MaxInfo info) throws Exception {
+//		int endPos = 12;
+//		Sxyz yz = yzRepository.findByPhase(info.getPhase());
+//		int pos = yz.getSx().getPos() + info.getPos();
+//		if (pos >= endPos) {
+//			pos = pos - endPos;
+//		}
+////		SX bmnSx = SxUtil.getSxByYear(new Date());
+////		return SxUtil.getSxNums(bmnSx, SX.posOf(pos + 1));
+//		return SxNums.LISTS.get(SX.posOf(pos + 1).getNumsPos());
+//	}
+
 	@Override
-	protected List<Integer> getNums(Class<?> numsClass, MaxInfo info) throws Exception {
-		int endPos = 12;
-		Sxyz yz = yzRepository.findByPhase(info.getPhase());
-		int pos = yz.getSx().getPos() + info.getPos();
-		if (pos >= endPos) {
-			pos = pos - endPos;
-		}
-//		SX bmnSx = SxUtil.getSxByYear(new Date());
-//		return SxUtil.getSxNums(bmnSx, SX.posOf(pos + 1));
-		return SxNums.LISTS.get(SX.posOf(pos + 1).getNumsPos());
+	protected String[] getFields() {
+		return new String[] { "zf0", "zf1", "zf2", "zf3", "zf4", "zf5", "zf6", "zf7", "zf8", "zf9", "zf10", "zf11" };
 	}
 
 }

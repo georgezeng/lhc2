@@ -1,6 +1,5 @@
 package net.geozen.lhc2.service.sx;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,6 @@ import net.geozen.lhc2.jpa.sx.SxswRepository;
 import net.geozen.lhc2.jpa.sx.SxyzRepository;
 import net.geozen.lhc2.nums.SxNums;
 import net.geozen.lhc2.service.base.BaseYzZValueCalService;
-import net.geozen.lhc2.utils.SxUtil;
 
 @Service
 public class SxyzZValueCalService extends BaseYzZValueCalService<SX, Sxyz, Sxsw> {
@@ -45,15 +43,20 @@ public class SxyzZValueCalService extends BaseYzZValueCalService<SX, Sxyz, Sxsw>
 	}
 
 	@Override
-	protected List<Integer> getNums(SX max) {
+	protected List<Integer> getNums(int pos) {
 //		SX bmnSx = SxUtil.getSxByYear(new Date());
 //		return SxUtil.getSxNums(bmnSx, max);
-		return SxNums.LISTS.get(max.getNumsPos());
+		return SxNums.LISTS.get(pos);
 	}
 
 	@Override
 	protected int getEndPos() {
 		return 12;
+	}
+
+	@Override
+	protected String[] getFields() {
+		return new String[] { "shu", "niu", "hu", "tu", "lonng", "she", "ma", "yang", "hou", "ji", "gou", "zhu" };
 	}
 
 }

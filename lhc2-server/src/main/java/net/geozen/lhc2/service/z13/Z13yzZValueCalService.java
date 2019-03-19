@@ -38,13 +38,18 @@ public class Z13yzZValueCalService extends BaseYzZValueCalService<Integer, Z13yz
 	}
 
 	@Override
-	protected List<Integer> getNums(Integer max) {
-		return Z13Nums.LISTS.get(max);
+	protected List<Integer> getNums(int pos) {
+		return Z13Nums.LISTS.get(pos);
 	}
 
 	@Override
 	protected int getEndPos() {
 		return 12;
+	}
+
+	@Override
+	protected String[] getFields() {
+		return new String[] { "w0", "w1", "w2", "w3", "w4", "w5", "w6", "w7", "w8", "w9", "w10", "w11" };
 	}
 
 }

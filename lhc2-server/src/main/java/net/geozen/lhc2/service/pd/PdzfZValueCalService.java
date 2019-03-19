@@ -49,4 +49,9 @@ public class PdzfZValueCalService extends BaseZfZValueCalService<Pdyz, Pdzf, Pds
 		return PdNums.class;
 	}
 
+	@Override
+	protected String[] getFields() {
+		return new String[] { "zf0", "zf1", "zf2", "zf3", "zf4", "zf5", "zf6", "zf7", "zf8", "zf9" };
+	}
+
 }

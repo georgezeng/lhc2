@@ -38,13 +38,18 @@ public class DsyzZValueCalService extends BaseYzZValueCalService<Integer, Dsyz, 
 	}
 
 	@Override
-	protected List<Integer> getNums(Integer max) {
-		return DsNums.LISTS.get(max);
+	protected List<Integer> getNums(int pos) {
+		return DsNums.LISTS.get(pos);
 	}
 
 	@Override
 	protected int getEndPos() {
 		return 10;
+	}
+
+	@Override
+	protected String[] getFields() {
+		return new String[] { "odd0", "even0", "odd1", "even1", "odd2", "even2", "odd3", "even3", "odd4", "even4" };
 	}
 
 }
