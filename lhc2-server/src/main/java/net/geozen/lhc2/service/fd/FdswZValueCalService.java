@@ -16,7 +16,6 @@ import org.springframework.util.ReflectionUtils;
 import lombok.extern.slf4j.Slf4j;
 import net.geozen.lhc2.domain.Tm;
 import net.geozen.lhc2.domain.fd.Fdsw;
-import net.geozen.lhc2.domain.sx.Sxsw;
 import net.geozen.lhc2.dto.ZInfo;
 import net.geozen.lhc2.jpa.fd.FdswRepository;
 
@@ -69,7 +68,7 @@ public class FdswZValueCalService {
 				Fdsw sw = swRepository.findByPhase(tm.getPhase());
 				BigDecimal f = BigDecimal.ZERO; // f for d1+d2+d3+d4+d5
 				for (int i = 7; i < 12; i++) {
-					Method m = ReflectionUtils.findMethod(Sxsw.class, "getSw" + i);
+					Method m = ReflectionUtils.findMethod(sw.getClass(), "getSw" + i);
 					Integer value = (Integer) m.invoke(sw);
 					BigDecimal decimal = new BigDecimal(value);
 					f = f.add(decimal);

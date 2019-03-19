@@ -8,13 +8,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Future;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort.Direction;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
@@ -23,7 +20,6 @@ import net.geozen.lhc2.def.jpa.BaseSwRepository;
 import net.geozen.lhc2.def.jpa.BaseYzRepository;
 import net.geozen.lhc2.domain.Tm;
 import net.geozen.lhc2.domain.base.BaseEntity;
-import net.geozen.lhc2.domain.hs.Hsyz;
 import net.geozen.lhc2.dto.ZInfo;
 
 @Service
@@ -58,7 +54,7 @@ public abstract class BaseYzZValueCalService<O, Y extends BaseEntity, S extends 
 			
 				Y yz = getYzRepository().findByPhase(tm.getPhase());
 				BigDecimal bmax = BigDecimal.ZERO; // b for max
-				BigDecimal bmin = new BigDecimal("999999");
+//				BigDecimal bmin = new BigDecimal("999999");
 				BigDecimal c = BigDecimal.ZERO; // d for total
 //				O max = null;
 //				O min = null;
@@ -125,7 +121,10 @@ public abstract class BaseYzZValueCalService<O, Y extends BaseEntity, S extends 
 				if (count == null) {
 					count = 0;
 				}
-				Integer value = (Integer) yz.getClass().getDeclaredMethod("get" + StringUtils.capitalize(field)).invoke(yz);
+				String name = "get" + StringUtils.capitalize(field);
+				Method m = ReflectionUtils.findMethod(yz.getClass(), name);
+				Assert.notNull(m, "cannot find method " + name + " in " + yz.getClass());
+				Integer value = (Integer) m.invoke(yz);
 				if (value != null && value == 0) {
 					count++;
 				}

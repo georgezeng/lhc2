@@ -138,10 +138,15 @@ public class ZValueCalService {
 		try {
 			Pageable pageable = PageRequest.of(0, 1000, Direction.ASC, "phase");
 			Page<Tm> pResult = null;
+			int index = 0;
 			do {
 				pResult = tmRepository.findAll(pageable);
 				if (pResult.hasContent()) {
 					for (Tm tm : pResult.getContent()) {
+						if(index == 0) {
+							index++;
+							continue;
+						}
 						List<Future<ZInfo>> futures = new ArrayList<>();
 
 						futures.add(slqayzZValueCalService.process(tm));
@@ -235,6 +240,7 @@ public class ZValueCalService {
 //						pickNumForP3(tm, infos.subList(12, 16), 4);
 //						pickNumForP3(tm, infos.subList(8, 16), 8);
 						pickNumForP3(tm, infos.subList(9, 25), 16);
+						index++;
 					}
 					pageable = pageable.next();
 				}

@@ -10,6 +10,7 @@ import java.util.concurrent.Future;
 
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
+import org.springframework.util.Assert;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
@@ -115,7 +116,10 @@ public abstract class BaseZfZValueCalService<Y extends BaseEntity, Z extends Bas
 				if (count == null) {
 					count = 0;
 				}
-				Integer value = (Integer) yz.getClass().getDeclaredMethod("get" + StringUtils.capitalize(field)).invoke(yz);
+				String name = "get" + StringUtils.capitalize(field);
+				Method m = ReflectionUtils.findMethod(yz.getClass(), name);
+				Assert.notNull(m, "cannot find method " + name + " in " + yz.getClass());
+				Integer value = (Integer) m.invoke(yz);
 				if (value != null && value == 0) {
 					count++;
 				}
