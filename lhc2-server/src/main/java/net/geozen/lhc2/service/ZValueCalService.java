@@ -136,6 +136,7 @@ public class ZValueCalService {
 
 	public void process() {
 		try {
+			pickNumRepository.deleteAll();
 			Pageable pageable = PageRequest.of(0, 1000, Direction.ASC, "phase");
 			Page<Tm> pResult = null;
 			int index = 0;

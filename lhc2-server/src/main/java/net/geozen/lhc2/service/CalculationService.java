@@ -78,13 +78,13 @@ public class CalculationService {
 
 	@Autowired
 	private SlqdyzCalculationService slqdService;
-
+	
 	@Autowired
 	private SlqbsyzCalculationService slqbsService;
-
+	
 	@Autowired
 	private SlqwxyzCalculationService slqwxService;
-
+	
 	@Autowired
 	private SlqzsyzCalculationService slqzsService;
 
@@ -123,10 +123,10 @@ public class CalculationService {
 
 	@Autowired
 	private TimesColorService timeService;
-
+	
 	@Autowired
 	private ZValueCalService zvalueCalService;
-
+	
 	@Autowired
 	private TimesYzRepository timesYzRepository;
 
@@ -185,7 +185,8 @@ public class CalculationService {
 	public void summary(List<String> errors) throws Exception {
 		List<Future<Exception>> futures = new ArrayList<>();
 		futures.add(combineService.process());
-		pickNumFacade.process(futures);
+//		pickNumFacade.process(futures);
+		zvalueCalService.process();
 
 		CommonUtil.waitWithException(futures, ex -> {
 			errors.add(ex.getMessage());
@@ -193,42 +194,36 @@ public class CalculationService {
 
 		if (errors.isEmpty()) {
 			futures.clear();
-
-			zvalueCalService.process();
-
+			
+			timesYzRepository.deleteAll();
+			colorYzRepository.deleteAll();
+			colorYz2Repository.deleteAll();
+			
+//			futures.add(timeService.process(10, "P1"));
+//			futures.add(timeService.process(16, "P1"));
+			
+//			futures.add(timeService.process(33, "P2"));
+//			futures.add(timeService.process(24, "P2"));
+//			futures.add(timeService.process(20, "P2"));
+//			futures.add(timeService.process(12, "P2"));
+//			futures.add(timeService.process(10, "P2"));
+//			futures.add(timeService.process(8, "P2"));
+//			futures.add(timeService.process(4, "P2"));
+			
+			
+//			futures.add(timeService.process(16, "P2"));
+//			futures.add(timeService.process(1, "P2"));
+			
+			futures.add(timeService.process(16, "P3"));
+//			futures.add(timeService.process(4, "P3"));
+			
+//			futures.add(timeService.process(8, "P3"));
+//			futures.add(timeService.process(4, "P3"));
+//			futures.add(timeService.process(3, "P3"));
+//			futures.add(timeService.process(2, "P3"));
 			CommonUtil.waitWithException(futures, ex -> {
 				errors.add(ex.getMessage());
 			});
-
-			if (errors.isEmpty()) {
-				futures.clear();
-				timesYzRepository.deleteAll();
-				colorYzRepository.deleteAll();
-				colorYz2Repository.deleteAll();
-
-				// futures.add(timeService.process(10, "P1"));
-				// futures.add(timeService.process(16, "P1"));
-
-				// futures.add(timeService.process(33, "P2"));
-				// futures.add(timeService.process(24, "P2"));
-				// futures.add(timeService.process(20, "P2"));
-				futures.add(timeService.process(16, "P2"));
-				// futures.add(timeService.process(12, "P2"));
-				// futures.add(timeService.process(10, "P2"));
-				// futures.add(timeService.process(8, "P2"));
-				// futures.add(timeService.process(4, "P2"));
-				futures.add(timeService.process(1, "P2"));
-
-				futures.add(timeService.process(16, "P3"));
-				// futures.add(timeService.process(8, "P3"));
-				// futures.add(timeService.process(4, "P3"));
-				// futures.add(timeService.process(3, "P3"));
-				// futures.add(timeService.process(2, "P3"));
-				futures.add(timeService.process(4, "P3"));
-				CommonUtil.waitWithException(futures, ex -> {
-					errors.add(ex.getMessage());
-				});
-			}
 		}
 	}
 

@@ -17,13 +17,13 @@ public class PickNumFacade {
 	private PickNumRepository repository;
 
 	public void process(List<Future<Exception>> futures) throws Exception {
-		repository.deleteAll();
-		futures.add(service.process(19, 7, 20, 15, 15));
-		futures.add(service.process(16, 7, 20, 15, 15));
-		futures.add(service.process(14, 10, 20, 8, 15));
-		futures.add(service.process(10, 7, 20, 15, 15));
-		futures.add(service.process(9, 10, 20, 8, 15));
-		futures.add(service.process(3, 10, 20, 8, 15));
+//		repository.deleteAll();
+//		futures.add(service.process(19, 7, 20, 15, 15));
+//		futures.add(service.process(16, 7, 20, 15, 15));
+//		futures.add(service.process(14, 10, 20, 8, 15));
+//		futures.add(service.process(10, 7, 20, 15, 15));
+//		futures.add(service.process(9, 10, 20, 8, 15));
+//		futures.add(service.process(3, 10, 20, 8, 15));
 	}
 
 }
