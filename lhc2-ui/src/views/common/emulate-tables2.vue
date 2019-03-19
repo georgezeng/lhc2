@@ -93,7 +93,7 @@
             loadData() {
                 API.getColors2(this.tables, this.type).then(data => {
                     this.loading = false;
-                    this.data = data.slice(19);
+                    this.data = data//.slice(19);
                 });
             }
         },

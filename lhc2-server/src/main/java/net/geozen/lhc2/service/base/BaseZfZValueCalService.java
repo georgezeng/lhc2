@@ -19,6 +19,7 @@ import net.geozen.lhc2.def.jpa.BaseYzRepository;
 import net.geozen.lhc2.def.jpa.BaseZfRepository;
 import net.geozen.lhc2.domain.Tm;
 import net.geozen.lhc2.domain.base.BaseEntity;
+import net.geozen.lhc2.domain.base.PosBaseEntity;
 import net.geozen.lhc2.dto.ZInfo;
 
 @Slf4j
@@ -134,7 +135,14 @@ public abstract class BaseZfZValueCalService<Y extends BaseEntity, Z extends Bas
 			index++;
 		}
 		List<List<Integer>> nums = (List<List<Integer>>) numsClass.getDeclaredField("LISTS").get(null);
-		return nums.get(lessPos);
+
+		int endPos = getEndPos();
+		PosBaseEntity yz = (PosBaseEntity) getYzRepository().findByPhase(phase);
+		int pos = yz.getPos() + lessPos;
+		if (pos >= endPos) {
+			pos = pos - endPos;
+		}
+		return nums.get(pos);
 	}
 
 }
