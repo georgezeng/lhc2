@@ -17,7 +17,7 @@ public class PickNumFacade {
 	private PickNumRepository repository;
 
 	public void process(List<Future<Exception>> futures) throws Exception {
-//		repository.deleteAll();
+		repository.deleteAll();
 //		futures.add(service.process(19, 7, 20, 15, 15));
 //		futures.add(service.process(16, 7, 20, 15, 15));
 //		futures.add(service.process(14, 10, 20, 8, 15));

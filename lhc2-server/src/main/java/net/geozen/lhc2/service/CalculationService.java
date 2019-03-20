@@ -185,7 +185,7 @@ public class CalculationService {
 	public void summary(List<String> errors) throws Exception {
 		List<Future<Exception>> futures = new ArrayList<>();
 		futures.add(combineService.process());
-//		pickNumFacade.process(futures);
+		pickNumFacade.process(futures);
 		zvalueCalService.process();
 
 		CommonUtil.waitWithException(futures, ex -> {
