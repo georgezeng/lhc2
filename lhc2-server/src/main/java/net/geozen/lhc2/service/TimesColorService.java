@@ -574,17 +574,17 @@ public class TimesColorService {
 					lastYz = colorYz2;
 				}
 			} else {
-//				ColorYz2 lastYz = null;
-//				int count = 0;
+				ColorYz2 lastYz = null;
+				int count = 0;
 				for (ColorYz yz : colorYzList) {
-//					count++;
+					count++;
 					ColorYz2 colorYz2 = new ColorYz2();
 					colorYz2.setPhase(yz.getPhase());
 					colorYz2.setTables(yz.getTables());
 					colorYz2.setType(yz.getType());
 
 //					if (count > 19) {
-//						if (count == 20) {
+						if (count == 1) {
 							colorYz2.setWr(1);
 							colorYz2.setWrPos(0);
 							colorYz2.setWrBase(1);
@@ -605,11 +605,11 @@ public class TimesColorService {
 							} else {
 								colorYz2.setYzgColor("white");
 							}
-//						} else {
-//							setColor2(lastYz, yz, colorYz2, "Wr", "red");
-//							setColor2(lastYz, yz, colorYz2, "Yzr", "red");
-//							setColor2(lastYz, yz, colorYz2, "Yzg", "green");
-//						}
+						} else {
+							setColor2(lastYz, yz, colorYz2, "Wr", "red");
+							setColor2(lastYz, yz, colorYz2, "Yzr", "red");
+							setColor2(lastYz, yz, colorYz2, "Yzg", "green");
+						}
 //					} else {
 //						colorYz2.setWrColor("white");
 //						colorYz2.setYzrColor("white");
@@ -617,7 +617,7 @@ public class TimesColorService {
 //					}
 
 					colorYz2List.add(colorYz2);
-//					lastYz = colorYz2;
+					lastYz = colorYz2;
 				}
 			}
 
