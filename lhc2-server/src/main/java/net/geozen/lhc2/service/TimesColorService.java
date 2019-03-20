@@ -617,7 +617,7 @@ public class TimesColorService {
 //					}
 
 					colorYz2List.add(colorYz2);
-					lastYz = colorYz2;
+//					lastYz = colorYz2;
 				}
 			}
 
