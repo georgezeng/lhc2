@@ -30,7 +30,7 @@ public abstract class BaseYzZValueCalService<O, Y extends BaseEntity, S extends 
 	protected abstract BaseSwRepository<S> getSwRepository();
 
 	@Async
-	public Future<ZInfo> process(Tm tm) {
+	public Future<ZInfo> process(Tm tm, int order) {
 		ZInfo info = null;
 		try {
 //			int len = 20;
@@ -53,7 +53,7 @@ public abstract class BaseYzZValueCalService<O, Y extends BaseEntity, S extends 
 //				avg = avg.divide(new BigDecimal(count), 2, RoundingMode.HALF_UP);
 			
 				Y yz = getYzRepository().findByPhase(tm.getPhase());
-				BigDecimal bmax = BigDecimal.ZERO; // b for max
+//				BigDecimal bmax = BigDecimal.ZERO; // b for max
 //				BigDecimal bmin = new BigDecimal("999999");
 				BigDecimal c = BigDecimal.ZERO; // d for total
 //				O max = null;
@@ -62,10 +62,10 @@ public abstract class BaseYzZValueCalService<O, Y extends BaseEntity, S extends 
 					Method m = ReflectionUtils.findMethod(yz.getClass(), "get" + getColumnName(o));
 					Integer value = (Integer) m.invoke(yz);
 					BigDecimal decimal = new BigDecimal(value);
-					if (bmax.compareTo(decimal) < 0) {
-						bmax = decimal;
+//					if (bmax.compareTo(decimal) < 0) {
+//						bmax = decimal;
 //						max = o;
-					}
+//					}
 //					if (bmin.compareTo(decimal) > 0) {
 //						bmin = decimal;
 //						min = o;
@@ -74,7 +74,7 @@ public abstract class BaseYzZValueCalService<O, Y extends BaseEntity, S extends 
 				}
 
 				BigDecimal d = c.divide(new BigDecimal(getEndPos()), 2, RoundingMode.HALF_UP); // d for avg
-				BigDecimal x = d.divide(bmax, 2, RoundingMode.HALF_UP);
+//				BigDecimal x = d.divide(bmax, 2, RoundingMode.HALF_UP);
 				S sw = getSwRepository().findByPhase(tm.getPhase());
 				BigDecimal f = BigDecimal.ZERO; // f for d1+d2+d3+d4+d5
 				for (int i = getEndPos() - 5; i < getEndPos(); i++) {
@@ -83,11 +83,13 @@ public abstract class BaseYzZValueCalService<O, Y extends BaseEntity, S extends 
 					BigDecimal decimal = new BigDecimal(value);
 					f = f.add(decimal);
 				}
-				BigDecimal y = f.divide(c, 2, RoundingMode.HALF_UP);
+//				BigDecimal y = f.divide(c, 2, RoundingMode.HALF_UP);
 				// BigDecimal z = avg.multiply(x.multiply(y));
-				BigDecimal z = new BigDecimal("7").multiply(x.multiply(y));
-
+//				BigDecimal z = new BigDecimal("7").multiply(x.multiply(y));
+				BigDecimal z = f.divide(d, 2, RoundingMode.HALF_UP);
+				
 				info = new ZInfo();
+				info.setOrder(order);
 				info.setZ(z);
 //				info.setNums(getNums(max));
 //				info.setMinNums(getNums(min));

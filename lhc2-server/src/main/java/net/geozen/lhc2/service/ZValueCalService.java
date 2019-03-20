@@ -143,61 +143,45 @@ public class ZValueCalService {
 				pResult = tmRepository.findAll(pageable);
 				if (pResult.hasContent()) {
 					for (Tm tm : pResult.getContent()) {
-						if(index == 0) {
+						if (index == 0) {
 							index++;
 							continue;
 						}
 						List<Future<ZInfo>> futures = new ArrayList<>();
 
-						futures.add(slqayzZValueCalService.process(tm));
-						futures.add(slqazfZValueCalService.process(tm));
-
-						futures.add(slqbyzZValueCalService.process(tm));
-						futures.add(slqbzfZValueCalService.process(tm));
-
-						futures.add(slqcyzZValueCalService.process(tm));
-						futures.add(slqczfZValueCalService.process(tm));
-
-						futures.add(slqdyzZValueCalService.process(tm));
-						futures.add(slqdzfZValueCalService.process(tm));
-
-						futures.add(slqbsyzZValueCalService.process(tm));
-						futures.add(slqbszfZValueCalService.process(tm));
-
-						futures.add(slqzsyzZValueCalService.process(tm));
-						futures.add(slqzszfZValueCalService.process(tm));
-
-						futures.add(slqwxyzZValueCalService.process(tm));
-						futures.add(slqwxzfZValueCalService.process(tm));
-
-						futures.add(sxyzZValueCalService.process(tm));
-						futures.add(sxzfZValueCalService.process(tm));
-
-						futures.add(seqyzZValueCalService.process(tm));
-						futures.add(seqzfZValueCalService.process(tm));
-
-						futures.add(pdyzZValueCalService.process(tm));
-						futures.add(pdzfZValueCalService.process(tm));
-
-						futures.add(z2yzZValueCalService.process(tm));
-						futures.add(z2zfZValueCalService.process(tm));
-
-						futures.add(z13yzZValueCalService.process(tm));
-						futures.add(z13zfZValueCalService.process(tm));
-
-						futures.add(mwyzZValueCalService.process(tm));
-						futures.add(mwzfZValueCalService.process(tm));
-
-						futures.add(hsyzZValueCalService.process(tm));
-						futures.add(hszfZValueCalService.process(tm));
-
-						futures.add(dsyzZValueCalService.process(tm));
-						futures.add(dszfZValueCalService.process(tm));
-
-						futures.add(z7yzZValueCalService.process(tm));
-						futures.add(z7zfZValueCalService.process(tm));
-
-						futures.add(fdswZValueCalService.process(tm));
+						futures.add(slqayzZValueCalService.process(tm, 1));
+						futures.add(slqbyzZValueCalService.process(tm, 2));
+						futures.add(slqcyzZValueCalService.process(tm, 3));
+						futures.add(slqdyzZValueCalService.process(tm, 4));
+						futures.add(slqbsyzZValueCalService.process(tm, 5));
+						futures.add(slqzsyzZValueCalService.process(tm, 6));
+						futures.add(slqwxyzZValueCalService.process(tm, 7));
+						futures.add(sxyzZValueCalService.process(tm, 8));
+						futures.add(seqyzZValueCalService.process(tm, 9));
+						futures.add(fdswZValueCalService.process(tm, 10));
+						futures.add(pdyzZValueCalService.process(tm, 11));
+						futures.add(z2yzZValueCalService.process(tm, 12));
+						futures.add(z13yzZValueCalService.process(tm, 13));
+						futures.add(mwyzZValueCalService.process(tm, 14));
+						futures.add(hsyzZValueCalService.process(tm, 15));
+						futures.add(dsyzZValueCalService.process(tm, 16));
+						futures.add(z7yzZValueCalService.process(tm, 17));
+						futures.add(slqazfZValueCalService.process(tm, 18));
+						futures.add(slqbzfZValueCalService.process(tm, 19));
+						futures.add(slqczfZValueCalService.process(tm, 20));
+						futures.add(slqdzfZValueCalService.process(tm, 21));
+						futures.add(slqbszfZValueCalService.process(tm, 22));
+						futures.add(slqzszfZValueCalService.process(tm, 23));
+						futures.add(slqwxzfZValueCalService.process(tm, 24));
+						futures.add(sxzfZValueCalService.process(tm, 25));
+						futures.add(seqzfZValueCalService.process(tm, 26));
+						futures.add(pdzfZValueCalService.process(tm, 27));
+						futures.add(z2zfZValueCalService.process(tm, 28));
+						futures.add(z13zfZValueCalService.process(tm, 29));
+						futures.add(mwzfZValueCalService.process(tm, 30));
+						futures.add(hszfZValueCalService.process(tm, 31));
+						futures.add(dszfZValueCalService.process(tm, 32));
+						futures.add(z7zfZValueCalService.process(tm, 33));
 
 						List<ZInfo> infos = CommonUtil.waitForResult(futures);
 						Collections.sort(infos, new Comparator<ZInfo>() {
@@ -213,42 +197,50 @@ public class ZValueCalService {
 								} else if (o2 == null) {
 									return -1;
 								}
-								return o1.getZ().compareTo(o2.getZ());
+								int compare = o1.getZ().compareTo(o2.getZ());
+								if (compare == 0) {
+									if (o1.getOrder() < o2.getOrder()) {
+										return -1;
+									} else {
+										return 1;
+									}
+								}
+								return compare;
 							}
 						});
 						// P2
-//						pickNumForP2(tm, infos.subList(0, 1), 1);
-//						pickNumForP2(tm, infos.subList(0, 16), 16);
-						
-//						pickNumForP2(tm, infos.subList(0, 2), 2);
-//						pickNumForP2(tm, infos.subList(0, 4), 4);
-//						pickNumForP2(tm, infos.subList(0, 8), 8);
-//						pickNumForP2(tm, infos.subList(0, 10), 10);
-//						pickNumForP2(tm, infos.subList(0, 12), 12);
-//						pickNumForP2(tm, infos.subList(0, 16), 16);
-//						pickNumForP2(tm, infos.subList(0, 20), 20);
-//						pickNumForP2(tm, infos.subList(0, 24), 24);
-//						pickNumForP2(tm, infos.subList(0, 33), 33);
-						
+						pickNumForP2(tm, infos.subList(0, 1), 1);
+						pickNumForP2(tm, infos.subList(0, 16), 16);
+
+						// pickNumForP2(tm, infos.subList(0, 2), 2);
+						// pickNumForP2(tm, infos.subList(0, 4), 4);
+						// pickNumForP2(tm, infos.subList(0, 8), 8);
+						// pickNumForP2(tm, infos.subList(0, 10), 10);
+						// pickNumForP2(tm, infos.subList(0, 12), 12);
+						// pickNumForP2(tm, infos.subList(0, 16), 16);
+						// pickNumForP2(tm, infos.subList(0, 20), 20);
+						// pickNumForP2(tm, infos.subList(0, 24), 24);
+						// pickNumForP2(tm, infos.subList(0, 33), 33);
+
 						// P3
-//						pickNumForP3(tm, infos.subList(31, 33), 2);
-//						pickNumForP3(tm, infos.subList(30, 33), 3);
-//						pickNumForP3(tm, infos.subList(29, 33), 4);
-//						pickNumForP3(tm, infos.subList(25, 33), 8);
-//						pickNumForP3(tm, infos.subList(17, 33), 16);
-//						pickNumForP3(tm, infos.subList(13, 16), 3);
-//						pickNumForP3(tm, infos.subList(12, 16), 4);
-//						pickNumForP3(tm, infos.subList(8, 16), 8);
-						
-//						pickNumForP3(tm, infos.subList(21, 25), 4);
+						// pickNumForP3(tm, infos.subList(31, 33), 2);
+						// pickNumForP3(tm, infos.subList(30, 33), 3);
+						// pickNumForP3(tm, infos.subList(29, 33), 4);
+						// pickNumForP3(tm, infos.subList(25, 33), 8);
+						// pickNumForP3(tm, infos.subList(17, 33), 16);
+						// pickNumForP3(tm, infos.subList(13, 16), 3);
+						// pickNumForP3(tm, infos.subList(12, 16), 4);
+						// pickNumForP3(tm, infos.subList(8, 16), 8);
+
+						pickNumForP3(tm, infos.subList(21, 25), 4);
 						pickNumForP3(tm, infos.subList(9, 25), 16);
-						
-//						String str = "phase: " + tm.getPhase() + ", infos:[";
-//						for(ZInfo info : infos) {
-//							str += info.toString() +",";
-//						}str+="]";
-//						System.out.println(str);
-						
+
+						// String str = "phase: " + tm.getPhase() + ", infos:[";
+						// for(ZInfo info : infos) {
+						// str += info.toString() +",";
+						// }str+="]";
+						// System.out.println(str);
+
 						index++;
 					}
 					pageable = pageable.next();
@@ -282,7 +274,7 @@ public class ZValueCalService {
 		pickNum.setType("P2");
 		pickNumRepository.save(pickNum);
 	}
-	
+
 	private void pickNumForP3(Tm tm, List<ZInfo> subInfos, int expected) throws Exception {
 		PickNumPayload payload = new PickNumPayload();
 		List<PickNumCountInfo> countInfos = new ArrayList<>();
