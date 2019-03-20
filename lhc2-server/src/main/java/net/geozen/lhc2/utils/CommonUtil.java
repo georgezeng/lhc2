@@ -37,24 +37,26 @@ public class CommonUtil {
 	}
 
 	public static <T> List<T> waitForResult(List<Future<T>> futures) throws Exception {
-		List<T> list = new ArrayList<>();
 		while (true) {
 			int count = 0;
 			for (Future<T> f : futures) {
 				if (f.isDone()) {
-					list.add(f.get());
 					count++;
 				}
 			}
 			if (count == futures.size()) {
-				break;
+				List<T> list = new ArrayList<>();
+				for (Future<T> f : futures) {
+					list.add(f.get());
+					count++;
+				}
+				return list;
 			}
 			try {
 				Thread.sleep(1000l);
 			} catch (InterruptedException e) {
 			}
 		}
-		return list;
 	}
 
 	public static void waitWithException(List<Future<Exception>> futures) throws Exception {

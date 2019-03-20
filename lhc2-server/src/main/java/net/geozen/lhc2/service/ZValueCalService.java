@@ -208,12 +208,12 @@ public class ZValueCalService {
 								return compare;
 							}
 						});
-						System.out.print(tm.getPhase() + ": ");
-						for(ZInfo info : infos) {
-							
-							System.out.print("{" + info.getOrder() + "}, ");
-						}
-						System.out.println();
+//						System.out.print(tm.getPhase() + ": ");
+//						for(ZInfo info : infos) {
+//							
+//							System.out.print("{" + info.getOrder() + "}, ");
+//						}
+//						System.out.println();
 						// P2
 						pickNumForP2(tm, infos.subList(0, 1), 1);
 						pickNumForP2(tm, infos.subList(0, 16), 16);
