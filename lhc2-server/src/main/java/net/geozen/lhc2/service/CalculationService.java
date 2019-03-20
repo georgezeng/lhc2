@@ -211,11 +211,11 @@ public class CalculationService {
 //			futures.add(timeService.process(4, "P2"));
 			
 			
-//			futures.add(timeService.process(16, "P2"));
-//			futures.add(timeService.process(1, "P2"));
+			futures.add(timeService.process(16, "P2"));
+			futures.add(timeService.process(1, "P2"));
 			
 			futures.add(timeService.process(16, "P3"));
-//			futures.add(timeService.process(4, "P3"));
+			futures.add(timeService.process(4, "P3"));
 			
 //			futures.add(timeService.process(8, "P3"));
 //			futures.add(timeService.process(4, "P3"));
