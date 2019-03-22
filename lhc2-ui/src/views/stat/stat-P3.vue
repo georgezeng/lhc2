@@ -43,7 +43,7 @@
                 <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
-                        14表选号
+                        12表选号
                     </p>
                     <Table stripe border size="small" :loading="loading5" :columns="columns" :data="data5"/>
                 </Card>
@@ -134,7 +134,7 @@
                 //     this.data4 = [];
                 //     return this.data4
                 // }, () => this.loading4 = true, () => this.loading4 = false);
-                this.changePage(1, 14, () => {
+                this.changePage(1, 12, () => {
                     this.data5 = [];
                     return this.data5
                 }, () => this.loading5 = true, () => this.loading5 = false);

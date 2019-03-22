@@ -216,7 +216,7 @@ public class ZValueCalService {
 //						System.out.println();
 						// P2
 						pickNumForP2(tm, infos.subList(0, 1), 1);
-						pickNumForP2(tm, infos.subList(0, 14), 14);
+						pickNumForP2(tm, infos.subList(0, 16), 16);
 
 						// pickNumForP2(tm, infos.subList(0, 2), 2);
 						// pickNumForP2(tm, infos.subList(0, 4), 4);
@@ -239,7 +239,7 @@ public class ZValueCalService {
 						// pickNumForP3(tm, infos.subList(8, 16), 8);
 
 						pickNumForP3(tm, infos.subList(21, 25), 4);
-						pickNumForP3(tm, infos.subList(11, 25), 14);
+						pickNumForP3(tm, infos.subList(13, 25), 12);
 
 						// String str = "phase: " + tm.getPhase() + ", infos:[";
 						// for(ZInfo info : infos) {
