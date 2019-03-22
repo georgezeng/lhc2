@@ -11,7 +11,7 @@
                 <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
-                        类型2: 16表(1+次) - 类型3: 16表(0次 + 3+次)
+                        类型2: 14表(1+次) - 类型3: 14表(0次 + 3+次)
                     </p>
                     <Table stripe border size="small" :loading="loading1" :columns="columns" :data="data1"/>
                 </Card>
@@ -19,7 +19,7 @@
                 <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
-                        类型2: 16表(1+次) - 类型3: 16表(1+次)
+                        类型2: 14表(1+次) - 类型3: 14表(1+次)
                     </p>
                     <Table stripe border size="small" :loading="loading2" :columns="columns" :data="data2"/>
                 </Card>
@@ -27,7 +27,7 @@
                 <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
-                        类型3: 4表(0次) - 类型2: 16表(1+次)
+                        类型3: 4表(0次) - 类型2: 14表(1+次)
                     </p>
                     <Table stripe border size="small" :loading="loading3" :columns="columns" :data="data3"/>
                 </Card>
@@ -101,14 +101,14 @@
                 this.loading1 = true;
                 API.getPickNums({
                     data: {
-                        expected: 16,
+                        expected: 14,
                         type: "P2"
                     },
                     page: this.queryInfo.page
                 }).then(result1 => {
                     API.getPickNums({
                         data: {
-                            expected: 16,
+                            expected: 14,
                             type: "P3"
                         },
                         page: this.queryInfo.page
@@ -150,14 +150,14 @@
                 this.loading2 = true;
                 API.getPickNums({
                     data: {
-                        expected: 16,
+                        expected: 14,
                         type: "P2"
                     },
                     page: this.queryInfo.page
                 }).then(result1 => {
                     API.getPickNums({
                         data: {
-                            expected: 16,
+                            expected: 14,
                             type: "P3"
                         },
                         page: this.queryInfo.page
@@ -205,7 +205,7 @@
                 }).then(result1 => {
                     API.getPickNums({
                         data: {
-                            expected: 16,
+                            expected: 14,
                             type: "P2"
                         },
                         page: this.queryInfo.page

@@ -123,6 +123,14 @@ const RouterConfig = {
             component: (resolve) => require(['./views/comparision2/comparision-16.vue'], resolve)
         },
         {
+            path: '/comparision2-14',
+            name: 'comparision2-14',
+            meta: {
+                title: `${prefix}数据对比2-14`
+            },
+            component: (resolve) => require(['./views/comparision2/comparision-14.vue'], resolve)
+        },
+        {
             path: '/comparision2-12',
             name: 'comparision2-12',
             meta: {
@@ -177,6 +185,14 @@ const RouterConfig = {
                 title: `${prefix}数据对比3-16`
             },
             component: (resolve) => require(['./views/comparision3/comparision-16.vue'], resolve)
+        },
+        {
+            path: '/comparision3-14',
+            name: 'comparision3-14',
+            meta: {
+                title: `${prefix}数据对比3-14`
+            },
+            component: (resolve) => require(['./views/comparision3/comparision-14.vue'], resolve)
         },
         {
             path: '/comparision3-8',
@@ -267,6 +283,14 @@ const RouterConfig = {
             component: (resolve) => require(['./views/emulate2/emulate-16.vue'], resolve)
         },
         {
+            path: '/emulate2-14',
+            name: 'emulate2-14',
+            meta: {
+                title: `${prefix}数据模拟2-14`
+            },
+            component: (resolve) => require(['./views/emulate2/emulate-14.vue'], resolve)
+        },
+        {
             path: '/emulate2-12',
             name: 'emulate2-12',
             meta: {
@@ -321,6 +345,14 @@ const RouterConfig = {
                 title: `${prefix}数据模拟3-16`
             },
             component: (resolve) => require(['./views/emulate3/emulate-16.vue'], resolve)
+        },
+        {
+            path: '/emulate3-14',
+            name: 'emulate3-14',
+            meta: {
+                title: `${prefix}数据模拟3-14`
+            },
+            component: (resolve) => require(['./views/emulate3/emulate-14.vue'], resolve)
         },
         {
             path: '/emulate3-8',
