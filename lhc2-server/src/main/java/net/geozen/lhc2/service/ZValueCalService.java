@@ -216,6 +216,7 @@ public class ZValueCalService {
 //						System.out.println();
 						// P2
 						pickNumForP2(tm, infos.subList(0, 1), 1);
+						pickNumForP2(tm, infos.subList(0, 4), 4);
 						pickNumForP2(tm, infos.subList(0, 16), 16);
 
 						// pickNumForP2(tm, infos.subList(0, 2), 2);

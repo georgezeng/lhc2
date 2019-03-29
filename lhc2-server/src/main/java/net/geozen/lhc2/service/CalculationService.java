@@ -212,6 +212,7 @@ public class CalculationService {
 			
 			
 			futures.add(timeService.process(16, "P2"));
+			futures.add(timeService.process(4, "P2"));
 			futures.add(timeService.process(1, "P2"));
 			
 			futures.add(timeService.process(12, "P3"));

@@ -140,10 +140,11 @@
                 <MenuItem name="comparision2-8">8表</MenuItem>
                 <MenuItem name="comparision2-4">4表</MenuItem>
                 <MenuItem name="comparision2-2">2表</MenuItem>
-                <MenuItem name="comparision2-16">16表</MenuItem>
-                -->
                 <MenuItem name="comparision2-14">14表</MenuItem>
+                -->
                 <MenuItem name="comparision2-1">1表</MenuItem>
+                <MenuItem name="comparision2-4">1表</MenuItem>
+                <MenuItem name="comparision2-16">16表</MenuItem>
             </MenuGroup>
             <MenuGroup title="类型3">
                 <!--
@@ -154,8 +155,8 @@
                 <MenuItem name="comparision3-16">16表</MenuItem>
                 <MenuItem name="comparision3-14">14表</MenuItem>
                 -->
-                <MenuItem name="comparision3-12">12表</MenuItem>
                 <MenuItem name="comparision3-4">4表</MenuItem>
+                <MenuItem name="comparision3-12">12表</MenuItem>
             </MenuGroup>
         </Submenu>
         <Submenu name="emulate">
@@ -179,10 +180,11 @@
                 <MenuItem name="emulate2-8">8表</MenuItem>
                 <MenuItem name="emulate2-4">4表</MenuItem>
                 <MenuItem name="emulate2-2">2表</MenuItem>
-                <MenuItem name="emulate2-16">16表</MenuItem>
-                -->
                 <MenuItem name="emulate2-14">14表</MenuItem>
+                -->
                 <MenuItem name="emulate2-1">1表</MenuItem>
+                <MenuItem name="emulate2-4">4表</MenuItem>
+                <MenuItem name="emulate2-16">16表</MenuItem>
             </MenuGroup>
             <MenuGroup title="类型3">
                 <!--
@@ -193,8 +195,8 @@
                 <MenuItem name="emulate3-16">16表</MenuItem>
                 <MenuItem name="emulate3-14">14表</MenuItem>
                 -->
-                <MenuItem name="emulate3-12">12表</MenuItem>
                 <MenuItem name="emulate3-4">4表</MenuItem>
+                <MenuItem name="emulate3-12">12表</MenuItem>
             </MenuGroup>
         </Submenu>
     </Menu>
