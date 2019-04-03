@@ -65,9 +65,9 @@ public abstract class BaseSwCalculationService<Y extends PosBaseEntity, S extend
 			sw.setPhase(yz.getPhase());
 			sw.setNum(yz.getNum());
 			sw.setPos(redPointPos);
-			for (int j = 0; j < infoList.size(); j++) {
+//			for (int j = 0; j < infoList.size(); j++) {
 				dealInfoList(sw, lastSw, infoList, pos);
-			}
+//			}
 			lastSw = sw;
 			list.add(sw);
 		}

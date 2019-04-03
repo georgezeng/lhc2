@@ -6,6 +6,6 @@ import lombok.Data;
 @AllArgsConstructor
 @Data
 public class PosYzInfo {
-	private int pos;
-	private int yz;
+	private Integer pos;
+	private Integer yz;
 }

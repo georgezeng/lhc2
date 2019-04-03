@@ -2,7 +2,6 @@ package net.geozen.lhc2.service.sx;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Future;
 
@@ -24,7 +23,6 @@ import net.geozen.lhc2.enums.SX;
 import net.geozen.lhc2.jpa.TmRepository;
 import net.geozen.lhc2.jpa.sx.SxyzRepository;
 import net.geozen.lhc2.nums.SxNums;
-import net.geozen.lhc2.utils.SxUtil;
 import net.geozen.lhc2.utils.SystemConstants;
 
 @Service

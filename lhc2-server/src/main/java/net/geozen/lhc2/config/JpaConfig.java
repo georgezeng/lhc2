@@ -7,8 +7,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@EnableJpaRepositories(basePackages = "net.geozen.lhc2.jpa")
-@EntityScan(basePackages = "net.geozen.lhc2.domain")
+@EnableJpaRepositories(basePackages = { "net.geozen.lhc2.jpa", "net.geozen.lhc3.jpa" })
+@EntityScan(basePackages = { "net.geozen.lhc2.domain", "net.geozen.lhc3.domain" })
 @EnableTransactionManagement
 @Configuration
 public class JpaConfig {

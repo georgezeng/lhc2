@@ -1,0 +1,8 @@
+package net.geozen.lhc3.jpa.seqc;
+
+import net.geozen.lhc3.def.jpa.BaseZfRepository;
+import net.geozen.lhc3.domain.seqc.Lhc3SeqcZf;
+
+public interface Lhc3SeqcZfRepository extends BaseZfRepository<Lhc3SeqcZf> {
+	
+}
