@@ -48,6 +48,21 @@ export default {
             cols.push(col);
         }
         cols.push({
+            title: '遗值和',
+            width: 80,
+            key: 'totalColsYz'
+        })
+        cols.push({
+            title: '倒1-倒5遗值和',
+            width: 80,
+            key: 'rcolsYz'
+        })
+        cols.push({
+            title: '最大遗值',
+            width: 80,
+            key: 'maxColYz'
+        })
+        cols.push({
             title: ''
         })
         return cols;

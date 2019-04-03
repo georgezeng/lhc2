@@ -1,7 +1,6 @@
 package net.geozen.lhc3.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -10,6 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 import net.geozen.lhc2.dto.PageResult;
 import net.geozen.lhc2.dto.QueryInfo;
 import net.geozen.lhc2.dto.Result;
+import net.geozen.lhc3.def.jpa.BaseSwRepository;
+import net.geozen.lhc3.def.jpa.BaseYzRepository;
+import net.geozen.lhc3.def.jpa.BaseZfRepository;
 import net.geozen.lhc3.domain.seqj.Lhc3SeqjSw;
 import net.geozen.lhc3.domain.seqj.Lhc3SeqjYz;
 import net.geozen.lhc3.domain.seqj.Lhc3SeqjZf;
@@ -19,7 +21,7 @@ import net.geozen.lhc3.jpa.seqj.Lhc3SeqjZfRepository;
 
 @RestController
 @RequestMapping(value = "/lhc3/seqj")
-public class Lhc3SeqjController {
+public class Lhc3SeqjController extends Lhc3BaseController<Lhc3SeqjYz, Lhc3SeqjZf, Lhc3SeqjSw> {
 
 	@Autowired
 	private Lhc3SeqjYzRepository yzRepository;
@@ -30,21 +32,37 @@ public class Lhc3SeqjController {
 	@Autowired
 	private Lhc3SeqjSwRepository swRepository;
 
+	@Override
+	protected BaseYzRepository<Lhc3SeqjYz> getYzRepository() {
+		return yzRepository;
+	}
+
+	@Override
+	protected BaseZfRepository<Lhc3SeqjZf> getZfRepository() {
+		return zfRepository;
+	}
+
+	@Override
+	protected BaseSwRepository<Lhc3SeqjSw> getSwRepository() {
+		return swRepository;
+	}
+
 	@RequestMapping(value = "/yz/list", method = RequestMethod.POST)
-	public Result<PageResult<Lhc3SeqjYz>> yzList(@RequestBody QueryInfo<String> queryInfo) {
-		Page<Lhc3SeqjYz> result = yzRepository.findAll(queryInfo.getPage().pageable());
-		return Result.genSuccessResult(new PageResult<>(result.getContent(), result.getTotalElements()));
+	@Override
+	public Result<PageResult<Lhc3SeqjYz>> yzList(@RequestBody QueryInfo<String> queryInfo) throws Exception {
+		return super.yzList(queryInfo);
 	}
 
 	@RequestMapping(value = "/zf/list", method = RequestMethod.POST)
-	public Result<PageResult<Lhc3SeqjZf>> zfList(@RequestBody QueryInfo<String> queryInfo) {
-		Page<Lhc3SeqjZf> result = zfRepository.findAll(queryInfo.getPage().pageable());
-		return Result.genSuccessResult(new PageResult<>(result.getContent(), result.getTotalElements()));
+	@Override
+	public Result<PageResult<Lhc3SeqjZf>> zfList(@RequestBody QueryInfo<String> queryInfo) throws Exception {
+		return super.zfList(queryInfo);
 	}
 
 	@RequestMapping(value = "/sw/list", method = RequestMethod.POST)
-	public Result<PageResult<Lhc3SeqjSw>> swList(@RequestBody QueryInfo<String> queryInfo) {
-		Page<Lhc3SeqjSw> result = swRepository.findAll(queryInfo.getPage().pageable());
-		return Result.genSuccessResult(new PageResult<>(result.getContent(), result.getTotalElements()));
+	@Override
+	public Result<PageResult<Lhc3SeqjSw>> swList(@RequestBody QueryInfo<String> queryInfo) throws Exception {
+		return super.swList(queryInfo);
 	}
+
 }
