@@ -38,7 +38,7 @@ public abstract class Lhc3BaseService<Y extends PosBaseEntity, Z extends PosBase
 	protected abstract BaseSwRepository<S> getSwRepository();
 
 	protected abstract List<List<Integer>> getNums();
-
+	
 	private int reverseCols = 5;
 
 	private int length = 12;
@@ -51,9 +51,10 @@ public abstract class Lhc3BaseService<Y extends PosBaseEntity, Z extends PosBase
 
 	@SuppressWarnings("unchecked")
 	public Lhc3BaseService() {
-		yzClass = (Class<Y>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-		zfClass = (Class<Z>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[1];
-		swClass = (Class<S>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[2];
+		ParameterizedType type = (ParameterizedType) getClass().getGenericSuperclass();
+		yzClass = (Class<Y>) type.getActualTypeArguments()[0];
+		zfClass = (Class<Z>) type.getActualTypeArguments()[1];
+		swClass = (Class<S>) type.getActualTypeArguments()[2];
 	}
 
 	@Async
@@ -80,27 +81,18 @@ public abstract class Lhc3BaseService<Y extends PosBaseEntity, Z extends PosBase
 						swm.invoke(yz, 0);
 						yz.setPos(index);
 					} else {
-						Integer value = ((Integer) wm.invoke(lastYz)) + 1;
+						int value = ((int) wm.invoke(lastYz)) + 1;
 						yzValueList.add(value);
 						swm.invoke(yz, value);
 					}
 					stm.invoke(yz, ((Integer) tm.invoke(lastYz)) + ((Integer) wm.invoke(yz)));
 					Optional<Y> lastLimitedYzOp = getYzRepository().findById(lastId - limitedRows + 1);
 					if (lastLimitedYzOp.isPresent()) {
-						sltm.invoke(yz, ((Integer) ltm.invoke(lastYz)) + ((Integer) wm.invoke(yz)) - ((Integer) wm.invoke(lastLimitedYzOp.get())));
+						sltm.invoke(yz, ((int) ltm.invoke(lastYz)) + ((int) wm.invoke(yz)) - ((int) wm.invoke(lastLimitedYzOp.get())));
 					} else {
-						sltm.invoke(yz, ((Integer) ltm.invoke(lastYz)) + ((Integer) wm.invoke(yz)));
+						sltm.invoke(yz, ((int) ltm.invoke(lastYz)) + ((int) wm.invoke(yz)));
 					}
 					index++;
-				}
-				if(yz.getPos() == 0) {
-					String numsStr = "";
-					for(List<Integer> nums : getNums()) {
-						for(Integer num : nums) {
-							numsStr+=num+",";
-						}
-					}
-					log.info(numsStr);
 				}
 				Collections.sort(yzValueList);
 				Collections.reverse(yzValueList);
@@ -139,7 +131,7 @@ public abstract class Lhc3BaseService<Y extends PosBaseEntity, Z extends PosBase
 			return;
 		}
 		Y lastYz = lastYzOp.get();
-		Optional<Z> lastZfOp = getZfRepository().findById(lastId);
+		Optional<Z> lastZfOp = getZfRepository().findByPhase(lastYz.getPhase());
 		Z lastZf = lastZfOp.orElse(zfClass.newInstance());
 		Z zf = zfClass.newInstance();
 		zf.setNum(yz.getNum());
@@ -158,23 +150,23 @@ public abstract class Lhc3BaseService<Y extends PosBaseEntity, Z extends PosBase
 			Method stm = ReflectionUtils.findMethod(zf.getClass(), "setT" + j, int.class);
 			Method sltm = ReflectionUtils.findMethod(zf.getClass(), "setLt" + j, int.class);
 			if (j != delta) {
-				int value = (int) wm.invoke(lastZf);
+				int value = (int) wm.invoke(lastZf) + 1;
 				zfValueList.add(value);
-				swm.invoke(zf, value + 1);
+				swm.invoke(zf, value);
 			} else {
 				swm.invoke(zf, 0);
 			}
-			stm.invoke(yz, ((Integer) tm.invoke(lastYz)) + ((Integer) wm.invoke(yz)));
+			stm.invoke(zf, ((int) tm.invoke(lastZf)) + ((int) wm.invoke(zf)));
 			Optional<Z> lastLimitedZfOp = getZfRepository().findById(lastId - limitedRows + 1);
 			if (lastLimitedZfOp.isPresent()) {
-				sltm.invoke(zf, ((Integer) ltm.invoke(lastZf)) + ((Integer) wm.invoke(zf)) - ((Integer) wm.invoke(lastLimitedZfOp.get())));
+				sltm.invoke(zf, ((int) ltm.invoke(lastZf)) + ((int) wm.invoke(zf)) - ((int) wm.invoke(lastLimitedZfOp.get())));
 			} else {
-				sltm.invoke(zf, ((Integer) ltm.invoke(lastZf)) + ((Integer) wm.invoke(zf)));
+				sltm.invoke(zf, ((int) ltm.invoke(lastZf)) + ((int) wm.invoke(zf)));
 			}
 		}
 		Collections.sort(zfValueList);
 		Collections.reverse(zfValueList);
-		yz.setMaxColYz(zfValueList.get(0));
+		zf.setMaxColYz(zfValueList.get(0));
 		int rColsZf = 0;
 		int totalColsZf = 0;
 		int index = 0;
@@ -197,7 +189,7 @@ public abstract class Lhc3BaseService<Y extends PosBaseEntity, Z extends PosBase
 			return;
 		}
 		Y lastYz = lastYzOp.get();
-		Optional<S> lastSwOp = getSwRepository().findById(lastId);
+		Optional<S> lastSwOp = getSwRepository().findByPhase(lastYz.getPhase());
 		S lastSw = lastSwOp.orElse(swClass.newInstance());
 		S sw = swClass.newInstance();
 		sw.setNum(yz.getNum());
@@ -249,8 +241,8 @@ public abstract class Lhc3BaseService<Y extends PosBaseEntity, Z extends PosBase
 			Method swpm = ReflectionUtils.findMethod(sw.getClass(), "setW" + j + "Pos", int.class);
 			swpm.invoke(sw, infoList.get(j - 1).getPos());
 			if (pos != j) {
-				int value = (int) wm.invoke(lastSw);
-				swm.invoke(sw, value + 1);
+				int value = (int) wm.invoke(lastSw) + 1;
+				swm.invoke(sw, value);
 				swValueList.add(value);
 			} else {
 				swm.invoke(sw, 0);

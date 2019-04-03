@@ -71,7 +71,7 @@ public class Lhc3FdService {
 			return;
 		}
 		Lhc3FdYz lastYz = lastYzOp.get();
-		Optional<Lhc3FdSw> lastSwOp = swRepository.findById(lastId);
+		Optional<Lhc3FdSw> lastSwOp = swRepository.findByPhase(lastYz.getPhase());
 		Lhc3FdSw lastSw = lastSwOp.orElseGet(Lhc3FdSw::new);
 		Lhc3FdSw sw = new Lhc3FdSw();
 		sw.setNum(yz.getNum());

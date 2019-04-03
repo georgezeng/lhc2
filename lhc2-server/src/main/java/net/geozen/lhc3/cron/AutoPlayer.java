@@ -112,24 +112,24 @@ public class AutoPlayer {
 		List<Future<Exception>> futures = new ArrayList<>();
 		if (!tmList.isEmpty()) {
 			futures.add(seqaService.cal(tmList, limitedRows));
-			futures.add(seqbService.cal(tmList, limitedRows));
-			futures.add(seqcService.cal(tmList, limitedRows));
-			futures.add(seqdService.cal(tmList, limitedRows));
-			futures.add(seqeService.cal(tmList, limitedRows));
-			futures.add(seqfService.cal(tmList, limitedRows));
-			futures.add(seqgService.cal(tmList, limitedRows));
-			futures.add(seqhService.cal(tmList, limitedRows));
-			futures.add(seqiService.cal(tmList, limitedRows));
-			futures.add(seqjService.cal(tmList, limitedRows));
-			futures.add(seqkService.cal(tmList, limitedRows));
-			futures.add(seqlService.cal(tmList, limitedRows));
-			futures.add(seqmService.cal(tmList, limitedRows));
-			futures.add(seqnService.cal(tmList, limitedRows));
-			futures.add(seqoService.cal(tmList, limitedRows));
-			futures.add(seqpService.cal(tmList, limitedRows));
-			futures.add(seqqService.cal(tmList, limitedRows));
-			futures.add(seqrService.cal(tmList, limitedRows));
-			futures.add(fdService.cal(tmList, limitedRows));
+//			futures.add(seqbService.cal(tmList, limitedRows));
+//			futures.add(seqcService.cal(tmList, limitedRows));
+//			futures.add(seqdService.cal(tmList, limitedRows));
+//			futures.add(seqeService.cal(tmList, limitedRows));
+//			futures.add(seqfService.cal(tmList, limitedRows));
+//			futures.add(seqgService.cal(tmList, limitedRows));
+//			futures.add(seqhService.cal(tmList, limitedRows));
+//			futures.add(seqiService.cal(tmList, limitedRows));
+//			futures.add(seqjService.cal(tmList, limitedRows));
+//			futures.add(seqkService.cal(tmList, limitedRows));
+//			futures.add(seqlService.cal(tmList, limitedRows));
+//			futures.add(seqmService.cal(tmList, limitedRows));
+//			futures.add(seqnService.cal(tmList, limitedRows));
+//			futures.add(seqoService.cal(tmList, limitedRows));
+//			futures.add(seqpService.cal(tmList, limitedRows));
+//			futures.add(seqqService.cal(tmList, limitedRows));
+//			futures.add(seqrService.cal(tmList, limitedRows));
+//			futures.add(fdService.cal(tmList, limitedRows));
 			CommonUtil.wait(futures);
 		}
 	}
