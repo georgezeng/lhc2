@@ -76,7 +76,7 @@
                 this.loading = true;
                 API[this.func].call(API, this.module, this.queryInfo).then(res => {
                     this.loading = false;
-                    if(e) {
+                    if (e) {
                         e.target.scrollingElement.scrollTop -= 1000
                     }
                     this.data = this.data.concat(res.list);
