@@ -1,0 +1,43 @@
+package net.geozen.lhc3.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import net.geozen.lhc2.dto.Result;
+import net.geozen.lhc3.domain.seqk.Lhc3SeqkSw;
+import net.geozen.lhc3.domain.seqk.Lhc3SeqkYz;
+import net.geozen.lhc3.domain.seqk.Lhc3SeqkZf;
+import net.geozen.lhc3.jpa.seqk.Lhc3SeqkSwRepository;
+import net.geozen.lhc3.jpa.seqk.Lhc3SeqkYzRepository;
+import net.geozen.lhc3.jpa.seqk.Lhc3SeqkZfRepository;
+
+@RestController
+@RequestMapping(value = "/lhc3/seqk")
+public class Lhc3SeqkController {
+
+	@Autowired
+	private Lhc3SeqkYzRepository yzRepository;
+
+	@Autowired
+	private Lhc3SeqkZfRepository zfRepository;
+
+	@Autowired
+	private Lhc3SeqkSwRepository swRepository;
+
+	@RequestMapping(value = "/yz/list", method = RequestMethod.GET)
+	public Result<Iterable<Lhc3SeqkYz>> yzList() {
+		return Result.genSuccessResult(yzRepository.findAll());
+	}
+
+	@RequestMapping(value = "/zf/list", method = RequestMethod.GET)
+	public Result<Iterable<Lhc3SeqkZf>> zfList() {
+		return Result.genSuccessResult(zfRepository.findAll());
+	}
+
+	@RequestMapping(value = "/sw/list", method = RequestMethod.GET)
+	public Result<Iterable<Lhc3SeqkSw>> swList() {
+		return Result.genSuccessResult(swRepository.findAll());
+	}
+}

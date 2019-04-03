@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.Future;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -101,7 +103,8 @@ public class AutoPlayer {
 	private Lhc3FdService fdService;
 
 	// @Scheduled(cron = "50 0/5 * * * ?")
-	@Scheduled(cron = "0 * * * * ?")
+//	@Scheduled(cron = "0 * * * * ?")
+	@PostConstruct
 	public void run() throws Exception {
 		Optional<SystemConfig> configOp = configRepository.findByKey(SystemConfigKeys.LOTTERY_SITE);
 		int limitedRows = 50;
@@ -130,7 +133,7 @@ public class AutoPlayer {
 			futures.add(seqqService.cal(tmList, limitedRows));
 			futures.add(seqrService.cal(tmList, limitedRows));
 			futures.add(fdService.cal(tmList, limitedRows));
-			CommonUtil.wait(futures);
+//			CommonUtil.wait(futures);
 		}
 	}
 }
