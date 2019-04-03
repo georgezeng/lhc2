@@ -35,6 +35,14 @@ const RouterConfig = {
             component: (resolve) => require(['./views/tm.vue'], resolve)
         },
         {
+            path: '/lhc3/tm',
+            name: 'lhc3-tm',
+            meta: {
+                title: `${prefix}特码`
+            },
+            component: (resolve) => require(['./views/lhc3/tm.vue'], resolve)
+        },
+        {
             path: '/stat-s2-s3',
             name: 'stat-s2-s3',
             meta: {
@@ -801,6 +809,438 @@ const RouterConfig = {
                 title: `${prefix}小大单双`
             },
             component: (resolve) => require(['./views/dxds/yzzf.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqa/yz',
+            name: 'lhc3-seqa-yz',
+            meta: {
+                title: `${prefix}十二区A遗值`
+            },
+            component: (resolve) => require(['./views/lhc3/seqa/yz.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqa/zf',
+            name: 'lhc3-seqa-zf',
+            meta: {
+                title: `${prefix}十二区A振幅`
+            },
+            component: (resolve) => require(['./views/lhc3/seqa/zf.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqa/sw',
+            name: 'lhc3-seqa-sw',
+            meta: {
+                title: `${prefix}十二区A顺位`
+            },
+            component: (resolve) => require(['./views/lhc3/seqa/sw.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqb/yz',
+            name: 'lhc3-seqb-yz',
+            meta: {
+                title: `${prefix}十二区B遗值`
+            },
+            component: (resolve) => require(['./views/lhc3/seqb/yz.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqb/zf',
+            name: 'lhc3-seqb-zf',
+            meta: {
+                title: `${prefix}十二区B振幅`
+            },
+            component: (resolve) => require(['./views/lhc3/seqb/zf.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqb/sw',
+            name: 'lhc3-seqb-sw',
+            meta: {
+                title: `${prefix}十二区B顺位`
+            },
+            component: (resolve) => require(['./views/lhc3/seqb/sw.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqc/yz',
+            name: 'lhc3-seqc-yz',
+            meta: {
+                title: `${prefix}十二区C遗值`
+            },
+            component: (resolve) => require(['./views/lhc3/seqc/yz.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqc/zf',
+            name: 'lhc3-seqc-zf',
+            meta: {
+                title: `${prefix}十二区C振幅`
+            },
+            component: (resolve) => require(['./views/lhc3/seqc/zf.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqc/sw',
+            name: 'lhc3-seqc-sw',
+            meta: {
+                title: `${prefix}十二区C顺位`
+            },
+            component: (resolve) => require(['./views/lhc3/seqc/sw.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqd/yz',
+            name: 'lhc3-seqd-yz',
+            meta: {
+                title: `${prefix}十二区D遗值`
+            },
+            component: (resolve) => require(['./views/lhc3/seqd/yz.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqd/zf',
+            name: 'lhc3-seqd-zf',
+            meta: {
+                title: `${prefix}十二区D振幅`
+            },
+            component: (resolve) => require(['./views/lhc3/seqd/zf.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqd/sw',
+            name: 'lhc3-seqd-sw',
+            meta: {
+                title: `${prefix}十二区D顺位`
+            },
+            component: (resolve) => require(['./views/lhc3/seqd/sw.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqe/yz',
+            name: 'lhc3-seqe-yz',
+            meta: {
+                title: `${prefix}十二区E遗值`
+            },
+            component: (resolve) => require(['./views/lhc3/seqe/yz.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqe/zf',
+            name: 'lhc3-seqe-zf',
+            meta: {
+                title: `${prefix}十二区E振幅`
+            },
+            component: (resolve) => require(['./views/lhc3/seqe/zf.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqe/sw',
+            name: 'lhc3-seqe-sw',
+            meta: {
+                title: `${prefix}十二区E顺位`
+            },
+            component: (resolve) => require(['./views/lhc3/seqe/sw.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqf/yz',
+            name: 'lhc3-seqf-yz',
+            meta: {
+                title: `${prefix}十二区F遗值`
+            },
+            component: (resolve) => require(['./views/lhc3/seqf/yz.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqf/zf',
+            name: 'lhc3-seqf-zf',
+            meta: {
+                title: `${prefix}十二区F振幅`
+            },
+            component: (resolve) => require(['./views/lhc3/seqf/zf.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqf/sw',
+            name: 'lhc3-seqf-sw',
+            meta: {
+                title: `${prefix}十二区F顺位`
+            },
+            component: (resolve) => require(['./views/lhc3/seqf/sw.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqg/yz',
+            name: 'lhc3-seqg-yz',
+            meta: {
+                title: `${prefix}十二区G遗值`
+            },
+            component: (resolve) => require(['./views/lhc3/seqg/yz.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqg/zf',
+            name: 'lhc3-seqg-zf',
+            meta: {
+                title: `${prefix}十二区G振幅`
+            },
+            component: (resolve) => require(['./views/lhc3/seqg/zf.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqg/sw',
+            name: 'lhc3-seqg-sw',
+            meta: {
+                title: `${prefix}十二区G顺位`
+            },
+            component: (resolve) => require(['./views/lhc3/seqg/sw.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqh/yz',
+            name: 'lhc3-seqh-yz',
+            meta: {
+                title: `${prefix}十二区H遗值`
+            },
+            component: (resolve) => require(['./views/lhc3/seqh/yz.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqh/zf',
+            name: 'lhc3-seqh-zf',
+            meta: {
+                title: `${prefix}十二区H振幅`
+            },
+            component: (resolve) => require(['./views/lhc3/seqh/zf.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqh/sw',
+            name: 'lhc3-seqh-sw',
+            meta: {
+                title: `${prefix}十二区H顺位`
+            },
+            component: (resolve) => require(['./views/lhc3/seqh/sw.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqi/yz',
+            name: 'lhc3-seqi-yz',
+            meta: {
+                title: `${prefix}十二区I遗值`
+            },
+            component: (resolve) => require(['./views/lhc3/seqi/yz.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqi/zf',
+            name: 'lhc3-seqi-zf',
+            meta: {
+                title: `${prefix}十二区I振幅`
+            },
+            component: (resolve) => require(['./views/lhc3/seqi/zf.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqi/sw',
+            name: 'lhc3-seqi-sw',
+            meta: {
+                title: `${prefix}十二区I顺位`
+            },
+            component: (resolve) => require(['./views/lhc3/seqi/sw.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqj/yz',
+            name: 'lhc3-seqj-yz',
+            meta: {
+                title: `${prefix}十二区J遗值`
+            },
+            component: (resolve) => require(['./views/lhc3/seqj/yz.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqj/zf',
+            name: 'lhc3-seqj-zf',
+            meta: {
+                title: `${prefix}十二区J振幅`
+            },
+            component: (resolve) => require(['./views/lhc3/seqj/zf.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqj/sw',
+            name: 'lhc3-seqj-sw',
+            meta: {
+                title: `${prefix}十二区J顺位`
+            },
+            component: (resolve) => require(['./views/lhc3/seqj/sw.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqk/yz',
+            name: 'lhc3-seqk-yz',
+            meta: {
+                title: `${prefix}十二区K遗值`
+            },
+            component: (resolve) => require(['./views/lhc3/seqk/yz.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqk/zf',
+            name: 'lhc3-seqk-zf',
+            meta: {
+                title: `${prefix}十二区K振幅`
+            },
+            component: (resolve) => require(['./views/lhc3/seqk/zf.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqk/sw',
+            name: 'lhc3-seqk-sw',
+            meta: {
+                title: `${prefix}十二区K顺位`
+            },
+            component: (resolve) => require(['./views/lhc3/seqk/sw.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seql/yz',
+            name: 'lhc3-seql-yz',
+            meta: {
+                title: `${prefix}十二区L遗值`
+            },
+            component: (resolve) => require(['./views/lhc3/seql/yz.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seql/zf',
+            name: 'lhc3-seql-zf',
+            meta: {
+                title: `${prefix}十二区L振幅`
+            },
+            component: (resolve) => require(['./views/lhc3/seql/zf.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seql/sw',
+            name: 'lhc3-seql-sw',
+            meta: {
+                title: `${prefix}十二区L顺位`
+            },
+            component: (resolve) => require(['./views/lhc3/seql/sw.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqm/yz',
+            name: 'lhc3-seqm-yz',
+            meta: {
+                title: `${prefix}十二区M遗值`
+            },
+            component: (resolve) => require(['./views/lhc3/seqm/yz.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqm/zf',
+            name: 'lhc3-seqm-zf',
+            meta: {
+                title: `${prefix}十二区M振幅`
+            },
+            component: (resolve) => require(['./views/lhc3/seqm/zf.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqm/sw',
+            name: 'lhc3-seqm-sw',
+            meta: {
+                title: `${prefix}十二区M顺位`
+            },
+            component: (resolve) => require(['./views/lhc3/seqm/sw.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqn/yz',
+            name: 'lhc3-seqn-yz',
+            meta: {
+                title: `${prefix}十二区N遗值`
+            },
+            component: (resolve) => require(['./views/lhc3/seqn/yz.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqn/zf',
+            name: 'lhc3-seqn-zf',
+            meta: {
+                title: `${prefix}十二区N振幅`
+            },
+            component: (resolve) => require(['./views/lhc3/seqn/zf.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqn/sw',
+            name: 'lhc3-seqn-sw',
+            meta: {
+                title: `${prefix}十二区N顺位`
+            },
+            component: (resolve) => require(['./views/lhc3/seqn/sw.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqo/yz',
+            name: 'lhc3-seqo-yz',
+            meta: {
+                title: `${prefix}十二区O遗值`
+            },
+            component: (resolve) => require(['./views/lhc3/seqo/yz.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqo/zf',
+            name: 'lhc3-seqo-zf',
+            meta: {
+                title: `${prefix}十二区O振幅`
+            },
+            component: (resolve) => require(['./views/lhc3/seqo/zf.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqo/sw',
+            name: 'lhc3-seqo-sw',
+            meta: {
+                title: `${prefix}十二区O顺位`
+            },
+            component: (resolve) => require(['./views/lhc3/seqo/sw.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqp/yz',
+            name: 'lhc3-seqp-yz',
+            meta: {
+                title: `${prefix}十二区P遗值`
+            },
+            component: (resolve) => require(['./views/lhc3/seqp/yz.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqp/zf',
+            name: 'lhc3-seqp-zf',
+            meta: {
+                title: `${prefix}十二区P振幅`
+            },
+            component: (resolve) => require(['./views/lhc3/seqp/zf.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqp/sw',
+            name: 'lhc3-seqp-sw',
+            meta: {
+                title: `${prefix}十二区P顺位`
+            },
+            component: (resolve) => require(['./views/lhc3/seqp/sw.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqq/yz',
+            name: 'lhc3-seqq-yz',
+            meta: {
+                title: `${prefix}十二区Q遗值`
+            },
+            component: (resolve) => require(['./views/lhc3/seqq/yz.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqq/zf',
+            name: 'lhc3-seqq-zf',
+            meta: {
+                title: `${prefix}十二区Q振幅`
+            },
+            component: (resolve) => require(['./views/lhc3/seqq/zf.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqq/sw',
+            name: 'lhc3-seqq-sw',
+            meta: {
+                title: `${prefix}十二区Q顺位`
+            },
+            component: (resolve) => require(['./views/lhc3/seqq/sw.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqr/yz',
+            name: 'lhc3-seqr-yz',
+            meta: {
+                title: `${prefix}十二区R遗值`
+            },
+            component: (resolve) => require(['./views/lhc3/seqr/yz.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqr/zf',
+            name: 'lhc3-seqr-zf',
+            meta: {
+                title: `${prefix}十二区R振幅`
+            },
+            component: (resolve) => require(['./views/lhc3/seqr/zf.vue'], resolve)
+        },
+        {
+            path: '/lhc3/seqr/sw',
+            name: 'lhc3-seqr-sw',
+            meta: {
+                title: `${prefix}十二区R顺位`
+            },
+            component: (resolve) => require(['./views/lhc3/seqr/sw.vue'], resolve)
         }
     ]
 };

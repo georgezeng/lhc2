@@ -143,7 +143,7 @@
                 <MenuItem name="comparision2-14">14表</MenuItem>
                 -->
                 <MenuItem name="comparision2-1">1表</MenuItem>
-                <MenuItem name="comparision2-4">1表</MenuItem>
+                <MenuItem name="comparision2-4">4表</MenuItem>
                 <MenuItem name="comparision2-16">16表</MenuItem>
             </MenuGroup>
             <MenuGroup title="类型3">
@@ -199,6 +199,10 @@
                 <MenuItem name="emulate3-12">12表</MenuItem>
             </MenuGroup>
         </Submenu>
+        <MenuItem name="lhc3-tm">
+            <Icon type="ios-paper" />
+            版本3
+        </MenuItem>
     </Menu>
 </template>
 <script>

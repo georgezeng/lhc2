@@ -26,6 +26,16 @@ export default {
         });
     },
 
+    getLhc3TmList(queryInfo) {
+        return new Promise((resolve, reject) => {
+            util.ajax.post('/lhc3/tm/list/', queryInfo).then(data => {
+                resolve(data);
+            }).catch(ex => {
+                reject(ex);
+            });
+        });
+    },
+
     saveTm(data) {
         return new Promise((resolve, reject) => {
             util.ajax.post('/tm/save/', data).then(data => {
@@ -96,6 +106,17 @@ export default {
         });
     },
 
+
+    getLhc3YzList(prefix, queryInfo) {
+        return new Promise((resolve, reject) => {
+            util.ajax.post(`/lhc3/${prefix}/yz/list`, queryInfo).then(data => {
+                resolve(data);
+            }).catch(ex => {
+                reject(ex);
+            });
+        });
+    },
+
     getZfList(prefix) {
         return new Promise((resolve, reject) => {
             util.ajax.get(`/${prefix}/zf/list`).then(data => {
@@ -106,9 +127,29 @@ export default {
         });
     },
 
+    getLhc3ZfList(prefix, queryInfo) {
+        return new Promise((resolve, reject) => {
+            util.ajax.post(`/lhc3/${prefix}/zf/list`, queryInfo).then(data => {
+                resolve(data);
+            }).catch(ex => {
+                reject(ex);
+            });
+        });
+    },
+
     getSwList(prefix) {
         return new Promise((resolve, reject) => {
             util.ajax.get(`/${prefix}/sw/list`).then(data => {
+                resolve(data);
+            }).catch(ex => {
+                reject(ex);
+            });
+        });
+    },
+
+    getLhc3SwList(prefix, queryInfo) {
+        return new Promise((resolve, reject) => {
+            util.ajax.post(`/lhc3/${prefix}/sw/list`, queryInfo).then(data => {
                 resolve(data);
             }).catch(ex => {
                 reject(ex);

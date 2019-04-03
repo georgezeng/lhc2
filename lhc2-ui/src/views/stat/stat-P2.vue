@@ -15,6 +15,14 @@
                     </p>
                     <Table stripe border size="small" :loading="loading1" :columns="columns" :data="data1"/>
                 </Card>
+                <br/>
+                <Card>
+                    <p slot="title">
+                        <Icon type="ios-stats-outline"/>
+                        4表选号
+                    </p>
+                    <Table stripe border size="small" :loading="loading2" :columns="columns" :data="data2"/>
+                </Card>
                 <!--<br/>-->
                 <!--<Card>-->
                     <!--<p slot="title">-->
@@ -162,6 +170,10 @@
                     this.data1 = [];
                     return this.data1
                 }, () => this.loading1 = true, () => this.loading1 = false);
+                this.changePage(1, 4, () => {
+                    this.data2 = [];
+                    return this.data2
+                }, () => this.loading2 = true, () => this.loading2 = false);
                 // this.changePage(1, 2, () => {
                 //     this.data1 = [];
                 //     return this.data1
