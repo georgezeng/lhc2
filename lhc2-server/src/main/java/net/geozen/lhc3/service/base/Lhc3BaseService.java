@@ -253,7 +253,7 @@ public abstract class Lhc3BaseService<Y extends PosBaseEntity, Z extends PosBase
 			}
 			int count = (int) wm.invoke(sw) > 0 ? 1 : 0;
 			stm.invoke(sw, (int) tm.invoke(lastSw) + count);
-			Optional<Z> lastLimitedSwOp = getZfRepository().findById(lastId - limitedRows + 1);
+			Optional<S> lastLimitedSwOp = getSwRepository().findById(lastId - limitedRows);
 			if (lastLimitedSwOp.isPresent()) {
 				int lastLimitedCount = (int) wm.invoke(lastLimitedSwOp.get()) > 0 ? 1 : 0;
 				sltm.invoke(sw, (int) ltm.invoke(lastSw) + count - lastLimitedCount);

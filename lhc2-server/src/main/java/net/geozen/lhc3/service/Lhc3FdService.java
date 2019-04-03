@@ -32,6 +32,8 @@ public class Lhc3FdService {
 	@Autowired
 	private Lhc3FdSwRepository swRepository;
 
+	private int reverseCols = 5;
+
 	@Async
 	public Future<Exception> cal(List<Lhc3Tm> tmList, int limitedRows) {
 		Exception t = null;
@@ -113,34 +115,63 @@ public class Lhc3FdService {
 
 	protected void dealInfoList(Lhc3FdSw sw, Lhc3FdSw lastSw, List<PosYzInfo> infoList, int pos, Long lastId, int limitedRows) throws Exception {
 		List<Integer> nums = new ArrayList<>();
+		List<Integer> swValueList = new ArrayList<>();
 		int count = 1;
 		for (int i = 0; i < infoList.size(); i++) {
 			int j = i + 1;
 			int num = infoList.get(i).getPos() + 1;
 			nums.add(num);
 			if (j < 48 && j % 4 == 0 || j == 49) {
-				Method setMethod = ReflectionUtils.findMethod(sw.getClass(), "setW" + count++ + "Arr", String.class);
-				setMethod.invoke(sw, StringUtils.collectionToCommaDelimitedString(nums));
+				Method sm = ReflectionUtils.findMethod(sw.getClass(), "setW" + count++ + "Arr", String.class);
+				sm.invoke(sw, StringUtils.collectionToCommaDelimitedString(nums));
 				nums = new ArrayList<>();
-			}
 
-			int index = i / 4;
-			if (index == 12) {
-				index = 11;
-			}
-			if (pos == 48) {
-				pos = 47;
-			}
-			if (j < 48 && j % 4 == 0 || j == 49) {
-				Method swm = ReflectionUtils.findMethod(sw.getClass(), "setW" + (index + 1), int.class);
+				int index = i / 4;
+				if (index == 12) {
+					index = 11;
+				}
+				if (pos == 48) {
+					pos = 47;
+				}
+				int wpos = index + 1;
+				Method tm = ReflectionUtils.findMethod(sw.getClass(), "getT" + wpos);
+				Method wm = ReflectionUtils.findMethod(sw.getClass(), "getW" + wpos);
+				Method ltm = ReflectionUtils.findMethod(sw.getClass(), "getLt" + wpos);
+				Method swm = ReflectionUtils.findMethod(sw.getClass(), "setW" + wpos, int.class);
+				Method stm = ReflectionUtils.findMethod(sw.getClass(), "setT" + wpos, int.class);
+				Method sltm = ReflectionUtils.findMethod(sw.getClass(), "setLt" + wpos, int.class);
 				if ((pos / 4) != index) {
-					Method gm = ReflectionUtils.findMethod(sw.getClass(), "getW" + (index + 1));
-					int value = (int) gm.invoke(lastSw);
-					swm.invoke(sw, value + 1);
+					int value = (int) wm.invoke(lastSw) + 1;
+					swValueList.add(value);
+					swm.invoke(sw, value);
 				} else {
 					swm.invoke(sw, 0);
 				}
+				int numsCount = (int) wm.invoke(sw) > 0 ? 1 : 0;
+				stm.invoke(sw, (int) tm.invoke(lastSw) + numsCount);
+				Optional<Lhc3FdSw> lastLimitedSwOp = swRepository.findById(lastId - limitedRows);
+				if (lastLimitedSwOp.isPresent()) {
+					int lastLimitedCount = (int) wm.invoke(lastLimitedSwOp.get()) > 0 ? 1 : 0;
+					sltm.invoke(sw, (int) ltm.invoke(lastSw) + numsCount - lastLimitedCount);
+				} else {
+					sltm.invoke(sw, (int) ltm.invoke(lastSw) + numsCount);
+				}
 			}
 		}
+		Collections.sort(swValueList);
+		Collections.reverse(swValueList);
+		sw.setMaxColYz(swValueList.get(0));
+		int rColsZf = 0;
+		int totalColsZf = 0;
+		int index = 0;
+		for (Integer value : swValueList) {
+			if (index < reverseCols) {
+				rColsZf += value;
+			}
+			totalColsZf += value;
+			index++;
+		}
+		sw.setRColsYz(rColsZf);
+		sw.setTotalColsYz(totalColsZf);
 	}
 }
