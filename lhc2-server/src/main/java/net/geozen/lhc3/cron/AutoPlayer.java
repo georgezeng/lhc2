@@ -104,7 +104,7 @@ public class AutoPlayer {
 
 	// @Scheduled(cron = "50 0/5 * * * ?")
 //	@Scheduled(cron = "0 * * * * ?")
-	@PostConstruct
+//	@PostConstruct
 	public void run() throws Exception {
 		Optional<SystemConfig> configOp = configRepository.findByKey(SystemConfigKeys.LOTTERY_SITE);
 		int limitedRows = 50;
