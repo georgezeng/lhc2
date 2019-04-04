@@ -65,6 +65,9 @@ public abstract class Lhc3BaseService<Y extends PosBaseEntity, Z extends PosBase
 				Long lastId = newTm.getId() - 1;
 				Optional<Y> lastYzOp = getYzRepository().findById(lastId);
 				Y lastYz = lastYzOp.orElse(yzClass.newInstance());
+				if (newTm.getPhase().equals(lastYz.getPhase())) {
+					continue;
+				}
 				Y yz = yzClass.newInstance();
 				yz.setNum(newTm.getNum());
 				yz.setPhase(newTm.getPhase());
@@ -133,6 +136,9 @@ public abstract class Lhc3BaseService<Y extends PosBaseEntity, Z extends PosBase
 			return;
 		}
 		Y lastYz = lastYzOp.get();
+		if (yz.getPhase().equals(lastYz.getPhase())) {
+			return;
+		}
 		Optional<Z> lastZfOp = getZfRepository().findByPhase(lastYz.getPhase());
 		Z lastZf = lastZfOp.orElse(zfClass.newInstance());
 		Z zf = zfClass.newInstance();
@@ -193,6 +199,9 @@ public abstract class Lhc3BaseService<Y extends PosBaseEntity, Z extends PosBase
 			return;
 		}
 		Y lastYz = lastYzOp.get();
+		if (yz.getPhase().equals(lastYz.getPhase())) {
+			return;
+		}
 		Optional<S> lastSwOp = getSwRepository().findByPhase(lastYz.getPhase());
 		S lastSw = lastSwOp.orElse(swClass.newInstance());
 		S sw = swClass.newInstance();

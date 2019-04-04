@@ -39,9 +39,11 @@ public class Lhc3FdService {
 		Exception t = null;
 		try {
 			for (Lhc3Tm newTm : tmList) {
-				Long lastId = newTm.getId() - 1;
-				Optional<Lhc3FdYz> lastYzOp = yzRepository.findById(lastId);
+				Optional<Lhc3FdYz> lastYzOp = yzRepository.findById(newTm.getId() - 1);
 				Lhc3FdYz lastYz = lastYzOp.orElseGet(Lhc3FdYz::new);
+				if (newTm.getPhase().equals(lastYz.getPhase())) {
+					continue;
+				}
 				Lhc3FdYz yz = new Lhc3FdYz();
 				yz.setNum(newTm.getNum());
 				yz.setPhase(newTm.getPhase());
@@ -73,6 +75,9 @@ public class Lhc3FdService {
 			return;
 		}
 		Lhc3FdYz lastYz = lastYzOp.get();
+		if (yz.getPhase().equals(lastYz.getPhase())) {
+			return;
+		}
 		Optional<Lhc3FdSw> lastSwOp = swRepository.findByPhase(lastYz.getPhase());
 		Lhc3FdSw lastSw = lastSwOp.orElseGet(Lhc3FdSw::new);
 		Lhc3FdSw sw = new Lhc3FdSw();
