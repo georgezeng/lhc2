@@ -17,7 +17,7 @@ public class SeqkNums {
 		LISTS.add(Arrays.asList(7, 14, 21, 28));
 		LISTS.add(Arrays.asList(29, 34, 39, 44));
 		LISTS.add(Arrays.asList(1, 8, 15, 47));
-		LISTS.add(Arrays.asList(4, 11, 28, 25));
+		LISTS.add(Arrays.asList(4, 11, 18, 25));
 		LISTS.add(Arrays.asList(32, 37, 42, 48));
 		LISTS.add(Arrays.asList(33, 38, 43, 30));
 	};

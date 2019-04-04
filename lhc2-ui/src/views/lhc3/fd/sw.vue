@@ -24,10 +24,14 @@
                 }, (index, row) => {
                     const data = row[`w${index}`];
                     const pos = row[`w${index}Arr`];
-                    return `${data} (${pos})`
+                    if (pos) {
+                        return `${data} (${pos})`
+                    } else {
+                        return `${data}`
+                    }
                 }, (row) => {
                     return null;
-                }, 120)
+                }, 140)
             }
         }
     }

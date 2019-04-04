@@ -8,7 +8,7 @@
                 <Menus :activeName="activeName"/>
             </Header>
             <Content class="content">
-                <Card>
+                <Card :style="{width: width ? width : '100%'}">
                     <p slot="title">
                         <Icon type="ios-albums-outline"/>
                         {{ title }}
@@ -41,7 +41,8 @@
             'title',
             'cols',
             'func',
-            'module'
+            'module',
+            'width'
         ],
         components: {
             Menus,
