@@ -115,8 +115,8 @@
                 <MenuItem name="lhc3-seqr-sw">顺表</MenuItem>
             </MenuGroup>
             <MenuGroup title="十二分段">
-                <MenuItem name="lhc3-fdyz">遗值表</MenuItem>
-                <MenuItem name="lhc3-fdsw">顺表</MenuItem>
+                <MenuItem name="lhc3-fd-yz">遗值表</MenuItem>
+                <MenuItem name="lhc3-fd-sw">顺表</MenuItem>
             </MenuGroup>
         </Submenu>
         <Submenu name="stat">

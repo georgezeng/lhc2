@@ -31,6 +31,7 @@ public class Lhc3FdController {
 		return Result.genSuccessResult(new PageResult<>(result.getContent(), result.getTotalElements()));
 	}
 
+	@RequestMapping(value = "/sw/list", method = RequestMethod.POST)
 	public Result<PageResult<Lhc3FdSw>> swList(@RequestBody QueryInfo<String> queryInfo) {
 		Page<Lhc3FdSw> result = swRepository.findAll(queryInfo.getPage().pageable());
 		if (queryInfo.getPage().getNum() == 1 && result.hasContent()) {

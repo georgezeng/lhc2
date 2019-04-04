@@ -1241,6 +1241,22 @@ const RouterConfig = {
                 title: `${prefix}十二区R顺位`
             },
             component: (resolve) => require(['./views/lhc3/seqr/sw.vue'], resolve)
+        },
+        {
+            path: '/lhc3/fd/yz',
+            name: 'lhc3-fd-yz',
+            meta: {
+                title: `${prefix}十二分段遗值`
+            },
+            component: (resolve) => require(['./views/lhc3/fd/yz.vue'], resolve)
+        },
+        {
+            path: '/lhc3/fd/sw',
+            name: 'lhc3-fd-sw',
+            meta: {
+                title: `${prefix}十二分段顺位`
+            },
+            component: (resolve) => require(['./views/lhc3/fd/sw.vue'], resolve)
         }
     ]
 };
