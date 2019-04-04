@@ -1,5 +1,8 @@
 package net.geozen.lhc3.controller;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,6 +38,7 @@ public class Lhc3FdController {
 	public Result<PageResult<Lhc3FdSw>> swList(@RequestBody QueryInfo<String> queryInfo) {
 		Page<Lhc3FdSw> result = swRepository.findAll(queryInfo.getPage().pageable());
 		if (queryInfo.getPage().getNum() == 1 && result.hasContent()) {
+			List<Lhc3FdSw> list = new LinkedList<>(result.getContent());
 			Lhc3FdSw first = result.getContent().get(0);
 
 			Lhc3FdSw topForTotal = new Lhc3FdSw();
@@ -51,7 +55,7 @@ public class Lhc3FdController {
 			topForTotal.setW10(first.getT10());
 			topForTotal.setW11(first.getT11());
 			topForTotal.setW12(first.getT12());
-			result.getContent().add(0, topForTotal);
+			list.add(0, topForTotal);
 
 			Lhc3FdSw topForLimitedTotal = new Lhc3FdSw();
 			topForLimitedTotal.setPhase("遗值和(有限制)");
@@ -67,7 +71,8 @@ public class Lhc3FdController {
 			topForLimitedTotal.setW10(first.getLt10());
 			topForLimitedTotal.setW11(first.getLt11());
 			topForLimitedTotal.setW12(first.getLt12());
-			result.getContent().add(0, topForLimitedTotal);
+			list.add(0, topForLimitedTotal);
+			return Result.genSuccessResult(new PageResult<>(list, result.getTotalElements()));
 		}
 		return Result.genSuccessResult(new PageResult<>(result.getContent(), result.getTotalElements()));
 	}
