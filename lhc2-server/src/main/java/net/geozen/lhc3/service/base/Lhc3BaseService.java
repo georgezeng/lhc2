@@ -17,9 +17,7 @@ import org.springframework.util.ReflectionUtils;
 
 import lombok.extern.slf4j.Slf4j;
 import net.geozen.lhc2.service.base.PosYzInfo;
-import net.geozen.lhc3.def.jpa.BaseSwRepository;
-import net.geozen.lhc3.def.jpa.BaseYzRepository;
-import net.geozen.lhc3.def.jpa.BaseZfRepository;
+import net.geozen.lhc3.def.jpa.BaseRepository;
 import net.geozen.lhc3.domain.Lhc3Tm;
 import net.geozen.lhc3.domain.base.PosBaseEntity;
 import net.geozen.lhc3.domain.base.SwBaseEntity;
@@ -31,11 +29,11 @@ public abstract class Lhc3BaseService<Y extends PosBaseEntity, Z extends PosBase
 	@Autowired
 	protected Lhc3TmRepository tmRepository;
 
-	protected abstract BaseYzRepository<Y> getYzRepository();
+	protected abstract BaseRepository<Y> getYzRepository();
 
-	protected abstract BaseZfRepository<Z> getZfRepository();
+	protected abstract BaseRepository<Z> getZfRepository();
 
-	protected abstract BaseSwRepository<S> getSwRepository();
+	protected abstract BaseRepository<S> getSwRepository();
 
 	protected abstract List<List<Integer>> getNums();
 

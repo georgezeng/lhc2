@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import net.geozen.lhc2.dto.PageResult;
 import net.geozen.lhc2.dto.QueryInfo;
 import net.geozen.lhc2.dto.Result;
-import net.geozen.lhc3.def.jpa.BaseSwRepository;
-import net.geozen.lhc3.def.jpa.BaseYzRepository;
-import net.geozen.lhc3.def.jpa.BaseZfRepository;
+import net.geozen.lhc3.def.jpa.BaseRepository;
 import net.geozen.lhc3.domain.seqr.Lhc3SeqrSw;
 import net.geozen.lhc3.domain.seqr.Lhc3SeqrYz;
 import net.geozen.lhc3.domain.seqr.Lhc3SeqrZf;
@@ -33,17 +31,17 @@ public class Lhc3SeqrController extends Lhc3BaseController<Lhc3SeqrYz, Lhc3SeqrZ
 	private Lhc3SeqrSwRepository swRepository;
 
 	@Override
-	protected BaseYzRepository<Lhc3SeqrYz> getYzRepository() {
+	protected BaseRepository<Lhc3SeqrYz> getYzRepository() {
 		return yzRepository;
 	}
 
 	@Override
-	protected BaseZfRepository<Lhc3SeqrZf> getZfRepository() {
+	protected BaseRepository<Lhc3SeqrZf> getZfRepository() {
 		return zfRepository;
 	}
 
 	@Override
-	protected BaseSwRepository<Lhc3SeqrSw> getSwRepository() {
+	protected BaseRepository<Lhc3SeqrSw> getSwRepository() {
 		return swRepository;
 	}
 

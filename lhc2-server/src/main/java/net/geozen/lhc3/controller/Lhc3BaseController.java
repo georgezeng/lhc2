@@ -9,19 +9,17 @@ import org.springframework.data.domain.Page;
 import net.geozen.lhc2.dto.PageResult;
 import net.geozen.lhc2.dto.QueryInfo;
 import net.geozen.lhc2.dto.Result;
-import net.geozen.lhc3.def.jpa.BaseSwRepository;
-import net.geozen.lhc3.def.jpa.BaseYzRepository;
-import net.geozen.lhc3.def.jpa.BaseZfRepository;
+import net.geozen.lhc3.def.jpa.BaseRepository;
 import net.geozen.lhc3.domain.base.PosBaseEntity;
 import net.geozen.lhc3.domain.base.SwBaseEntity;
 
 public abstract class Lhc3BaseController<Y extends PosBaseEntity, Z extends PosBaseEntity, S extends SwBaseEntity> {
 
-	protected abstract BaseYzRepository<Y> getYzRepository();
+	protected abstract BaseRepository<Y> getYzRepository();
 
-	protected abstract BaseZfRepository<Z> getZfRepository();
+	protected abstract BaseRepository<Z> getZfRepository();
 
-	protected abstract BaseSwRepository<S> getSwRepository();
+	protected abstract BaseRepository<S> getSwRepository();
 
 	protected Class<Y> yzClass;
 

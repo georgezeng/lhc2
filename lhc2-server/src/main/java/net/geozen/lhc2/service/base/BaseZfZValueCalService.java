@@ -55,7 +55,7 @@ public abstract class BaseZfZValueCalService<Y extends BaseEntity, Z extends Bas
 			// if (count >= len - 1) {
 			// avg = avg.divide(new BigDecimal(count), 2, RoundingMode.HALF_UP);
 			Z zf = getZfRepository().findByPhase(tm.getPhase());
-//			BigDecimal bmax = BigDecimal.ZERO; // b for max
+			// BigDecimal bmax = BigDecimal.ZERO; // b for max
 			// BigDecimal bmin = new BigDecimal("999999"); // b for min
 			BigDecimal c = BigDecimal.ZERO; // d for total
 			// MaxInfo max = null;
@@ -64,10 +64,10 @@ public abstract class BaseZfZValueCalService<Y extends BaseEntity, Z extends Bas
 				Method m = ReflectionUtils.findMethod(zf.getClass(), "getZf" + i);
 				Integer value = (Integer) m.invoke(zf);
 				BigDecimal decimal = new BigDecimal(value);
-//				if (bmax.compareTo(decimal) < 0) {
-//					bmax = decimal;
-					// max = new MaxInfo(tm.getPhase(), bmax.intValue(), i);
-//				}
+				// if (bmax.compareTo(decimal) < 0) {
+				// bmax = decimal;
+				// max = new MaxInfo(tm.getPhase(), bmax.intValue(), i);
+				// }
 				// if (bmin.compareTo(decimal) > 0) {
 				// bmin = decimal;
 				// min = new MaxInfo(tm.getPhase(), bmin.intValue(), i);
@@ -76,7 +76,7 @@ public abstract class BaseZfZValueCalService<Y extends BaseEntity, Z extends Bas
 			}
 
 			BigDecimal d = c.divide(new BigDecimal(getEndPos()), 2, RoundingMode.HALF_UP); // d for avg
-//			BigDecimal x = d.divide(bmax, 2, RoundingMode.HALF_UP);
+			// BigDecimal x = d.divide(bmax, 2, RoundingMode.HALF_UP);
 			S sw = getSwRepository().findByPhase(tm.getPhase());
 			BigDecimal f = BigDecimal.ZERO; // f for d1+d2+d3+d4+d5
 			for (int i = getEndPos() - 5; i < getEndPos(); i++) {
@@ -85,9 +85,9 @@ public abstract class BaseZfZValueCalService<Y extends BaseEntity, Z extends Bas
 				BigDecimal decimal = new BigDecimal(value);
 				f = f.add(decimal);
 			}
-//			BigDecimal y = f.divide(c, 2, RoundingMode.HALF_UP);
+			// BigDecimal y = f.divide(c, 2, RoundingMode.HALF_UP);
 			// BigDecimal z = avg.divide(x.add(y), 2, RoundingMode.HALF_UP);
-//			BigDecimal z = new BigDecimal("7").divide(x.add(y), 2, RoundingMode.HALF_UP);
+			// BigDecimal z = new BigDecimal("7").divide(x.add(y), 2, RoundingMode.HALF_UP);
 			BigDecimal z = f.divide(d, 2, RoundingMode.HALF_UP);
 
 			info = new ZInfo();
@@ -137,8 +137,10 @@ public abstract class BaseZfZValueCalService<Y extends BaseEntity, Z extends Bas
 			if (lessEntry == null) {
 				lessEntry = entry;
 			} else {
-				lessEntry = entry.getValue() < lessEntry.getValue() ? entry : lessEntry;
-				lessPos = index;
+				if (entry.getValue() < lessEntry.getValue()) {
+					lessEntry = entry;
+					lessPos = index;
+				}
 			}
 			index++;
 		}
@@ -147,7 +149,7 @@ public abstract class BaseZfZValueCalService<Y extends BaseEntity, Z extends Bas
 		int endPos = getEndPos();
 		BaseEntity baseYz = getYzRepository().findByPhase(phase);
 		int pos = 0;
-		if(baseYz instanceof PosBaseEntity) {
+		if (baseYz instanceof PosBaseEntity) {
 			PosBaseEntity yz = (PosBaseEntity) baseYz;
 			pos = yz.getPos() + lessPos;
 		} else {
@@ -156,11 +158,12 @@ public abstract class BaseZfZValueCalService<Y extends BaseEntity, Z extends Bas
 		if (pos >= endPos) {
 			pos = pos - endPos;
 		}
-		
+
 		List<Integer> numsList = nums.get(pos);
-//		if(numsList == null) {
-//			System.out.println("phase:"+phase+", pos: " + lessPos +", zpos: "+ pos + ", class: " + yz.getClass());
-//		}
+		// if(numsList == null) {
+		// System.out.println("phase:"+phase+", pos: " + lessPos +", zpos: "+ pos + ",
+		// class: " + yz.getClass());
+		// }
 		return numsList;
 	}
 
