@@ -272,6 +272,7 @@ public class ZValueCalService {
 			countInfos.add(countInfo);
 		}
 		payload.setInfos(countInfos);
+//		payload.setPhase(tm.getPhase() + "");
 
 		PickNum pickNum = new PickNum();
 		pickNum.setExpected(expected);
@@ -295,7 +296,7 @@ public class ZValueCalService {
 			}
 			countInfos.add(countInfo);
 		}
-		payload.setPhase(tm.getPhase());
+//		payload.setPhase(tm.getPhase() + "");
 		payload.setInfos(countInfos);
 
 		PickNum pickNum = new PickNum();

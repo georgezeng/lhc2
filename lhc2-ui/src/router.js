@@ -75,12 +75,44 @@ const RouterConfig = {
             component: (resolve) => require(['./views/stat/stat-P3.vue'], resolve)
         },
         {
+            path: '/lhc3/stat-P2',
+            name: 'lhc3-stat-P2',
+            meta: {
+                title: `${prefix}数据统计-类型2`
+            },
+            component: (resolve) => require(['./views/lhc3/stat/stat-P2.vue'], resolve)
+        },
+        {
+            path: '/lhc3/stat-P3',
+            name: 'lhc3-stat-P3',
+            meta: {
+                title: `${prefix}数据统计-类型3`
+            },
+            component: (resolve) => require(['./views/lhc3/stat/stat-P3.vue'], resolve)
+        },
+        {
             path: '/stat-P2-P3',
             name: 'stat-P2-P3',
             meta: {
                 title: `${prefix}数据统计-类型2-类型3`
             },
             component: (resolve) => require(['./views/stat/stat-P2-P3.vue'], resolve)
+        },
+        {
+            path: '/lhc3/comparision-12-P2',
+            name: 'lhc3-comparision-12-P2',
+            meta: {
+                title: `${prefix}数据对比-12`
+            },
+            component: (resolve) => require(['./views/lhc3/comparision/comparision-12-P2.vue'], resolve)
+        },
+        {
+            path: '/lhc3/comparision-12-P3',
+            name: 'lhc3-comparision-12-P3',
+            meta: {
+                title: `${prefix}数据对比-12`
+            },
+            component: (resolve) => require(['./views/lhc3/comparision/comparision-12-P3.vue'], resolve)
         },
         {
             path: '/comparision16',
@@ -249,6 +281,22 @@ const RouterConfig = {
                 title: `${prefix}数据对比3-1`
             },
             component: (resolve) => require(['./views/comparision3/comparision-1.vue'], resolve)
+        },
+        {
+            path: 'lhc3/emulate-12-P2',
+            name: 'lhc3-emulate-12-P2',
+            meta: {
+                title: `${prefix}数据模拟-12`
+            },
+            component: (resolve) => require(['./views/lhc3/emulate/emulate-12-P2.vue'], resolve)
+        },
+        {
+            path: 'lhc3/emulate-12-P3',
+            name: 'lhc3-emulate-12-P3',
+            meta: {
+                title: `${prefix}数据模拟-12`
+            },
+            component: (resolve) => require(['./views/lhc3/emulate/emulate-12-P3.vue'], resolve)
         },
         {
             path: '/emulate16',

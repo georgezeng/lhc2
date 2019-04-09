@@ -35,7 +35,7 @@ public class PickNumController {
 		List<PickNumPayload> payloads = new ArrayList<>();
 		for (PickNum num : result.getContent()) {
 			PickNumPayload payload = map.readValue(num.getPayload(), PickNumPayload.class);
-			payload.setPhase(num.getPhase());
+			payload.setPhase(num.getPhase() + "");
 			payloads.add(payload);
 		}
 		return Result.genSuccessResult(new PageResult<>(payloads, result.getTotalElements()));

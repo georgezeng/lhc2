@@ -3,12 +3,14 @@ package net.geozen.lhc3.jpa;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import net.geozen.lhc3.domain.Lhc3TimesYz;
 
 public interface Lhc3TimesYzRepository extends JpaRepository<Lhc3TimesYz, Long> {
-	List<Lhc3TimesYz> findAllByTablesAndTypeOrderByPhaseAsc(String tables, String type);
+	Page<Lhc3TimesYz> findAllByTablesAndType(String tables, String type, Pageable pageable);
 
 	List<Lhc3TimesYz> findAllByTablesAndType(String tables, String type);
 

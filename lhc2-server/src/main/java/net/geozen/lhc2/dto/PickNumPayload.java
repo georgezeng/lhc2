@@ -6,6 +6,6 @@ import lombok.Data;
 
 @Data
 public class PickNumPayload {
-	private int phase;
+	private String phase;
 	private List<PickNumCountInfo> infos;
 }

@@ -187,9 +187,30 @@ export default {
         });
     },
 
+    getLhc3PickNums(queryInfo) {
+        return new Promise((resolve, reject) => {
+            util.ajax.post(`/lhc3/pickNum/list`, queryInfo).then(data => {
+                resolve(data);
+            }).catch(ex => {
+                reject(ex);
+            });
+        });
+    },
+
     getTimes(tables, type) {
         return new Promise((resolve, reject) => {
             util.ajax.get(`/comparision/times/${tables}/${type}`).then(data => {
+                resolve(data);
+            }).catch(ex => {
+                reject(ex);
+            });
+        });
+    },
+
+
+    getLhc3Times(tables, type, queryInfo) {
+        return new Promise((resolve, reject) => {
+            util.ajax.post(`/lhc3/comparision/times/${tables}/${type}`, queryInfo).then(data => {
                 resolve(data);
             }).catch(ex => {
                 reject(ex);
@@ -207,9 +228,29 @@ export default {
         });
     },
 
+    getLhc3Colors(tables, type, queryInfo) {
+        return new Promise((resolve, reject) => {
+            util.ajax.post(`/lhc3/comparision/colors/${tables}/${type}`, queryInfo).then(data => {
+                resolve(data);
+            }).catch(ex => {
+                reject(ex);
+            });
+        });
+    },
+
     getColors2(tables, type) {
         return new Promise((resolve, reject) => {
             util.ajax.get(`/comparision/colors2/${tables}/${type}`).then(data => {
+                resolve(data);
+            }).catch(ex => {
+                reject(ex);
+            });
+        });
+    },
+
+    getLhc3Colors2(tables, type, queryInfo) {
+        return new Promise((resolve, reject) => {
+            util.ajax.post(`/lhc3/comparision/colors2/${tables}/${type}`, queryInfo).then(data => {
                 resolve(data);
             }).catch(ex => {
                 reject(ex);

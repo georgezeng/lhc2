@@ -124,10 +124,8 @@
                 <Icon type="ios-stats" />
                 数据统计
             </template>
-            <MenuItem name="lhc3-stat-s2-s3">顺2-顺3</MenuItem>
             <MenuItem name="lhc3-stat-P2">类型2</MenuItem>
             <MenuItem name="lhc3-stat-P3">类型3</MenuItem>
-            <MenuItem name="lhc3-stat-P2-P3">类型2-类型3</MenuItem>
         </Submenu>
         <Submenu name="comparision">
             <template slot="title">
@@ -135,13 +133,10 @@
                 数据对比
             </template>
             <MenuGroup title="类型2">
-                <MenuItem name="lhc3-comparision2-1">1表</MenuItem>
-                <MenuItem name="lhc3-comparision2-4">4表</MenuItem>
-                <MenuItem name="lhc3-comparision2-16">16表</MenuItem>
+                <MenuItem name="lhc3-comparision-12-P2">12表</MenuItem>
             </MenuGroup>
             <MenuGroup title="类型3">
-                <MenuItem name="lhc3-comparision3-4">4表</MenuItem>
-                <MenuItem name="lhc3-comparision3-12">12表</MenuItem>
+                <MenuItem name="lhc3-comparision-12-P3">12表</MenuItem>
             </MenuGroup>
         </Submenu>
         <Submenu name="emulate">
@@ -150,13 +145,10 @@
                 数据模拟
             </template>
             <MenuGroup title="类型2">
-                <MenuItem name="lhc3-emulate2-1">1表</MenuItem>
-                <MenuItem name="lhc3-emulate2-4">4表</MenuItem>
-                <MenuItem name="lhc3-emulate2-16">16表</MenuItem>
+                <MenuItem name="lhc3-emulate-12-P2">12表</MenuItem>
             </MenuGroup>
             <MenuGroup title="类型3">
-                <MenuItem name="lhc3-emulate3-4">4表</MenuItem>
-                <MenuItem name="lhc3-emulate3-12">12表</MenuItem>
+                <MenuItem name="lhc3-emulate-12-P3">12表</MenuItem>
             </MenuGroup>
         </Submenu>
         <MenuItem name="tm">

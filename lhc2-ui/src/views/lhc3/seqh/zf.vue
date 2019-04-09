@@ -18,7 +18,7 @@
         data() {
             return {
                 cols: datatable.cols(1, 13, (index) => {
-                    return "振幅" + index;
+                    return "振幅" + (index - 1);
                 }, (index) => {
                     return "w" + index;
                 })
