@@ -144,7 +144,7 @@ public abstract class Lhc3BaseService<Y extends PosBaseEntity, Z extends PosBase
 		zf.setPhase(yz.getPhase());
 		zf.setPos(yz.getPos());
 		int delta = yz.getPos() - lastYz.getPos();
-		if (delta < 0) {
+		if (delta < 1) {
 			delta += length;
 		}
 		List<Integer> zfValueList = new ArrayList<>();
