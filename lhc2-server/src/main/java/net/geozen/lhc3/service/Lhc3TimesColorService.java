@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ReflectionUtils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -45,7 +44,6 @@ public class Lhc3TimesColorService {
 	@Autowired
 	private ObjectMapper mapper;
 
-	@Transactional
 	@Async
 	public Future<Exception> cal(List<Lhc3Tm> tmList, int tables, String type) {
 		Exception t = null;
