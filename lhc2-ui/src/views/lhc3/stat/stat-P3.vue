@@ -9,6 +9,10 @@
             </Header>
             <Content class="content">
                 <Card>
+                    <p slot="title">
+                        <Icon type="ios-stats-outline"/>
+                         类型3统计
+                    </p>
                     <Table stripe border size="small" :loading="loading" :columns="columns" :data="data"/>
                     <div class="page">
                         <Page :total="total"
@@ -24,9 +28,8 @@
     </div>
 </template>
 <script>
-    import Menus from '../../index/menus.vue';
+    import Menus from '../../index/lhc3-menus.vue';
     import Footer from '../../index/footer.vue';
-    import StatColumn from '../../index/stat-column.vue';
     import API from '../../../libs/api';
 
     export default {
