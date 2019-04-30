@@ -107,9 +107,10 @@ public class Lhc3CalculationService {
 	@Autowired
 	private NumImporter importer;
 
-	@Async
+//	@Async
 	public void cal() {
 		try {
+			log.info("calculation started...");
 			List<Lhc3Tm> tmList = importer.importTm();
 			if (!tmList.isEmpty()) {
 				Optional<SystemConfig> configOp = configRepository.findByKey(SystemConfigKeys.LOTTERY_SITE);
