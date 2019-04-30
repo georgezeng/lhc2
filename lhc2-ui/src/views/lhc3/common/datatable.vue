@@ -14,7 +14,6 @@
                         {{ title }}
                     </p>
                     <Table ref="table" stripe border size="small" :loading="loading" :columns="columns" :data="data"/>
-                    <!--
                     <div class="page">
                         <Page :total="total"
                               :page-size="queryInfo.page.size"
@@ -22,7 +21,6 @@
                               @on-change="changePage"/>
                     </div>
                     <div style="clear:both;"></div>
-                    -->
                 </Card>
                 <div style="height: 300px;"></div>
             </Content>
@@ -99,10 +97,10 @@
         },
         mounted() {
             this.loadData();
-            window.addEventListener('scroll', this.scrollHandler)
+            // window.addEventListener('scroll', this.scrollHandler)
         },
         destroyed() {
-            window.removeEventListener('scroll', this.scrollHandler)
+            // window.removeEventListener('scroll', this.scrollHandler)
         }
     }
 </script>

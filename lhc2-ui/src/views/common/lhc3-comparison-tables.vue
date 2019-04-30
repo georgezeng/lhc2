@@ -11,6 +11,12 @@
                :columns="columns1" :data="data1"/>
         <Table class="times-colors" style="float:left; width: 70%;" stripe border size="small" :loading="loading2"
                :columns="columns2" :data="data2"/>
+        <div class="page">
+            <Page :total="total"
+                  :page-size="queryInfo.page.size"
+                  :current="queryInfo.page.num"
+                  @on-change="changePage"/>
+        </div>
         <div style="clear:both;"></div>
     </Card>
 </template>
@@ -37,6 +43,7 @@
                         order: 'DESC'
                     }
                 },
+                total: 0,
                 columns1: [
                     {
                         title: '期数',
@@ -302,6 +309,10 @@
         },
 
         methods: {
+            changePage(pageNo) {
+                this.queryInfo.page.num = pageNo;
+                this.loadData();
+            },
             loadData(e) {
                 this.loading1 = true;
                 this.loading2 = true;
@@ -310,13 +321,16 @@
                     if (e) {
                         e.target.scrollingElement.scrollTop -= 1000
                     }
-                    this.data1 = this.data1.concat(result.list);
+                    // this.data1 = this.data1.concat(result.list);
+                    this.data1 = result.list
+                    this.total = result.total
                 }).catch(e => {
                     this.loading1 = false;
                 });
                 API.getLhc3Colors(this.tables, this.type, this.queryInfo).then(result => {
                     this.loading2 = false;
-                    this.data2 = this.data2.concat(result.list);
+                    // this.data2 = this.data2.concat(result.list);
+                    this.data2 = result.list
                 }).catch(e => {
                     this.loading2 = false;
                 });
@@ -330,10 +344,10 @@
         },
         mounted() {
             this.loadData();
-            window.addEventListener('scroll', this.scrollHandler)
+            // window.addEventListener('scroll', this.scrollHandler)
         },
         destroyed() {
-            window.removeEventListener('scroll', this.scrollHandler)
+            // window.removeEventListener('scroll', this.scrollHandler)
         }
     }
 </script>

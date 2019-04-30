@@ -9,6 +9,12 @@
         </p>
         <Table class="times-colors" style="float:left; width: 100%;" stripe border size="small" :loading="loading"
                :columns="columns" :data="data"/>
+        <div class="page">
+            <Page :total="total"
+                  :page-size="queryInfo.page.size"
+                  :current="queryInfo.page.num"
+                  @on-change="changePage"/>
+        </div>
         <div style="clear:both;"></div>
     </Card>
 </template>
@@ -25,6 +31,7 @@
             return {
                 loading: true,
                 data: [],
+                total: 0,
                 queryInfo: {
                     page: {
                         num: 1,
@@ -98,6 +105,10 @@
             }
         },
         methods: {
+            changePage(pageNo) {
+                this.queryInfo.page.num = pageNo;
+                this.loadData();
+            },
             loadData(e) {
                 this.loading = true;
                 API.getLhc3Colors2(this.tables, this.type, this.queryInfo).then(result => {
@@ -105,7 +116,9 @@
                     if (e) {
                         e.target.scrollingElement.scrollTop -= 1000
                     }
-                    this.data = this.data.concat(result.list);
+                    // this.data = this.data.concat(result.list);
+                    this.data = result.list
+                    this.total = result.total
                 }).catch(e => {
                     this.loading1 = false;
                 });
@@ -119,10 +132,10 @@
         },
         mounted() {
             this.loadData();
-            window.addEventListener('scroll', this.scrollHandler)
+            // window.addEventListener('scroll', this.scrollHandler)
         },
         destroyed() {
-            window.removeEventListener('scroll', this.scrollHandler)
+            // window.removeEventListener('scroll', this.scrollHandler)
         }
     }
 </script>
