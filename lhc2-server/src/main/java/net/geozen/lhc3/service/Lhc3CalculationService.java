@@ -107,49 +107,51 @@ public class Lhc3CalculationService {
 	@Autowired
 	private NumImporter importer;
 
-//	@Async
+	@Async
 	public void cal() {
-		try {
-			log.info("calculation started...");
-			List<Lhc3Tm> tmList = importer.importTm();
-			if (!tmList.isEmpty()) {
-				Optional<SystemConfig> configOp = configRepository.findByKey(SystemConfigKeys.LOTTERY_SITE);
-				int limitedRows = 50;
-				if (configOp.isPresent()) {
-					limitedRows = Integer.valueOf(configOp.get().getValue());
+		while(true) {
+			try {
+				log.info("calculation started...");
+				List<Lhc3Tm> tmList = importer.importTm();
+				if (!tmList.isEmpty()) {
+					Optional<SystemConfig> configOp = configRepository.findByKey(SystemConfigKeys.LOTTERY_SITE);
+					int limitedRows = 50;
+					if (configOp.isPresent()) {
+						limitedRows = Integer.valueOf(configOp.get().getValue());
+					}
+					List<Future<Exception>> futures = new ArrayList<>();
+					futures.add(seqaService.cal(tmList, limitedRows));
+					futures.add(seqbService.cal(tmList, limitedRows));
+					futures.add(seqcService.cal(tmList, limitedRows));
+					futures.add(seqdService.cal(tmList, limitedRows));
+					futures.add(seqeService.cal(tmList, limitedRows));
+					futures.add(seqfService.cal(tmList, limitedRows));
+					futures.add(seqgService.cal(tmList, limitedRows));
+					futures.add(seqhService.cal(tmList, limitedRows));
+					futures.add(seqiService.cal(tmList, limitedRows));
+					futures.add(seqjService.cal(tmList, limitedRows));
+					futures.add(seqkService.cal(tmList, limitedRows));
+					futures.add(seqlService.cal(tmList, limitedRows));
+					futures.add(seqmService.cal(tmList, limitedRows));
+					futures.add(seqnService.cal(tmList, limitedRows));
+					futures.add(seqoService.cal(tmList, limitedRows));
+					futures.add(seqpService.cal(tmList, limitedRows));
+					futures.add(seqqService.cal(tmList, limitedRows));
+					futures.add(seqrService.cal(tmList, limitedRows));
+					futures.add(fdService.cal(tmList, limitedRows));
+					CommonUtil.wait(futures);
+					futures.clear();
+					futures.add(pickNumService.cal(tmList));
+					CommonUtil.wait(futures);
+					futures.clear();
+					futures.add(timesColorService.cal(tmList, 12, "P2"));
+					futures.add(timesColorService.cal(tmList, 12, "P3"));
+					CommonUtil.wait(futures);
+					log.info("calculation finished...");
 				}
-				List<Future<Exception>> futures = new ArrayList<>();
-				futures.add(seqaService.cal(tmList, limitedRows));
-				futures.add(seqbService.cal(tmList, limitedRows));
-				futures.add(seqcService.cal(tmList, limitedRows));
-				futures.add(seqdService.cal(tmList, limitedRows));
-				futures.add(seqeService.cal(tmList, limitedRows));
-				futures.add(seqfService.cal(tmList, limitedRows));
-				futures.add(seqgService.cal(tmList, limitedRows));
-				futures.add(seqhService.cal(tmList, limitedRows));
-				futures.add(seqiService.cal(tmList, limitedRows));
-				futures.add(seqjService.cal(tmList, limitedRows));
-				futures.add(seqkService.cal(tmList, limitedRows));
-				futures.add(seqlService.cal(tmList, limitedRows));
-				futures.add(seqmService.cal(tmList, limitedRows));
-				futures.add(seqnService.cal(tmList, limitedRows));
-				futures.add(seqoService.cal(tmList, limitedRows));
-				futures.add(seqpService.cal(tmList, limitedRows));
-				futures.add(seqqService.cal(tmList, limitedRows));
-				futures.add(seqrService.cal(tmList, limitedRows));
-				futures.add(fdService.cal(tmList, limitedRows));
-				CommonUtil.wait(futures);
-				futures.clear();
-				futures.add(pickNumService.cal(tmList));
-				CommonUtil.wait(futures);
-				futures.clear();
-				futures.add(timesColorService.cal(tmList, 12, "P2"));
-				futures.add(timesColorService.cal(tmList, 12, "P3"));
-				CommonUtil.wait(futures);
-				log.info("calculation finished...");
+			} catch (Exception e) {
+				log.error(e.getMessage(), e);
 			}
-		} catch (Exception e) {
-			log.error(e.getMessage(), e);
 		}
 	}
 
