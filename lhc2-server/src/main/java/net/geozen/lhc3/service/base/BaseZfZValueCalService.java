@@ -3,6 +3,8 @@ package net.geozen.lhc3.service.base;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.Future;
@@ -35,8 +37,14 @@ public abstract class BaseZfZValueCalService<Y extends PosBaseEntity, Z extends 
 			Optional<Z> zfOp = getZfRepository().findByPhase(tm.getPhase());
 			if (zfOp.isPresent()) {
 				Z zf = zfOp.get();
+				BigDecimal zForP1 = new BigDecimal(zf.getTotalColsYz());
 				BigDecimal z = new BigDecimal(zf.getRColsYz()).divide(new BigDecimal(zf.getMaxColYz()), 2, RoundingMode.HALF_UP);
+				info = new ZInfo();
+				info.setOrder(order);
+				info.setZForP1(zForP1);
+				info.setZ(z);
 
+				Y yz = getYzRepository().findByPhase(tm.getPhase()).get();
 				int pos = 1;
 				int max = 0;
 				for (int i = 1; i <= length; i++) {
@@ -47,17 +55,50 @@ public abstract class BaseZfZValueCalService<Y extends PosBaseEntity, Z extends 
 						pos = i;
 					}
 				}
-				Y yz = getYzRepository().findByPhase(tm.getPhase()).get();
 				pos = yz.getPos() + pos;
 				if (pos > length) {
 					pos -= length;
 				}
+				info.setNums(getNums(pos - 1));
 
-				info = new ZInfo();
-				info.setOrder(order);
-				info.setZ(z);
-				List<Integer> list = getNums(pos - 1);
-				info.setNums(list);
+				pos = 1;
+				max = 0;
+				for (int i = 1; i <= length; i++) {
+					Method m = ReflectionUtils.findMethod(zf.getClass(), "getW" + i);
+					int value = (int) m.invoke(zf);
+					if (value > max) {
+						max = value;
+						pos = i;
+					}
+				}
+				pos = yz.getPos() + pos;
+				if (pos > length) {
+					pos -= length;
+				}
+				info.setNumsForD1(getNums(pos - 1));
+
+				List<TempInfo> list = new ArrayList<>();
+				for (int i = 1; i <= length; i++) {
+					Method m = ReflectionUtils.findMethod(zf.getClass(), "getW" + i);
+					int value = (int) m.invoke(zf);
+					TempInfo tmpInfo = new TempInfo();
+					tmpInfo.setValue(value);
+					tmpInfo.setPos(i);
+					list.add(tmpInfo);
+				}
+				list.sort(new Comparator<TempInfo>() {
+
+					@Override
+					public int compare(TempInfo o1, TempInfo o2) {
+						return o1.getValue().compareTo(o2.getValue());
+					}
+				});
+				pos = list.get(1).getPos();
+				pos = yz.getPos() + pos;
+				if (pos > length) {
+					pos -= length;
+				}
+				info.setNumsForS2(getNums(pos - 1));
 			}
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);

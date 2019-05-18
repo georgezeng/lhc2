@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.Future;
@@ -35,7 +36,12 @@ public abstract class BaseSwZValueCalService<S extends PosBaseEntity> {
 			Optional<S> swOp = getSwRepository().findByPhase(tm.getPhase());
 			if (swOp.isPresent()) {
 				S sw = swOp.get();
+				BigDecimal zForP1 = new BigDecimal(sw.getTotalColsYz());
 				BigDecimal z = new BigDecimal(sw.getRColsYz()).divide(new BigDecimal(sw.getMaxColYz()), 2, RoundingMode.HALF_UP);
+				info = new ZInfo();
+				info.setOrder(order);
+				info.setZForP1(zForP1);
+				info.setZ(z);
 
 				int pos = 1;
 				int max = 0;
@@ -59,11 +65,62 @@ public abstract class BaseSwZValueCalService<S extends PosBaseEntity> {
 						list.add(Integer.valueOf(num));
 					}
 				}
-				info = new ZInfo();
-				info.setOrder(order);
-				info.setZ(z);
 				info.setNums(list);
 
+				pos = 1;
+				max = 0;
+				for (int i = 1; i <= length; i++) {
+					Method m = ReflectionUtils.findMethod(sw.getClass(), "getW" + i);
+					int value = (int) m.invoke(sw);
+					if (value > max) {
+						max = value;
+						pos = i;
+					}
+				}
+				list = null;
+				if (!Lhc3FdSw.class.isAssignableFrom(sw.getClass())) {
+					Method m = ReflectionUtils.findMethod(sw.getClass(), "getW" + pos + "Pos");
+					list = getNums((int) m.invoke(sw) - 1);
+				} else {
+					Method m = ReflectionUtils.findMethod(sw.getClass(), "getW" + pos + "Arr");
+					String[] nums = ((String) m.invoke(sw)).split(",\\s*");
+					list = new ArrayList<>();
+					for (String num : nums) {
+						list.add(Integer.valueOf(num));
+					}
+				}
+				info.setNumsForD1(list);
+
+				List<TempInfo> tmpList = new ArrayList<>();
+				for (int i = 1; i <= length; i++) {
+					Method m = ReflectionUtils.findMethod(sw.getClass(), "getW" + i);
+					int value = (int) m.invoke(sw);
+					TempInfo tmpInfo = new TempInfo();
+					tmpInfo.setValue(value);
+					tmpInfo.setPos(i - 1);
+					tmpList.add(tmpInfo);
+				}
+				tmpList.sort(new Comparator<TempInfo>() {
+
+					@Override
+					public int compare(TempInfo o1, TempInfo o2) {
+						return o1.getValue().compareTo(o2.getValue());
+					}
+				});
+				pos = tmpList.get(1).getPos();
+				list = null;
+				if (!Lhc3FdSw.class.isAssignableFrom(sw.getClass())) {
+					Method m = ReflectionUtils.findMethod(sw.getClass(), "getW" + pos + "Pos");
+					list = getNums((int) m.invoke(sw) - 1);
+				} else {
+					Method m = ReflectionUtils.findMethod(sw.getClass(), "getW" + pos + "Arr");
+					String[] nums = ((String) m.invoke(sw)).split(",\\s*");
+					list = new ArrayList<>();
+					for (String num : nums) {
+						list.add(Integer.valueOf(num));
+					}
+				}
+				info.setNumsForS2(list);
 			}
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);

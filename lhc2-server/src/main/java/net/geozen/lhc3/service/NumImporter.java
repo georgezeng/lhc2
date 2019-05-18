@@ -54,11 +54,14 @@ public class NumImporter {
 							if (tmOp.isPresent()) {
 								break out;
 							}
-							Lhc3Tm tm = new Lhc3Tm();
-							tm.setPhase(pobj.getPhase().toString());
-							Integer num = Integer.valueOf(pobj.getNums().split("\\|")[0].split(",")[6]);
-							tm.setNum(num);
-							list.add(tm);
+							String phase = pobj.getPhase().toString();
+							if (phase.length() == 11) {
+								Lhc3Tm tm = new Lhc3Tm();
+								tm.setPhase(phase);
+								Integer num = Integer.valueOf(pobj.getNums().split("\\|")[0].split(",")[6]);
+								tm.setNum(num);
+								list.add(tm);
+							}
 						}
 					}
 				}

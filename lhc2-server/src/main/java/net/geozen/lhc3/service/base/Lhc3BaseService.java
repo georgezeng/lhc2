@@ -144,17 +144,18 @@ public abstract class Lhc3BaseService<Y extends PosBaseEntity, Z extends PosBase
 		zf.setPhase(yz.getPhase());
 		zf.setPos(yz.getPos());
 		int delta = yz.getPos() - lastYz.getPos();
-		if (delta < 1) {
+		if (delta < 0) {
 			delta += length;
 		}
 		List<Integer> zfValueList = new ArrayList<>();
-		for (int j = 1; j <= length; j++) {
-			Method wm = ReflectionUtils.findMethod(zf.getClass(), "getW" + j);
-			Method tm = ReflectionUtils.findMethod(zf.getClass(), "getT" + j);
-			Method ltm = ReflectionUtils.findMethod(zf.getClass(), "getLt" + j);
-			Method swm = ReflectionUtils.findMethod(zf.getClass(), "setW" + j, int.class);
-			Method stm = ReflectionUtils.findMethod(zf.getClass(), "setT" + j, int.class);
-			Method sltm = ReflectionUtils.findMethod(zf.getClass(), "setLt" + j, int.class);
+		for (int j = 0; j < length; j++) {
+			int index = j + 1;
+			Method wm = ReflectionUtils.findMethod(zf.getClass(), "getW" + index);
+			Method tm = ReflectionUtils.findMethod(zf.getClass(), "getT" + index);
+			Method ltm = ReflectionUtils.findMethod(zf.getClass(), "getLt" + index);
+			Method swm = ReflectionUtils.findMethod(zf.getClass(), "setW" + index, int.class);
+			Method stm = ReflectionUtils.findMethod(zf.getClass(), "setT" + index, int.class);
+			Method sltm = ReflectionUtils.findMethod(zf.getClass(), "setLt" + index, int.class);
 			if (j != delta) {
 				int value = (int) wm.invoke(lastZf) + 1;
 				zfValueList.add(value);
