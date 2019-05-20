@@ -94,6 +94,13 @@ public abstract class BaseZfZValueCalService<Y extends PosBaseEntity, Z extends 
 						return o1.getValue().compareTo(o2.getValue());
 					}
 				});
+				pos = list.get(1).getPos();
+				pos = yz.getPos() + pos;
+				if (pos > length) {
+					pos -= length;
+				}
+				info.setNumsForS2(getNums(pos - 1));
+				
 				Collections.reverse(list);
 				pos = list.get(1).getPos();
 				pos = yz.getPos() + pos;

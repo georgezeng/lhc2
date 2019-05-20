@@ -142,6 +142,9 @@
             <MenuGroup title="类型3">
                 <MenuItem name="lhc3-comparision-12-P3">12表</MenuItem>
             </MenuGroup>
+            <MenuGroup title="类型4">
+                <MenuItem name="lhc3-comparision-10-P4">10表</MenuItem>
+            </MenuGroup>
         </Submenu>
         <Submenu name="emulate">
             <template slot="title">
@@ -156,6 +159,9 @@
             </MenuGroup>
             <MenuGroup title="类型3">
                 <MenuItem name="lhc3-emulate-12-P3">12表</MenuItem>
+            </MenuGroup>
+            <MenuGroup title="类型4">
+                <MenuItem name="lhc3-emulate-10-P4">10表</MenuItem>
             </MenuGroup>
         </Submenu>
         <MenuItem name="tm">

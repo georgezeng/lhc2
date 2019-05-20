@@ -108,6 +108,21 @@ public abstract class BaseSwZValueCalService<S extends PosBaseEntity> {
 						return o1.getValue().compareTo(o2.getValue());
 					}
 				});
+				pos = tmpList.get(1).getPos();
+				list = null;
+				if (!Lhc3FdSw.class.isAssignableFrom(sw.getClass())) {
+					Method m = ReflectionUtils.findMethod(sw.getClass(), "getW" + pos + "Pos");
+					list = getNums((int) m.invoke(sw) - 1);
+				} else {
+					Method m = ReflectionUtils.findMethod(sw.getClass(), "getW" + pos + "Arr");
+					String[] nums = ((String) m.invoke(sw)).split(",\\s*");
+					list = new ArrayList<>();
+					for (String num : nums) {
+						list.add(Integer.valueOf(num));
+					}
+				}
+				info.setNumsForS2(list);
+				
 				Collections.reverse(tmpList);
 				pos = tmpList.get(1).getPos();
 				list = null;

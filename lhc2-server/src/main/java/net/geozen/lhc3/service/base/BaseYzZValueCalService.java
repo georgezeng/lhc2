@@ -80,6 +80,9 @@ public abstract class BaseYzZValueCalService<Y extends PosBaseEntity> {
 					return o1.getValue().compareTo(o2.getValue());
 				}
 			});
+			pos = list.get(1).getPos();
+			info.setNumsForS2(getNums(pos));
+			
 			Collections.reverse(list);
 			pos = list.get(1).getPos();
 			info.setNumsForD2(getNums(pos));
