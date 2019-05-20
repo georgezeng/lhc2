@@ -127,6 +127,7 @@
             <MenuItem name="lhc3-stat-P1">类型1</MenuItem>
             <MenuItem name="lhc3-stat-P2">类型2</MenuItem>
             <MenuItem name="lhc3-stat-P3">类型3</MenuItem>
+            <MenuItem name="lhc3-stat-P4">类型4</MenuItem>
         </Submenu>
         <Submenu name="comparision">
             <template slot="title">
