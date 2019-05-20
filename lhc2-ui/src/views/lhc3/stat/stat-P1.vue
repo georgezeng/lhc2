@@ -5,7 +5,7 @@
     <div class="layout">
         <Layout>
             <Header class="menus">
-                <Menus activeName="lhc3-stat-P2"/>
+                <Menus activeName="lhc3-stat-P1"/>
             </Header>
             <Content class="content">
                 <Card>
@@ -42,7 +42,7 @@
             return {
                 queryInfo: {
                     data: {
-                        expected: 13,
+                        expected: 10,
                         type: 'P1'
                     },
                     page: {

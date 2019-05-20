@@ -107,12 +107,12 @@ const RouterConfig = {
             component: (resolve) => require(['./views/stat/stat-P2-P3.vue'], resolve)
         },
         {
-            path: '/lhc3/comparision-13-P1',
-            name: 'lhc3-comparision-13-P1',
+            path: '/lhc3/comparision-10-P1',
+            name: 'lhc3-comparision-10-P1',
             meta: {
-                title: `${prefix}数据对比-13`
+                title: `${prefix}数据对比-10`
             },
-            component: (resolve) => require(['./views/lhc3/comparision/comparision-13-P1.vue'], resolve)
+            component: (resolve) => require(['./views/lhc3/comparision/comparision-10-P1.vue'], resolve)
         },
         {
             path: '/lhc3/comparision-12-P2',
@@ -299,12 +299,12 @@ const RouterConfig = {
             component: (resolve) => require(['./views/comparision3/comparision-1.vue'], resolve)
         },
         {
-            path: 'lhc3/emulate-13-P1',
-            name: 'lhc3-emulate-13-P1',
+            path: 'lhc3/emulate-10-P1',
+            name: 'lhc3-emulate-10-P1',
             meta: {
-                title: `${prefix}数据模拟-13`
+                title: `${prefix}数据模拟-10`
             },
-            component: (resolve) => require(['./views/lhc3/emulate/emulate-13-P1.vue'], resolve)
+            component: (resolve) => require(['./views/lhc3/emulate/emulate-10-P1.vue'], resolve)
         },
         {
             path: 'lhc3/emulate-12-P2',

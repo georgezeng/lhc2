@@ -134,7 +134,7 @@
                 数据对比
             </template>
             <MenuGroup title="类型1">
-                <MenuItem name="lhc3-comparision-13-P1">13表</MenuItem>
+                <MenuItem name="lhc3-comparision-10-P1">10表</MenuItem>
             </MenuGroup>
             <MenuGroup title="类型2">
                 <MenuItem name="lhc3-comparision-12-P2">12表</MenuItem>
@@ -149,7 +149,7 @@
                 数据模拟
             </template>
             <MenuGroup title="类型1">
-                <MenuItem name="lhc3-emulate-13-P1">13表</MenuItem>
+                <MenuItem name="lhc3-emulate-10-P1">10表</MenuItem>
             </MenuGroup>
             <MenuGroup title="类型2">
                 <MenuItem name="lhc3-emulate-12-P2">12表</MenuItem>
