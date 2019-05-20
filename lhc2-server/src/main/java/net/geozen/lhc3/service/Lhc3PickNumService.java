@@ -14,6 +14,7 @@ import org.springframework.util.StringUtils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import lombok.extern.slf4j.Slf4j;
 import net.geozen.lhc2.dto.PickNumCountInfo;
 import net.geozen.lhc2.dto.PickNumPayload;
 import net.geozen.lhc2.dto.ZInfo;
@@ -76,6 +77,7 @@ import net.geozen.lhc3.service.seqr.Lhc3SeqrYzZValueService;
 import net.geozen.lhc3.service.seqr.Lhc3SeqrZfZValueService;
 
 @Service
+@Slf4j
 public class Lhc3PickNumService {
 	@Autowired
 	private Lhc3SeqaYzZValueService seqaYzZValueService;
@@ -340,6 +342,7 @@ public class Lhc3PickNumService {
 				pickNumForP4(tm, infos);
 			}
 		} catch (Exception e) {
+			log.error(e.getMessage(), e);
 			t = e;
 		}
 		return new AsyncResult<>(t);
@@ -349,7 +352,7 @@ public class Lhc3PickNumService {
 		PickNumPayload payload = new PickNumPayload();
 		List<PickNumCountInfo> countInfos = new ArrayList<>();
 		List<ZInfo> subInfos1 = infos.subList(0, 8);
-		List<ZInfo> subInfos2 = infos.subList(54, 56);
+		List<ZInfo> subInfos2 = infos.subList(53, 55);
 		for (int i = 1; i < 50; i++) {
 			PickNumCountInfo countInfo = new PickNumCountInfo();
 			countInfo.setNum(i);
@@ -408,7 +411,7 @@ public class Lhc3PickNumService {
 		PickNumPayload payload = new PickNumPayload();
 		List<PickNumCountInfo> countInfos = new ArrayList<>();
 		List<ZInfo> subInfos1 = infos.subList(0, 2);
-		List<ZInfo> subInfos2 = infos.subList(48, 56);
+		List<ZInfo> subInfos2 = infos.subList(47, 55);
 		for (int i = 1; i < 50; i++) {
 			PickNumCountInfo countInfo = new PickNumCountInfo();
 			countInfo.setNum(i);
