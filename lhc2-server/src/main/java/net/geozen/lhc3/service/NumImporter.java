@@ -43,7 +43,7 @@ public class NumImporter {
 		ObjectMapper mapper = new ObjectMapper();
 		ResponseObject response = null;
 		List<Lhc3Tm> list = new ArrayList<>();
-		out: do {
+//		out: do {
 			String result = client.getForObject(host + "Lott/GetLotteryData?ac=1023&gid=50&pageIndex=" + index, String.class);
 			if (result.indexOf("\"data\":\"\"") == -1) {
 				response = mapper.readValue(result, ResponseObject.class);
@@ -52,7 +52,8 @@ public class NumImporter {
 						for (PrObject pobj : response.getData().getPr()) {
 							Optional<Lhc3Tm> tmOp = tmRepository.findByPhase(pobj.getPhase().toString());
 							if (tmOp.isPresent()) {
-								break out;
+//								break out;
+								break;
 							}
 							String phase = pobj.getPhase().toString();
 							if (phase.length() == 11) {
@@ -69,8 +70,8 @@ public class NumImporter {
 				response = new ResponseObject();
 				response.setCode(-1);
 			}
-			index++;
-		} while (response.getCode() == 0);
+//			index++;
+//		} while (response.getCode() == 0);
 		list.sort(new Comparator<Lhc3Tm>() {
 
 			@Override
