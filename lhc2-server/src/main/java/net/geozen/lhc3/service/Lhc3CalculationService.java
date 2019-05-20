@@ -111,7 +111,6 @@ public class Lhc3CalculationService {
 	public void cal() {
 		while(true) {
 			try {
-				log.info("calculation started...");
 				List<Lhc3Tm> tmList = importer.importTm();
 				if (!tmList.isEmpty()) {
 					Optional<SystemConfig> configOp = configRepository.findByKey(SystemConfigKeys.LOTTERY_SITE);
@@ -147,8 +146,8 @@ public class Lhc3CalculationService {
 					futures.add(timesColorService.cal(tmList, 10, "P1"));
 					futures.add(timesColorService.cal(tmList, 12, "P2"));
 					futures.add(timesColorService.cal(tmList, 12, "P3"));
+					futures.add(timesColorService.cal(tmList, 10, "P4"));
 					CommonUtil.wait(futures);
-					log.info("calculation finished...");
 				}
 			} catch (Exception e) {
 				log.error(e.getMessage(), e);

@@ -98,7 +98,7 @@ public abstract class BaseSwZValueCalService<S extends PosBaseEntity> {
 					int value = (int) m.invoke(sw);
 					TempInfo tmpInfo = new TempInfo();
 					tmpInfo.setValue(value);
-					tmpInfo.setPos(i - 1);
+					tmpInfo.setPos(i);
 					tmpList.add(tmpInfo);
 				}
 				tmpList.sort(new Comparator<TempInfo>() {
