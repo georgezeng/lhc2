@@ -12,6 +12,6 @@ public class ZInfo {
 	private BigDecimal zForP1;
 	private List<Integer> nums;
 	private List<Integer> numsForD1;
-	private List<Integer> numsForS2;
+	private List<Integer> numsForD2;
 	private List<Integer> minNums;
 }

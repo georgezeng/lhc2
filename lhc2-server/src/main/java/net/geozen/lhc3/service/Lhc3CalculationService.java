@@ -144,7 +144,7 @@ public class Lhc3CalculationService {
 					futures.add(pickNumService.cal(tmList));
 					CommonUtil.wait(futures);
 					futures.clear();
-					futures.add(timesColorService.cal(tmList, 13, "P1"));
+					futures.add(timesColorService.cal(tmList, 10, "P1"));
 					futures.add(timesColorService.cal(tmList, 12, "P2"));
 					futures.add(timesColorService.cal(tmList, 12, "P3"));
 					CommonUtil.wait(futures);

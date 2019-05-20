@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.Future;
@@ -79,8 +80,9 @@ public abstract class BaseYzZValueCalService<Y extends PosBaseEntity> {
 					return o1.getValue().compareTo(o2.getValue());
 				}
 			});
+			Collections.reverse(list);
 			pos = list.get(1).getPos();
-			info.setNumsForS2(getNums(pos));
+			info.setNumsForD2(getNums(pos));
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 		}

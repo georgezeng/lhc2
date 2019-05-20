@@ -124,6 +124,7 @@
                 <Icon type="ios-stats" />
                 数据统计
             </template>
+            <MenuItem name="lhc3-stat-P1">类型1</MenuItem>
             <MenuItem name="lhc3-stat-P2">类型2</MenuItem>
             <MenuItem name="lhc3-stat-P3">类型3</MenuItem>
         </Submenu>
@@ -132,6 +133,9 @@
                 <Icon type="ios-stats" />
                 数据对比
             </template>
+            <MenuGroup title="类型1">
+                <MenuItem name="lhc3-comparision-13-P1">13表</MenuItem>
+            </MenuGroup>
             <MenuGroup title="类型2">
                 <MenuItem name="lhc3-comparision-12-P2">12表</MenuItem>
             </MenuGroup>
@@ -144,6 +148,9 @@
                 <Icon type="ios-stats" />
                 数据模拟
             </template>
+            <MenuGroup title="类型1">
+                <MenuItem name="lhc3-emulate-13-P1">13表</MenuItem>
+            </MenuGroup>
             <MenuGroup title="类型2">
                 <MenuItem name="lhc3-emulate-12-P2">12表</MenuItem>
             </MenuGroup>

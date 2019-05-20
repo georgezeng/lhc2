@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -107,6 +108,7 @@ public abstract class BaseSwZValueCalService<S extends PosBaseEntity> {
 						return o1.getValue().compareTo(o2.getValue());
 					}
 				});
+				Collections.reverse(tmpList);
 				pos = tmpList.get(1).getPos();
 				list = null;
 				if (!Lhc3FdSw.class.isAssignableFrom(sw.getClass())) {
@@ -120,7 +122,7 @@ public abstract class BaseSwZValueCalService<S extends PosBaseEntity> {
 						list.add(Integer.valueOf(num));
 					}
 				}
-				info.setNumsForS2(list);
+				info.setNumsForD2(list);
 			}
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
