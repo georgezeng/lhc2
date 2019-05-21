@@ -410,8 +410,8 @@ public class Lhc3PickNumService {
 	private void pickNumForP4(Lhc3Tm tm, List<ZInfo> infos) throws Exception {
 		PickNumPayload payload = new PickNumPayload();
 		List<PickNumCountInfo> countInfos = new ArrayList<>();
-		List<ZInfo> subInfos1 = infos.subList(0, 5);
-		List<ZInfo> subInfos2 = infos.subList(0, 5);
+		List<ZInfo> subInfos1 = infos.subList(50, 55);
+		List<ZInfo> subInfos2 = infos.subList(50, 55);
 		for (int i = 1; i < 50; i++) {
 			PickNumCountInfo countInfo = new PickNumCountInfo();
 			countInfo.setNum(i);
