@@ -351,8 +351,8 @@ public class Lhc3PickNumService {
 	private void pickNumForP1(Lhc3Tm tm, List<ZInfo> infos) throws Exception {
 		PickNumPayload payload = new PickNumPayload();
 		List<PickNumCountInfo> countInfos = new ArrayList<>();
-		List<ZInfo> subInfos1 = infos.subList(0, 8);
-		List<ZInfo> subInfos2 = infos.subList(53, 55);
+		List<ZInfo> subInfos1 = infos.subList(0, 5);
+		List<ZInfo> subInfos2 = infos.subList(0, 5);
 		for (int i = 1; i < 50; i++) {
 			PickNumCountInfo countInfo = new PickNumCountInfo();
 			countInfo.setNum(i);
@@ -410,8 +410,8 @@ public class Lhc3PickNumService {
 	private void pickNumForP4(Lhc3Tm tm, List<ZInfo> infos) throws Exception {
 		PickNumPayload payload = new PickNumPayload();
 		List<PickNumCountInfo> countInfos = new ArrayList<>();
-		List<ZInfo> subInfos1 = infos.subList(0, 2);
-		List<ZInfo> subInfos2 = infos.subList(47, 55);
+		List<ZInfo> subInfos1 = infos.subList(0, 5);
+		List<ZInfo> subInfos2 = infos.subList(0, 5);
 		for (int i = 1; i < 50; i++) {
 			PickNumCountInfo countInfo = new PickNumCountInfo();
 			countInfo.setNum(i);
@@ -421,7 +421,7 @@ public class Lhc3PickNumService {
 				}
 			}
 			for (ZInfo info : subInfos2) {
-				if (info != null && info.getNumsForS2() != null && info.getNumsForS2().contains(i)) {
+				if (info != null && info.getNumsForD2() != null && info.getNumsForD2().contains(i)) {
 					countInfo.setCount(countInfo.getCount() + 1);
 				}
 			}
