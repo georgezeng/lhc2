@@ -5,10 +5,10 @@
     <div class="layout">
         <Layout>
             <Header class="menus">
-                <Menus activeName="lhc3-emulate-10-P4"/>
+                <Menus activeName="lhc3-comparision-3-P5"/>
             </Header>
             <Content class="content">
-                <EmulateTable tables="10" type="P4" />
+                <ComparisionTable tables="3" type="P5" />
             </Content>
             <Footer/>
         </Layout>
@@ -17,13 +17,13 @@
 <script>
     import Menus from '../../index/lhc3-menus.vue';
     import Footer from '../../index/footer.vue';
-    import EmulateTable from '../../common/lhc3-emulate-tables.vue';
+    import ComparisionTable from '../../common/lhc3-comparison-tables.vue';
 
     export default {
         components: {
             Menus,
             Footer,
-            EmulateTable
+            ComparisionTable
         }
     }
 </script>

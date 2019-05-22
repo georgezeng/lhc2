@@ -128,6 +128,8 @@
             <MenuItem name="lhc3-stat-P2">类型2</MenuItem>
             <MenuItem name="lhc3-stat-P3">类型3</MenuItem>
             <MenuItem name="lhc3-stat-P4">类型4</MenuItem>
+            <MenuItem name="lhc3-stat-P5">类型5</MenuItem>
+            <MenuItem name="lhc3-stat-P6">类型6</MenuItem>
         </Submenu>
         <Submenu name="comparision">
             <template slot="title">
@@ -135,7 +137,7 @@
                 数据对比
             </template>
             <MenuGroup title="类型1">
-                <MenuItem name="lhc3-comparision-10-P1">10表</MenuItem>
+                <MenuItem name="lhc3-comparision-9-P1">9表</MenuItem>
             </MenuGroup>
             <MenuGroup title="类型2">
                 <MenuItem name="lhc3-comparision-12-P2">12表</MenuItem>
@@ -144,7 +146,13 @@
                 <MenuItem name="lhc3-comparision-12-P3">12表</MenuItem>
             </MenuGroup>
             <MenuGroup title="类型4">
-                <MenuItem name="lhc3-comparision-10-P4">10表</MenuItem>
+                <MenuItem name="lhc3-comparision-9-P4">9表</MenuItem>
+            </MenuGroup>
+            <MenuGroup title="类型5">
+                <MenuItem name="lhc3-comparision-3-P5">3表</MenuItem>
+            </MenuGroup>
+            <MenuGroup title="类型6">
+                <MenuItem name="lhc3-comparision-3-P6">3表</MenuItem>
             </MenuGroup>
         </Submenu>
         <Submenu name="emulate">
@@ -153,7 +161,7 @@
                 数据模拟
             </template>
             <MenuGroup title="类型1">
-                <MenuItem name="lhc3-emulate-10-P1">10表</MenuItem>
+                <MenuItem name="lhc3-emulate-9-P1">9表</MenuItem>
             </MenuGroup>
             <MenuGroup title="类型2">
                 <MenuItem name="lhc3-emulate-12-P2">12表</MenuItem>
@@ -162,7 +170,13 @@
                 <MenuItem name="lhc3-emulate-12-P3">12表</MenuItem>
             </MenuGroup>
             <MenuGroup title="类型4">
-                <MenuItem name="lhc3-emulate-10-P4">10表</MenuItem>
+                <MenuItem name="lhc3-emulate-9-P4">9表</MenuItem>
+            </MenuGroup>
+            <MenuGroup title="类型5">
+                <MenuItem name="lhc3-emulate-3-P5">3表</MenuItem>
+            </MenuGroup>
+            <MenuGroup title="类型6">
+                <MenuItem name="lhc3-emulate-3-P6">3表</MenuItem>
             </MenuGroup>
         </Submenu>
         <MenuItem name="tm">

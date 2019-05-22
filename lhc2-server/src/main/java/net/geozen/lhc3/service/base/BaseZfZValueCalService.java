@@ -108,6 +108,13 @@ public abstract class BaseZfZValueCalService<Y extends PosBaseEntity, Z extends 
 					pos -= length;
 				}
 				info.setNumsForD2(getNums(pos - 1));
+				
+				pos = list.get(2).getPos();
+				pos = yz.getPos() + pos;
+				if (pos > length) {
+					pos -= length;
+				}
+				info.setNumsForD3(getNums(pos - 1));
 			}
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);

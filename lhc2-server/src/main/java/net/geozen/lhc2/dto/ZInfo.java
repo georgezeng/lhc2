@@ -13,6 +13,7 @@ public class ZInfo {
 	private List<Integer> nums;
 	private List<Integer> numsForD1;
 	private List<Integer> numsForD2;
+	private List<Integer> numsForD3;
 	private List<Integer> numsForS2;
 	private List<Integer> minNums;
 }

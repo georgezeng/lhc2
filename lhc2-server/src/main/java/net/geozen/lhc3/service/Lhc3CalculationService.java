@@ -143,10 +143,12 @@ public class Lhc3CalculationService {
 					futures.add(pickNumService.cal(tmList));
 					CommonUtil.wait(futures);
 					futures.clear();
-					futures.add(timesColorService.cal(tmList, 10, "P1"));
+					futures.add(timesColorService.cal(tmList, 9, "P1"));
 					futures.add(timesColorService.cal(tmList, 12, "P2"));
 					futures.add(timesColorService.cal(tmList, 12, "P3"));
-					futures.add(timesColorService.cal(tmList, 10, "P4"));
+					futures.add(timesColorService.cal(tmList, 9, "P4"));
+					futures.add(timesColorService.cal(tmList, 3, "P5"));
+					futures.add(timesColorService.cal(tmList, 3, "P6"));
 					CommonUtil.wait(futures);
 				}
 			} catch (Exception e) {
