@@ -44,7 +44,8 @@ public class NumImporter {
 		ResponseObject response = null;
 		List<Lhc3Tm> list = new ArrayList<>();
 		out: do {
-			String result = client.getForObject(host + "Lott/GetLotteryData?ac=1023&gid=50&pageIndex=" + index, String.class);
+			String result = client.getForObject(host + "Lott/GetLotteryData?ac=1023&gid=50&pageIndex=" + index,
+					String.class);
 			if (result.indexOf("\"data\":\"\"") == -1) {
 				response = mapper.readValue(result, ResponseObject.class);
 				if (response.getData() != null) {
@@ -58,9 +59,12 @@ public class NumImporter {
 							if (phase.length() == 11) {
 								Lhc3Tm tm = new Lhc3Tm();
 								tm.setPhase(phase);
-								Integer num = Integer.valueOf(pobj.getNums().split("\\|")[0].split(",")[6]);
-								tm.setNum(num);
-								list.add(tm);
+								String[] nums = pobj.getNums().split("\\|")[0].split(",");
+								if (nums.length == 7) {
+									Integer num = Integer.valueOf(nums[6]);
+									tm.setNum(num);
+									list.add(tm);
+								}
 							}
 						}
 					}
