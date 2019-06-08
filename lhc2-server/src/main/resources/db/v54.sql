@@ -2,14 +2,6 @@
 
 --changeset lhc2:54
 
-ALTER TABLE `lhc3_times_yz` 
-ADD COLUMN `lt12` int(11) NOT NULL,
-ADD COLUMN `lt2plus` int(11) NOT NULL,
-ADD COLUMN `lt03plus` int(11) NOT NULL,
-ADD COLUMN `t12` int(11) NOT NULL,
-ADD COLUMN `t2Plus` int(11) NOT NULL,
-ADD COLUMN `t03plus` int(11) NOT NULL;
-
 ALTER TABLE `lhc3_color_yz` 
 DROP COLUMN `lt_r1`,
 DROP COLUMN `lt_r2`,
