@@ -49,10 +49,11 @@ public class Lhc3TimesColorService {
 		Exception t = null;
 		try {
 			for (Lhc3Tm tm : tmList) {
-				Optional<Lhc3PickNum> prevPnOp = pickNumRepository.findFirstByExpectedAndTypeAndPhaseLessThanOrderByPhaseDesc(tables, type,
-						tm.getPhase());
+				Optional<Lhc3PickNum> prevPnOp = pickNumRepository
+						.findFirstByExpectedAndTypeAndPhaseLessThanOrderByPhaseDesc(tables, type, tm.getPhase());
 				if (prevPnOp.isPresent()) {
-					Optional<Lhc3PickNum> pnOp = pickNumRepository.findByExpectedAndTypeAndPhase(tables, type, tm.getPhase());
+					Optional<Lhc3PickNum> pnOp = pickNumRepository.findByExpectedAndTypeAndPhase(tables, type,
+							tm.getPhase());
 					if (pnOp.isPresent()) {
 						Lhc3PickNum prevNumInfo = prevPnOp.get();
 						Lhc3PickNum numInfo = pnOp.get();
@@ -75,8 +76,9 @@ public class Lhc3TimesColorService {
 						}
 						String color = null;
 
-						Optional<Lhc3TimesYz> lastTimesYzOp = timesYzRepository.findFirstByTablesAndTypeAndPhaseLessThanOrderByPhaseDesc(tables + "",
-								type, tm.getPhase());
+						Optional<Lhc3TimesYz> lastTimesYzOp = timesYzRepository
+								.findFirstByTablesAndTypeAndPhaseLessThanOrderByPhaseDesc(tables + "", type,
+										tm.getPhase());
 						Lhc3TimesYz lastTimesYz = lastTimesYzOp.orElseGet(Lhc3TimesYz::new);
 						if (tmInfo.getCount() == 0 || tmInfo.getCount() > 2) {
 							color = "red";
@@ -94,8 +96,9 @@ public class Lhc3TimesColorService {
 						}
 						timesYzRepository.save(timesYz);
 
-						Optional<Lhc3ColorYz> lastColorYzOp = colorYzRepository.findFirstByTablesAndTypeAndPhaseLessThanOrderByPhaseDesc(tables + "",
-								type, tm.getPhase());
+						Optional<Lhc3ColorYz> lastColorYzOp = colorYzRepository
+								.findFirstByTablesAndTypeAndPhaseLessThanOrderByPhaseDesc(tables + "", type,
+										tm.getPhase());
 						Lhc3ColorYz lastColorYz = lastColorYzOp.orElseGet(Lhc3ColorYz::new);
 						colorYz.setYzColor(color);
 						if (color.equals(lastColorYz.getYzColor())) {
@@ -130,11 +133,29 @@ public class Lhc3TimesColorService {
 							} else {
 								colorYz.setR5(lastColorYz.getR5() + 1);
 							}
+							if ("white".equals(lastColorYz.getR6Color())) {
+								colorYz.setR6(1);
+							} else {
+								colorYz.setR6(lastColorYz.getR6() + 1);
+							}
+							if ("white".equals(lastColorYz.getR7Color())) {
+								colorYz.setR7(1);
+							} else {
+								colorYz.setR7(lastColorYz.getR7() + 1);
+							}
+							if ("white".equals(lastColorYz.getR8Color())) {
+								colorYz.setR8(1);
+							} else {
+								colorYz.setR8(lastColorYz.getR8() + 1);
+							}
 							colorYz.setR1Color("red");
 							colorYz.setR2Color("red");
 							colorYz.setR3Color("red");
 							colorYz.setR4Color("red");
 							colorYz.setR5Color("red");
+							colorYz.setR6Color("red");
+							colorYz.setR7Color("red");
+							colorYz.setR8Color("red");
 
 							switch (colorYz.getYz()) {
 							case 1: {
@@ -143,11 +164,17 @@ public class Lhc3TimesColorService {
 								colorYz.setG3(lastColorYz.getG3() + 1);
 								colorYz.setG4(lastColorYz.getG4() + 1);
 								colorYz.setG5(lastColorYz.getG5() + 1);
+								colorYz.setG6(lastColorYz.getG6() + 1);
+								colorYz.setG7(lastColorYz.getG7() + 1);
+								colorYz.setG8(lastColorYz.getG8() + 1);
 								colorYz.setG1Color("green");
 								colorYz.setG2Color("green");
 								colorYz.setG3Color("green");
 								colorYz.setG4Color("green");
 								colorYz.setG5Color("green");
+								colorYz.setG6Color("green");
+								colorYz.setG7Color("green");
+								colorYz.setG8Color("green");
 							}
 								break;
 							case 2: {
@@ -156,11 +183,17 @@ public class Lhc3TimesColorService {
 								colorYz.setG3(lastColorYz.getG3() + 1);
 								colorYz.setG4(lastColorYz.getG4() + 1);
 								colorYz.setG5(lastColorYz.getG5() + 1);
+								colorYz.setG6(lastColorYz.getG6() + 1);
+								colorYz.setG7(lastColorYz.getG7() + 1);
+								colorYz.setG8(lastColorYz.getG8() + 1);
 								colorYz.setG1Color("white");
 								colorYz.setG2Color("green");
 								colorYz.setG3Color("green");
 								colorYz.setG4Color("green");
 								colorYz.setG5Color("green");
+								colorYz.setG6Color("green");
+								colorYz.setG7Color("green");
+								colorYz.setG8Color("green");
 							}
 								break;
 							case 3: {
@@ -169,11 +202,17 @@ public class Lhc3TimesColorService {
 								colorYz.setG3(lastColorYz.getG3() + 1);
 								colorYz.setG4(lastColorYz.getG4() + 1);
 								colorYz.setG5(lastColorYz.getG5() + 1);
+								colorYz.setG6(lastColorYz.getG6() + 1);
+								colorYz.setG7(lastColorYz.getG7() + 1);
+								colorYz.setG8(lastColorYz.getG8() + 1);
 								colorYz.setG1Color("white");
 								colorYz.setG2Color("white");
 								colorYz.setG3Color("green");
 								colorYz.setG4Color("green");
 								colorYz.setG5Color("green");
+								colorYz.setG6Color("green");
+								colorYz.setG7Color("green");
+								colorYz.setG8Color("green");
 							}
 								break;
 							case 4: {
@@ -182,11 +221,17 @@ public class Lhc3TimesColorService {
 								colorYz.setG3(1);
 								colorYz.setG4(lastColorYz.getG4() + 1);
 								colorYz.setG5(lastColorYz.getG5() + 1);
+								colorYz.setG6(lastColorYz.getG6() + 1);
+								colorYz.setG7(lastColorYz.getG7() + 1);
+								colorYz.setG8(lastColorYz.getG8() + 1);
 								colorYz.setG1Color("white");
 								colorYz.setG2Color("white");
 								colorYz.setG3Color("white");
 								colorYz.setG4Color("green");
 								colorYz.setG5Color("green");
+								colorYz.setG6Color("green");
+								colorYz.setG7Color("green");
+								colorYz.setG8Color("green");
 							}
 								break;
 							case 5: {
@@ -195,11 +240,17 @@ public class Lhc3TimesColorService {
 								colorYz.setG3(2);
 								colorYz.setG4(1);
 								colorYz.setG5(lastColorYz.getG5() + 1);
+								colorYz.setG6(lastColorYz.getG6() + 1);
+								colorYz.setG7(lastColorYz.getG7() + 1);
+								colorYz.setG8(lastColorYz.getG8() + 1);
 								colorYz.setG1Color("white");
 								colorYz.setG2Color("white");
 								colorYz.setG3Color("white");
 								colorYz.setG4Color("white");
 								colorYz.setG5Color("green");
+								colorYz.setG6Color("green");
+								colorYz.setG7Color("green");
+								colorYz.setG8Color("green");
 							}
 								break;
 							case 6: {
@@ -208,11 +259,74 @@ public class Lhc3TimesColorService {
 								colorYz.setG3(3);
 								colorYz.setG4(2);
 								colorYz.setG5(1);
+								colorYz.setG6(lastColorYz.getG6() + 1);
+								colorYz.setG7(lastColorYz.getG7() + 1);
+								colorYz.setG8(lastColorYz.getG8() + 1);
 								colorYz.setG1Color("white");
 								colorYz.setG2Color("white");
 								colorYz.setG3Color("white");
 								colorYz.setG4Color("white");
 								colorYz.setG5Color("white");
+								colorYz.setG6Color("green");
+								colorYz.setG7Color("green");
+								colorYz.setG8Color("green");
+							}
+								break;
+							case 7: {
+								colorYz.setG1(6);
+								colorYz.setG2(5);
+								colorYz.setG3(4);
+								colorYz.setG4(3);
+								colorYz.setG5(2);
+								colorYz.setG6(1);
+								colorYz.setG7(lastColorYz.getG7() + 1);
+								colorYz.setG8(lastColorYz.getG8() + 1);
+								colorYz.setG1Color("white");
+								colorYz.setG2Color("white");
+								colorYz.setG3Color("white");
+								colorYz.setG4Color("white");
+								colorYz.setG5Color("white");
+								colorYz.setG6Color("white");
+								colorYz.setG7Color("green");
+								colorYz.setG8Color("green");
+							}
+								break;
+							case 8: {
+								colorYz.setG1(7);
+								colorYz.setG2(6);
+								colorYz.setG3(5);
+								colorYz.setG4(4);
+								colorYz.setG5(3);
+								colorYz.setG6(2);
+								colorYz.setG7(1);
+								colorYz.setG8(lastColorYz.getG8() + 1);
+								colorYz.setG1Color("white");
+								colorYz.setG2Color("white");
+								colorYz.setG3Color("white");
+								colorYz.setG4Color("white");
+								colorYz.setG5Color("white");
+								colorYz.setG6Color("white");
+								colorYz.setG7Color("white");
+								colorYz.setG8Color("green");
+							}
+								break;
+							case 9: {
+								colorYz.setG1(8);
+								colorYz.setG2(7);
+								colorYz.setG3(6);
+								colorYz.setG4(5);
+								colorYz.setG5(4);
+								colorYz.setG6(3);
+								colorYz.setG7(2);
+								colorYz.setG8(1);
+								colorYz.setG1Color("white");
+								colorYz.setG2Color("white");
+								colorYz.setG3Color("white");
+								colorYz.setG4Color("white");
+								colorYz.setG5Color("white");
+								colorYz.setG6Color("white");
+								colorYz.setG7Color("white");
+								colorYz.setG8Color("white");
 							}
 								break;
 							default: {
@@ -221,11 +335,17 @@ public class Lhc3TimesColorService {
 								colorYz.setG3(lastColorYz.getG3() + 1);
 								colorYz.setG4(lastColorYz.getG4() + 1);
 								colorYz.setG5(lastColorYz.getG5() + 1);
+								colorYz.setG6(lastColorYz.getG6() + 1);
+								colorYz.setG7(lastColorYz.getG7() + 1);
+								colorYz.setG8(lastColorYz.getG8() + 1);
 								colorYz.setG1Color("white");
 								colorYz.setG2Color("white");
 								colorYz.setG3Color("white");
 								colorYz.setG4Color("white");
 								colorYz.setG5Color("white");
+								colorYz.setG6Color("white");
+								colorYz.setG7Color("white");
+								colorYz.setG8Color("white");
 							}
 							}
 						} else {
@@ -254,11 +374,29 @@ public class Lhc3TimesColorService {
 							} else {
 								colorYz.setG5(lastColorYz.getG5() + 1);
 							}
+							if ("white".equals(lastColorYz.getG6Color())) {
+								colorYz.setG6(1);
+							} else {
+								colorYz.setG6(lastColorYz.getG6() + 1);
+							}
+							if ("white".equals(lastColorYz.getG7Color())) {
+								colorYz.setG7(1);
+							} else {
+								colorYz.setG7(lastColorYz.getG7() + 1);
+							}
+							if ("white".equals(lastColorYz.getG8Color())) {
+								colorYz.setG8(1);
+							} else {
+								colorYz.setG8(lastColorYz.getG8() + 1);
+							}
 							colorYz.setG1Color("green");
 							colorYz.setG2Color("green");
 							colorYz.setG3Color("green");
 							colorYz.setG4Color("green");
 							colorYz.setG5Color("green");
+							colorYz.setG6Color("green");
+							colorYz.setG7Color("green");
+							colorYz.setG8Color("green");
 
 							switch (colorYz.getYz()) {
 							case 1: {
@@ -267,11 +405,17 @@ public class Lhc3TimesColorService {
 								colorYz.setR3(lastColorYz.getR3() + 1);
 								colorYz.setR4(lastColorYz.getR4() + 1);
 								colorYz.setR5(lastColorYz.getR5() + 1);
+								colorYz.setR6(lastColorYz.getR6() + 1);
+								colorYz.setR7(lastColorYz.getR7() + 1);
+								colorYz.setR8(lastColorYz.getR8() + 1);
 								colorYz.setR1Color("red");
 								colorYz.setR2Color("red");
 								colorYz.setR3Color("red");
 								colorYz.setR4Color("red");
 								colorYz.setR5Color("red");
+								colorYz.setR6Color("red");
+								colorYz.setR7Color("red");
+								colorYz.setR8Color("red");
 							}
 								break;
 							case 2: {
@@ -280,11 +424,17 @@ public class Lhc3TimesColorService {
 								colorYz.setR3(lastColorYz.getR3() + 1);
 								colorYz.setR4(lastColorYz.getR4() + 1);
 								colorYz.setR5(lastColorYz.getR5() + 1);
+								colorYz.setR6(lastColorYz.getR6() + 1);
+								colorYz.setR7(lastColorYz.getR7() + 1);
+								colorYz.setR8(lastColorYz.getR8() + 1);
 								colorYz.setR1Color("white");
 								colorYz.setR2Color("red");
 								colorYz.setR3Color("red");
 								colorYz.setR4Color("red");
 								colorYz.setR5Color("red");
+								colorYz.setR6Color("red");
+								colorYz.setR7Color("red");
+								colorYz.setR8Color("red");
 							}
 								break;
 							case 3: {
@@ -293,11 +443,17 @@ public class Lhc3TimesColorService {
 								colorYz.setR3(lastColorYz.getR3() + 1);
 								colorYz.setR4(lastColorYz.getR4() + 1);
 								colorYz.setR5(lastColorYz.getR5() + 1);
+								colorYz.setR6(lastColorYz.getR6() + 1);
+								colorYz.setR7(lastColorYz.getR7() + 1);
+								colorYz.setR8(lastColorYz.getR8() + 1);
 								colorYz.setR1Color("white");
 								colorYz.setR2Color("white");
 								colorYz.setR3Color("red");
 								colorYz.setR4Color("red");
 								colorYz.setR5Color("red");
+								colorYz.setR6Color("red");
+								colorYz.setR7Color("red");
+								colorYz.setR8Color("red");
 							}
 								break;
 							case 4: {
@@ -306,11 +462,17 @@ public class Lhc3TimesColorService {
 								colorYz.setR3(1);
 								colorYz.setR4(lastColorYz.getR4() + 1);
 								colorYz.setR5(lastColorYz.getR5() + 1);
+								colorYz.setR6(lastColorYz.getR6() + 1);
+								colorYz.setR7(lastColorYz.getR7() + 1);
+								colorYz.setR8(lastColorYz.getR8() + 1);
 								colorYz.setR1Color("white");
 								colorYz.setR2Color("white");
 								colorYz.setR3Color("white");
 								colorYz.setR4Color("red");
 								colorYz.setR5Color("red");
+								colorYz.setR6Color("red");
+								colorYz.setR7Color("red");
+								colorYz.setR8Color("red");
 							}
 								break;
 							case 5: {
@@ -319,6 +481,9 @@ public class Lhc3TimesColorService {
 								colorYz.setR3(2);
 								colorYz.setR4(1);
 								colorYz.setR5(lastColorYz.getR5() + 1);
+								colorYz.setR6(lastColorYz.getR6() + 1);
+								colorYz.setR7(lastColorYz.getR7() + 1);
+								colorYz.setR8(lastColorYz.getR8() + 1);
 								colorYz.setWrColor("red");
 								colorYz.setWr(colorYz.getWr() + 1);
 								colorYz.setR1Color("white");
@@ -326,6 +491,9 @@ public class Lhc3TimesColorService {
 								colorYz.setR3Color("white");
 								colorYz.setR4Color("white");
 								colorYz.setR5Color("red");
+								colorYz.setR6Color("red");
+								colorYz.setR7Color("red");
+								colorYz.setR8Color("red");
 							}
 								break;
 							case 6: {
@@ -334,11 +502,74 @@ public class Lhc3TimesColorService {
 								colorYz.setR3(3);
 								colorYz.setR4(2);
 								colorYz.setR5(1);
+								colorYz.setR6(lastColorYz.getR6() + 1);
+								colorYz.setR7(lastColorYz.getR7() + 1);
+								colorYz.setR8(lastColorYz.getR8() + 1);
 								colorYz.setR1Color("white");
 								colorYz.setR2Color("white");
 								colorYz.setR3Color("white");
 								colorYz.setR4Color("white");
 								colorYz.setR5Color("white");
+								colorYz.setR6Color("red");
+								colorYz.setR7Color("red");
+								colorYz.setR8Color("red");
+							}
+								break;
+							case 7: {
+								colorYz.setR1(6);
+								colorYz.setR2(5);
+								colorYz.setR3(4);
+								colorYz.setR4(3);
+								colorYz.setR5(2);
+								colorYz.setR6(1);
+								colorYz.setR7(lastColorYz.getR7() + 1);
+								colorYz.setR8(lastColorYz.getR8() + 1);
+								colorYz.setR1Color("white");
+								colorYz.setR2Color("white");
+								colorYz.setR3Color("white");
+								colorYz.setR4Color("white");
+								colorYz.setR5Color("white");
+								colorYz.setR6Color("white");
+								colorYz.setR7Color("red");
+								colorYz.setR8Color("red");
+							}
+								break;
+							case 8: {
+								colorYz.setR1(7);
+								colorYz.setR2(6);
+								colorYz.setR3(5);
+								colorYz.setR4(4);
+								colorYz.setR5(3);
+								colorYz.setR6(2);
+								colorYz.setR7(1);
+								colorYz.setR8(lastColorYz.getR8() + 1);
+								colorYz.setR1Color("white");
+								colorYz.setR2Color("white");
+								colorYz.setR3Color("white");
+								colorYz.setR4Color("white");
+								colorYz.setR5Color("white");
+								colorYz.setR6Color("white");
+								colorYz.setR7Color("white");
+								colorYz.setR8Color("red");
+							}
+								break;
+							case 9: {
+								colorYz.setR1(8);
+								colorYz.setR2(7);
+								colorYz.setR3(6);
+								colorYz.setR4(5);
+								colorYz.setR5(4);
+								colorYz.setR6(3);
+								colorYz.setR7(2);
+								colorYz.setR8(1);
+								colorYz.setR1Color("white");
+								colorYz.setR2Color("white");
+								colorYz.setR3Color("white");
+								colorYz.setR4Color("white");
+								colorYz.setR5Color("white");
+								colorYz.setR6Color("white");
+								colorYz.setR7Color("white");
+								colorYz.setR8Color("white");
 							}
 								break;
 							default: {
@@ -347,11 +578,17 @@ public class Lhc3TimesColorService {
 								colorYz.setR3(lastColorYz.getR3() + 1);
 								colorYz.setR4(lastColorYz.getR4() + 1);
 								colorYz.setR5(lastColorYz.getR5() + 1);
+								colorYz.setR6(lastColorYz.getR6() + 1);
+								colorYz.setR7(lastColorYz.getR7() + 1);
+								colorYz.setR8(lastColorYz.getR8() + 1);
 								colorYz.setR1Color("white");
 								colorYz.setR2Color("white");
 								colorYz.setR3Color("white");
 								colorYz.setR4Color("white");
 								colorYz.setR5Color("white");
+								colorYz.setR6Color("white");
+								colorYz.setR7Color("white");
+								colorYz.setR8Color("white");
 							}
 							}
 						}
@@ -375,7 +612,8 @@ public class Lhc3TimesColorService {
 						colorYzRepository.save(colorYz);
 
 						Optional<Lhc3ColorYz2> lastColorYz2Op = colorYz2Repository
-								.findFirstByTablesAndTypeAndPhaseLessThanOrderByPhaseDesc(tables + "", type, tm.getPhase());
+								.findFirstByTablesAndTypeAndPhaseLessThanOrderByPhaseDesc(tables + "", type,
+										tm.getPhase());
 						Lhc3ColorYz2 colorYz2 = new Lhc3ColorYz2();
 						colorYz2.setPhase(tm.getPhase());
 						colorYz2.setTables(tables + "");
@@ -422,7 +660,8 @@ public class Lhc3TimesColorService {
 	private int[] whiteTimes = { 1, 3, 7, 15, 33, 69 };
 	private int[] redTimes = { 1, 2 };
 
-	private void setColor2(Lhc3ColorYz2 lastYz, Lhc3ColorYz yz, Lhc3ColorYz2 colorYz2, String method, String specColor) throws Exception {
+	private void setColor2(Lhc3ColorYz2 lastYz, Lhc3ColorYz yz, Lhc3ColorYz2 colorYz2, String method, String specColor)
+			throws Exception {
 		Method colorGm = null;
 		if (method.equals("Wr")) {
 			colorGm = ReflectionUtils.findMethod(Lhc3ColorYz.class, "getWrColor");
