@@ -87,6 +87,22 @@ public class Lhc3ComparisionController {
 			topForTotal.setR6(first.getTR6());
 			topForTotal.setR7(first.getTR7());
 			topForTotal.setR8(first.getTR8());
+			topForTotal.setG1Color("gray");
+			topForTotal.setG2Color("gray");
+			topForTotal.setG3Color("gray");
+			topForTotal.setG4Color("gray");
+			topForTotal.setG5Color("gray");
+			topForTotal.setG6Color("gray");
+			topForTotal.setG7Color("gray");
+			topForTotal.setG8Color("gray");
+			topForTotal.setR1Color("gray");
+			topForTotal.setR2Color("gray");
+			topForTotal.setR3Color("gray");
+			topForTotal.setR4Color("gray");
+			topForTotal.setR5Color("gray");
+			topForTotal.setR6Color("gray");
+			topForTotal.setR7Color("gray");
+			topForTotal.setR8Color("gray");
 			list.add(0, topForTotal);
 
 			Lhc3ColorYz topForLimitedTotal = new Lhc3ColorYz();
@@ -107,6 +123,22 @@ public class Lhc3ComparisionController {
 			topForLimitedTotal.setR6(first.getLtR6());
 			topForLimitedTotal.setR7(first.getLtR7());
 			topForLimitedTotal.setR8(first.getLtR8());
+			topForLimitedTotal.setG1Color("gray");
+			topForLimitedTotal.setG2Color("gray");
+			topForLimitedTotal.setG3Color("gray");
+			topForLimitedTotal.setG4Color("gray");
+			topForLimitedTotal.setG5Color("gray");
+			topForLimitedTotal.setG6Color("gray");
+			topForLimitedTotal.setG7Color("gray");
+			topForLimitedTotal.setG8Color("gray");
+			topForLimitedTotal.setR1Color("gray");
+			topForLimitedTotal.setR2Color("gray");
+			topForLimitedTotal.setR3Color("gray");
+			topForLimitedTotal.setR4Color("gray");
+			topForLimitedTotal.setR5Color("gray");
+			topForLimitedTotal.setR6Color("gray");
+			topForLimitedTotal.setR7Color("gray");
+			topForLimitedTotal.setR8Color("gray");
 			list.add(0, topForLimitedTotal);
 			return Result.genSuccessResult(new PageResult<>(list, result.getTotalElements()));
 		}

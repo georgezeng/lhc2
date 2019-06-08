@@ -109,6 +109,54 @@
                 ],
                 columns2: [
                     {
+                        title: '绿8',
+                        width: 55,
+                        render(h, params) {
+                            const style = {};
+                            style['padding'] = '10px';
+                            const data = params.row.g8;
+                            const color = params.row.g8Color;
+                            style['background-color'] = color;
+                            if (color != 'white') {
+                                style['color'] = 'white';
+                            }
+                            style['font-weight'] = 'bold';
+                            return h('span', {style}, data);
+                        }
+                    },
+                    {
+                        title: '绿7',
+                        width: 55,
+                        render(h, params) {
+                            const style = {};
+                            style['padding'] = '10px';
+                            const data = params.row.g7;
+                            const color = params.row.g7Color;
+                            style['background-color'] = color;
+                            if (color != 'white') {
+                                style['color'] = 'white';
+                            }
+                            style['font-weight'] = 'bold';
+                            return h('span', {style}, data);
+                        }
+                    },
+                    {
+                        title: '绿6',
+                        width: 55,
+                        render(h, params) {
+                            const style = {};
+                            style['padding'] = '10px';
+                            const data = params.row.g6;
+                            const color = params.row.g6Color;
+                            style['background-color'] = color;
+                            if (color != 'white') {
+                                style['color'] = 'white';
+                            }
+                            style['font-weight'] = 'bold';
+                            return h('span', {style}, data);
+                        }
+                    },
+                    {
                         title: '绿5',
                         width: 55,
                         render(h, params) {
@@ -290,6 +338,54 @@
                             style['padding'] = '10px';
                             const data = params.row.r5;
                             const color = params.row.r5Color;
+                            style['background-color'] = color;
+                            if (color != 'white') {
+                                style['color'] = 'white';
+                            }
+                            style['font-weight'] = 'bold';
+                            return h('span', {style}, data);
+                        }
+                    },
+                    {
+                        title: '红6',
+                        width: 55,
+                        render(h, params) {
+                            const style = {};
+                            style['padding'] = '10px';
+                            const data = params.row.r6;
+                            const color = params.row.r6Color;
+                            style['background-color'] = color;
+                            if (color != 'white') {
+                                style['color'] = 'white';
+                            }
+                            style['font-weight'] = 'bold';
+                            return h('span', {style}, data);
+                        }
+                    },
+                    {
+                        title: '红7',
+                        width: 55,
+                        render(h, params) {
+                            const style = {};
+                            style['padding'] = '10px';
+                            const data = params.row.r7;
+                            const color = params.row.r7Color;
+                            style['background-color'] = color;
+                            if (color != 'white') {
+                                style['color'] = 'white';
+                            }
+                            style['font-weight'] = 'bold';
+                            return h('span', {style}, data);
+                        }
+                    },
+                    {
+                        title: '红8',
+                        width: 55,
+                        render(h, params) {
+                            const style = {};
+                            style['padding'] = '10px';
+                            const data = params.row.r8;
+                            const color = params.row.r8Color;
                             style['background-color'] = color;
                             if (color != 'white') {
                                 style['color'] = 'white';
