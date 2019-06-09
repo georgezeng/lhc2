@@ -153,8 +153,8 @@ public class Lhc3TimesColorService {
 								.findTop100ByTablesAndTypeAndPhaseLessThanOrderByPhaseDesc(tables + "", type,
 										tm.getPhase());
 						Optional<Lhc3ColorYz> lastLimitedColorYzOp = Optional.empty();
-						if (lastLimitedColorYzList != null && lastLimitedColorYzList.size() == 100) {
-							lastLimitedColorYzOp = Optional.of(lastLimitedColorYzList.get(99));
+						if (lastLimitedColorYzList != null && lastLimitedColorYzList.size() == 10) {
+							lastLimitedColorYzOp = Optional.of(lastLimitedColorYzList.get(9));
 						}
 						colorYz.setYzColor(color);
 						if (color.equals(lastColorYz.getYzColor())) {
@@ -594,175 +594,191 @@ public class Lhc3TimesColorService {
 								colorYz.setG6Color("white");
 								colorYz.setG7Color("white");
 								colorYz.setG8Color("white");
-								int lastLimitedCount = 0;
-								if (colorYz.getG1() == 1) {
-									if (lastLimitedColorYzOp.isPresent()) {
-										lastLimitedCount = lastLimitedColorYzOp.get().getTG1();
-									}
-									colorYz.setLtG1(lastColorYz.getTG1() + 1 - lastLimitedCount);
-									colorYz.setTG1(lastColorYz.getTG1() + 1);
-									colorYz.setLtG2(lastColorYz.getLtG2());
-									colorYz.setLtG3(lastColorYz.getLtG3());
-									colorYz.setLtG4(lastColorYz.getLtG4());
-									colorYz.setLtG5(lastColorYz.getLtG5());
-									colorYz.setLtG6(lastColorYz.getLtG6());
-									colorYz.setLtG7(lastColorYz.getLtG7());
-									colorYz.setLtG8(lastColorYz.getLtG8());
-									colorYz.setTG2(lastColorYz.getTG2());
-									colorYz.setTG3(lastColorYz.getTG3());
-									colorYz.setTG4(lastColorYz.getTG4());
-									colorYz.setTG5(lastColorYz.getTG5());
-									colorYz.setTG6(lastColorYz.getTG6());
-									colorYz.setTG7(lastColorYz.getTG7());
-									colorYz.setTG8(lastColorYz.getTG8());
-								} else if (colorYz.getG2() == 1) {
-									lastLimitedCount = 0;
-									if (lastLimitedColorYzOp.isPresent()) {
-										lastLimitedCount = lastLimitedColorYzOp.get().getTG2();
-									}
-									colorYz.setLtG2(lastColorYz.getTG2() + 1 - lastLimitedCount);
-									colorYz.setTG2(lastColorYz.getTG2() + 1);
-									colorYz.setLtG1(lastColorYz.getLtG1());
-									colorYz.setLtG3(lastColorYz.getLtG3());
-									colorYz.setLtG4(lastColorYz.getLtG4());
-									colorYz.setLtG5(lastColorYz.getLtG5());
-									colorYz.setLtG6(lastColorYz.getLtG6());
-									colorYz.setLtG7(lastColorYz.getLtG7());
-									colorYz.setLtG8(lastColorYz.getLtG8());
-									colorYz.setTG1(lastColorYz.getTG1());
-									colorYz.setTG3(lastColorYz.getTG3());
-									colorYz.setTG4(lastColorYz.getTG4());
-									colorYz.setTG5(lastColorYz.getTG5());
-									colorYz.setTG6(lastColorYz.getTG6());
-									colorYz.setTG7(lastColorYz.getTG7());
-									colorYz.setTG8(lastColorYz.getTG8());
-								} else if (colorYz.getG3() == 1) {
-									lastLimitedCount = 0;
-									if (lastLimitedColorYzOp.isPresent()) {
-										lastLimitedCount = lastLimitedColorYzOp.get().getTG3();
-									}
-									colorYz.setLtG3(lastColorYz.getTG3() + 1 - lastLimitedCount);
-									colorYz.setTG3(lastColorYz.getTG3() + 1);
-									colorYz.setLtG1(lastColorYz.getLtG1());
-									colorYz.setLtG2(lastColorYz.getLtG2());
-									colorYz.setLtG4(lastColorYz.getLtG4());
-									colorYz.setLtG5(lastColorYz.getLtG5());
-									colorYz.setLtG6(lastColorYz.getLtG6());
-									colorYz.setLtG7(lastColorYz.getLtG7());
-									colorYz.setLtG8(lastColorYz.getLtG8());
-									colorYz.setTG1(lastColorYz.getTG1());
-									colorYz.setTG2(lastColorYz.getTG2());
-									colorYz.setTG4(lastColorYz.getTG4());
-									colorYz.setTG5(lastColorYz.getTG5());
-									colorYz.setTG6(lastColorYz.getTG6());
-									colorYz.setTG7(lastColorYz.getTG7());
-									colorYz.setTG8(lastColorYz.getTG8());
-								} else if (colorYz.getG4() == 1) {
-									lastLimitedCount = 0;
-									if (lastLimitedColorYzOp.isPresent()) {
-										lastLimitedCount = lastLimitedColorYzOp.get().getTG4();
-									}
-									colorYz.setLtG4(lastColorYz.getTG4() + 1 - lastLimitedCount);
-									colorYz.setTG4(lastColorYz.getTG4() + 1);
-									colorYz.setLtG1(lastColorYz.getLtG1());
-									colorYz.setLtG2(lastColorYz.getLtG2());
-									colorYz.setLtG3(lastColorYz.getLtG3());
-									colorYz.setLtG5(lastColorYz.getLtG5());
-									colorYz.setLtG6(lastColorYz.getLtG6());
-									colorYz.setLtG7(lastColorYz.getLtG7());
-									colorYz.setLtG8(lastColorYz.getLtG8());
-									colorYz.setTG1(lastColorYz.getTG1());
-									colorYz.setTG2(lastColorYz.getTG2());
-									colorYz.setTG3(lastColorYz.getTG3());
-									colorYz.setTG5(lastColorYz.getTG5());
-									colorYz.setTG6(lastColorYz.getTG6());
-									colorYz.setTG7(lastColorYz.getTG7());
-									colorYz.setTG8(lastColorYz.getTG8());
-								} else if (colorYz.getG5() == 1) {
-									lastLimitedCount = 0;
-									if (lastLimitedColorYzOp.isPresent()) {
-										lastLimitedCount = lastLimitedColorYzOp.get().getTG5();
-									}
-									colorYz.setLtG5(lastColorYz.getTG5() + 1 - lastLimitedCount);
-									colorYz.setTG5(lastColorYz.getTG5() + 1);
-									colorYz.setLtG1(lastColorYz.getLtG1());
-									colorYz.setLtG2(lastColorYz.getLtG2());
-									colorYz.setLtG3(lastColorYz.getLtG3());
-									colorYz.setLtG4(lastColorYz.getLtG4());
-									colorYz.setLtG6(lastColorYz.getLtG6());
-									colorYz.setLtG7(lastColorYz.getLtG7());
-									colorYz.setLtG8(lastColorYz.getLtG8());
-									colorYz.setTG1(lastColorYz.getTG1());
-									colorYz.setTG2(lastColorYz.getTG2());
-									colorYz.setTG3(lastColorYz.getTG3());
-									colorYz.setTG4(lastColorYz.getTG4());
-									colorYz.setTG6(lastColorYz.getTG6());
-									colorYz.setTG7(lastColorYz.getTG7());
-									colorYz.setTG8(lastColorYz.getTG8());
-								} else if (colorYz.getG6() == 1) {
-									lastLimitedCount = 0;
-									if (lastLimitedColorYzOp.isPresent()) {
-										lastLimitedCount = lastLimitedColorYzOp.get().getTG6();
-									}
-									colorYz.setLtG6(lastColorYz.getTG6() + 1 - lastLimitedCount);
-									colorYz.setTG6(lastColorYz.getTG6() + 1);
-									colorYz.setLtG1(lastColorYz.getLtG1());
-									colorYz.setLtG2(lastColorYz.getLtG2());
-									colorYz.setLtG3(lastColorYz.getLtG3());
-									colorYz.setLtG4(lastColorYz.getLtG4());
-									colorYz.setLtG5(lastColorYz.getLtG5());
-									colorYz.setLtG7(lastColorYz.getLtG7());
-									colorYz.setLtG8(lastColorYz.getLtG8());
-									colorYz.setTG1(lastColorYz.getTG1());
-									colorYz.setTG2(lastColorYz.getTG2());
-									colorYz.setTG3(lastColorYz.getTG3());
-									colorYz.setTG4(lastColorYz.getTG4());
-									colorYz.setTG5(lastColorYz.getTG5());
-									colorYz.setTG7(lastColorYz.getTG7());
-									colorYz.setTG8(lastColorYz.getTG8());
-								} else if (colorYz.getG7() == 1) {
-									lastLimitedCount = 0;
-									if (lastLimitedColorYzOp.isPresent()) {
-										lastLimitedCount = lastLimitedColorYzOp.get().getTG7();
-									}
-									colorYz.setLtG7(lastColorYz.getTG7() + 1 - lastLimitedCount);
-									colorYz.setTG7(lastColorYz.getTG7() + 1);
-									colorYz.setLtG1(lastColorYz.getLtG1());
-									colorYz.setLtG2(lastColorYz.getLtG2());
-									colorYz.setLtG3(lastColorYz.getLtG3());
-									colorYz.setLtG4(lastColorYz.getLtG4());
-									colorYz.setLtG5(lastColorYz.getLtG5());
-									colorYz.setLtG6(lastColorYz.getLtG6());
-									colorYz.setLtG8(lastColorYz.getLtG8());
-									colorYz.setTG1(lastColorYz.getTG1());
-									colorYz.setTG2(lastColorYz.getTG2());
-									colorYz.setTG3(lastColorYz.getTG3());
-									colorYz.setTG4(lastColorYz.getTG4());
-									colorYz.setTG5(lastColorYz.getTG5());
-									colorYz.setTG6(lastColorYz.getTG6());
-									colorYz.setTG8(lastColorYz.getTG8());
-								} else if (colorYz.getG8() == 1) {
-									lastLimitedCount = 0;
-									if (lastLimitedColorYzOp.isPresent()) {
-										lastLimitedCount = lastLimitedColorYzOp.get().getTG8();
-									}
-									colorYz.setLtG8(lastColorYz.getTG8() + 1 - lastLimitedCount);
-									colorYz.setTG8(lastColorYz.getTG8() + 1);
-									colorYz.setLtG1(lastColorYz.getLtG1());
-									colorYz.setLtG2(lastColorYz.getLtG2());
-									colorYz.setLtG3(lastColorYz.getLtG3());
-									colorYz.setLtG4(lastColorYz.getLtG4());
-									colorYz.setLtG5(lastColorYz.getLtG5());
-									colorYz.setLtG6(lastColorYz.getLtG6());
-									colorYz.setLtG7(lastColorYz.getLtG7());
-									colorYz.setTG1(lastColorYz.getTG1());
-									colorYz.setTG2(lastColorYz.getTG2());
-									colorYz.setTG3(lastColorYz.getTG3());
-									colorYz.setTG4(lastColorYz.getTG4());
-									colorYz.setTG5(lastColorYz.getTG5());
-									colorYz.setTG6(lastColorYz.getTG6());
-									colorYz.setTG7(lastColorYz.getTG7());
-								}
+								colorYz.setLtR1(lastColorYz.getLtR1());
+								colorYz.setLtR2(lastColorYz.getLtR2());
+								colorYz.setLtR3(lastColorYz.getLtR3());
+								colorYz.setLtR4(lastColorYz.getLtR4());
+								colorYz.setLtR5(lastColorYz.getLtR5());
+								colorYz.setLtR6(lastColorYz.getLtR6());
+								colorYz.setLtR7(lastColorYz.getLtR7());
+								colorYz.setLtR8(lastColorYz.getLtR8());
+								colorYz.setTR1(lastColorYz.getTR1());
+								colorYz.setTR2(lastColorYz.getTR2());
+								colorYz.setTR3(lastColorYz.getTR3());
+								colorYz.setTR4(lastColorYz.getTR4());
+								colorYz.setTR5(lastColorYz.getTR5());
+								colorYz.setTR6(lastColorYz.getTR6());
+								colorYz.setTR7(lastColorYz.getTR7());
+								colorYz.setTR8(lastColorYz.getTR8());
+//								int lastLimitedCount = 0;
+//								if (colorYz.getG1() == 1) {
+//									if (lastLimitedColorYzOp.isPresent()) {
+//										lastLimitedCount = lastLimitedColorYzOp.get().getTG1();
+//									}
+//									colorYz.setLtG1(lastColorYz.getTG1() + 1 - lastLimitedCount);
+//									colorYz.setTG1(lastColorYz.getTG1() + 1);
+//									colorYz.setLtG2(lastColorYz.getLtG2());
+//									colorYz.setLtG3(lastColorYz.getLtG3());
+//									colorYz.setLtG4(lastColorYz.getLtG4());
+//									colorYz.setLtG5(lastColorYz.getLtG5());
+//									colorYz.setLtG6(lastColorYz.getLtG6());
+//									colorYz.setLtG7(lastColorYz.getLtG7());
+//									colorYz.setLtG8(lastColorYz.getLtG8());
+//									colorYz.setTG2(lastColorYz.getTG2());
+//									colorYz.setTG3(lastColorYz.getTG3());
+//									colorYz.setTG4(lastColorYz.getTG4());
+//									colorYz.setTG5(lastColorYz.getTG5());
+//									colorYz.setTG6(lastColorYz.getTG6());
+//									colorYz.setTG7(lastColorYz.getTG7());
+//									colorYz.setTG8(lastColorYz.getTG8());
+//								} else if (colorYz.getG2() == 1) {
+//									lastLimitedCount = 0;
+//									if (lastLimitedColorYzOp.isPresent()) {
+//										lastLimitedCount = lastLimitedColorYzOp.get().getTG2();
+//									}
+//									colorYz.setLtG2(lastColorYz.getTG2() + 1 - lastLimitedCount);
+//									colorYz.setTG2(lastColorYz.getTG2() + 1);
+//									colorYz.setLtG1(lastColorYz.getLtG1());
+//									colorYz.setLtG3(lastColorYz.getLtG3());
+//									colorYz.setLtG4(lastColorYz.getLtG4());
+//									colorYz.setLtG5(lastColorYz.getLtG5());
+//									colorYz.setLtG6(lastColorYz.getLtG6());
+//									colorYz.setLtG7(lastColorYz.getLtG7());
+//									colorYz.setLtG8(lastColorYz.getLtG8());
+//									colorYz.setTG1(lastColorYz.getTG1());
+//									colorYz.setTG3(lastColorYz.getTG3());
+//									colorYz.setTG4(lastColorYz.getTG4());
+//									colorYz.setTG5(lastColorYz.getTG5());
+//									colorYz.setTG6(lastColorYz.getTG6());
+//									colorYz.setTG7(lastColorYz.getTG7());
+//									colorYz.setTG8(lastColorYz.getTG8());
+//								} else if (colorYz.getG3() == 1) {
+//									lastLimitedCount = 0;
+//									if (lastLimitedColorYzOp.isPresent()) {
+//										lastLimitedCount = lastLimitedColorYzOp.get().getTG3();
+//									}
+//									colorYz.setLtG3(lastColorYz.getTG3() + 1 - lastLimitedCount);
+//									colorYz.setTG3(lastColorYz.getTG3() + 1);
+//									colorYz.setLtG1(lastColorYz.getLtG1());
+//									colorYz.setLtG2(lastColorYz.getLtG2());
+//									colorYz.setLtG4(lastColorYz.getLtG4());
+//									colorYz.setLtG5(lastColorYz.getLtG5());
+//									colorYz.setLtG6(lastColorYz.getLtG6());
+//									colorYz.setLtG7(lastColorYz.getLtG7());
+//									colorYz.setLtG8(lastColorYz.getLtG8());
+//									colorYz.setTG1(lastColorYz.getTG1());
+//									colorYz.setTG2(lastColorYz.getTG2());
+//									colorYz.setTG4(lastColorYz.getTG4());
+//									colorYz.setTG5(lastColorYz.getTG5());
+//									colorYz.setTG6(lastColorYz.getTG6());
+//									colorYz.setTG7(lastColorYz.getTG7());
+//									colorYz.setTG8(lastColorYz.getTG8());
+//								} else if (colorYz.getG4() == 1) {
+//									lastLimitedCount = 0;
+//									if (lastLimitedColorYzOp.isPresent()) {
+//										lastLimitedCount = lastLimitedColorYzOp.get().getTG4();
+//									}
+//									colorYz.setLtG4(lastColorYz.getTG4() + 1 - lastLimitedCount);
+//									colorYz.setTG4(lastColorYz.getTG4() + 1);
+//									colorYz.setLtG1(lastColorYz.getLtG1());
+//									colorYz.setLtG2(lastColorYz.getLtG2());
+//									colorYz.setLtG3(lastColorYz.getLtG3());
+//									colorYz.setLtG5(lastColorYz.getLtG5());
+//									colorYz.setLtG6(lastColorYz.getLtG6());
+//									colorYz.setLtG7(lastColorYz.getLtG7());
+//									colorYz.setLtG8(lastColorYz.getLtG8());
+//									colorYz.setTG1(lastColorYz.getTG1());
+//									colorYz.setTG2(lastColorYz.getTG2());
+//									colorYz.setTG3(lastColorYz.getTG3());
+//									colorYz.setTG5(lastColorYz.getTG5());
+//									colorYz.setTG6(lastColorYz.getTG6());
+//									colorYz.setTG7(lastColorYz.getTG7());
+//									colorYz.setTG8(lastColorYz.getTG8());
+//								} else if (colorYz.getG5() == 1) {
+//									lastLimitedCount = 0;
+//									if (lastLimitedColorYzOp.isPresent()) {
+//										lastLimitedCount = lastLimitedColorYzOp.get().getTG5();
+//									}
+//									colorYz.setLtG5(lastColorYz.getTG5() + 1 - lastLimitedCount);
+//									colorYz.setTG5(lastColorYz.getTG5() + 1);
+//									colorYz.setLtG1(lastColorYz.getLtG1());
+//									colorYz.setLtG2(lastColorYz.getLtG2());
+//									colorYz.setLtG3(lastColorYz.getLtG3());
+//									colorYz.setLtG4(lastColorYz.getLtG4());
+//									colorYz.setLtG6(lastColorYz.getLtG6());
+//									colorYz.setLtG7(lastColorYz.getLtG7());
+//									colorYz.setLtG8(lastColorYz.getLtG8());
+//									colorYz.setTG1(lastColorYz.getTG1());
+//									colorYz.setTG2(lastColorYz.getTG2());
+//									colorYz.setTG3(lastColorYz.getTG3());
+//									colorYz.setTG4(lastColorYz.getTG4());
+//									colorYz.setTG6(lastColorYz.getTG6());
+//									colorYz.setTG7(lastColorYz.getTG7());
+//									colorYz.setTG8(lastColorYz.getTG8());
+//								} else if (colorYz.getG6() == 1) {
+//									lastLimitedCount = 0;
+//									if (lastLimitedColorYzOp.isPresent()) {
+//										lastLimitedCount = lastLimitedColorYzOp.get().getTG6();
+//									}
+//									colorYz.setLtG6(lastColorYz.getTG6() + 1 - lastLimitedCount);
+//									colorYz.setTG6(lastColorYz.getTG6() + 1);
+//									colorYz.setLtG1(lastColorYz.getLtG1());
+//									colorYz.setLtG2(lastColorYz.getLtG2());
+//									colorYz.setLtG3(lastColorYz.getLtG3());
+//									colorYz.setLtG4(lastColorYz.getLtG4());
+//									colorYz.setLtG5(lastColorYz.getLtG5());
+//									colorYz.setLtG7(lastColorYz.getLtG7());
+//									colorYz.setLtG8(lastColorYz.getLtG8());
+//									colorYz.setTG1(lastColorYz.getTG1());
+//									colorYz.setTG2(lastColorYz.getTG2());
+//									colorYz.setTG3(lastColorYz.getTG3());
+//									colorYz.setTG4(lastColorYz.getTG4());
+//									colorYz.setTG5(lastColorYz.getTG5());
+//									colorYz.setTG7(lastColorYz.getTG7());
+//									colorYz.setTG8(lastColorYz.getTG8());
+//								} else if (colorYz.getG7() == 1) {
+//									lastLimitedCount = 0;
+//									if (lastLimitedColorYzOp.isPresent()) {
+//										lastLimitedCount = lastLimitedColorYzOp.get().getTG7();
+//									}
+//									colorYz.setLtG7(lastColorYz.getTG7() + 1 - lastLimitedCount);
+//									colorYz.setTG7(lastColorYz.getTG7() + 1);
+//									colorYz.setLtG1(lastColorYz.getLtG1());
+//									colorYz.setLtG2(lastColorYz.getLtG2());
+//									colorYz.setLtG3(lastColorYz.getLtG3());
+//									colorYz.setLtG4(lastColorYz.getLtG4());
+//									colorYz.setLtG5(lastColorYz.getLtG5());
+//									colorYz.setLtG6(lastColorYz.getLtG6());
+//									colorYz.setLtG8(lastColorYz.getLtG8());
+//									colorYz.setTG1(lastColorYz.getTG1());
+//									colorYz.setTG2(lastColorYz.getTG2());
+//									colorYz.setTG3(lastColorYz.getTG3());
+//									colorYz.setTG4(lastColorYz.getTG4());
+//									colorYz.setTG5(lastColorYz.getTG5());
+//									colorYz.setTG6(lastColorYz.getTG6());
+//									colorYz.setTG8(lastColorYz.getTG8());
+//								} else if (colorYz.getG8() == 1) {
+//									lastLimitedCount = 0;
+//									if (lastLimitedColorYzOp.isPresent()) {
+//										lastLimitedCount = lastLimitedColorYzOp.get().getTG8();
+//									}
+//									colorYz.setLtG8(lastColorYz.getTG8() + 1 - lastLimitedCount);
+//									colorYz.setTG8(lastColorYz.getTG8() + 1);
+//									colorYz.setLtG1(lastColorYz.getLtG1());
+//									colorYz.setLtG2(lastColorYz.getLtG2());
+//									colorYz.setLtG3(lastColorYz.getLtG3());
+//									colorYz.setLtG4(lastColorYz.getLtG4());
+//									colorYz.setLtG5(lastColorYz.getLtG5());
+//									colorYz.setLtG6(lastColorYz.getLtG6());
+//									colorYz.setLtG7(lastColorYz.getLtG7());
+//									colorYz.setTG1(lastColorYz.getTG1());
+//									colorYz.setTG2(lastColorYz.getTG2());
+//									colorYz.setTG3(lastColorYz.getTG3());
+//									colorYz.setTG4(lastColorYz.getTG4());
+//									colorYz.setTG5(lastColorYz.getTG5());
+//									colorYz.setTG6(lastColorYz.getTG6());
+//									colorYz.setTG7(lastColorYz.getTG7());
+//								}
 							}
 							}
 						} else {
@@ -1198,175 +1214,191 @@ public class Lhc3TimesColorService {
 								colorYz.setR6Color("white");
 								colorYz.setR7Color("white");
 								colorYz.setR8Color("white");
-								int lastLimitedCount = 0;
-								if (colorYz.getR1() == 1) {
-									if (lastLimitedColorYzOp.isPresent()) {
-										lastLimitedCount = lastLimitedColorYzOp.get().getTR1();
-									}
-									colorYz.setLtR1(lastColorYz.getTR1() + 1 - lastLimitedCount);
-									colorYz.setTR1(lastColorYz.getTR1() + 1);
-									colorYz.setLtR2(lastColorYz.getLtR2());
-									colorYz.setLtR3(lastColorYz.getLtR3());
-									colorYz.setLtR4(lastColorYz.getLtR4());
-									colorYz.setLtR5(lastColorYz.getLtR5());
-									colorYz.setLtR6(lastColorYz.getLtR6());
-									colorYz.setLtR7(lastColorYz.getLtR7());
-									colorYz.setLtR8(lastColorYz.getLtR8());
-									colorYz.setTR2(lastColorYz.getTR2());
-									colorYz.setTR3(lastColorYz.getTR3());
-									colorYz.setTR4(lastColorYz.getTR4());
-									colorYz.setTR5(lastColorYz.getTR5());
-									colorYz.setTR6(lastColorYz.getTR6());
-									colorYz.setTR7(lastColorYz.getTR7());
-									colorYz.setTR8(lastColorYz.getTR8());
-								} else if (colorYz.getR2() == 1) {
-									lastLimitedCount = 0;
-									if (lastLimitedColorYzOp.isPresent()) {
-										lastLimitedCount = lastLimitedColorYzOp.get().getTR2();
-									}
-									colorYz.setLtR2(lastColorYz.getTR2() + 1 - lastLimitedCount);
-									colorYz.setTR2(lastColorYz.getTR2() + 1);
-									colorYz.setLtR1(lastColorYz.getLtR1());
-									colorYz.setLtR3(lastColorYz.getLtR3());
-									colorYz.setLtR4(lastColorYz.getLtR4());
-									colorYz.setLtR5(lastColorYz.getLtR5());
-									colorYz.setLtR6(lastColorYz.getLtR6());
-									colorYz.setLtR7(lastColorYz.getLtR7());
-									colorYz.setLtR8(lastColorYz.getLtR8());
-									colorYz.setTR1(lastColorYz.getTR1());
-									colorYz.setTR3(lastColorYz.getTR3());
-									colorYz.setTR4(lastColorYz.getTR4());
-									colorYz.setTR5(lastColorYz.getTR5());
-									colorYz.setTR6(lastColorYz.getTR6());
-									colorYz.setTR7(lastColorYz.getTR7());
-									colorYz.setTR8(lastColorYz.getTR8());
-								} else if (colorYz.getR3() == 1) {
-									lastLimitedCount = 0;
-									if (lastLimitedColorYzOp.isPresent()) {
-										lastLimitedCount = lastLimitedColorYzOp.get().getTR3();
-									}
-									colorYz.setLtR3(lastColorYz.getTR3() + 1 - lastLimitedCount);
-									colorYz.setTR3(lastColorYz.getTR3() + 1);
-									colorYz.setLtR1(lastColorYz.getLtR1());
-									colorYz.setLtR2(lastColorYz.getLtR2());
-									colorYz.setLtR4(lastColorYz.getLtR4());
-									colorYz.setLtR5(lastColorYz.getLtR5());
-									colorYz.setLtR6(lastColorYz.getLtR6());
-									colorYz.setLtR7(lastColorYz.getLtR7());
-									colorYz.setLtR8(lastColorYz.getLtR8());
-									colorYz.setTR1(lastColorYz.getTR1());
-									colorYz.setTR2(lastColorYz.getTR2());
-									colorYz.setTR4(lastColorYz.getTR4());
-									colorYz.setTR5(lastColorYz.getTR5());
-									colorYz.setTR6(lastColorYz.getTR6());
-									colorYz.setTR7(lastColorYz.getTR7());
-									colorYz.setTR8(lastColorYz.getTR8());
-								} else if (colorYz.getR4() == 1) {
-									lastLimitedCount = 0;
-									if (lastLimitedColorYzOp.isPresent()) {
-										lastLimitedCount = lastLimitedColorYzOp.get().getTR4();
-									}
-									colorYz.setLtR4(lastColorYz.getTR4() + 1 - lastLimitedCount);
-									colorYz.setTR4(lastColorYz.getTR4() + 1);
-									colorYz.setLtR1(lastColorYz.getLtR1());
-									colorYz.setLtR2(lastColorYz.getLtR2());
-									colorYz.setLtR3(lastColorYz.getLtR3());
-									colorYz.setLtR5(lastColorYz.getLtR5());
-									colorYz.setLtR6(lastColorYz.getLtR6());
-									colorYz.setLtR7(lastColorYz.getLtR7());
-									colorYz.setLtR8(lastColorYz.getLtR8());
-									colorYz.setTR1(lastColorYz.getTR1());
-									colorYz.setTR2(lastColorYz.getTR2());
-									colorYz.setTR3(lastColorYz.getTR3());
-									colorYz.setTR5(lastColorYz.getTR5());
-									colorYz.setTR6(lastColorYz.getTR6());
-									colorYz.setTR7(lastColorYz.getTR7());
-									colorYz.setTR8(lastColorYz.getTR8());
-								} else if (colorYz.getR5() == 1) {
-									lastLimitedCount = 0;
-									if (lastLimitedColorYzOp.isPresent()) {
-										lastLimitedCount = lastLimitedColorYzOp.get().getTR5();
-									}
-									colorYz.setLtR5(lastColorYz.getTR5() + 1 - lastLimitedCount);
-									colorYz.setTR5(lastColorYz.getTR5() + 1);
-									colorYz.setLtR1(lastColorYz.getLtR1());
-									colorYz.setLtR2(lastColorYz.getLtR2());
-									colorYz.setLtR3(lastColorYz.getLtR3());
-									colorYz.setLtR4(lastColorYz.getLtR4());
-									colorYz.setLtR6(lastColorYz.getLtR6());
-									colorYz.setLtR7(lastColorYz.getLtR7());
-									colorYz.setLtR8(lastColorYz.getLtR8());
-									colorYz.setTR1(lastColorYz.getTR1());
-									colorYz.setTR2(lastColorYz.getTR2());
-									colorYz.setTR3(lastColorYz.getTR3());
-									colorYz.setTR4(lastColorYz.getTR4());
-									colorYz.setTR6(lastColorYz.getTR6());
-									colorYz.setTR7(lastColorYz.getTR7());
-									colorYz.setTR8(lastColorYz.getTR8());
-								} else if (colorYz.getR6() == 1) {
-									lastLimitedCount = 0;
-									if (lastLimitedColorYzOp.isPresent()) {
-										lastLimitedCount = lastLimitedColorYzOp.get().getTR6();
-									}
-									colorYz.setLtR6(lastColorYz.getTR6() + 1 - lastLimitedCount);
-									colorYz.setTR6(lastColorYz.getTR6() + 1);
-									colorYz.setLtR1(lastColorYz.getLtR1());
-									colorYz.setLtR2(lastColorYz.getLtR2());
-									colorYz.setLtR3(lastColorYz.getLtR3());
-									colorYz.setLtR4(lastColorYz.getLtR4());
-									colorYz.setLtR5(lastColorYz.getLtR5());
-									colorYz.setLtR7(lastColorYz.getLtR7());
-									colorYz.setLtR8(lastColorYz.getLtR8());
-									colorYz.setTR1(lastColorYz.getTR1());
-									colorYz.setTR2(lastColorYz.getTR2());
-									colorYz.setTR3(lastColorYz.getTR3());
-									colorYz.setTR4(lastColorYz.getTR4());
-									colorYz.setTR5(lastColorYz.getTR5());
-									colorYz.setTR7(lastColorYz.getTR7());
-									colorYz.setTR8(lastColorYz.getTR8());
-								} else if (colorYz.getR7() == 1) {
-									lastLimitedCount = 0;
-									if (lastLimitedColorYzOp.isPresent()) {
-										lastLimitedCount = lastLimitedColorYzOp.get().getTR7();
-									}
-									colorYz.setLtR7(lastColorYz.getTR7() + 1 - lastLimitedCount);
-									colorYz.setTR7(lastColorYz.getTR7() + 1);
-									colorYz.setLtR1(lastColorYz.getLtR1());
-									colorYz.setLtR2(lastColorYz.getLtR2());
-									colorYz.setLtR3(lastColorYz.getLtR3());
-									colorYz.setLtR4(lastColorYz.getLtR4());
-									colorYz.setLtR5(lastColorYz.getLtR5());
-									colorYz.setLtR6(lastColorYz.getLtR6());
-									colorYz.setLtR8(lastColorYz.getLtR8());
-									colorYz.setTR1(lastColorYz.getTR1());
-									colorYz.setTR2(lastColorYz.getTR2());
-									colorYz.setTR3(lastColorYz.getTR3());
-									colorYz.setTR4(lastColorYz.getTR4());
-									colorYz.setTR5(lastColorYz.getTR5());
-									colorYz.setTR6(lastColorYz.getTR6());
-									colorYz.setTR8(lastColorYz.getTR8());
-								} else if (colorYz.getR8() == 1) {
-									lastLimitedCount = 0;
-									if (lastLimitedColorYzOp.isPresent()) {
-										lastLimitedCount = lastLimitedColorYzOp.get().getTR8();
-									}
-									colorYz.setLtR8(lastColorYz.getTR8() + 1 - lastLimitedCount);
-									colorYz.setTR8(lastColorYz.getTR8() + 1);
-									colorYz.setLtR1(lastColorYz.getLtR1());
-									colorYz.setLtR2(lastColorYz.getLtR2());
-									colorYz.setLtR3(lastColorYz.getLtR3());
-									colorYz.setLtR4(lastColorYz.getLtR4());
-									colorYz.setLtR5(lastColorYz.getLtR5());
-									colorYz.setLtR6(lastColorYz.getLtR6());
-									colorYz.setLtR7(lastColorYz.getLtR7());
-									colorYz.setTR1(lastColorYz.getTR1());
-									colorYz.setTR2(lastColorYz.getTR2());
-									colorYz.setTR3(lastColorYz.getTR3());
-									colorYz.setTR4(lastColorYz.getTR4());
-									colorYz.setTR5(lastColorYz.getTR5());
-									colorYz.setTR6(lastColorYz.getTR6());
-									colorYz.setTR7(lastColorYz.getTR7());
-								}
+								colorYz.setLtG1(lastColorYz.getLtG1());
+								colorYz.setLtG2(lastColorYz.getLtG2());
+								colorYz.setLtG3(lastColorYz.getLtG3());
+								colorYz.setLtG4(lastColorYz.getLtG4());
+								colorYz.setLtG5(lastColorYz.getLtG5());
+								colorYz.setLtG6(lastColorYz.getLtG6());
+								colorYz.setLtG7(lastColorYz.getLtG7());
+								colorYz.setLtG8(lastColorYz.getLtG8());
+								colorYz.setTG1(lastColorYz.getTG1());
+								colorYz.setTG2(lastColorYz.getTG2());
+								colorYz.setTG3(lastColorYz.getTG3());
+								colorYz.setTG4(lastColorYz.getTG4());
+								colorYz.setTG5(lastColorYz.getTG5());
+								colorYz.setTG6(lastColorYz.getTG6());
+								colorYz.setTG7(lastColorYz.getTG7());
+								colorYz.setTG8(lastColorYz.getTG8());
+//								int lastLimitedCount = 0;
+//								if (colorYz.getR1() == 1) {
+//									if (lastLimitedColorYzOp.isPresent()) {
+//										lastLimitedCount = lastLimitedColorYzOp.get().getTR1();
+//									}
+//									colorYz.setLtR1(lastColorYz.getTR1() + 1 - lastLimitedCount);
+//									colorYz.setTR1(lastColorYz.getTR1() + 1);
+//									colorYz.setLtR2(lastColorYz.getLtR2());
+//									colorYz.setLtR3(lastColorYz.getLtR3());
+//									colorYz.setLtR4(lastColorYz.getLtR4());
+//									colorYz.setLtR5(lastColorYz.getLtR5());
+//									colorYz.setLtR6(lastColorYz.getLtR6());
+//									colorYz.setLtR7(lastColorYz.getLtR7());
+//									colorYz.setLtR8(lastColorYz.getLtR8());
+//									colorYz.setTR2(lastColorYz.getTR2());
+//									colorYz.setTR3(lastColorYz.getTR3());
+//									colorYz.setTR4(lastColorYz.getTR4());
+//									colorYz.setTR5(lastColorYz.getTR5());
+//									colorYz.setTR6(lastColorYz.getTR6());
+//									colorYz.setTR7(lastColorYz.getTR7());
+//									colorYz.setTR8(lastColorYz.getTR8());
+//								} else if (colorYz.getR2() == 1) {
+//									lastLimitedCount = 0;
+//									if (lastLimitedColorYzOp.isPresent()) {
+//										lastLimitedCount = lastLimitedColorYzOp.get().getTR2();
+//									}
+//									colorYz.setLtR2(lastColorYz.getTR2() + 1 - lastLimitedCount);
+//									colorYz.setTR2(lastColorYz.getTR2() + 1);
+//									colorYz.setLtR1(lastColorYz.getLtR1());
+//									colorYz.setLtR3(lastColorYz.getLtR3());
+//									colorYz.setLtR4(lastColorYz.getLtR4());
+//									colorYz.setLtR5(lastColorYz.getLtR5());
+//									colorYz.setLtR6(lastColorYz.getLtR6());
+//									colorYz.setLtR7(lastColorYz.getLtR7());
+//									colorYz.setLtR8(lastColorYz.getLtR8());
+//									colorYz.setTR1(lastColorYz.getTR1());
+//									colorYz.setTR3(lastColorYz.getTR3());
+//									colorYz.setTR4(lastColorYz.getTR4());
+//									colorYz.setTR5(lastColorYz.getTR5());
+//									colorYz.setTR6(lastColorYz.getTR6());
+//									colorYz.setTR7(lastColorYz.getTR7());
+//									colorYz.setTR8(lastColorYz.getTR8());
+//								} else if (colorYz.getR3() == 1) {
+//									lastLimitedCount = 0;
+//									if (lastLimitedColorYzOp.isPresent()) {
+//										lastLimitedCount = lastLimitedColorYzOp.get().getTR3();
+//									}
+//									colorYz.setLtR3(lastColorYz.getTR3() + 1 - lastLimitedCount);
+//									colorYz.setTR3(lastColorYz.getTR3() + 1);
+//									colorYz.setLtR1(lastColorYz.getLtR1());
+//									colorYz.setLtR2(lastColorYz.getLtR2());
+//									colorYz.setLtR4(lastColorYz.getLtR4());
+//									colorYz.setLtR5(lastColorYz.getLtR5());
+//									colorYz.setLtR6(lastColorYz.getLtR6());
+//									colorYz.setLtR7(lastColorYz.getLtR7());
+//									colorYz.setLtR8(lastColorYz.getLtR8());
+//									colorYz.setTR1(lastColorYz.getTR1());
+//									colorYz.setTR2(lastColorYz.getTR2());
+//									colorYz.setTR4(lastColorYz.getTR4());
+//									colorYz.setTR5(lastColorYz.getTR5());
+//									colorYz.setTR6(lastColorYz.getTR6());
+//									colorYz.setTR7(lastColorYz.getTR7());
+//									colorYz.setTR8(lastColorYz.getTR8());
+//								} else if (colorYz.getR4() == 1) {
+//									lastLimitedCount = 0;
+//									if (lastLimitedColorYzOp.isPresent()) {
+//										lastLimitedCount = lastLimitedColorYzOp.get().getTR4();
+//									}
+//									colorYz.setLtR4(lastColorYz.getTR4() + 1 - lastLimitedCount);
+//									colorYz.setTR4(lastColorYz.getTR4() + 1);
+//									colorYz.setLtR1(lastColorYz.getLtR1());
+//									colorYz.setLtR2(lastColorYz.getLtR2());
+//									colorYz.setLtR3(lastColorYz.getLtR3());
+//									colorYz.setLtR5(lastColorYz.getLtR5());
+//									colorYz.setLtR6(lastColorYz.getLtR6());
+//									colorYz.setLtR7(lastColorYz.getLtR7());
+//									colorYz.setLtR8(lastColorYz.getLtR8());
+//									colorYz.setTR1(lastColorYz.getTR1());
+//									colorYz.setTR2(lastColorYz.getTR2());
+//									colorYz.setTR3(lastColorYz.getTR3());
+//									colorYz.setTR5(lastColorYz.getTR5());
+//									colorYz.setTR6(lastColorYz.getTR6());
+//									colorYz.setTR7(lastColorYz.getTR7());
+//									colorYz.setTR8(lastColorYz.getTR8());
+//								} else if (colorYz.getR5() == 1) {
+//									lastLimitedCount = 0;
+//									if (lastLimitedColorYzOp.isPresent()) {
+//										lastLimitedCount = lastLimitedColorYzOp.get().getTR5();
+//									}
+//									colorYz.setLtR5(lastColorYz.getTR5() + 1 - lastLimitedCount);
+//									colorYz.setTR5(lastColorYz.getTR5() + 1);
+//									colorYz.setLtR1(lastColorYz.getLtR1());
+//									colorYz.setLtR2(lastColorYz.getLtR2());
+//									colorYz.setLtR3(lastColorYz.getLtR3());
+//									colorYz.setLtR4(lastColorYz.getLtR4());
+//									colorYz.setLtR6(lastColorYz.getLtR6());
+//									colorYz.setLtR7(lastColorYz.getLtR7());
+//									colorYz.setLtR8(lastColorYz.getLtR8());
+//									colorYz.setTR1(lastColorYz.getTR1());
+//									colorYz.setTR2(lastColorYz.getTR2());
+//									colorYz.setTR3(lastColorYz.getTR3());
+//									colorYz.setTR4(lastColorYz.getTR4());
+//									colorYz.setTR6(lastColorYz.getTR6());
+//									colorYz.setTR7(lastColorYz.getTR7());
+//									colorYz.setTR8(lastColorYz.getTR8());
+//								} else if (colorYz.getR6() == 1) {
+//									lastLimitedCount = 0;
+//									if (lastLimitedColorYzOp.isPresent()) {
+//										lastLimitedCount = lastLimitedColorYzOp.get().getTR6();
+//									}
+//									colorYz.setLtR6(lastColorYz.getTR6() + 1 - lastLimitedCount);
+//									colorYz.setTR6(lastColorYz.getTR6() + 1);
+//									colorYz.setLtR1(lastColorYz.getLtR1());
+//									colorYz.setLtR2(lastColorYz.getLtR2());
+//									colorYz.setLtR3(lastColorYz.getLtR3());
+//									colorYz.setLtR4(lastColorYz.getLtR4());
+//									colorYz.setLtR5(lastColorYz.getLtR5());
+//									colorYz.setLtR7(lastColorYz.getLtR7());
+//									colorYz.setLtR8(lastColorYz.getLtR8());
+//									colorYz.setTR1(lastColorYz.getTR1());
+//									colorYz.setTR2(lastColorYz.getTR2());
+//									colorYz.setTR3(lastColorYz.getTR3());
+//									colorYz.setTR4(lastColorYz.getTR4());
+//									colorYz.setTR5(lastColorYz.getTR5());
+//									colorYz.setTR7(lastColorYz.getTR7());
+//									colorYz.setTR8(lastColorYz.getTR8());
+//								} else if (colorYz.getR7() == 1) {
+//									lastLimitedCount = 0;
+//									if (lastLimitedColorYzOp.isPresent()) {
+//										lastLimitedCount = lastLimitedColorYzOp.get().getTR7();
+//									}
+//									colorYz.setLtR7(lastColorYz.getTR7() + 1 - lastLimitedCount);
+//									colorYz.setTR7(lastColorYz.getTR7() + 1);
+//									colorYz.setLtR1(lastColorYz.getLtR1());
+//									colorYz.setLtR2(lastColorYz.getLtR2());
+//									colorYz.setLtR3(lastColorYz.getLtR3());
+//									colorYz.setLtR4(lastColorYz.getLtR4());
+//									colorYz.setLtR5(lastColorYz.getLtR5());
+//									colorYz.setLtR6(lastColorYz.getLtR6());
+//									colorYz.setLtR8(lastColorYz.getLtR8());
+//									colorYz.setTR1(lastColorYz.getTR1());
+//									colorYz.setTR2(lastColorYz.getTR2());
+//									colorYz.setTR3(lastColorYz.getTR3());
+//									colorYz.setTR4(lastColorYz.getTR4());
+//									colorYz.setTR5(lastColorYz.getTR5());
+//									colorYz.setTR6(lastColorYz.getTR6());
+//									colorYz.setTR8(lastColorYz.getTR8());
+//								} else if (colorYz.getR8() == 1) {
+//									lastLimitedCount = 0;
+//									if (lastLimitedColorYzOp.isPresent()) {
+//										lastLimitedCount = lastLimitedColorYzOp.get().getTR8();
+//									}
+//									colorYz.setLtR8(lastColorYz.getTR8() + 1 - lastLimitedCount);
+//									colorYz.setTR8(lastColorYz.getTR8() + 1);
+//									colorYz.setLtR1(lastColorYz.getLtR1());
+//									colorYz.setLtR2(lastColorYz.getLtR2());
+//									colorYz.setLtR3(lastColorYz.getLtR3());
+//									colorYz.setLtR4(lastColorYz.getLtR4());
+//									colorYz.setLtR5(lastColorYz.getLtR5());
+//									colorYz.setLtR6(lastColorYz.getLtR6());
+//									colorYz.setLtR7(lastColorYz.getLtR7());
+//									colorYz.setTR1(lastColorYz.getTR1());
+//									colorYz.setTR2(lastColorYz.getTR2());
+//									colorYz.setTR3(lastColorYz.getTR3());
+//									colorYz.setTR4(lastColorYz.getTR4());
+//									colorYz.setTR5(lastColorYz.getTR5());
+//									colorYz.setTR6(lastColorYz.getTR6());
+//									colorYz.setTR7(lastColorYz.getTR7());
+//								}
 							}
 							}
 						}
