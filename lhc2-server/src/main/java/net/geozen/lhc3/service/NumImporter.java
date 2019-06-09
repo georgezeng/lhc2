@@ -77,7 +77,7 @@ public class NumImporter {
 				response.setCode(-1);
 			}
 			index++;
-		} while (list.size() < 200);
+		} while (list.size() < 5000);
 		list.sort(new Comparator<Lhc3Tm>() {
 
 			@Override
