@@ -15,4 +15,6 @@ public interface Lhc3ColorYzRepository extends JpaRepository<Lhc3ColorYz, Long> 
 	List<Lhc3ColorYz> findAllByTablesAndType(String tables, String type);
 
 	Optional<Lhc3ColorYz> findFirstByTablesAndTypeAndPhaseLessThanOrderByPhaseDesc(String tables, String type, String phase);
+	
+	List<Lhc3ColorYz> findTop100ByTablesAndTypeAndPhaseLessThanOrderByPhaseDesc(String tables, String type, String phase);
 }

@@ -15,4 +15,6 @@ public interface Lhc3TimesYzRepository extends JpaRepository<Lhc3TimesYz, Long> 
 	List<Lhc3TimesYz> findAllByTablesAndType(String tables, String type);
 
 	Optional<Lhc3TimesYz> findFirstByTablesAndTypeAndPhaseLessThanOrderByPhaseDesc(String tables, String type, String phase);
+	
+	List<Lhc3TimesYz> findTop100ByTablesAndTypeAndPhaseLessThanOrderByPhaseDesc(String tables, String type, String phase);
 }

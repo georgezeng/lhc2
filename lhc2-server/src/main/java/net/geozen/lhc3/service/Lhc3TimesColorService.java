@@ -80,19 +80,21 @@ public class Lhc3TimesColorService {
 								.findFirstByTablesAndTypeAndPhaseLessThanOrderByPhaseDesc(tables + "", type,
 										tm.getPhase());
 						Lhc3TimesYz lastTimesYz = lastTimesYzOp.orElseGet(Lhc3TimesYz::new);
-						long lastLimitedId = 0;
-						if (lastTimesYz.getId() != null) {
-							lastLimitedId = lastTimesYz.getId() - 100 + 1;
+						List<Lhc3TimesYz> lastLimitedYzList = timesYzRepository
+								.findTop100ByTablesAndTypeAndPhaseLessThanOrderByPhaseDesc(tables + "", type,
+										tm.getPhase());
+						Lhc3TimesYz lastLmitedTimesYz = null;
+						if (lastLimitedYzList != null && lastLimitedYzList.size() == 100) {
+							lastLmitedTimesYz = lastLimitedYzList.get(99);
 						}
-						Optional<Lhc3TimesYz> lastLimitedYzOp = timesYzRepository.findById(lastLimitedId);
 						if (tmInfo.getCount() == 0 || tmInfo.getCount() > 2) {
 							color = "red";
 							int lastLimitedCount = 0;
-							if (lastLimitedYzOp.isPresent()) {
-								lastLimitedCount = lastLimitedYzOp.get().getTime03Plus() == 0 ? 1 : 0;
+							if (lastLmitedTimesYz != null) {
+								lastLimitedCount = lastLmitedTimesYz.getTime03Plus() == 0 ? 1 : 0;
 							}
 							timesYz.setLt03Plus(lastTimesYz.getLt03Plus() + 1 - lastLimitedCount);
-							timesYz.setT03Plus(timesYz.getT03Plus() + 1);
+							timesYz.setT03Plus(lastTimesYz.getT03Plus() + 1);
 							timesYz.setTime03Plus(0);
 							timesYz.setTime12(lastTimesYz.getTime12() + 1);
 						} else {
@@ -100,20 +102,20 @@ public class Lhc3TimesColorService {
 							timesYz.setTime03Plus(lastTimesYz.getTime03Plus() + 1);
 							timesYz.setTime12(0);
 							int lastLimitedCount = 0;
-							if (lastLimitedYzOp.isPresent()) {
-								lastLimitedCount = lastLimitedYzOp.get().getTime12() == 0 ? 1 : 0;
+							if (lastLmitedTimesYz != null) {
+								lastLimitedCount = lastLmitedTimesYz.getTime12() == 0 ? 1 : 0;
 							}
 							timesYz.setLt12(lastTimesYz.getLt12() + 1 - lastLimitedCount);
-							timesYz.setT12(timesYz.getT12() + 1);
+							timesYz.setT12(lastTimesYz.getT12() + 1);
 						}
 						if (tmInfo.getCount() > 1) {
 							timesYz.setTime2Plus(0);
 							int lastLimitedCount = 0;
-							if (lastLimitedYzOp.isPresent()) {
-								lastLimitedCount = lastLimitedYzOp.get().getTime2Plus() == 0 ? 1 : 0;
+							if (lastLmitedTimesYz != null) {
+								lastLimitedCount = lastLmitedTimesYz.getTime2Plus() == 0 ? 1 : 0;
 							}
 							timesYz.setLt2Plus(lastTimesYz.getLt2Plus() + 1 - lastLimitedCount);
-							timesYz.setT2Plus(timesYz.getT2Plus() + 1);
+							timesYz.setT2Plus(lastTimesYz.getT2Plus() + 1);
 						} else {
 							timesYz.setTime2Plus(lastTimesYz.getTime2Plus() + 1);
 						}
@@ -123,11 +125,13 @@ public class Lhc3TimesColorService {
 								.findFirstByTablesAndTypeAndPhaseLessThanOrderByPhaseDesc(tables + "", type,
 										tm.getPhase());
 						Lhc3ColorYz lastColorYz = lastColorYzOp.orElseGet(Lhc3ColorYz::new);
-						lastLimitedId = 0;
-						if (lastColorYz.getId() != null) {
-							lastLimitedId = lastColorYz.getId() - 100 + 1;
+						List<Lhc3ColorYz> lastLimitedColorYzList = colorYzRepository
+								.findTop100ByTablesAndTypeAndPhaseLessThanOrderByPhaseDesc(tables + "", type,
+										tm.getPhase());
+						Optional<Lhc3ColorYz> lastLimitedColorYzOp = Optional.empty();
+						if (lastLimitedColorYzList != null && lastLimitedColorYzList.size() == 100) {
+							lastLimitedColorYzOp = Optional.of(lastLimitedColorYzList.get(99));
 						}
-						Optional<Lhc3ColorYz> lastLimitedColorYzOp = colorYzRepository.findById(lastLimitedId);
 						colorYz.setYzColor(color);
 						if (color.equals(lastColorYz.getYzColor())) {
 							colorYz.setYz(lastColorYz.getYz() + 1);
