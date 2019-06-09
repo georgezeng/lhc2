@@ -7,10 +7,11 @@
             <Icon type="ios-stats-outline"/>
             {{tables}}表次数/颜色遗值表
         </p>
-        <Table class="times-colors" style="float:left; width: 430px;" stripe border size="small" :loading="loading1"
+        <Table class="times-colors" style="float:left; width: 30%;" stripe border size="small" :loading="loading1"
                :columns="columns1" :data="data1"/>
-        <Table class="times-colors" style="float:left; width: 1395px;" stripe border size="small" :loading="loading2"
+        <Table class="times-colors" style="float:left; width: 70%;" stripe border size="small" :loading="loading2"
                :columns="columns2" :data="data2"/>
+        <div style="clear:both;"></div>
         <div class="page">
             <Page :total="total"
                   :page-size="queryInfo.page.size"
@@ -72,7 +73,7 @@
                     },
                     {
                         title: '1-2次',
-                        width: 80,
+                        width: 60,
                         render(h, params) {
                             const style = {};
                             style['padding'] = '10px';
@@ -87,7 +88,7 @@
                     },
                     {
                         title: '2+次',
-                        width: 80,
+                        width: 60,
                         render(h, params) {
                             const style = {};
                             style['padding'] = '10px';
@@ -102,7 +103,6 @@
                     },
                     {
                         title: '',
-                        width: 20,
                         render(h, params) {
                             return h('span', {}, '');
                         }
@@ -159,7 +159,7 @@
                     },
                     {
                         title: '绿5',
-                        width: 80,
+                        width: 60,
                         render(h, params) {
                             const style = {};
                             style['padding'] = '10px';
@@ -175,7 +175,7 @@
                     },
                     {
                         title: '绿4',
-                        width: 80,
+                        width: 60,
                         render(h, params) {
                             const style = {};
                             style['padding'] = '10px';
@@ -191,7 +191,7 @@
                     },
                     {
                         title: '绿3',
-                        width: 80,
+                        width: 60,
                         render(h, params) {
                             const style = {};
                             style['padding'] = '10px';
@@ -207,7 +207,7 @@
                     },
                     {
                         title: '绿2',
-                        width: 80,
+                        width: 60,
                         render(h, params) {
                             const style = {};
                             style['padding'] = '10px';
@@ -223,7 +223,7 @@
                     },
                     {
                         title: '绿1',
-                        width: 80,
+                        width: 60,
                         render(h, params) {
                             const style = {};
                             style['padding'] = '10px';
@@ -269,7 +269,7 @@
                     },
                     {
                         title: '红1',
-                        width: 80,
+                        width: 60,
                         render(h, params) {
                             const style = {};
                             style['padding'] = '10px';
@@ -285,7 +285,7 @@
                     },
                     {
                         title: '红2',
-                        width: 80,
+                        width: 60,
                         render(h, params) {
                             const style = {};
                             style['padding'] = '10px';
@@ -301,7 +301,7 @@
                     },
                     {
                         title: '红3',
-                        width: 80,
+                        width: 60,
                         render(h, params) {
                             const style = {};
                             style['padding'] = '10px';
@@ -317,7 +317,7 @@
                     },
                     {
                         title: '红4',
-                        width: 80,
+                        width: 60,
                         render(h, params) {
                             const style = {};
                             style['padding'] = '10px';
@@ -333,7 +333,7 @@
                     },
                     {
                         title: '红5',
-                        width: 80,
+                        width: 60,
                         render(h, params) {
                             const style = {};
                             style['padding'] = '10px';
@@ -397,7 +397,6 @@
                     },
                     {
                         title: '',
-                        width: 20,
                         render(h, params) {
                             return h('span', {});
                         }

@@ -64,6 +64,9 @@ public class NumImporter {
 									Integer num = Integer.valueOf(nums[6]);
 									tm.setNum(num);
 									list.add(tm);
+//									if(list.size() == 10) {
+//										break out;
+//									}
 								}
 							}
 						}
