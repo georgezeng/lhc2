@@ -153,8 +153,8 @@ public class Lhc3TimesColorService {
 								.findTop100ByTablesAndTypeAndPhaseLessThanOrderByPhaseDesc(tables + "", type,
 										tm.getPhase());
 						Optional<Lhc3ColorYz> lastLimitedColorYzOp = Optional.empty();
-						if (lastLimitedColorYzList != null && lastLimitedColorYzList.size() == 10) {
-							lastLimitedColorYzOp = Optional.of(lastLimitedColorYzList.get(9));
+						if (lastLimitedColorYzList != null && lastLimitedColorYzList.size() == 100) {
+							lastLimitedColorYzOp = Optional.of(lastLimitedColorYzList.get(99));
 						}
 						colorYz.setYzColor(color);
 						if (color.equals(lastColorYz.getYzColor())) {
