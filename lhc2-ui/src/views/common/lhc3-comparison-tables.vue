@@ -73,7 +73,7 @@
                     },
                     {
                         title: '1-2次',
-                        width: 60,
+                        width: 80,
                         render(h, params) {
                             const style = {};
                             style['padding'] = '10px';
@@ -88,7 +88,7 @@
                     },
                     {
                         title: '2+次',
-                        width: 60,
+                        width: 80,
                         render(h, params) {
                             const style = {};
                             style['padding'] = '10px';

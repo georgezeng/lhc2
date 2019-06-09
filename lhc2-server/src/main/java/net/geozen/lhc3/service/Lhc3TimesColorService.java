@@ -91,11 +91,11 @@ public class Lhc3TimesColorService {
 							color = "red";
 							int lastLimitedCount = 0;
 							if (lastLmitedTimesYz != null) {
-								lastLimitedCount = lastLmitedTimesYz.getTime03Plus() == 0 ? 1 : 0;
+								lastLimitedCount = lastLmitedTimesYz.getT03Plus();
 							}
 							timesYz.setLt12(lastTimesYz.getLt12());
 							timesYz.setLt2Plus(lastTimesYz.getLt2Plus());
-							timesYz.setLt03Plus(lastTimesYz.getLt03Plus() + 1 - lastLimitedCount);
+							timesYz.setLt03Plus(lastTimesYz.getT03Plus() + 1 - lastLimitedCount);
 							timesYz.setT12(lastTimesYz.getT12());
 							timesYz.setT2Plus(lastTimesYz.getT2Plus());
 							timesYz.setT03Plus(lastTimesYz.getT03Plus() + 1);
@@ -107,9 +107,9 @@ public class Lhc3TimesColorService {
 							timesYz.setTime12(0);
 							int lastLimitedCount = 0;
 							if (lastLmitedTimesYz != null) {
-								lastLimitedCount = lastLmitedTimesYz.getTime12() == 0 ? 1 : 0;
+								lastLimitedCount = lastLmitedTimesYz.getT12();
 							}
-							timesYz.setLt12(lastTimesYz.getLt12() + 1 - lastLimitedCount);
+							timesYz.setLt12(lastTimesYz.getT12() + 1 - lastLimitedCount);
 							timesYz.setLt2Plus(lastTimesYz.getLt2Plus());
 							timesYz.setLt03Plus(lastTimesYz.getLt03Plus());
 							timesYz.setT12(lastTimesYz.getT12() + 1);
@@ -118,7 +118,7 @@ public class Lhc3TimesColorService {
 						}
 						if (tmInfo.getCount() > 1) {
 							timesYz.setTime2Plus(0);
-							if(tmInfo.getCount() > 2) {
+							if (tmInfo.getCount() > 2) {
 								timesYz.setLt12(lastTimesYz.getLt12());
 								timesYz.setT12(lastTimesYz.getT12());
 							} else {
@@ -127,13 +127,13 @@ public class Lhc3TimesColorService {
 							}
 							int lastLimitedCount = 0;
 							if (lastLmitedTimesYz != null) {
-								lastLimitedCount = lastLmitedTimesYz.getTime2Plus() == 0 ? 1 : 0;
+								lastLimitedCount = lastLmitedTimesYz.getT2Plus();
 							}
-							timesYz.setLt2Plus(lastTimesYz.getLt2Plus() + 1 - lastLimitedCount);
+							timesYz.setLt2Plus(lastTimesYz.getT2Plus() + 1 - lastLimitedCount);
 							timesYz.setT2Plus(lastTimesYz.getT2Plus() + 1);
 						} else {
 							timesYz.setTime2Plus(lastTimesYz.getTime2Plus() + 1);
-							if(tmInfo.getCount() == 0) {
+							if (tmInfo.getCount() == 0) {
 								timesYz.setLt12(lastTimesYz.getLt12());
 								timesYz.setT12(lastTimesYz.getT12());
 							} else {
@@ -284,9 +284,9 @@ public class Lhc3TimesColorService {
 								colorYz.setG8Color("green");
 								int lastLimitedCount = 0;
 								if (lastLimitedColorYzOp.isPresent()) {
-									lastLimitedCount = lastLimitedColorYzOp.get().getG1() == 1 ? 1 : 0;
+									lastLimitedCount = lastLimitedColorYzOp.get().getTG1();
 								}
-								colorYz.setLtG1(lastColorYz.getLtG1() + 1 - lastLimitedCount);
+								colorYz.setLtG1(lastColorYz.getTG1() + 1 - lastLimitedCount);
 								colorYz.setTG1(lastColorYz.getTG1() + 1);
 								colorYz.setLtG2(lastColorYz.getLtG2());
 								colorYz.setLtG3(lastColorYz.getLtG3());
@@ -323,9 +323,9 @@ public class Lhc3TimesColorService {
 								colorYz.setG8Color("green");
 								int lastLimitedCount = 0;
 								if (lastLimitedColorYzOp.isPresent()) {
-									lastLimitedCount = lastLimitedColorYzOp.get().getG2() == 1 ? 1 : 0;
+									lastLimitedCount = lastLimitedColorYzOp.get().getTG2();
 								}
-								colorYz.setLtG2(lastColorYz.getLtG2() + 1 - lastLimitedCount);
+								colorYz.setLtG2(lastColorYz.getTG2() + 1 - lastLimitedCount);
 								colorYz.setTG2(lastColorYz.getTG2() + 1);
 								colorYz.setLtG1(lastColorYz.getLtG1());
 								colorYz.setLtG3(lastColorYz.getLtG3());
@@ -362,9 +362,9 @@ public class Lhc3TimesColorService {
 								colorYz.setG8Color("green");
 								int lastLimitedCount = 0;
 								if (lastLimitedColorYzOp.isPresent()) {
-									lastLimitedCount = lastLimitedColorYzOp.get().getG3() == 1 ? 1 : 0;
+									lastLimitedCount = lastLimitedColorYzOp.get().getTG3();
 								}
-								colorYz.setLtG3(lastColorYz.getLtG3() + 1 - lastLimitedCount);
+								colorYz.setLtG3(lastColorYz.getTG3() + 1 - lastLimitedCount);
 								colorYz.setTG3(lastColorYz.getTG3() + 1);
 								colorYz.setLtG1(lastColorYz.getLtG1());
 								colorYz.setLtG2(lastColorYz.getLtG2());
@@ -401,9 +401,9 @@ public class Lhc3TimesColorService {
 								colorYz.setG8Color("green");
 								int lastLimitedCount = 0;
 								if (lastLimitedColorYzOp.isPresent()) {
-									lastLimitedCount = lastLimitedColorYzOp.get().getG4() == 1 ? 1 : 0;
+									lastLimitedCount = lastLimitedColorYzOp.get().getTG4();
 								}
-								colorYz.setLtG4(lastColorYz.getLtG4() + 1 - lastLimitedCount);
+								colorYz.setLtG4(lastColorYz.getTG4() + 1 - lastLimitedCount);
 								colorYz.setTG4(lastColorYz.getTG4() + 1);
 								colorYz.setLtG1(lastColorYz.getLtG1());
 								colorYz.setLtG2(lastColorYz.getLtG2());
@@ -440,9 +440,9 @@ public class Lhc3TimesColorService {
 								colorYz.setG8Color("green");
 								int lastLimitedCount = 0;
 								if (lastLimitedColorYzOp.isPresent()) {
-									lastLimitedCount = lastLimitedColorYzOp.get().getG5() == 1 ? 1 : 0;
+									lastLimitedCount = lastLimitedColorYzOp.get().getTG5();
 								}
-								colorYz.setLtG5(lastColorYz.getLtG5() + 1 - lastLimitedCount);
+								colorYz.setLtG5(lastColorYz.getTG5() + 1 - lastLimitedCount);
 								colorYz.setTG5(lastColorYz.getTG5() + 1);
 								colorYz.setLtG1(lastColorYz.getLtG1());
 								colorYz.setLtG2(lastColorYz.getLtG2());
@@ -479,9 +479,9 @@ public class Lhc3TimesColorService {
 								colorYz.setG8Color("green");
 								int lastLimitedCount = 0;
 								if (lastLimitedColorYzOp.isPresent()) {
-									lastLimitedCount = lastLimitedColorYzOp.get().getG6() == 1 ? 1 : 0;
+									lastLimitedCount = lastLimitedColorYzOp.get().getTG6();
 								}
-								colorYz.setLtG6(lastColorYz.getLtG6() + 1 - lastLimitedCount);
+								colorYz.setLtG6(lastColorYz.getTG6() + 1 - lastLimitedCount);
 								colorYz.setTG6(lastColorYz.getTG6() + 1);
 								colorYz.setLtG1(lastColorYz.getLtG1());
 								colorYz.setLtG2(lastColorYz.getLtG2());
@@ -518,9 +518,9 @@ public class Lhc3TimesColorService {
 								colorYz.setG8Color("green");
 								int lastLimitedCount = 0;
 								if (lastLimitedColorYzOp.isPresent()) {
-									lastLimitedCount = lastLimitedColorYzOp.get().getG7() == 1 ? 1 : 0;
+									lastLimitedCount = lastLimitedColorYzOp.get().getTG7();
 								}
-								colorYz.setLtG7(lastColorYz.getLtG7() + 1 - lastLimitedCount);
+								colorYz.setLtG7(lastColorYz.getTG7() + 1 - lastLimitedCount);
 								colorYz.setTG7(lastColorYz.getTG7() + 1);
 								colorYz.setLtG1(lastColorYz.getLtG1());
 								colorYz.setLtG2(lastColorYz.getLtG2());
@@ -557,9 +557,9 @@ public class Lhc3TimesColorService {
 								colorYz.setG8Color("white");
 								int lastLimitedCount = 0;
 								if (lastLimitedColorYzOp.isPresent()) {
-									lastLimitedCount = lastLimitedColorYzOp.get().getG8() == 1 ? 1 : 0;
+									lastLimitedCount = lastLimitedColorYzOp.get().getTG8();
 								}
-								colorYz.setLtG8(lastColorYz.getLtG8() + 1 - lastLimitedCount);
+								colorYz.setLtG8(lastColorYz.getTG8() + 1 - lastLimitedCount);
 								colorYz.setTG8(lastColorYz.getTG8() + 1);
 								colorYz.setLtG1(lastColorYz.getLtG1());
 								colorYz.setLtG2(lastColorYz.getLtG2());
@@ -597,9 +597,9 @@ public class Lhc3TimesColorService {
 								int lastLimitedCount = 0;
 								if (colorYz.getG1() == 1) {
 									if (lastLimitedColorYzOp.isPresent()) {
-										lastLimitedCount = lastLimitedColorYzOp.get().getG1() == 1 ? 1 : 0;
+										lastLimitedCount = lastLimitedColorYzOp.get().getTG1();
 									}
-									colorYz.setLtG1(lastColorYz.getLtG1() + 1 - lastLimitedCount);
+									colorYz.setLtG1(lastColorYz.getTG1() + 1 - lastLimitedCount);
 									colorYz.setTG1(lastColorYz.getTG1() + 1);
 									colorYz.setLtG2(lastColorYz.getLtG2());
 									colorYz.setLtG3(lastColorYz.getLtG3());
@@ -615,13 +615,12 @@ public class Lhc3TimesColorService {
 									colorYz.setTG6(lastColorYz.getTG6());
 									colorYz.setTG7(lastColorYz.getTG7());
 									colorYz.setTG8(lastColorYz.getTG8());
-								}
-								if (colorYz.getG2() == 1) {
+								} else if (colorYz.getG2() == 1) {
 									lastLimitedCount = 0;
 									if (lastLimitedColorYzOp.isPresent()) {
-										lastLimitedCount = lastLimitedColorYzOp.get().getG2() == 1 ? 1 : 0;
+										lastLimitedCount = lastLimitedColorYzOp.get().getTG2();
 									}
-									colorYz.setLtG2(lastColorYz.getLtG2() + 1 - lastLimitedCount);
+									colorYz.setLtG2(lastColorYz.getTG2() + 1 - lastLimitedCount);
 									colorYz.setTG2(lastColorYz.getTG2() + 1);
 									colorYz.setLtG1(lastColorYz.getLtG1());
 									colorYz.setLtG3(lastColorYz.getLtG3());
@@ -637,13 +636,12 @@ public class Lhc3TimesColorService {
 									colorYz.setTG6(lastColorYz.getTG6());
 									colorYz.setTG7(lastColorYz.getTG7());
 									colorYz.setTG8(lastColorYz.getTG8());
-								}
-								if (colorYz.getG3() == 1) {
+								} else if (colorYz.getG3() == 1) {
 									lastLimitedCount = 0;
 									if (lastLimitedColorYzOp.isPresent()) {
-										lastLimitedCount = lastLimitedColorYzOp.get().getG3() == 1 ? 1 : 0;
+										lastLimitedCount = lastLimitedColorYzOp.get().getTG3();
 									}
-									colorYz.setLtG3(lastColorYz.getLtG3() + 1 - lastLimitedCount);
+									colorYz.setLtG3(lastColorYz.getTG3() + 1 - lastLimitedCount);
 									colorYz.setTG3(lastColorYz.getTG3() + 1);
 									colorYz.setLtG1(lastColorYz.getLtG1());
 									colorYz.setLtG2(lastColorYz.getLtG2());
@@ -659,13 +657,12 @@ public class Lhc3TimesColorService {
 									colorYz.setTG6(lastColorYz.getTG6());
 									colorYz.setTG7(lastColorYz.getTG7());
 									colorYz.setTG8(lastColorYz.getTG8());
-								}
-								if (colorYz.getG4() == 1) {
+								} else if (colorYz.getG4() == 1) {
 									lastLimitedCount = 0;
 									if (lastLimitedColorYzOp.isPresent()) {
-										lastLimitedCount = lastLimitedColorYzOp.get().getG4() == 1 ? 1 : 0;
+										lastLimitedCount = lastLimitedColorYzOp.get().getTG4();
 									}
-									colorYz.setLtG4(lastColorYz.getLtG4() + 1 - lastLimitedCount);
+									colorYz.setLtG4(lastColorYz.getTG4() + 1 - lastLimitedCount);
 									colorYz.setTG4(lastColorYz.getTG4() + 1);
 									colorYz.setLtG1(lastColorYz.getLtG1());
 									colorYz.setLtG2(lastColorYz.getLtG2());
@@ -681,13 +678,12 @@ public class Lhc3TimesColorService {
 									colorYz.setTG6(lastColorYz.getTG6());
 									colorYz.setTG7(lastColorYz.getTG7());
 									colorYz.setTG8(lastColorYz.getTG8());
-								}
-								if (colorYz.getG5() == 1) {
+								} else if (colorYz.getG5() == 1) {
 									lastLimitedCount = 0;
 									if (lastLimitedColorYzOp.isPresent()) {
-										lastLimitedCount = lastLimitedColorYzOp.get().getG5() == 1 ? 1 : 0;
+										lastLimitedCount = lastLimitedColorYzOp.get().getTG5();
 									}
-									colorYz.setLtG5(lastColorYz.getLtG5() + 1 - lastLimitedCount);
+									colorYz.setLtG5(lastColorYz.getTG5() + 1 - lastLimitedCount);
 									colorYz.setTG5(lastColorYz.getTG5() + 1);
 									colorYz.setLtG1(lastColorYz.getLtG1());
 									colorYz.setLtG2(lastColorYz.getLtG2());
@@ -703,13 +699,12 @@ public class Lhc3TimesColorService {
 									colorYz.setTG6(lastColorYz.getTG6());
 									colorYz.setTG7(lastColorYz.getTG7());
 									colorYz.setTG8(lastColorYz.getTG8());
-								}
-								if (colorYz.getG6() == 1) {
+								} else if (colorYz.getG6() == 1) {
 									lastLimitedCount = 0;
 									if (lastLimitedColorYzOp.isPresent()) {
-										lastLimitedCount = lastLimitedColorYzOp.get().getG6() == 1 ? 1 : 0;
+										lastLimitedCount = lastLimitedColorYzOp.get().getTG6();
 									}
-									colorYz.setLtG6(lastColorYz.getLtG6() + 1 - lastLimitedCount);
+									colorYz.setLtG6(lastColorYz.getTG6() + 1 - lastLimitedCount);
 									colorYz.setTG6(lastColorYz.getTG6() + 1);
 									colorYz.setLtG1(lastColorYz.getLtG1());
 									colorYz.setLtG2(lastColorYz.getLtG2());
@@ -725,13 +720,12 @@ public class Lhc3TimesColorService {
 									colorYz.setTG5(lastColorYz.getTG5());
 									colorYz.setTG7(lastColorYz.getTG7());
 									colorYz.setTG8(lastColorYz.getTG8());
-								}
-								if (colorYz.getG7() == 1) {
+								} else if (colorYz.getG7() == 1) {
 									lastLimitedCount = 0;
 									if (lastLimitedColorYzOp.isPresent()) {
-										lastLimitedCount = lastLimitedColorYzOp.get().getG7() == 1 ? 1 : 0;
+										lastLimitedCount = lastLimitedColorYzOp.get().getTG7();
 									}
-									colorYz.setLtG7(lastColorYz.getLtG7() + 1 - lastLimitedCount);
+									colorYz.setLtG7(lastColorYz.getTG7() + 1 - lastLimitedCount);
 									colorYz.setTG7(lastColorYz.getTG7() + 1);
 									colorYz.setLtG1(lastColorYz.getLtG1());
 									colorYz.setLtG2(lastColorYz.getLtG2());
@@ -747,13 +741,12 @@ public class Lhc3TimesColorService {
 									colorYz.setTG5(lastColorYz.getTG5());
 									colorYz.setTG6(lastColorYz.getTG6());
 									colorYz.setTG8(lastColorYz.getTG8());
-								}
-								if (colorYz.getG8() == 1) {
+								} else if (colorYz.getG8() == 1) {
 									lastLimitedCount = 0;
 									if (lastLimitedColorYzOp.isPresent()) {
-										lastLimitedCount = lastLimitedColorYzOp.get().getG8() == 1 ? 1 : 0;
+										lastLimitedCount = lastLimitedColorYzOp.get().getTG8();
 									}
-									colorYz.setLtG8(lastColorYz.getLtG8() + 1 - lastLimitedCount);
+									colorYz.setLtG8(lastColorYz.getTG8() + 1 - lastLimitedCount);
 									colorYz.setTG8(lastColorYz.getTG8() + 1);
 									colorYz.setLtG1(lastColorYz.getLtG1());
 									colorYz.setLtG2(lastColorYz.getLtG2());
@@ -893,9 +886,9 @@ public class Lhc3TimesColorService {
 								colorYz.setR8Color("red");
 								int lastLimitedCount = 0;
 								if (lastLimitedColorYzOp.isPresent()) {
-									lastLimitedCount = lastLimitedColorYzOp.get().getR1() == 1 ? 1 : 0;
+									lastLimitedCount = lastLimitedColorYzOp.get().getTR1();
 								}
-								colorYz.setLtR1(lastColorYz.getLtR1() + 1 - lastLimitedCount);
+								colorYz.setLtR1(lastColorYz.getTR1() + 1 - lastLimitedCount);
 								colorYz.setTR1(lastColorYz.getTR1() + 1);
 								colorYz.setLtR2(lastColorYz.getLtR2());
 								colorYz.setLtR3(lastColorYz.getLtR3());
@@ -932,9 +925,9 @@ public class Lhc3TimesColorService {
 								colorYz.setR8Color("red");
 								int lastLimitedCount = 0;
 								if (lastLimitedColorYzOp.isPresent()) {
-									lastLimitedCount = lastLimitedColorYzOp.get().getR2() == 1 ? 1 : 0;
+									lastLimitedCount = lastLimitedColorYzOp.get().getTR2();
 								}
-								colorYz.setLtR2(lastColorYz.getLtR2() + 1 - lastLimitedCount);
+								colorYz.setLtR2(lastColorYz.getTR2() + 1 - lastLimitedCount);
 								colorYz.setTR2(lastColorYz.getTR2() + 1);
 								colorYz.setLtR1(lastColorYz.getLtR1());
 								colorYz.setLtR3(lastColorYz.getLtR3());
@@ -971,9 +964,9 @@ public class Lhc3TimesColorService {
 								colorYz.setR8Color("red");
 								int lastLimitedCount = 0;
 								if (lastLimitedColorYzOp.isPresent()) {
-									lastLimitedCount = lastLimitedColorYzOp.get().getR3() == 1 ? 1 : 0;
+									lastLimitedCount = lastLimitedColorYzOp.get().getTR3();
 								}
-								colorYz.setLtR3(lastColorYz.getLtR3() + 1 - lastLimitedCount);
+								colorYz.setLtR3(lastColorYz.getTR3() + 1 - lastLimitedCount);
 								colorYz.setTR3(lastColorYz.getTR3() + 1);
 								colorYz.setLtR1(lastColorYz.getLtR1());
 								colorYz.setLtR2(lastColorYz.getLtR2());
@@ -1012,9 +1005,9 @@ public class Lhc3TimesColorService {
 								colorYz.setR8Color("red");
 								int lastLimitedCount = 0;
 								if (lastLimitedColorYzOp.isPresent()) {
-									lastLimitedCount = lastLimitedColorYzOp.get().getR4() == 1 ? 1 : 0;
+									lastLimitedCount = lastLimitedColorYzOp.get().getTR4();
 								}
-								colorYz.setLtR4(lastColorYz.getLtR4() + 1 - lastLimitedCount);
+								colorYz.setLtR4(lastColorYz.getTR4() + 1 - lastLimitedCount);
 								colorYz.setTR4(lastColorYz.getTR4() + 1);
 								colorYz.setLtR1(lastColorYz.getLtR1());
 								colorYz.setLtR2(lastColorYz.getLtR2());
@@ -1051,9 +1044,9 @@ public class Lhc3TimesColorService {
 								colorYz.setR8Color("red");
 								int lastLimitedCount = 0;
 								if (lastLimitedColorYzOp.isPresent()) {
-									lastLimitedCount = lastLimitedColorYzOp.get().getR5() == 1 ? 1 : 0;
+									lastLimitedCount = lastLimitedColorYzOp.get().getTR5();
 								}
-								colorYz.setLtR5(lastColorYz.getLtR5() + 1 - lastLimitedCount);
+								colorYz.setLtR5(lastColorYz.getTR5() + 1 - lastLimitedCount);
 								colorYz.setTR5(lastColorYz.getTR5() + 1);
 								colorYz.setLtR1(lastColorYz.getLtR1());
 								colorYz.setLtR2(lastColorYz.getLtR2());
@@ -1090,9 +1083,9 @@ public class Lhc3TimesColorService {
 								colorYz.setR8Color("red");
 								int lastLimitedCount = 0;
 								if (lastLimitedColorYzOp.isPresent()) {
-									lastLimitedCount = lastLimitedColorYzOp.get().getR6() == 1 ? 1 : 0;
+									lastLimitedCount = lastLimitedColorYzOp.get().getTR6();
 								}
-								colorYz.setLtR6(lastColorYz.getLtR6() + 1 - lastLimitedCount);
+								colorYz.setLtR6(lastColorYz.getTR6() + 1 - lastLimitedCount);
 								colorYz.setTR6(lastColorYz.getTR6() + 1);
 								colorYz.setLtR1(lastColorYz.getLtR1());
 								colorYz.setLtR2(lastColorYz.getLtR2());
@@ -1129,9 +1122,9 @@ public class Lhc3TimesColorService {
 								colorYz.setR8Color("red");
 								int lastLimitedCount = 0;
 								if (lastLimitedColorYzOp.isPresent()) {
-									lastLimitedCount = lastLimitedColorYzOp.get().getR7() == 1 ? 1 : 0;
+									lastLimitedCount = lastLimitedColorYzOp.get().getTR7();
 								}
-								colorYz.setLtR7(lastColorYz.getLtR7() + 1 - lastLimitedCount);
+								colorYz.setLtR7(lastColorYz.getTR7() + 1 - lastLimitedCount);
 								colorYz.setTR7(lastColorYz.getTR7() + 1);
 								colorYz.setLtR1(lastColorYz.getLtR1());
 								colorYz.setLtR2(lastColorYz.getLtR2());
@@ -1168,9 +1161,9 @@ public class Lhc3TimesColorService {
 								colorYz.setR8Color("white");
 								int lastLimitedCount = 0;
 								if (lastLimitedColorYzOp.isPresent()) {
-									lastLimitedCount = lastLimitedColorYzOp.get().getR8() == 1 ? 1 : 0;
+									lastLimitedCount = lastLimitedColorYzOp.get().getTR8();
 								}
-								colorYz.setLtR8(lastColorYz.getLtR8() + 1 - lastLimitedCount);
+								colorYz.setLtR8(lastColorYz.getTR8() + 1 - lastLimitedCount);
 								colorYz.setTR8(lastColorYz.getTR8() + 1);
 								colorYz.setLtR1(lastColorYz.getLtR1());
 								colorYz.setLtR2(lastColorYz.getLtR2());
@@ -1208,9 +1201,9 @@ public class Lhc3TimesColorService {
 								int lastLimitedCount = 0;
 								if (colorYz.getR1() == 1) {
 									if (lastLimitedColorYzOp.isPresent()) {
-										lastLimitedCount = lastLimitedColorYzOp.get().getR1() == 1 ? 1 : 0;
+										lastLimitedCount = lastLimitedColorYzOp.get().getTR1();
 									}
-									colorYz.setLtR1(lastColorYz.getLtR1() + 1 - lastLimitedCount);
+									colorYz.setLtR1(lastColorYz.getTR1() + 1 - lastLimitedCount);
 									colorYz.setTR1(lastColorYz.getTR1() + 1);
 									colorYz.setLtR2(lastColorYz.getLtR2());
 									colorYz.setLtR3(lastColorYz.getLtR3());
@@ -1226,13 +1219,12 @@ public class Lhc3TimesColorService {
 									colorYz.setTR6(lastColorYz.getTR6());
 									colorYz.setTR7(lastColorYz.getTR7());
 									colorYz.setTR8(lastColorYz.getTR8());
-								}
-								if (colorYz.getR2() == 1) {
+								} else if (colorYz.getR2() == 1) {
 									lastLimitedCount = 0;
 									if (lastLimitedColorYzOp.isPresent()) {
-										lastLimitedCount = lastLimitedColorYzOp.get().getR2() == 1 ? 1 : 0;
+										lastLimitedCount = lastLimitedColorYzOp.get().getTR2();
 									}
-									colorYz.setLtR2(lastColorYz.getLtR2() + 1 - lastLimitedCount);
+									colorYz.setLtR2(lastColorYz.getTR2() + 1 - lastLimitedCount);
 									colorYz.setTR2(lastColorYz.getTR2() + 1);
 									colorYz.setLtR1(lastColorYz.getLtR1());
 									colorYz.setLtR3(lastColorYz.getLtR3());
@@ -1248,13 +1240,12 @@ public class Lhc3TimesColorService {
 									colorYz.setTR6(lastColorYz.getTR6());
 									colorYz.setTR7(lastColorYz.getTR7());
 									colorYz.setTR8(lastColorYz.getTR8());
-								}
-								if (colorYz.getR3() == 1) {
+								} else if (colorYz.getR3() == 1) {
 									lastLimitedCount = 0;
 									if (lastLimitedColorYzOp.isPresent()) {
-										lastLimitedCount = lastLimitedColorYzOp.get().getR3() == 1 ? 1 : 0;
+										lastLimitedCount = lastLimitedColorYzOp.get().getTR3();
 									}
-									colorYz.setLtR3(lastColorYz.getLtR3() + 1 - lastLimitedCount);
+									colorYz.setLtR3(lastColorYz.getTR3() + 1 - lastLimitedCount);
 									colorYz.setTR3(lastColorYz.getTR3() + 1);
 									colorYz.setLtR1(lastColorYz.getLtR1());
 									colorYz.setLtR2(lastColorYz.getLtR2());
@@ -1270,13 +1261,12 @@ public class Lhc3TimesColorService {
 									colorYz.setTR6(lastColorYz.getTR6());
 									colorYz.setTR7(lastColorYz.getTR7());
 									colorYz.setTR8(lastColorYz.getTR8());
-								}
-								if (colorYz.getR4() == 1) {
+								} else if (colorYz.getR4() == 1) {
 									lastLimitedCount = 0;
 									if (lastLimitedColorYzOp.isPresent()) {
-										lastLimitedCount = lastLimitedColorYzOp.get().getR4() == 1 ? 1 : 0;
+										lastLimitedCount = lastLimitedColorYzOp.get().getTR4();
 									}
-									colorYz.setLtR4(lastColorYz.getLtR4() + 1 - lastLimitedCount);
+									colorYz.setLtR4(lastColorYz.getTR4() + 1 - lastLimitedCount);
 									colorYz.setTR4(lastColorYz.getTR4() + 1);
 									colorYz.setLtR1(lastColorYz.getLtR1());
 									colorYz.setLtR2(lastColorYz.getLtR2());
@@ -1292,13 +1282,12 @@ public class Lhc3TimesColorService {
 									colorYz.setTR6(lastColorYz.getTR6());
 									colorYz.setTR7(lastColorYz.getTR7());
 									colorYz.setTR8(lastColorYz.getTR8());
-								}
-								if (colorYz.getR5() == 1) {
+								} else if (colorYz.getR5() == 1) {
 									lastLimitedCount = 0;
 									if (lastLimitedColorYzOp.isPresent()) {
-										lastLimitedCount = lastLimitedColorYzOp.get().getR5() == 1 ? 1 : 0;
+										lastLimitedCount = lastLimitedColorYzOp.get().getTR5();
 									}
-									colorYz.setLtR5(lastColorYz.getLtR5() + 1 - lastLimitedCount);
+									colorYz.setLtR5(lastColorYz.getTR5() + 1 - lastLimitedCount);
 									colorYz.setTR5(lastColorYz.getTR5() + 1);
 									colorYz.setLtR1(lastColorYz.getLtR1());
 									colorYz.setLtR2(lastColorYz.getLtR2());
@@ -1314,13 +1303,12 @@ public class Lhc3TimesColorService {
 									colorYz.setTR6(lastColorYz.getTR6());
 									colorYz.setTR7(lastColorYz.getTR7());
 									colorYz.setTR8(lastColorYz.getTR8());
-								}
-								if (colorYz.getR6() == 1) {
+								} else if (colorYz.getR6() == 1) {
 									lastLimitedCount = 0;
 									if (lastLimitedColorYzOp.isPresent()) {
-										lastLimitedCount = lastLimitedColorYzOp.get().getR6() == 1 ? 1 : 0;
+										lastLimitedCount = lastLimitedColorYzOp.get().getTR6();
 									}
-									colorYz.setLtR6(lastColorYz.getLtR6() + 1 - lastLimitedCount);
+									colorYz.setLtR6(lastColorYz.getTR6() + 1 - lastLimitedCount);
 									colorYz.setTR6(lastColorYz.getTR6() + 1);
 									colorYz.setLtR1(lastColorYz.getLtR1());
 									colorYz.setLtR2(lastColorYz.getLtR2());
@@ -1336,13 +1324,12 @@ public class Lhc3TimesColorService {
 									colorYz.setTR5(lastColorYz.getTR5());
 									colorYz.setTR7(lastColorYz.getTR7());
 									colorYz.setTR8(lastColorYz.getTR8());
-								}
-								if (colorYz.getR7() == 1) {
+								} else if (colorYz.getR7() == 1) {
 									lastLimitedCount = 0;
 									if (lastLimitedColorYzOp.isPresent()) {
-										lastLimitedCount = lastLimitedColorYzOp.get().getR7() == 1 ? 1 : 0;
+										lastLimitedCount = lastLimitedColorYzOp.get().getTR7();
 									}
-									colorYz.setLtR7(lastColorYz.getLtR7() + 1 - lastLimitedCount);
+									colorYz.setLtR7(lastColorYz.getTR7() + 1 - lastLimitedCount);
 									colorYz.setTR7(lastColorYz.getTR7() + 1);
 									colorYz.setLtR1(lastColorYz.getLtR1());
 									colorYz.setLtR2(lastColorYz.getLtR2());
@@ -1358,13 +1345,12 @@ public class Lhc3TimesColorService {
 									colorYz.setTR5(lastColorYz.getTR5());
 									colorYz.setTR6(lastColorYz.getTR6());
 									colorYz.setTR8(lastColorYz.getTR8());
-								}
-								if (colorYz.getR8() == 1) {
+								} else if (colorYz.getR8() == 1) {
 									lastLimitedCount = 0;
 									if (lastLimitedColorYzOp.isPresent()) {
-										lastLimitedCount = lastLimitedColorYzOp.get().getR8() == 1 ? 1 : 0;
+										lastLimitedCount = lastLimitedColorYzOp.get().getTR8();
 									}
-									colorYz.setLtR8(lastColorYz.getLtR8() + 1 - lastLimitedCount);
+									colorYz.setLtR8(lastColorYz.getTR8() + 1 - lastLimitedCount);
 									colorYz.setTR8(lastColorYz.getTR8() + 1);
 									colorYz.setLtR1(lastColorYz.getLtR1());
 									colorYz.setLtR2(lastColorYz.getLtR2());
