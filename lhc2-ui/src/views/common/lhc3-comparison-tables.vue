@@ -7,9 +7,9 @@
             <Icon type="ios-stats-outline"/>
             {{tables}}表次数/颜色遗值表
         </p>
-        <Table class="times-colors" style="float:left; width: 30%;" stripe border size="small" :loading="loading1"
+        <Table class="times-colors" style="float:left; width: 430px;" stripe border size="small" :loading="loading1"
                :columns="columns1" :data="data1"/>
-        <Table class="times-colors" style="float:left; width: 70%;" stripe border size="small" :loading="loading2"
+        <Table class="times-colors" style="float:left; width: 1395px;" stripe border size="small" :loading="loading2"
                :columns="columns2" :data="data2"/>
         <div class="page">
             <Page :total="total"
@@ -102,6 +102,7 @@
                     },
                     {
                         title: '',
+                        width: 20,
                         render(h, params) {
                             return h('span', {}, '');
                         }
@@ -238,14 +239,14 @@
                     },
                     {
                         title: '',
-                        width: 30,
+                        width: 20,
                         render(h, params) {
                             return h('span', {}, '');
                         }
                     },
                     {
                         title: '红绿',
-                        width: 80,
+                        width: 55,
                         render(h, params) {
                             const style = {};
                             style['padding'] = '10px';
@@ -261,7 +262,7 @@
                     },
                     {
                         title: '',
-                        width: 30,
+                        width: 20,
                         render(h, params) {
                             return h('span', {}, '');
                         }
@@ -396,6 +397,7 @@
                     },
                     {
                         title: '',
+                        width: 20,
                         render(h, params) {
                             return h('span', {});
                         }

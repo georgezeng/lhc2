@@ -43,14 +43,14 @@ public class Lhc3ComparisionController {
 			Lhc3TimesYz first = list.get(0);
 
 			Lhc3TimesYz topForTotal = new Lhc3TimesYz();
-			topForTotal.setPhase("红点个数/白点1个数(无限制)");
+			topForTotal.setPhase("红/白个数(无限制)");
 			topForTotal.setTime03Plus(first.getT03Plus());
 			topForTotal.setTime12(first.getT12());
 			topForTotal.setTime2Plus(first.getT2Plus());
 			list.add(0, topForTotal);
 
 			Lhc3TimesYz topForLimitedTotal = new Lhc3TimesYz();
-			topForLimitedTotal.setPhase("红点个数/白点1个数(有限制)");
+			topForLimitedTotal.setPhase("红/白个数(有限制)");
 			topForLimitedTotal.setTime03Plus(first.getLt03Plus());
 			topForLimitedTotal.setTime12(first.getLt12());
 			topForLimitedTotal.setTime2Plus(first.getLt2Plus());
