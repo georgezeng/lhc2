@@ -42,7 +42,7 @@
             return {
                 queryInfo: {
                     data: {
-                        expected: 3,
+                        expected: 9,
                         type: 'P6'
                     },
                     page: {

@@ -520,7 +520,7 @@ public class Lhc3PickNumService {
 		}
 
 		Lhc3PickNum pickNum = new Lhc3PickNum();
-		pickNum.setExpected(3);
+		pickNum.setExpected(9);
 		pickNum.setPayload(mapper.writeValueAsString(payload));
 		pickNum.setPhase(tm.getPhase());
 		pickNum.setNum(tm.getNum());
@@ -579,7 +579,7 @@ public class Lhc3PickNumService {
 		}
 
 		Lhc3PickNum pickNum = new Lhc3PickNum();
-		pickNum.setExpected(3);
+		pickNum.setExpected(9);
 		pickNum.setPayload(mapper.writeValueAsString(payload));
 		pickNum.setPhase(tm.getPhase());
 		pickNum.setNum(tm.getNum());

@@ -13,4 +13,5 @@ public interface Lhc3ColorYz2Repository extends PagingAndSortingRepository<Lhc3C
 	Page<Lhc3ColorYz2> findAllByTablesAndType(String tables, String type, Pageable pageable);
 	List<Lhc3ColorYz2> findAllByTablesAndType(String tables, String type);
 	Optional<Lhc3ColorYz2> findFirstByTablesAndTypeAndPhaseLessThanOrderByPhaseDesc(String tables, String type, String phase);
+	List<Lhc3ColorYz2> findTop100ByTablesAndTypeAndPhaseLessThanOrderByPhaseDesc(String tables, String type, String phase);
 }

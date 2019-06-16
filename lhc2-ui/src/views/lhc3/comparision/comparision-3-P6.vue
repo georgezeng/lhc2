@@ -8,7 +8,7 @@
                 <Menus activeName="lhc3-comparision-3-P6"/>
             </Header>
             <Content class="content">
-                <ComparisionTable tables="3" type="P6" />
+                <ComparisionTable tables="9" type="P6" />
             </Content>
             <Footer/>
         </Layout>

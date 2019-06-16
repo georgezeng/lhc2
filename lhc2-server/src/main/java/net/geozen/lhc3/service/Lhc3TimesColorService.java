@@ -1450,10 +1450,17 @@ public class Lhc3TimesColorService {
 								colorYz2.setYzgColor("white");
 							}
 						} else {
+							List<Lhc3ColorYz2> lastLimitedColorYz2List = colorYz2Repository
+									.findTop100ByTablesAndTypeAndPhaseLessThanOrderByPhaseDesc(tables + "", type,
+											tm.getPhase());
+							Lhc3ColorYz2 lastLimitedYz = null;
+							if (lastLimitedColorYz2List != null && lastLimitedColorYz2List.size() == 100) {
+								lastLimitedYz = lastLimitedColorYz2List.get(99);
+							}
 							Lhc3ColorYz2 lastColorYz2 = lastColorYz2Op.get();
-							setColor2(lastColorYz2, colorYz, colorYz2, "Wr", "red");
-							setColor2(lastColorYz2, colorYz, colorYz2, "Yzr", "red");
-							setColor2(lastColorYz2, colorYz, colorYz2, "Yzg", "green");
+							setColor2(lastColorYz2, colorYz, colorYz2, "Wr", "red", lastLimitedYz);
+							setColor2(lastColorYz2, colorYz, colorYz2, "Yzr", "red", lastLimitedYz);
+							setColor2(lastColorYz2, colorYz, colorYz2, "Yzg", "green", lastLimitedYz);
 						}
 						colorYz2Repository.save(colorYz2);
 					}
@@ -1467,11 +1474,12 @@ public class Lhc3TimesColorService {
 		return new AsyncResult<Exception>(t);
 	}
 
-	private int[] whiteTimes = { 1, 3, 7, 15, 33, 69 };
-	private int[] redTimes = { 1, 2 };
+	private int[] whiteTimes = { 1, 3, 7, 15, 15 };
+	private int[] redTimes = { 1 };
 
-	private void setColor2(Lhc3ColorYz2 lastYz, Lhc3ColorYz yz, Lhc3ColorYz2 colorYz2, String method, String specColor)
-			throws Exception {
+	private void setColor2(Lhc3ColorYz2 lastYz, Lhc3ColorYz yz, Lhc3ColorYz2 colorYz2, String method, String specColor,
+			Lhc3ColorYz2 lastLimitedYz) throws Exception {
+
 		Method colorGm = null;
 		if (method.equals("Wr")) {
 			colorGm = ReflectionUtils.findMethod(Lhc3ColorYz.class, "getWrColor");
@@ -1484,9 +1492,11 @@ public class Lhc3TimesColorService {
 		Method posGm = ReflectionUtils.findMethod(Lhc3ColorYz2.class, "get" + method + "Pos");
 		Method baseGm = ReflectionUtils.findMethod(Lhc3ColorYz2.class, "get" + method + "Base");
 		Method yzSm = ReflectionUtils.findMethod(Lhc3ColorYz2.class, "set" + method, int.class);
+		Method yzGm = ReflectionUtils.findMethod(Lhc3ColorYz2.class, "get" + method);
 		Method posSm = ReflectionUtils.findMethod(Lhc3ColorYz2.class, "set" + method + "Pos", int.class);
 		Method colorSm = ReflectionUtils.findMethod(Lhc3ColorYz2.class, "set" + method + "Color", String.class);
 		Method baseSm = ReflectionUtils.findMethod(Lhc3ColorYz2.class, "set" + method + "Base", int.class);
+		Method incomeSm = ReflectionUtils.findMethod(Lhc3ColorYz2.class, "set" + method + "Income", double.class);
 		if (lastColor.equals("white")) {
 			if (yzColor.equals(specColor)) {
 				int times = 0;
@@ -1499,6 +1509,8 @@ public class Lhc3TimesColorService {
 				posSm.invoke(colorYz2, -1);
 				baseSm.invoke(colorYz2, 1);
 				colorSm.invoke(colorYz2, "red");
+				incomeSm.invoke(colorYz2, 48.5 * (int) yzGm.invoke(colorYz2));
+
 			} else {
 				int times = 0;
 				int pos = (Integer) posGm.invoke(lastYz) + 1;
@@ -1522,6 +1534,10 @@ public class Lhc3TimesColorService {
 				posSm.invoke(colorYz2, pos);
 				baseSm.invoke(colorYz2, 1);
 				colorSm.invoke(colorYz2, "red");
+				colorYz2.setWrCost(25 * colorYz2.getWr());
+				colorYz2.setYzrCost(25 * colorYz2.getYzr());
+				colorYz2.setYzgCost(25 * colorYz2.getYzg());
+				incomeSm.invoke(colorYz2, 48.5 * (int) yzGm.invoke(colorYz2));
 			} else {
 				int pos = (Integer) posGm.invoke(lastYz) + 1;
 				if (pos >= redTimes.length) {
@@ -1533,6 +1549,20 @@ public class Lhc3TimesColorService {
 				baseSm.invoke(colorYz2, base);
 				colorSm.invoke(colorYz2, "white");
 			}
+		}
+		colorYz2.setWrCost(25 * colorYz2.getWr());
+		colorYz2.setYzrCost(25 * colorYz2.getYzr());
+		colorYz2.setYzgCost(25 * colorYz2.getYzg());
+		colorYz2.setWrCostt(lastYz.getWrCostt() + colorYz2.getWrCost());
+		colorYz2.setYzrCostt(lastYz.getYzrCostt() + colorYz2.getYzrCost());
+		colorYz2.setYzgCostt(lastYz.getYzgCostt() + colorYz2.getYzgCost());
+		colorYz2.setWrCostlt(lastYz.getWrCostlt() + colorYz2.getWrCost());
+		colorYz2.setYzrCostlt(lastYz.getYzrCostlt() + colorYz2.getYzrCost());
+		colorYz2.setYzgCostlt(lastYz.getYzgCostlt() + colorYz2.getYzgCost());
+		if (lastLimitedYz != null) {
+			colorYz2.setWrCostlt(colorYz2.getWrCostt() - lastLimitedYz.getWrCostt());
+			colorYz2.setYzrCostlt(colorYz2.getYzrCostt() - lastLimitedYz.getYzrCostt());
+			colorYz2.setYzgCostlt(colorYz2.getYzgCostt() - lastLimitedYz.getYzgCostt());
 		}
 	}
 
