@@ -150,6 +150,29 @@ public class Lhc3ComparisionController {
 			@PathVariable("type") String type, @RequestBody QueryInfo<String> queryInfo) {
 		Page<Lhc3ColorYz2> result = colorYz2Repository.findAllByTablesAndType(tables, type,
 				queryInfo.getPage().pageable());
+		if (queryInfo.getPage().getNum() == 1 && result.hasContent()) {
+			List<Lhc3ColorYz2> list = new LinkedList<>(result.getContent());
+			Lhc3ColorYz2 first = list.get(0);
+			
+			Lhc3ColorYz2 topForTotal = new Lhc3ColorYz2();
+			topForTotal.setPhase("无限");
+			topForTotal.setWrCostt(first.getWrCostt());
+			topForTotal.setYzrCostt(first.getYzrCostt());
+			topForTotal.setYzgCostt(first.getYzgCostt());
+			topForTotal.setWrIncomet(first.getWrIncomet());
+			topForTotal.setYzrIncomet(first.getYzrIncomet());
+			topForTotal.setYzgIncomet(first.getYzgIncomet());
+			
+			Lhc3ColorYz2 topForLimitedTotal = new Lhc3ColorYz2();
+			topForLimitedTotal.setPhase("无限");
+			topForLimitedTotal.setWrCostlt(first.getWrCostlt());
+			topForLimitedTotal.setYzrCostlt(first.getYzrCostlt());
+			topForLimitedTotal.setYzgCostlt(first.getYzgCostlt());
+			topForLimitedTotal.setWrIncomelt(first.getWrIncomelt());
+			topForLimitedTotal.setYzrIncomelt(first.getYzrIncomelt());
+			topForLimitedTotal.setYzgIncomelt(first.getYzgIncomelt());
+			return Result.genSuccessResult(new PageResult<>(list, result.getTotalElements()));
+		}
 		return Result.genSuccessResult(new PageResult<>(result.getContent(), result.getTotalElements()));
 	}
 }

@@ -95,6 +95,72 @@
                         }
                     },
                     {
+                        title: '红绿-红-成本',
+                        width: 100,
+                        render(h, params) {
+                            const style = {};
+                            style['padding'] = '10px';
+                            const data = params.row.yzrCost;
+                            style['font-weight'] = 'bold';
+                            return h('span', {style}, data);
+                        }
+                    },
+                    {
+                        title: '红绿-绿-成本',
+                        width: 100,
+                        render(h, params) {
+                            const style = {};
+                            style['padding'] = '10px';
+                            const data = params.row.yzgCost;
+                            style['font-weight'] = 'bold';
+                            return h('span', {style}, data);
+                        }
+                    },
+                    {
+                        title: '红白-红-成本',
+                        width: 100,
+                        render(h, params) {
+                            const style = {};
+                            style['padding'] = '10px';
+                            const data = params.row.wrCost;
+                            style['font-weight'] = 'bold';
+                            return h('span', {style}, data);
+                        }
+                    },
+                    {
+                        title: '红绿-红-收入',
+                        width: 100,
+                        render(h, params) {
+                            const style = {};
+                            style['padding'] = '10px';
+                            const data = params.row.yzrIncome;
+                            style['font-weight'] = 'bold';
+                            return h('span', {style}, data);
+                        }
+                    },
+                    {
+                        title: '红绿-绿-收入',
+                        width: 100,
+                        render(h, params) {
+                            const style = {};
+                            style['padding'] = '10px';
+                            const data = params.row.yzgIncome;
+                            style['font-weight'] = 'bold';
+                            return h('span', {style}, data);
+                        }
+                    },
+                    {
+                        title: '红白-红-收入',
+                        width: 100,
+                        render(h, params) {
+                            const style = {};
+                            style['padding'] = '10px';
+                            const data = params.row.wrIncome;
+                            style['font-weight'] = 'bold';
+                            return h('span', {style}, data);
+                        }
+                    },
+                    {
                         title: '',
                         minWidth: 30,
                         render(h, params) {
