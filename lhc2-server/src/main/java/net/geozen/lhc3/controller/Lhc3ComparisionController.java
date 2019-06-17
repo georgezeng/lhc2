@@ -162,15 +162,17 @@ public class Lhc3ComparisionController {
 			topForTotal.setWrIncomet(first.getWrIncomet());
 			topForTotal.setYzrIncomet(first.getYzrIncomet());
 			topForTotal.setYzgIncomet(first.getYzgIncomet());
+			list.add(topForTotal);
 			
 			Lhc3ColorYz2 topForLimitedTotal = new Lhc3ColorYz2();
-			topForLimitedTotal.setPhase("无限");
+			topForLimitedTotal.setPhase("有限");
 			topForLimitedTotal.setWrCostlt(first.getWrCostlt());
 			topForLimitedTotal.setYzrCostlt(first.getYzrCostlt());
 			topForLimitedTotal.setYzgCostlt(first.getYzgCostlt());
 			topForLimitedTotal.setWrIncomelt(first.getWrIncomelt());
 			topForLimitedTotal.setYzrIncomelt(first.getYzrIncomelt());
 			topForLimitedTotal.setYzgIncomelt(first.getYzgIncomelt());
+			list.add(topForLimitedTotal);
 			return Result.genSuccessResult(new PageResult<>(list, result.getTotalElements()));
 		}
 		return Result.genSuccessResult(new PageResult<>(result.getContent(), result.getTotalElements()));
