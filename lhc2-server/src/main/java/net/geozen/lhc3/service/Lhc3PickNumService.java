@@ -337,8 +337,8 @@ public class Lhc3PickNumService {
 					}
 				});
 				pickNumForP1(tm, infos);
-				pickNum(tm, infos.subList(0, 12), 12, "P2");
-				pickNum(tm, infos.subList(12, 24), 12, "P3");
+				pickNum(tm, infos.subList(0, 12), 9, "P2");
+				pickNum(tm, infos.subList(12, 24), 9, "P3");
 				pickNumForP4(tm, infos);
 				pickNumForP5(tm, infos);
 				pickNumForP6(tm, infos);
