@@ -156,23 +156,23 @@ public class Lhc3ComparisionController {
 			
 			Lhc3ColorYz2 topForTotal = new Lhc3ColorYz2();
 			topForTotal.setPhase("无限");
-			topForTotal.setWrCostt(first.getWrCostt());
-			topForTotal.setYzrCostt(first.getYzrCostt());
-			topForTotal.setYzgCostt(first.getYzgCostt());
-			topForTotal.setWrIncomet(first.getWrIncomet());
-			topForTotal.setYzrIncomet(first.getYzrIncomet());
-			topForTotal.setYzgIncomet(first.getYzgIncomet());
-			list.add(topForTotal);
+			topForTotal.setWrCost(first.getWrCostt());
+			topForTotal.setYzrCost(first.getYzrCostt());
+			topForTotal.setYzgCost(first.getYzgCostt());
+			topForTotal.setWrIncome(first.getWrIncomet());
+			topForTotal.setYzrIncome(first.getYzrIncomet());
+			topForTotal.setYzgIncome(first.getYzgIncomet());
+			list.add(0, topForTotal);
 			
 			Lhc3ColorYz2 topForLimitedTotal = new Lhc3ColorYz2();
 			topForLimitedTotal.setPhase("有限");
-			topForLimitedTotal.setWrCostlt(first.getWrCostlt());
-			topForLimitedTotal.setYzrCostlt(first.getYzrCostlt());
-			topForLimitedTotal.setYzgCostlt(first.getYzgCostlt());
-			topForLimitedTotal.setWrIncomelt(first.getWrIncomelt());
-			topForLimitedTotal.setYzrIncomelt(first.getYzrIncomelt());
-			topForLimitedTotal.setYzgIncomelt(first.getYzgIncomelt());
-			list.add(topForLimitedTotal);
+			topForLimitedTotal.setWrCost(first.getWrCostlt());
+			topForLimitedTotal.setYzrCost(first.getYzrCostlt());
+			topForLimitedTotal.setYzgCost(first.getYzgCostlt());
+			topForLimitedTotal.setWrIncome(first.getWrIncomelt());
+			topForLimitedTotal.setYzrIncome(first.getYzrIncomelt());
+			topForLimitedTotal.setYzgIncome(first.getYzgIncomelt());
+			list.add(0, topForLimitedTotal);
 			return Result.genSuccessResult(new PageResult<>(list, result.getTotalElements()));
 		}
 		return Result.genSuccessResult(new PageResult<>(result.getContent(), result.getTotalElements()));

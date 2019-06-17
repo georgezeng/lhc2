@@ -1433,11 +1433,15 @@ public class Lhc3TimesColorService {
 							colorYz2.setWrPos(0);
 							colorYz2.setWrBase(1);
 							colorYz2.setWrColor(colorYz.getWrColor());
+							if(colorYz.getWrColor().equals("red")) {
+								colorYz2.setWrIncome(48.5 * colorYz2.getWr());
+							}
 							colorYz2.setYzr(1);
 							colorYz2.setYzrBase(1);
 							colorYz2.setYzrPos(0);
 							if ("red".equals(colorYz.getYzColor())) {
 								colorYz2.setYzrColor("red");
+								colorYz2.setYzrIncome(48.5 * colorYz2.getYzr());
 							} else {
 								colorYz2.setYzrColor("white");
 							}
@@ -1446,9 +1450,25 @@ public class Lhc3TimesColorService {
 							colorYz2.setYzgPos(0);
 							if ("green".equals(colorYz.getYzColor())) {
 								colorYz2.setYzgColor("red");
+								colorYz2.setYzgIncome(48.5 * colorYz2.getYzg());
 							} else {
 								colorYz2.setYzgColor("white");
 							}
+							colorYz2.setWrCost(25 * colorYz2.getWr());
+							colorYz2.setYzrCost(25 * colorYz2.getYzr());
+							colorYz2.setYzgCost(25 * colorYz2.getYzg());
+							colorYz2.setWrCostt(colorYz2.getWrCost());
+							colorYz2.setYzrCostt(colorYz2.getYzrCost());
+							colorYz2.setYzgCostt(colorYz2.getYzgCost());
+							colorYz2.setWrCostlt(colorYz2.getWrCost());
+							colorYz2.setYzrCostlt(colorYz2.getYzrCost());
+							colorYz2.setYzgCostlt(colorYz2.getYzgCost());
+							colorYz2.setWrIncomet(colorYz2.getWrIncome());
+							colorYz2.setWrIncomelt(colorYz2.getWrIncome());
+							colorYz2.setYzrIncomet(colorYz2.getYzrIncome());
+							colorYz2.setYzrIncomelt(colorYz2.getYzrIncome());
+							colorYz2.setYzgIncomet(colorYz2.getYzgIncome());
+							colorYz2.setYzgIncomelt(colorYz2.getYzgIncome());
 						} else {
 							List<Lhc3ColorYz2> lastLimitedColorYz2List = colorYz2Repository
 									.findTop100ByTablesAndTypeAndPhaseLessThanOrderByPhaseDesc(tables + "", type,
@@ -1510,7 +1530,6 @@ public class Lhc3TimesColorService {
 				baseSm.invoke(colorYz2, 1);
 				colorSm.invoke(colorYz2, "red");
 				incomeSm.invoke(colorYz2, 48.5 * (int) yzGm.invoke(colorYz2));
-
 			} else {
 				int times = 0;
 				int pos = (Integer) posGm.invoke(lastYz) + 1;
@@ -1541,7 +1560,7 @@ public class Lhc3TimesColorService {
 			} else {
 				int pos = (Integer) posGm.invoke(lastYz) + 1;
 				if (pos >= redTimes.length) {
-					pos = 1;
+					pos = 0;
 				}
 				int base = redTimes[pos];
 				yzSm.invoke(colorYz2, base);
@@ -1559,10 +1578,19 @@ public class Lhc3TimesColorService {
 		colorYz2.setWrCostlt(lastYz.getWrCostlt() + colorYz2.getWrCost());
 		colorYz2.setYzrCostlt(lastYz.getYzrCostlt() + colorYz2.getYzrCost());
 		colorYz2.setYzgCostlt(lastYz.getYzgCostlt() + colorYz2.getYzgCost());
+		colorYz2.setWrIncomet(lastYz.getWrIncomet() + colorYz2.getWrIncome());
+		colorYz2.setWrIncomelt(lastYz.getWrIncomet() + colorYz2.getWrIncome());
+		colorYz2.setYzrIncomet(lastYz.getYzrIncomet() + colorYz2.getYzrIncome());
+		colorYz2.setYzrIncomelt(lastYz.getYzrIncomet() + colorYz2.getYzrIncome());
+		colorYz2.setYzgIncomet(lastYz.getYzgIncomet() + colorYz2.getYzgIncome());
+		colorYz2.setYzgIncomelt(lastYz.getYzgIncomet() + colorYz2.getYzgIncome());
 		if (lastLimitedYz != null) {
 			colorYz2.setWrCostlt(colorYz2.getWrCostt() - lastLimitedYz.getWrCostt());
 			colorYz2.setYzrCostlt(colorYz2.getYzrCostt() - lastLimitedYz.getYzrCostt());
 			colorYz2.setYzgCostlt(colorYz2.getYzgCostt() - lastLimitedYz.getYzgCostt());
+			colorYz2.setWrIncomelt(colorYz2.getWrIncomet() - lastLimitedYz.getWrIncomet());
+			colorYz2.setYzrIncomelt(colorYz2.getYzrIncomet() - lastLimitedYz.getYzrIncomet());
+			colorYz2.setYzgIncomelt(colorYz2.getYzgIncomet() - lastLimitedYz.getYzgIncomet());
 		}
 	}
 
