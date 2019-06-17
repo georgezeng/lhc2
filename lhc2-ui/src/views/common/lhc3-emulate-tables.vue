@@ -5,7 +5,7 @@
     <Card>
         <p slot="title">
             <Icon type="ios-stats-outline"/>
-            {{tables}}表 模拟遗值表
+            {{tables}}表-{{sufix}} 模拟遗值表
         </p>
         <Table class="times-colors" style="float:left; width: 100%;" stripe border size="small" :loading="loading"
                :columns="columns" :data="data"/>
@@ -24,7 +24,8 @@
     export default {
         props: [
             'tables',
-            'type'
+            'type',
+            'suffix'
         ],
         data() {
             const self = this;

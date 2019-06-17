@@ -8,7 +8,7 @@
                 <Menus activeName="lhc3-emulate-12-P2"/>
             </Header>
             <Content class="content">
-                <EmulateTable tables="9" type="P2" />
+                <EmulateTable suffix="2" tables="9" type="P2" />
             </Content>
             <Footer/>
         </Layout>
