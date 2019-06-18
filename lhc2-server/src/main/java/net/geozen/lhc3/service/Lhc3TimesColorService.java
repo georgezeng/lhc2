@@ -1494,7 +1494,7 @@ public class Lhc3TimesColorService {
 		return new AsyncResult<Exception>(t);
 	}
 
-	private int[] whiteTimes = { 1, 3, 7, 15, 32, 65, 131, 263, 527, 527 };
+	private int[] whiteTimes = { 1, 3, 7, 15, 32, 67, 141, 293, 611, 611 };
 	private int[] redTimes = { 1 , 7, 17, 45, 45};
 
 	private void setColor2(Lhc3ColorYz2 lastYz, Lhc3ColorYz yz, Lhc3ColorYz2 colorYz2, String method, String specColor,
