@@ -11,9 +11,23 @@
                 <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
-                        4表选号
+                        4-1表选号
                     </p>
                     <Table stripe border size="small" :loading="loading1" :columns="columns" :data="data1"/>
+                </Card>
+                <Card>
+                    <p slot="title">
+                        <Icon type="ios-stats-outline"/>
+                        4-2表选号
+                    </p>
+                    <Table stripe border size="small" :loading="loading2" :columns="columns" :data="data2"/>
+                </Card>
+                <Card>
+                    <p slot="title">
+                        <Icon type="ios-stats-outline"/>
+                        4-3表选号
+                    </p>
+                    <Table stripe border size="small" :loading="loading3" :columns="columns" :data="data3"/>
                 </Card>
                 <!--<br/>-->
                 <!--<Card>-->
@@ -40,13 +54,13 @@
                     <!--<Table stripe border size="small" :loading="loading4" :columns="columns" :data="data4"/>-->
                 <!--</Card>-->
                 <!--<br/>-->
-                <Card>
-                    <p slot="title">
-                        <Icon type="ios-stats-outline"/>
-                        12表选号
-                    </p>
-                    <Table stripe border size="small" :loading="loading5" :columns="columns" :data="data5"/>
-                </Card>
+                <!--<Card>-->
+                    <!--<p slot="title">-->
+                        <!--<Icon type="ios-stats-outline"/>-->
+                        <!--12表选号-->
+                    <!--</p>-->
+                    <!--<Table stripe border size="small" :loading="loading5" :columns="columns" :data="data5"/>-->
+                <!--</Card>-->
             </Content>
             <Footer/>
         </Layout>
@@ -118,26 +132,26 @@
         },
         methods: {
             loadData() {
-                this.changePage(1, 4, () => {
+                this.changePage(1, 1, () => {
                     this.data1 = [];
                     return this.data1
                 }, () => this.loading1 = true, () => this.loading1 = false);
-                // this.changePage(1, 3, () => {
-                //     this.data2 = [];
-                //     return this.data2
-                // }, () => this.loading2 = true, () => this.loading2 = false);
-                // this.changePage(1, 4, () => {
-                //     this.data3 = [];
-                //     return this.data3
-                // }, () => this.loading3 = true, () => this.loading3 = false);
+                this.changePage(1, 2, () => {
+                    this.data2 = [];
+                    return this.data2
+                }, () => this.loading2 = true, () => this.loading2 = false);
+                this.changePage(1, 3, () => {
+                    this.data3 = [];
+                    return this.data3
+                }, () => this.loading3 = true, () => this.loading3 = false);
                 // this.changePage(1, 8, () => {
                 //     this.data4 = [];
                 //     return this.data4
                 // }, () => this.loading4 = true, () => this.loading4 = false);
-                this.changePage(1, 12, () => {
-                    this.data5 = [];
-                    return this.data5
-                }, () => this.loading5 = true, () => this.loading5 = false);
+                // this.changePage(1, 12, () => {
+                //     this.data5 = [];
+                //     return this.data5
+                // }, () => this.loading5 = true, () => this.loading5 = false);
             },
             changePage(pageNo, expected, initData, startLoading, stopLoading) {
                 startLoading();
@@ -167,18 +181,17 @@
                         case 0:
                             result.numArr0.push(info.num);
                             break;
-                        case 1:
-                        case 2:
+                        default:
                             result.numArr12.push(info.num);
                             break;
-                        default:
-                            result.numArr3Plus.push(info.num);
+                        // default:
+                        //     result.numArr3Plus.push(info.num);
                     }
                 });
 
-                data.push({colName: '0次', nums: result.numArr0});
-                data.push({colName: '1-2次', nums: result.numArr12});
-                data.push({colName: '3次+', nums: result.numArr3Plus});
+                // data.push({colName: '0次', nums: result.numArr0});
+                data.push({colName: '1+次', nums: result.numArr12});
+                // data.push({colName: '3次+', nums: result.numArr3Plus});
 
                 return result;
             }
