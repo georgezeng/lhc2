@@ -15,6 +15,7 @@
                     </p>
                     <Table stripe border size="small" :loading="loading1" :columns="columns" :data="data1"/>
                 </Card>
+                <br/>
                 <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
@@ -22,6 +23,7 @@
                     </p>
                     <Table stripe border size="small" :loading="loading2" :columns="columns" :data="data2"/>
                 </Card>
+                <br/>
                 <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
@@ -148,10 +150,6 @@
                     this.data4 = [];
                     return this.data4
                 }, () => this.loading4 = true, () => this.loading4 = false, 1);
-                // this.changePage(1, 12, () => {
-                //     this.data5 = [];
-                //     return this.data5
-                // }, () => this.loading5 = true, () => this.loading5 = false);
             },
             changePage(pageNo, expected, initData, startLoading, stopLoading, type) {
                 startLoading();
@@ -186,8 +184,8 @@
                         case 0:
                             result.numArr0.push(info.num);
                             break;
-                        case1:
-                        case2:
+                        case 1:
+                        case 2:
                             result.numArr12.push(info.num);
                             break;
                         default:
@@ -196,7 +194,7 @@
                 });
 
                 data.push({colName: '0次', nums: result.numArr0});
-                data.push({colName: '1+次', nums: result.numArr12});
+                data.push({colName: '1-2次', nums: result.numArr12});
                 data.push({colName: '3次+', nums: result.numArr3Plus});
 
                 return result;

@@ -142,8 +142,10 @@
                 <MenuItem name="comparision2-2">2表</MenuItem>
                 <MenuItem name="comparision2-14">14表</MenuItem>
                 -->
-                <MenuItem name="comparision2-1">1表</MenuItem>
-                <MenuItem name="comparision2-4">4表</MenuItem>
+                <MenuItem name="comparision2-1">4-1表</MenuItem>
+                <MenuItem name="comparision2-2">4-2表</MenuItem>
+                <MenuItem name="comparision2-3">4-3表</MenuItem>
+                <MenuItem name="comparision2-4">4-4表</MenuItem>
                 <MenuItem name="comparision2-16">16表</MenuItem>
             </MenuGroup>
             <MenuGroup title="类型3">
@@ -155,7 +157,9 @@
                 <MenuItem name="comparision3-16">16表</MenuItem>
                 <MenuItem name="comparision3-14">14表</MenuItem>
                 -->
-                <MenuItem name="comparision3-4">4表</MenuItem>
+                <MenuItem name="comparision3-1">4-1表</MenuItem>
+                <MenuItem name="comparision3-2">4-2表</MenuItem>
+                <MenuItem name="comparision3-3">4-3表</MenuItem>
                 <MenuItem name="comparision3-12">12表</MenuItem>
             </MenuGroup>
         </Submenu>

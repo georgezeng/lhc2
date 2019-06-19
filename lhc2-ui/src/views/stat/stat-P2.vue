@@ -11,7 +11,7 @@
                 <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
-                        1表选号
+                        4-1表选号
                     </p>
                     <Table stripe border size="small" :loading="loading1" :columns="columns" :data="data1"/>
                 </Card>
@@ -19,9 +19,25 @@
                 <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
-                        4表选号
+                        4-2表选号
                     </p>
                     <Table stripe border size="small" :loading="loading2" :columns="columns" :data="data2"/>
+                </Card>
+                <br/>
+                <Card>
+                    <p slot="title">
+                        <Icon type="ios-stats-outline"/>
+                        4-3表选号
+                    </p>
+                    <Table stripe border size="small" :loading="loading3" :columns="columns" :data="data3"/>
+                </Card>
+                <br/>
+                <Card>
+                    <p slot="title">
+                        <Icon type="ios-stats-outline"/>
+                        4-4表选号
+                    </p>
+                    <Table stripe border size="small" :loading="loading4" :columns="columns" :data="data4"/>
                 </Card>
                 <!--<br/>-->
                 <!--<Card>-->
@@ -61,7 +77,7 @@
                         <Icon type="ios-stats-outline"/>
                         16表选号
                     </p>
-                    <Table stripe border size="small" :loading="loading6" :columns="columns" :data="data6"/>
+                    <Table stripe border size="small" :loading="loading5" :columns="columns" :data="data5"/>
                 </Card>
                 <!--<br/>-->
                 <!--<Card>-->
@@ -206,10 +222,10 @@
                 //     this.data5 = [];
                 //     return this.data5
                 // }, () => this.loading5 = true, () => this.loading5 = false);
-                this.changePage(1, 16, () => {
-                    this.data6 = [];
-                    return this.data6
-                }, () => this.loading6 = true, () => this.loading6 = false);
+                // this.changePage(1, 16, () => {
+                //     this.data6 = [];
+                //     return this.data6
+                // }, () => this.loading6 = true, () => this.loading6 = false);
                 // this.changePage(1, 20, () => {
                 //     this.data7 = [];
                 //     return this.data7

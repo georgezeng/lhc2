@@ -259,6 +259,30 @@ const RouterConfig = {
             component: (resolve) => require(['./views/comparision2/comparision-8.vue'], resolve)
         },
         {
+            path: '/comparision2-1',
+            name: 'comparision2-1',
+            meta: {
+                title: `${prefix}数据对比2-1`
+            },
+            component: (resolve) => require(['./views/comparision2/comparision-1.vue'], resolve)
+        },
+        {
+            path: '/comparision2-2',
+            name: 'comparision2-2',
+            meta: {
+                title: `${prefix}数据对比2-2`
+            },
+            component: (resolve) => require(['./views/comparision2/comparision-2.vue'], resolve)
+        },
+        {
+            path: '/comparision2-3',
+            name: 'comparision2-3',
+            meta: {
+                title: `${prefix}数据对比2-3`
+            },
+            component: (resolve) => require(['./views/comparision2/comparision-3.vue'], resolve)
+        },
+        {
             path: '/comparision2-4',
             name: 'comparision2-4',
             meta: {
@@ -305,6 +329,30 @@ const RouterConfig = {
                 title: `${prefix}数据对比3-12`
             },
             component: (resolve) => require(['./views/comparision3/comparision-12.vue'], resolve)
+        },
+        {
+            path: '/comparision3-1',
+            name: 'comparision3-1',
+            meta: {
+                title: `${prefix}数据对比3-1`
+            },
+            component: (resolve) => require(['./views/comparision3/comparision-1.vue'], resolve)
+        },
+        {
+            path: '/comparision3-2',
+            name: 'comparision3-2',
+            meta: {
+                title: `${prefix}数据对比3-2`
+            },
+            component: (resolve) => require(['./views/comparision3/comparision-2.vue'], resolve)
+        },
+        {
+            path: '/comparision3-3',
+            name: 'comparision3-3',
+            meta: {
+                title: `${prefix}数据对比3-3`
+            },
+            component: (resolve) => require(['./views/comparision3/comparision-3.vue'], resolve)
         },
         {
             path: '/comparision3-8',
