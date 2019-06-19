@@ -215,8 +215,12 @@ public class ZValueCalService {
 //						}
 //						System.out.println();
 						// P2
-						pickNumForP2(tm, infos.subList(0, 1), 1);
-						pickNumForP2(tm, infos.subList(0, 4), 4);
+//						pickNumForP2(tm, infos.subList(0, 1), 1);
+//						pickNumForP2(tm, infos.subList(0, 4), 4);
+						pickNumForP2(tm, infos.subList(0, 4), 1);
+						pickNumForP2(tm, infos.subList(4, 8), 2);
+						pickNumForP2(tm, infos.subList(8, 12), 3);
+						pickNumForP2(tm, infos.subList(12, 16), 4);
 						pickNumForP2(tm, infos.subList(0, 16), 16);
 
 						// pickNumForP2(tm, infos.subList(0, 2), 2);
@@ -243,6 +247,7 @@ public class ZValueCalService {
 						pickNumForP3(tm, infos.subList(13, 17), 1);
 						pickNumForP3(tm, infos.subList(17, 21), 2);
 						pickNumForP3(tm, infos.subList(21, 25), 3);
+						pickNumForP3(tm, infos.subList(21, 25), 12);
 
 						// String str = "phase: " + tm.getPhase() + ", infos:[";
 						// for(ZInfo info : infos) {

@@ -54,13 +54,13 @@
                     <!--<Table stripe border size="small" :loading="loading4" :columns="columns" :data="data4"/>-->
                 <!--</Card>-->
                 <!--<br/>-->
-                <!--<Card>-->
-                    <!--<p slot="title">-->
-                        <!--<Icon type="ios-stats-outline"/>-->
-                        <!--12表选号-->
-                    <!--</p>-->
-                    <!--<Table stripe border size="small" :loading="loading5" :columns="columns" :data="data5"/>-->
-                <!--</Card>-->
+                <Card>
+                    <p slot="title">
+                        <Icon type="ios-stats-outline"/>
+                        12表选号
+                    </p>
+                    <Table stripe border size="small" :loading="loading4" :columns="columns" :data="data4"/>
+                </Card>
             </Content>
             <Footer/>
         </Layout>
@@ -135,25 +135,25 @@
                 this.changePage(1, 1, () => {
                     this.data1 = [];
                     return this.data1
-                }, () => this.loading1 = true, () => this.loading1 = false);
+                }, () => this.loading1 = true, () => this.loading1 = false, 2);
                 this.changePage(1, 2, () => {
                     this.data2 = [];
                     return this.data2
-                }, () => this.loading2 = true, () => this.loading2 = false);
+                }, () => this.loading2 = true, () => this.loading2 = false, 2);
                 this.changePage(1, 3, () => {
                     this.data3 = [];
                     return this.data3
-                }, () => this.loading3 = true, () => this.loading3 = false);
-                // this.changePage(1, 8, () => {
-                //     this.data4 = [];
-                //     return this.data4
-                // }, () => this.loading4 = true, () => this.loading4 = false);
+                }, () => this.loading3 = true, () => this.loading3 = false, 2);
+                this.changePage(1, 12, () => {
+                    this.data4 = [];
+                    return this.data4
+                }, () => this.loading4 = true, () => this.loading4 = false, 1);
                 // this.changePage(1, 12, () => {
                 //     this.data5 = [];
                 //     return this.data5
                 // }, () => this.loading5 = true, () => this.loading5 = false);
             },
-            changePage(pageNo, expected, initData, startLoading, stopLoading) {
+            changePage(pageNo, expected, initData, startLoading, stopLoading, type) {
                 startLoading();
                 API.getPickNums({
                     data: {
@@ -168,10 +168,40 @@
                     }
                 }).then(result => {
                     stopLoading();
-                    this.setupData(result.list, initData());
+                    if(type == 1) {
+
+                        this.setupData1(result.list, initData());
+                    } else {
+                        this.setupData2(result.list, initData());
+                    }
                 });
             },
-            setupData(result, data) {
+            setupData1(result, data) {
+                result = result[0];
+                result.numArr0 = [];
+                result.numArr12 = [];
+                result.numArr3Plus = [];
+                result.infos.map(info => {
+                    switch (info.count) {
+                        case 0:
+                            result.numArr0.push(info.num);
+                            break;
+                        case1:
+                        case2:
+                            result.numArr12.push(info.num);
+                            break;
+                        default:
+                            result.numArr3Plus.push(info.num);
+                    }
+                });
+
+                data.push({colName: '0次', nums: result.numArr0});
+                data.push({colName: '1+次', nums: result.numArr12});
+                data.push({colName: '3次+', nums: result.numArr3Plus});
+
+                return result;
+            },
+            setupData2(result, data) {
                 result = result[0];
                 result.numArr0 = [];
                 result.numArr12 = [];

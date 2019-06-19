@@ -211,12 +211,18 @@ public class CalculationService {
 //			futures.add(timeService.process(4, "P2"));
 			
 			
-			futures.add(timeService.process(16, "P2"));
-			futures.add(timeService.process(4, "P2"));
 			futures.add(timeService.process(1, "P2"));
+			futures.add(timeService.process(2, "P2"));
+			futures.add(timeService.process(3, "P2"));
+			futures.add(timeService.process(4, "P2"));
+			futures.add(timeService.process(16, "P2"));
+//			futures.add(timeService.process(4, "P2"));
+//			futures.add(timeService.process(1, "P2"));
 			
+			futures.add(timeService.process(1, "P3"));
+			futures.add(timeService.process(2, "P3"));
+			futures.add(timeService.process(3, "P3"));
 			futures.add(timeService.process(12, "P3"));
-			futures.add(timeService.process(4, "P3"));
 			
 //			futures.add(timeService.process(8, "P3"));
 //			futures.add(timeService.process(4, "P3"));
