@@ -15,4 +15,4 @@ login:
     
 async.executor.poolSize: 10
 
-access.control.allow.origin: http://localhost:8080
+access.control.allow.origin: '*'

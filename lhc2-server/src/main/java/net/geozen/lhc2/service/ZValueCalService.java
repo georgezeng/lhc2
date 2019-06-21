@@ -220,8 +220,8 @@ public class ZValueCalService {
 						pickNumForP2(tm, infos.subList(0, 4), 1);
 						pickNumForP2(tm, infos.subList(4, 8), 2);
 						pickNumForP2(tm, infos.subList(8, 12), 3);
-						pickNumForP2(tm, infos.subList(12, 16), 4);
-						pickNumForP2(tm, infos.subList(0, 16), 16);
+//						pickNumForP2(tm, infos.subList(12, 16), 4);
+						pickNumForP2(tm, infos.subList(0, 12), 12);
 
 						// pickNumForP2(tm, infos.subList(0, 2), 2);
 						// pickNumForP2(tm, infos.subList(0, 4), 4);

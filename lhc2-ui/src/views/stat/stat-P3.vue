@@ -8,61 +8,34 @@
                 <Menus activeName="stat-P3"/>
             </Header>
             <Content class="content">
-                <Card>
-                    <p slot="title">
-                        <Icon type="ios-stats-outline"/>
-                        4-1表选号
-                    </p>
-                    <Table stripe border size="small" :loading="loading1" :columns="columns" :data="data1"/>
-                </Card>
-                <br/>
-                <Card>
-                    <p slot="title">
-                        <Icon type="ios-stats-outline"/>
-                        4-2表选号
-                    </p>
-                    <Table stripe border size="small" :loading="loading2" :columns="columns" :data="data2"/>
-                </Card>
-                <br/>
-                <Card>
-                    <p slot="title">
-                        <Icon type="ios-stats-outline"/>
-                        4-3表选号
-                    </p>
-                    <Table stripe border size="small" :loading="loading3" :columns="columns" :data="data3"/>
-                </Card>
+                <Table stripe border size="small" :loading="loading1" :columns="columns" :data="data1"/>
+                <Table stripe border size="small" :loading="loading2" :columns="columns" :data="data2"/>
+                <Table stripe border size="small" :loading="loading3" :columns="columns" :data="data3"/>
                 <!--<br/>-->
                 <!--<Card>-->
-                    <!--<p slot="title">-->
-                        <!--<Icon type="ios-stats-outline"/>-->
-                        <!--3表选号-->
-                    <!--</p>-->
-                    <!--<Table stripe border size="small" :loading="loading2" :columns="columns" :data="data2"/>-->
+                <!--<p slot="title">-->
+                <!--<Icon type="ios-stats-outline"/>-->
+                <!--3表选号-->
+                <!--</p>-->
+                <!--<Table stripe border size="small" :loading="loading2" :columns="columns" :data="data2"/>-->
                 <!--</Card>-->
-                <br/>
                 <!--<Card>-->
-                    <!--<p slot="title">-->
-                        <!--<Icon type="ios-stats-outline"/>-->
-                        <!--4表选号-->
-                    <!--</p>-->
-                    <!--<Table stripe border size="small" :loading="loading3" :columns="columns" :data="data3"/>-->
+                <!--<p slot="title">-->
+                <!--<Icon type="ios-stats-outline"/>-->
+                <!--4表选号-->
+                <!--</p>-->
+                <!--<Table stripe border size="small" :loading="loading3" :columns="columns" :data="data3"/>-->
                 <!--</Card>-->
                 <!--<br/>-->
                 <!--<Card>-->
-                    <!--<p slot="title">-->
-                        <!--<Icon type="ios-stats-outline"/>-->
-                        <!--8表选号-->
-                    <!--</p>-->
-                    <!--<Table stripe border size="small" :loading="loading4" :columns="columns" :data="data4"/>-->
+                <!--<p slot="title">-->
+                <!--<Icon type="ios-stats-outline"/>-->
+                <!--8表选号-->
+                <!--</p>-->
+                <!--<Table stripe border size="small" :loading="loading4" :columns="columns" :data="data4"/>-->
                 <!--</Card>-->
                 <!--<br/>-->
-                <Card>
-                    <p slot="title">
-                        <Icon type="ios-stats-outline"/>
-                        12表选号
-                    </p>
-                    <Table stripe border size="small" :loading="loading4" :columns="columns" :data="data4"/>
-                </Card>
+                <Table stripe border size="small" :loading="loading4" :columns="columns" :data="data4"/>
             </Content>
             <Footer/>
         </Layout>
@@ -90,6 +63,7 @@
                         order: 'DESC'
                     }
                 },
+                count: 0,
                 loading1: true,
                 loading2: true,
                 loading3: true,
@@ -133,6 +107,60 @@
             }
         },
         methods: {
+            sub1() {
+                const t12 = this.data4[1].nums
+                const t1 = this.data1[0].nums
+                const arr = []
+                for(let i in t12) {
+                    let found = false
+                    for(let j in t1) {
+                        if(t1[j] == t12[i]) {
+                            found = true
+                            break
+                        }
+                    }
+                    if(!found) {
+                        arr.push(t12[i])
+                    }
+                }
+                this.data1.push({colName: '1/2次 - 1+次', nums: arr})
+            },
+            sub2() {
+                const t12 = this.data4[1].nums
+                const t1 = this.data2[0].nums
+                const arr = []
+                for(let i in t12) {
+                    let found = false
+                    for(let j in t1) {
+                        if(t1[j] == t12[i]) {
+                            found = true
+                            break
+                        }
+                    }
+                    if(!found) {
+                        arr.push(t12[i])
+                    }
+                }
+                this.data2.push({colName: '1/2次 - 1+次', nums: arr})
+            },
+            sub3() {
+                const t12 = this.data4[1].nums
+                const t1 = this.data3[0].nums
+                const arr = []
+                for(let i in t12) {
+                    let found = false
+                    for(let j in t1) {
+                        if(t1[j] == t12[i]) {
+                            found = true
+                            break
+                        }
+                    }
+                    if(!found) {
+                        arr.push(t12[i])
+                    }
+                }
+                this.data3.push({colName: '1/2次 - 1+次', nums: arr})
+            },
             loadData() {
                 this.changePage(1, 1, () => {
                     this.data1 = [];
@@ -166,12 +194,13 @@
                     }
                 }).then(result => {
                     stopLoading();
-                    if(type == 1) {
+                    if (type == 1) {
 
                         this.setupData1(result.list, initData());
                     } else {
-                        this.setupData2(result.list, initData());
+                        this.setupData2(result.list, initData(), expected);
                     }
+                    this.count++;
                 });
             },
             setupData1(result, data) {
@@ -199,7 +228,7 @@
 
                 return result;
             },
-            setupData2(result, data) {
+            setupData2(result, data, expected) {
                 result = result[0];
                 result.numArr0 = [];
                 result.numArr12 = [];
@@ -218,14 +247,25 @@
                 });
 
                 // data.push({colName: '0次', nums: result.numArr0});
-                data.push({colName: '1+次', nums: result.numArr12});
+                data.push({colName: '4-' + expected + '表选号', nums: result.numArr12});
                 // data.push({colName: '3次+', nums: result.numArr3Plus});
 
                 return result;
+            },
+            initLoad() {
+                if(this.count == 4) {
+                    this.sub1()
+                    this.sub2()
+                    this.sub3()
+                } else {
+                    setTimeout(this.initLoad, 1000)
+                }
             }
         },
+
         created() {
             this.loadData();
+            this.initLoad();
         }
     }
 </script>

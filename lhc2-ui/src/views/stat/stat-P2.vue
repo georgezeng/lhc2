@@ -8,37 +8,18 @@
                 <Menus activeName="stat-P2"/>
             </Header>
             <Content class="content">
-                <Card>
-                    <p slot="title">
-                        <Icon type="ios-stats-outline"/>
-                        4-1表选号
-                    </p>
-                    <Table stripe border size="small" :loading="loading1" :columns="columns" :data="data1"/>
-                </Card>
-                <br/>
-                <Card>
-                    <p slot="title">
-                        <Icon type="ios-stats-outline"/>
-                        4-2表选号
-                    </p>
-                    <Table stripe border size="small" :loading="loading2" :columns="columns" :data="data2"/>
-                </Card>
-                <br/>
-                <Card>
-                    <p slot="title">
-                        <Icon type="ios-stats-outline"/>
-                        4-3表选号
-                    </p>
-                    <Table stripe border size="small" :loading="loading3" :columns="columns" :data="data3"/>
-                </Card>
-                <br/>
-                <Card>
-                    <p slot="title">
-                        <Icon type="ios-stats-outline"/>
-                        4-4表选号
-                    </p>
-                    <Table stripe border size="small" :loading="loading4" :columns="columns" :data="data4"/>
-                </Card>
+                <Table stripe border size="small" :loading="loading1" :columns="columns" :data="data1"/>
+                <Table stripe border size="small" :loading="loading2" :columns="columns" :data="data2"/>
+                <Table stripe border size="small" :loading="loading3" :columns="columns" :data="data3"/>
+                <Table stripe border size="small" :loading="loading4" :columns="columns" :data="data4"/>
+                <!--<br/>-->
+                <!--<Card>-->
+                    <!--<p slot="title">-->
+                        <!--<Icon type="ios-stats-outline"/>-->
+                        <!--4-4表选号-->
+                    <!--</p>-->
+                    <!--<Table stripe border size="small" :loading="loading4" :columns="columns" :data="data4"/>-->
+                <!--</Card>-->
                 <!--<br/>-->
                 <!--<Card>-->
                     <!--<p slot="title">-->
@@ -71,14 +52,6 @@
                     <!--</p>-->
                     <!--<Table stripe border size="small" :loading="loading5" :columns="columns" :data="data5"/>-->
                 <!--</Card>-->
-                <br/>
-                <Card>
-                    <p slot="title">
-                        <Icon type="ios-stats-outline"/>
-                        16表选号
-                    </p>
-                    <Table stripe border size="small" :loading="loading5" :columns="columns" :data="data5"/>
-                </Card>
                 <!--<br/>-->
                 <!--<Card>-->
                     <!--<p slot="title">-->
@@ -180,7 +153,64 @@
                 ]
             }
         },
+        computed: {
+
+        },
         methods: {
+            sub1() {
+                const t12 = this.data4[1].nums
+                const t1 = this.data1[0].nums
+                const arr = []
+                for(let i in t12) {
+                    let found = false
+                    for(let j in t1) {
+                        if(t1[j] == t12[i]) {
+                            found = true
+                            break
+                        }
+                    }
+                    if(!found) {
+                        arr.push(t12[i])
+                    }
+                }
+                this.data1.push({colName: '1/2次 - 1+次', nums: arr})
+            },
+            sub2() {
+                const t12 = this.data4[1].nums
+                const t1 = this.data2[0].nums
+                const arr = []
+                for(let i in t12) {
+                    let found = false
+                    for(let j in t1) {
+                        if(t1[j] == t12[i]) {
+                            found = true
+                            break
+                        }
+                    }
+                    if(!found) {
+                        arr.push(t12[i])
+                    }
+                }
+                this.data2.push({colName: '1/2次 - 1+次', nums: arr})
+            },
+            sub3() {
+                const t12 = this.data4[1].nums
+                const t1 = this.data3[0].nums
+                const arr = []
+                for(let i in t12) {
+                    let found = false
+                    for(let j in t1) {
+                        if(t1[j] == t12[i]) {
+                            found = true
+                            break
+                        }
+                    }
+                    if(!found) {
+                        arr.push(t12[i])
+                    }
+                }
+                this.data3.push({colName: '1/2次 - 1+次', nums: arr})
+            },
             loadData() {
                 this.changePage(1, 1, () => {
                     this.data1 = [];
@@ -194,50 +224,14 @@
                     this.data3 = [];
                     return this.data3
                 }, () => this.loading3 = true, () => this.loading3 = false, 2);
-                this.changePage(1, 4, () => {
-                    this.data4 = [];
-                    return this.data4
-                }, () => this.loading4 = true, () => this.loading4 = false, 2);
-                this.changePage(1, 16, () => {
-                    this.data5 = [];
-                    return this.data5
-                }, () => this.loading5 = true, () => this.loading5 = false, 1);
-                // this.changePage(1, 2, () => {
-                //     this.data1 = [];
-                //     return this.data1
-                // }, () => this.loading1 = true, () => this.loading1 = false);
                 // this.changePage(1, 4, () => {
-                //     this.data2 = [];
-                //     return this.data2
-                // }, () => this.loading2 = true, () => this.loading2 = false);
-                // this.changePage(1, 8, () => {
-                //     this.data3 = [];
-                //     return this.data3
-                // }, () => this.loading3 = true, () => this.loading3 = false);
-                // this.changePage(1, 10, () => {
                 //     this.data4 = [];
                 //     return this.data4
-                // }, () => this.loading4 = true, () => this.loading4 = false);
-                // this.changePage(1, 12, () => {
-                //     this.data5 = [];
-                //     return this.data5
-                // }, () => this.loading5 = true, () => this.loading5 = false);
-                // this.changePage(1, 16, () => {
-                //     this.data6 = [];
-                //     return this.data6
-                // }, () => this.loading6 = true, () => this.loading6 = false);
-                // this.changePage(1, 20, () => {
-                //     this.data7 = [];
-                //     return this.data7
-                // }, () => this.loading7 = true, () => this.loading7 = false);
-                // this.changePage(1, 24, () => {
-                //     this.data8 = [];
-                //     return this.data8
-                // }, () => this.loading8 = true, () => this.loading8 = false);
-                // this.changePage(1, 33, () => {
-                //     this.data9 = [];
-                //     return this.data9
-                // }, () => this.loading9 = true, () => this.loading9 = false);
+                // }, () => this.loading4 = true, () => this.loading4 = false, 2);
+                this.changePage(1, 12, () => {
+                    this.data4 = [];
+                    return this.data4
+                }, () => this.loading4 = true, () => this.loading4 = false, 1);
             },
             changePage(pageNo, expected, initData, startLoading, stopLoading, type) {
                 startLoading();
@@ -265,8 +259,8 @@
             setupData1(result, data) {
                 result = result[0];
                 result.numArr0 = [];
-                result.numArr123 = [];
-                result.numArr4Plus = [];
+                result.numArr12 = [];
+                result.numArr3Plus = [];
                 result.infos.map(info => {
                     switch (info.count) {
                         case 0:
@@ -274,21 +268,20 @@
                             break;
                         case 1:
                         case 2:
-                        case 3:
-                            result.numArr123.push(info.num);
+                            result.numArr12.push(info.num);
                             break;
                         default:
-                            result.numArr4Plus.push(info.num);
+                            result.numArr3Plus.push(info.num);
                     }
                 });
 
                 data.push({colName: '0次', nums: result.numArr0});
-                data.push({colName: '1-3次', nums: result.numArr123});
-                data.push({colName: '4次+', nums: result.numArr4Plus});
+                data.push({colName: '1-2次', nums: result.numArr12});
+                data.push({colName: '3次+', nums: result.numArr3Plus});
 
                 return result;
             },
-            setupData2(result, data) {
+            setupData2(result, data, expected) {
                 result = result[0];
                 result.numArr0 = [];
                 result.numArr12 = [];
@@ -307,14 +300,24 @@
                 });
 
                 // data.push({colName: '0次', nums: result.numArr0});
-                data.push({colName: '1+次', nums: result.numArr12});
+                data.push({colName: '4-' + expected + '表选号', nums: result.numArr12});
                 // data.push({colName: '3次+', nums: result.numArr3Plus});
 
                 return result;
+            },
+            initLoad() {
+                if(this.count == 4) {
+                    this.sub1()
+                    this.sub2()
+                    this.sub3()
+                } else {
+                    setTimeout(this.initLoad, 1000)
+                }
             }
         },
         created() {
             this.loadData();
+            this.initLoad();
         }
     }
 </script>
