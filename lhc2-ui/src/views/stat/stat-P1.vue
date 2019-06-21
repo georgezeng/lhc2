@@ -5,7 +5,7 @@
     <div class="layout">
         <Layout>
             <Header class="menus">
-                <Menus activeName="stat-P2"/>
+                <Menus activeName="stat-P1"/>
             </Header>
             <Content class="content">
                 <Table stripe border size="small" :loading="loading1" :columns="columns" :data="data1"/>
@@ -239,7 +239,7 @@
                 API.getPickNums({
                     data: {
                         expected,
-                        type: "P2"
+                        type: "P1"
                     },
                     page: {
                         num: pageNo,

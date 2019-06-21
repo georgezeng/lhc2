@@ -214,14 +214,21 @@ public class ZValueCalService {
 //							System.out.print("{" + info.getOrder() + "}, ");
 //						}
 //						System.out.println();
+						
+						// P1
+						pickNum(tm, infos.subList(21, 25), 1, "P1");
+						pickNum(tm, infos.subList(25, 29), 2, "P1");
+						pickNum(tm, infos.subList(29, 33), 3, "P1");
+						pickNum(tm, infos.subList(21, 33), 12, "P1");
+						
 						// P2
 //						pickNumForP2(tm, infos.subList(0, 1), 1);
 //						pickNumForP2(tm, infos.subList(0, 4), 4);
-						pickNumForP2(tm, infos.subList(0, 4), 1);
-						pickNumForP2(tm, infos.subList(4, 8), 2);
-						pickNumForP2(tm, infos.subList(8, 12), 3);
+						pickNum(tm, infos.subList(0, 4), 1, "P2");
+						pickNum(tm, infos.subList(4, 8), 2, "P2");
+						pickNum(tm, infos.subList(8, 12), 3, "P2");
 //						pickNumForP2(tm, infos.subList(12, 16), 4);
-						pickNumForP2(tm, infos.subList(0, 12), 12);
+						pickNum(tm, infos.subList(0, 12), 12, "P2");
 
 						// pickNumForP2(tm, infos.subList(0, 2), 2);
 						// pickNumForP2(tm, infos.subList(0, 4), 4);
@@ -244,10 +251,10 @@ public class ZValueCalService {
 						// pickNumForP3(tm, infos.subList(8, 16), 8);
 
 //						pickNumForP3(tm, infos.subList(21, 25), 4);
-						pickNumForP3(tm, infos.subList(13, 17), 1);
-						pickNumForP3(tm, infos.subList(17, 21), 2);
-						pickNumForP3(tm, infos.subList(21, 25), 3);
-						pickNumForP3(tm, infos.subList(13, 25), 12);
+						pickNum(tm, infos.subList(13, 17), 1, "P3");
+						pickNum(tm, infos.subList(17, 21), 2, "P3");
+						pickNum(tm, infos.subList(21, 25), 3, "P3");
+						pickNum(tm, infos.subList(13, 25), 12, "P3");
 
 						// String str = "phase: " + tm.getPhase() + ", infos:[";
 						// for(ZInfo info : infos) {
@@ -290,7 +297,7 @@ public class ZValueCalService {
 		pickNumRepository.save(pickNum);
 	}
 
-	private void pickNumForP3(Tm tm, List<ZInfo> subInfos, int expected) throws Exception {
+	private void pickNum(Tm tm, List<ZInfo> subInfos, int expected, String type) throws Exception {
 		PickNumPayload payload = new PickNumPayload();
 		List<PickNumCountInfo> countInfos = new ArrayList<>();
 		for (int i = 1; i < 50; i++) {
@@ -311,7 +318,7 @@ public class ZValueCalService {
 		pickNum.setPayload(map.writeValueAsString(payload));
 		pickNum.setPhase(tm.getPhase());
 		pickNum.setTm(tm.getNum());
-		pickNum.setType("P3");
+		pickNum.setType(type);
 		pickNumRepository.save(pickNum);
 	}
 
