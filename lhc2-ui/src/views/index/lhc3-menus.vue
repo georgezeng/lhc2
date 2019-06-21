@@ -137,7 +137,7 @@
             <MenuItem name="lhc3-stat-1-P8">类型8-1</MenuItem>
             <MenuItem name="lhc3-stat-2-P8">类型8-2</MenuItem>
             <MenuItem name="lhc3-stat-3-P8">类型8-3</MenuItem>
-            <MenuItem name="lhc3-stat-P8">类型8</MenuItem>
+            <MenuItem name="lhc3-stat-P8">类型8-12</MenuItem>
         </Submenu>
         <Submenu name="comparision">
             <template slot="title">

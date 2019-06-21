@@ -208,7 +208,7 @@ const RouterConfig = {
             meta: {
                 title: `${prefix}数据对比-4表-1`
             },
-            component: (resolve) => require(['./views/lhc3/comparision/comparision-1-P17.vue'], resolve)
+            component: (resolve) => require(['./views/lhc3/comparision/comparision-1-P7.vue'], resolve)
         },
         {
             path: '/lhc3/comparision-2-P7',

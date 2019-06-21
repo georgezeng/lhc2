@@ -89,9 +89,10 @@
                     API.getLhc3PickNums(this.queryInfo).then(result => {
                         this.total = result.total
                         this.data = []
-                        for (let i in result) {
+                        for (let i in result.list) {
                             const row = {}
-                            const tempb12 = result[i]
+                            row.phase = result.list[i].phase
+                            const tempb12 = result.list[i]
                             let time12 = ''
                             if (tempb12.time1) {
                                 time12 += tempb12.time1
@@ -100,7 +101,7 @@
                                 time12 += ',' + tempb12.time2
                             }
                             time12 = time12.split(',')
-                            const tempb1 = b1[i]
+                            const tempb1 = b1.list[i]
                             row.time0 = ''
                             if (tempb1.time1) {
                                 row.time0 += tempb1.time1
