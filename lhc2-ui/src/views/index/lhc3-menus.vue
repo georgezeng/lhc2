@@ -130,6 +130,14 @@
             <MenuItem name="lhc3-stat-P4">类型4</MenuItem>
             <MenuItem name="lhc3-stat-P5">类型5</MenuItem>
             <MenuItem name="lhc3-stat-P6">类型6</MenuItem>
+            <MenuItem name="lhc3-stat-1-P7">类型7-1</MenuItem>
+            <MenuItem name="lhc3-stat-2-P7">类型7-2</MenuItem>
+            <MenuItem name="lhc3-stat-3-P7">类型7-3</MenuItem>
+            <MenuItem name="lhc3-stat-P7">类型7-12</MenuItem>
+            <MenuItem name="lhc3-stat-1-P8">类型8-1</MenuItem>
+            <MenuItem name="lhc3-stat-2-P8">类型8-2</MenuItem>
+            <MenuItem name="lhc3-stat-3-P8">类型8-3</MenuItem>
+            <MenuItem name="lhc3-stat-P8">类型8</MenuItem>
         </Submenu>
         <Submenu name="comparision">
             <template slot="title">
@@ -153,6 +161,18 @@
             </MenuGroup>
             <MenuGroup title="类型6">
                 <MenuItem name="lhc3-comparision-3-P6">9表-6</MenuItem>
+            </MenuGroup>
+            <MenuGroup title="类型7">
+                <MenuItem name="lhc3-comparision-1-P7">4表-1</MenuItem>
+                <MenuItem name="lhc3-comparision-2-P7">4表-2</MenuItem>
+                <MenuItem name="lhc3-comparision-3-P7">4表-3</MenuItem>
+                <MenuItem name="lhc3-comparision-12-P7">12表</MenuItem>
+            </MenuGroup>
+            <MenuGroup title="类型8">
+                <MenuItem name="lhc3-comparision-1-P8">4表-1</MenuItem>
+                <MenuItem name="lhc3-comparision-2-P8">4表-2</MenuItem>
+                <MenuItem name="lhc3-comparision-3-P8">4表-3</MenuItem>
+                <MenuItem name="lhc3-comparision-12-P8">12表</MenuItem>
             </MenuGroup>
         </Submenu>
         <Submenu name="emulate">

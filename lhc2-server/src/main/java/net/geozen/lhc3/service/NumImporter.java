@@ -64,7 +64,7 @@ public class NumImporter {
 									Integer num = Integer.valueOf(nums[6]);
 									tm.setNum(num);
 									list.add(tm);
-									if(list.size() == 10000) {
+									if(list.size() == 50) {
 										break out;
 									}
 								}
@@ -77,7 +77,7 @@ public class NumImporter {
 				response.setCode(-1);
 			}
 			index++;
-		} while (list.size() < 10000);
+		} while (list.size() < 50);
 		list.sort(new Comparator<Lhc3Tm>() {
 
 			@Override

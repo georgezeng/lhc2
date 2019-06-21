@@ -342,6 +342,14 @@ public class Lhc3PickNumService {
 				pickNumForP4(tm, infos);
 				pickNumForP5(tm, infos);
 				pickNumForP6(tm, infos);
+				pickNumForP7P8(tm, infos.subList(0, 4), 1, "P7");
+				pickNumForP7P8(tm, infos.subList(4, 8), 2, "P7");
+				pickNumForP7P8(tm, infos.subList(8, 12), 3, "P7");
+				pickNumForP7P8(tm, infos.subList(0, 12), 12, "P7");
+				pickNumForP7P8(tm, infos.subList(43, 47), 1, "P8");
+				pickNumForP7P8(tm, infos.subList(47, 51), 2, "P8");
+				pickNumForP7P8(tm, infos.subList(51, 55), 3, "P8");
+				pickNumForP7P8(tm, infos.subList(43, 55), 12, "P8");
 			}
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
@@ -584,6 +592,58 @@ public class Lhc3PickNumService {
 		pickNum.setPhase(tm.getPhase());
 		pickNum.setNum(tm.getNum());
 		pickNum.setType("P6");
+		pickNum.setTime0(StringUtils.collectionToCommaDelimitedString(time0Arr));
+		pickNum.setTime1(StringUtils.collectionToCommaDelimitedString(time1Arr));
+		pickNum.setTime2(StringUtils.collectionToCommaDelimitedString(time2Arr));
+		pickNum.setTime2Plus(StringUtils.collectionToCommaDelimitedString(time2PlusArr));
+		pickNum.setTime3Plus(StringUtils.collectionToCommaDelimitedString(time3PlusArr));
+		pickNumRepository.save(pickNum);
+	}
+	
+	private void pickNumForP7P8(Lhc3Tm tm, List<ZInfo> infos, int expected, String type) throws Exception {
+		PickNumPayload payload = new PickNumPayload();
+		List<PickNumCountInfo> countInfos = new ArrayList<>();
+		for (int i = 1; i < 50; i++) {
+			PickNumCountInfo countInfo = new PickNumCountInfo();
+			countInfo.setNum(i);
+			for (ZInfo info : infos) {
+				if (info != null && info.getNumsForD1() != null && info.getNumsForD1().contains(i)) {
+					countInfo.setCount(countInfo.getCount() + 1);
+				}
+			}
+			countInfos.add(countInfo);
+		}
+		payload.setInfos(countInfos);
+		List<Integer> time0Arr = new ArrayList<>();
+		List<Integer> time1Arr = new ArrayList<>();
+		List<Integer> time2Arr = new ArrayList<>();
+		List<Integer> time2PlusArr = new ArrayList<>();
+		List<Integer> time3PlusArr = new ArrayList<>();
+		for (PickNumCountInfo info : countInfos) {
+			switch (info.getCount()) {
+			case 0:
+				time0Arr.add(info.getNum());
+				break;
+			case 1:
+				time1Arr.add(info.getNum());
+				break;
+			case 2:
+				time2Arr.add(info.getNum());
+				break;
+			default:
+				time3PlusArr.add(info.getNum());
+			}
+			if (info.getCount() > 1) {
+				time2PlusArr.add(info.getNum());
+			}
+		}
+
+		Lhc3PickNum pickNum = new Lhc3PickNum();
+		pickNum.setExpected(expected);
+		pickNum.setPayload(mapper.writeValueAsString(payload));
+		pickNum.setPhase(tm.getPhase());
+		pickNum.setNum(tm.getNum());
+		pickNum.setType(type);
 		pickNum.setTime0(StringUtils.collectionToCommaDelimitedString(time0Arr));
 		pickNum.setTime1(StringUtils.collectionToCommaDelimitedString(time1Arr));
 		pickNum.setTime2(StringUtils.collectionToCommaDelimitedString(time2Arr));

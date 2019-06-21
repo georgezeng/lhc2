@@ -115,6 +115,7 @@
             <!--
             <MenuItem name="stat-16-10">16&10</MenuItem>
             -->
+            <MenuItem name="stat-P1">类型1</MenuItem>
             <MenuItem name="stat-P2">类型2</MenuItem>
             <MenuItem name="stat-P3">类型3</MenuItem>
             <MenuItem name="stat-P2-P3">类型2-类型3</MenuItem>
