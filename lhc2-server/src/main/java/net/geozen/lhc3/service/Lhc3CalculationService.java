@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.Future;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
@@ -36,8 +38,8 @@ import net.geozen.lhc3.service.seqq.Lhc3SeqqService;
 import net.geozen.lhc3.service.seqr.Lhc3SeqrService;
 
 @Component
-@Slf4j
 public class Lhc3CalculationService {
+	private Logger log = LoggerFactory.getLogger(getClass());
 	@Autowired
 	private SystemConfigRepository configRepository;
 

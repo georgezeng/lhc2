@@ -5,9 +5,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
-import lombok.Data;
-
-@Data
 @MappedSuperclass
 public abstract class BaseEntity {
 	@Id
@@ -15,4 +12,28 @@ public abstract class BaseEntity {
 	private Long id;
 	private String phase;
 	private int num;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getPhase() {
+		return phase;
+	}
+
+	public void setPhase(String phase) {
+		this.phase = phase;
+	}
+
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
+	}
 }

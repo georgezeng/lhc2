@@ -9,6 +9,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.Future;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
@@ -21,8 +23,8 @@ import net.geozen.lhc3.domain.Lhc3Tm;
 import net.geozen.lhc3.domain.base.PosBaseEntity;
 
 @Service
-@Slf4j
 public abstract class BaseYzZValueCalService<Y extends PosBaseEntity> {
+	private Logger log = LoggerFactory.getLogger(getClass());
 
 	protected abstract BaseRepository<Y> getRepository();
 
@@ -34,7 +36,7 @@ public abstract class BaseYzZValueCalService<Y extends PosBaseEntity> {
 		try {
 			Y yz = getRepository().findByPhase(tm.getPhase()).get();
 			BigDecimal zForP1 = new BigDecimal(yz.getTotalColsYz());
-			BigDecimal z = new BigDecimal(yz.getRColsYz()).divide(new BigDecimal(yz.getMaxColYz()), 2, RoundingMode.HALF_UP);
+			BigDecimal z = new BigDecimal(yz.getrColsYz()).divide(new BigDecimal(yz.getMaxColYz()), 2, RoundingMode.HALF_UP);
 			info = new ZInfo();
 			info.setOrder(order);
 			info.setZ(z);

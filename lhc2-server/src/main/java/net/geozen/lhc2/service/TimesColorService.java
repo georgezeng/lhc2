@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Future;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,7 +20,6 @@ import org.springframework.util.ReflectionUtils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import lombok.extern.slf4j.Slf4j;
 import net.geozen.lhc2.domain.ColorYz;
 import net.geozen.lhc2.domain.ColorYz2;
 import net.geozen.lhc2.domain.PickNum;
@@ -32,8 +33,8 @@ import net.geozen.lhc2.jpa.TimesYzRepository;
 import net.geozen.lhc2.utils.SystemConstants;
 
 @Service
-@Slf4j
 public class TimesColorService {
+	private Logger log = LoggerFactory.getLogger(getClass());
 	@Autowired
 	private TimesYzRepository timesYzRepository;
 

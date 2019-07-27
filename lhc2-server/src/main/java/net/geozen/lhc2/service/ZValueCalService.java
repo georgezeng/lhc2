@@ -6,6 +6,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.Future;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,7 +17,6 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import lombok.extern.slf4j.Slf4j;
 import net.geozen.lhc2.domain.PickNum;
 import net.geozen.lhc2.domain.Tm;
 import net.geozen.lhc2.dto.PickNumCountInfo;
@@ -59,8 +60,8 @@ import net.geozen.lhc2.service.z7.Z7zfZValueCalService;
 import net.geozen.lhc2.utils.CommonUtil;
 
 @Service
-@Slf4j
 public class ZValueCalService {
+	private Logger log = LoggerFactory.getLogger(getClass());
 	@Autowired
 	private TmRepository tmRepository;
 	@Autowired

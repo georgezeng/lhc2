@@ -10,12 +10,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.Future;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
 
-import lombok.extern.slf4j.Slf4j;
 import net.geozen.lhc2.dto.ZInfo;
 import net.geozen.lhc3.def.jpa.BaseRepository;
 import net.geozen.lhc3.domain.Lhc3Tm;
@@ -23,8 +24,8 @@ import net.geozen.lhc3.domain.base.PosBaseEntity;
 import net.geozen.lhc3.domain.fd.Lhc3FdSw;
 
 @Service
-@Slf4j
 public abstract class BaseSwZValueCalService<S extends PosBaseEntity> {
+	private Logger log = LoggerFactory.getLogger(getClass());
 
 	protected abstract BaseRepository<S> getSwRepository();
 
@@ -38,7 +39,7 @@ public abstract class BaseSwZValueCalService<S extends PosBaseEntity> {
 			if (swOp.isPresent()) {
 				S sw = swOp.get();
 				BigDecimal zForP1 = new BigDecimal(sw.getTotalColsYz());
-				BigDecimal z = new BigDecimal(sw.getRColsYz()).divide(new BigDecimal(sw.getMaxColYz()), 2, RoundingMode.HALF_UP);
+				BigDecimal z = new BigDecimal(sw.getrColsYz()).divide(new BigDecimal(sw.getMaxColYz()), 2, RoundingMode.HALF_UP);
 				info = new ZInfo();
 				info.setOrder(order);
 				info.setZForP1(zForP1);

@@ -3,7 +3,6 @@ package net.geozen.lhc2.service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -11,6 +10,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Future;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
@@ -18,10 +19,8 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 
-import lombok.extern.slf4j.Slf4j;
 import net.geozen.lhc2.dto.StatInfo;
 import net.geozen.lhc2.dto.StatTotallyInfo;
-import net.geozen.lhc2.enums.SX;
 import net.geozen.lhc2.jpa.bs.BsswRepository;
 import net.geozen.lhc2.jpa.ds.DsswRepository;
 import net.geozen.lhc2.jpa.fd.FdswRepository;
@@ -49,12 +48,11 @@ import net.geozen.lhc2.nums.Z13Nums;
 import net.geozen.lhc2.nums.Z2Nums;
 import net.geozen.lhc2.nums.Z7Nums;
 import net.geozen.lhc2.nums.ZsNums;
-import net.geozen.lhc2.utils.SxUtil;
 
 @SuppressWarnings("unchecked")
 @Service
-@Slf4j
 public class CombineService {
+	private Logger log = LoggerFactory.getLogger(getClass());
 	@Autowired
 	private SxswRepository sxRepository;
 	@Autowired

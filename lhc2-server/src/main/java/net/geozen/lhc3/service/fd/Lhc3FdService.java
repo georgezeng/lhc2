@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.Future;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
@@ -25,8 +27,8 @@ import net.geozen.lhc3.jpa.fd.Lhc3FdSwRepository;
 import net.geozen.lhc3.jpa.fd.Lhc3FdYzRepository;
 
 @Service
-@Slf4j
 public class Lhc3FdService {
+	private Logger log = LoggerFactory.getLogger(getClass());
 	@Autowired
 	private Lhc3FdYzRepository yzRepository;
 	@Autowired
@@ -176,7 +178,7 @@ public class Lhc3FdService {
 			totalColsZf += value;
 			index++;
 		}
-		sw.setRColsYz(rColsZf);
+		sw.setrColsYz(rColsZf);
 		sw.setTotalColsYz(totalColsZf);
 	}
 }

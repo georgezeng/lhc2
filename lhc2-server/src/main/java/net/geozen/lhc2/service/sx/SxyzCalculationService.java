@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Future;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -14,7 +16,6 @@ import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import lombok.extern.slf4j.Slf4j;
 import net.geozen.lhc2.def.jpa.impl.CommonDAO;
 import net.geozen.lhc2.domain.Tm;
 import net.geozen.lhc2.domain.sx.Sxyz;
@@ -26,8 +27,8 @@ import net.geozen.lhc2.nums.SxNums;
 import net.geozen.lhc2.utils.SystemConstants;
 
 @Service
-@Slf4j
 public class SxyzCalculationService {
+	private Logger log = LoggerFactory.getLogger(getClass());
 
 	@Autowired
 	private TmRepository tmRepository;

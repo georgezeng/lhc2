@@ -5,6 +5,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -12,7 +14,6 @@ import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import lombok.Data;
 import net.geozen.lhc3.constant.SystemConfigKeys;
 import net.geozen.lhc3.domain.Lhc3Tm;
 import net.geozen.lhc3.domain.SystemConfig;
@@ -21,6 +22,8 @@ import net.geozen.lhc3.jpa.SystemConfigRepository;
 
 @Service
 public class NumImporter {
+	
+	private Logger logger = LoggerFactory.getLogger(getClass());
 	@Autowired
 	private SystemConfigRepository configRepository;
 
@@ -46,6 +49,7 @@ public class NumImporter {
 		out: do {
 			String result = client.getForObject(host + "Lott/GetLotteryData?ac=1023&gid=50&pageIndex=" + index,
 					String.class);
+			logger.info(result);
 			if (result.indexOf("\"data\":\"\"") == -1) {
 				response = mapper.readValue(result, ResponseObject.class);
 				if (response.getData() != null) {
@@ -64,7 +68,7 @@ public class NumImporter {
 									Integer num = Integer.valueOf(nums[6]);
 									tm.setNum(num);
 									list.add(tm);
-									if(list.size() == 3000) {
+									if (list.size() == 3000) {
 										break out;
 									}
 								}
@@ -93,15 +97,45 @@ public class NumImporter {
 	}
 }
 
-@Data
 class ResponseObject {
 	private String message;
 	private String result;
 	private int code;
 	private DataObject data;
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
+	}
+
+	public int getCode() {
+		return code;
+	}
+
+	public void setCode(int code) {
+		this.code = code;
+	}
+
+	public DataObject getData() {
+		return data;
+	}
+
+	public void setData(DataObject data) {
+		this.data = data;
+	}
 }
 
-@Data
 class DataObject {
 	@JsonProperty(value = "GID")
 	private int gid;
@@ -109,9 +143,32 @@ class DataObject {
 	private String gn;
 	@JsonProperty(value = "PR")
 	private List<PrObject> pr;
+
+	public int getGid() {
+		return gid;
+	}
+
+	public void setGid(int gid) {
+		this.gid = gid;
+	}
+
+	public String getGn() {
+		return gn;
+	}
+
+	public void setGn(String gn) {
+		this.gn = gn;
+	}
+
+	public List<PrObject> getPr() {
+		return pr;
+	}
+
+	public void setPr(List<PrObject> pr) {
+		this.pr = pr;
+	}
 }
 
-@Data
 class PrObject {
 	@JsonProperty(value = "OPD")
 	private String opd;
@@ -119,4 +176,28 @@ class PrObject {
 	private Long phase;
 	@JsonProperty(value = "R")
 	private String nums;
+
+	public String getOpd() {
+		return opd;
+	}
+
+	public void setOpd(String opd) {
+		this.opd = opd;
+	}
+
+	public Long getPhase() {
+		return phase;
+	}
+
+	public void setPhase(Long phase) {
+		this.phase = phase;
+	}
+
+	public String getNums() {
+		return nums;
+	}
+
+	public void setNums(String nums) {
+		this.nums = nums;
+	}
 }

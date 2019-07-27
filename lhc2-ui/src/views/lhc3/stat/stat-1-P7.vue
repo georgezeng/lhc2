@@ -1,5 +1,9 @@
 <style scoped>
     @import "../../../styles/common.less";
+
+    .ivu-table {
+        font-size: 16px;
+    }
 </style>
 <template>
     <div class="layout">
@@ -65,16 +69,24 @@
                     },
                     {
                         title: '1+次',
-                        minWidth: 700,
+                        minWidth: 400,
                         render(h, params) {
-                            return h('span', {}, params.row.time0);
+                            return h('span', {
+                                style: {
+                                    fontSize: '16px'
+                                }
+                            }, params.row.time0);
                         }
                     },
                     {
                         title: '(1-2)次 - 1+次',
                         minWidth: 350,
                         render(h, params) {
-                            return h('span', {}, params.row.time1);
+                            return h('span', {
+                                style: {
+                                    fontSize: '16px'
+                                }
+                            }, params.row.time1);
                         }
                     }
                 ]
@@ -113,6 +125,10 @@
                                 row.time0 += ',' + tempb1.time3Plus
                             }
                             const time1Plus = row.time0.split(',')
+                            time1Plus.sort(function (a, b) {
+                                return parseInt(a) - parseInt(b)
+                            })
+                            row.time0 = time1Plus.join(',')
                             row.time1 = []
                             for (let j in time12) {
                                 let found = false
@@ -126,6 +142,9 @@
                                     row.time1.push(time12[j])
                                 }
                             }
+                            row.time1.sort(function (a, b) {
+                                return parseInt(a) - parseInt(b)
+                            })
                             row.time1 = row.time1.join(',')
                             this.data.push(row)
                         }

@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.Future;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
@@ -23,8 +25,8 @@ import net.geozen.lhc3.domain.base.PosBaseEntity;
 import net.geozen.lhc3.domain.base.SwBaseEntity;
 import net.geozen.lhc3.jpa.Lhc3TmRepository;
 
-@Slf4j
 public abstract class Lhc3BaseService<Y extends PosBaseEntity, Z extends PosBaseEntity, S extends SwBaseEntity> {
+	private Logger log = LoggerFactory.getLogger(getClass());
 
 	@Autowired
 	protected Lhc3TmRepository tmRepository;
@@ -110,7 +112,7 @@ public abstract class Lhc3BaseService<Y extends PosBaseEntity, Z extends PosBase
 					totalColsYz += value;
 					index++;
 				}
-				yz.setRColsYz(rColsYz);
+				yz.setrColsYz(rColsYz);
 				yz.setTotalColsYz(totalColsYz);
 				yz = getYzRepository().save(yz);
 				if (getZfRepository() != null) {
@@ -186,7 +188,7 @@ public abstract class Lhc3BaseService<Y extends PosBaseEntity, Z extends PosBase
 			totalColsZf += value;
 			index++;
 		}
-		zf.setRColsYz(rColsZf);
+		zf.setrColsYz(rColsZf);
 		zf.setTotalColsYz(totalColsZf);
 		getZfRepository().save(zf);
 	}
@@ -282,7 +284,7 @@ public abstract class Lhc3BaseService<Y extends PosBaseEntity, Z extends PosBase
 			totalColsZf += value;
 			index++;
 		}
-		sw.setRColsYz(rColsZf);
+		sw.setrColsYz(rColsZf);
 		sw.setTotalColsYz(totalColsZf);
 	}
 

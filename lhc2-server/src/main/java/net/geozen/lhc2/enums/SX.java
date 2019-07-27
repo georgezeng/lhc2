@@ -6,11 +6,6 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
-@Getter
-@AllArgsConstructor
 @JsonFormat(shape = Shape.OBJECT)
 public enum SX {
 	Shu(1, "鼠", 2, true, true, "Shu", 11), 
@@ -57,6 +52,44 @@ public enum SX {
 		return list;
 	}
 	
+	private SX(int pos, String text, int sector, boolean single, boolean small, String column, int numsPos) {
+		this.pos = pos;
+		this.text = text;
+		this.sector = sector;
+		this.single = single;
+		this.small = small;
+		this.column = column;
+		this.numsPos = numsPos;
+	}
+
+	public int getPos() {
+		return pos;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public int getSector() {
+		return sector;
+	}
+
+	public boolean isSingle() {
+		return single;
+	}
+
+	public boolean isSmall() {
+		return small;
+	}
+
+	public String getColumn() {
+		return column;
+	}
+
+	public int getNumsPos() {
+		return numsPos;
+	}
+
 	public static SX[] seq() {
 		return new SX[] { Shu, Niu, Hu, Tu, Long, She, Ma, Yang, Hou, Ji, Gou, Zhu };
 	}

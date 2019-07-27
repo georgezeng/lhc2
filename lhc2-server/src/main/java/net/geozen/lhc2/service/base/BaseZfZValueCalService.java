@@ -8,13 +8,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Future;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.util.Assert;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
-import lombok.extern.slf4j.Slf4j;
 import net.geozen.lhc2.def.jpa.BaseSwRepository;
 import net.geozen.lhc2.def.jpa.BaseYzRepository;
 import net.geozen.lhc2.def.jpa.BaseZfRepository;
@@ -24,8 +25,8 @@ import net.geozen.lhc2.domain.base.PosBaseEntity;
 import net.geozen.lhc2.domain.sx.Sxyz;
 import net.geozen.lhc2.dto.ZInfo;
 
-@Slf4j
 public abstract class BaseZfZValueCalService<Y extends BaseEntity, Z extends BaseEntity, S extends BaseEntity> {
+	private Logger log = LoggerFactory.getLogger(getClass());
 	protected abstract BaseYzRepository<Y> getYzRepository();
 
 	protected abstract BaseZfRepository<Z> getZfRepository();

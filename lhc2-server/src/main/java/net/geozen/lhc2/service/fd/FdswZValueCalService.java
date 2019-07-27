@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Future;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
@@ -17,15 +19,14 @@ import org.springframework.util.Assert;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
-import lombok.extern.slf4j.Slf4j;
 import net.geozen.lhc2.domain.Tm;
 import net.geozen.lhc2.domain.fd.Fdsw;
 import net.geozen.lhc2.dto.ZInfo;
 import net.geozen.lhc2.jpa.fd.FdswRepository;
 
 @Service
-@Slf4j
 public class FdswZValueCalService {
+	private Logger log = LoggerFactory.getLogger(getClass());
 	@Autowired
 	private FdswRepository swRepository;
 

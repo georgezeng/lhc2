@@ -3,10 +3,8 @@ package net.geozen.lhc2.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-import lombok.Data;
 import net.geozen.lhc2.enums.SX;
 
-@Data
 public class MaxInfo {
 	private int phase;
 	private int yz;
@@ -35,5 +33,45 @@ public class MaxInfo {
 				nums.add(Integer.valueOf(num));
 			}
 		}
+	}
+
+	public int getPhase() {
+		return phase;
+	}
+
+	public void setPhase(int phase) {
+		this.phase = phase;
+	}
+
+	public int getYz() {
+		return yz;
+	}
+
+	public void setYz(int yz) {
+		this.yz = yz;
+	}
+
+	public int getPos() {
+		return pos;
+	}
+
+	public void setPos(int pos) {
+		this.pos = pos;
+	}
+
+	public SX getSx() {
+		return sx;
+	}
+
+	public void setSx(SX sx) {
+		this.sx = sx;
+	}
+
+	public List<Integer> getNums() {
+		return nums;
+	}
+
+	public void setNums(List<Integer> nums) {
+		this.nums = nums;
 	}
 }

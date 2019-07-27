@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Future;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -15,7 +17,6 @@ import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ReflectionUtils;
 
-import lombok.extern.slf4j.Slf4j;
 import net.geozen.lhc2.def.jpa.BaseYzRepository;
 import net.geozen.lhc2.def.jpa.impl.CommonDAO;
 import net.geozen.lhc2.domain.Tm;
@@ -24,9 +25,10 @@ import net.geozen.lhc2.dto.MaxInfo;
 import net.geozen.lhc2.jpa.TmRepository;
 import net.geozen.lhc2.utils.SystemConstants;
 
-@Slf4j
 public abstract class BasePosYzCalculationService<Y extends PosBaseEntity> {
 
+	private Logger log = LoggerFactory.getLogger(getClass());
+	
 	@Autowired
 	protected TmRepository tmRepository;
 

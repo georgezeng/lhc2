@@ -6,6 +6,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.Future;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
@@ -77,8 +79,8 @@ import net.geozen.lhc3.service.seqr.Lhc3SeqrYzZValueService;
 import net.geozen.lhc3.service.seqr.Lhc3SeqrZfZValueService;
 
 @Service
-@Slf4j
 public class Lhc3PickNumService {
+	private Logger log = LoggerFactory.getLogger(getClass());
 	@Autowired
 	private Lhc3SeqaYzZValueService seqaYzZValueService;
 

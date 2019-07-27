@@ -3,14 +3,10 @@ package net.geozen.lhc2.domain.qq;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import net.geozen.lhc2.domain.base.PosBaseEntity;
 
 @Entity
 @Table(name = "qqyz")
-@Data
-@EqualsAndHashCode(callSuper = true)
 public class Qqyz extends PosBaseEntity {
 	private int w0;
 	private int w1;
@@ -19,4 +15,60 @@ public class Qqyz extends PosBaseEntity {
 	private int w4;
 	private int w5;
 	private int w6;
+
+	public int getW0() {
+		return w0;
+	}
+
+	public void setW0(int w0) {
+		this.w0 = w0;
+	}
+
+	public int getW1() {
+		return w1;
+	}
+
+	public void setW1(int w1) {
+		this.w1 = w1;
+	}
+
+	public int getW2() {
+		return w2;
+	}
+
+	public void setW2(int w2) {
+		this.w2 = w2;
+	}
+
+	public int getW3() {
+		return w3;
+	}
+
+	public void setW3(int w3) {
+		this.w3 = w3;
+	}
+
+	public int getW4() {
+		return w4;
+	}
+
+	public void setW4(int w4) {
+		this.w4 = w4;
+	}
+
+	public int getW5() {
+		return w5;
+	}
+
+	public void setW5(int w5) {
+		this.w5 = w5;
+	}
+
+	public int getW6() {
+		return w6;
+	}
+
+	public void setW6(int w6) {
+		this.w6 = w6;
+	}
 }

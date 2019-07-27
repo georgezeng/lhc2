@@ -97,7 +97,7 @@
         },
         mounted() {
             this.loadData();
-            // window.addEventListener('scroll', this.scrollHandler)
+            //
         },
         destroyed() {
             // window.removeEventListener('scroll', this.scrollHandler)
