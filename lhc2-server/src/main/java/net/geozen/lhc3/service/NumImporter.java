@@ -49,7 +49,7 @@ public class NumImporter {
 		out: do {
 			String result = client.getForObject(host + "Lott/GetLotteryData?ac=1023&gid=50&pageIndex=" + index,
 					String.class);
-			logger.info(result);
+//			logger.info(result);
 			if (result.indexOf("\"data\":\"\"") == -1) {
 				response = mapper.readValue(result, ResponseObject.class);
 				if (response.getData() != null) {
