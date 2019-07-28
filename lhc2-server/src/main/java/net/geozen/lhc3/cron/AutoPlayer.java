@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import net.geozen.lhc3.service.Lhc3CalculationService;
 
-@Component
+//@Component
 public class AutoPlayer {
 	@Autowired
 	private Lhc3CalculationService calService;
