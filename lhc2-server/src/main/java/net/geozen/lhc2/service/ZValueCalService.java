@@ -431,7 +431,7 @@ public class ZValueCalService {
 			aYz.setNums1pAvg(aYz.getNums1p());
 		}
 
-		if (aYz.getNums0() < aYz.getNums0Avg()) {
+		if (aYz.getYz0() == 0 && aYz.getNums0() < aYz.getNums0Avg()) {
 			aYz.setYz0light(0);
 		} else if (last1 != null) {
 			aYz.setYz0light(last1.getYz0light() + 1);
@@ -439,7 +439,7 @@ public class ZValueCalService {
 			aYz.setYz0light(1);
 		}
 
-		if (aYz.getNums1p() < aYz.getNums1pAvg()) {
+		if (aYz.getYz1p() == 0 && aYz.getNums1p() < aYz.getNums1pAvg()) {
 			aYz.setYz1pLight(0);
 		} else if (last1 != null) {
 			aYz.setYz1pLight(last1.getYz1pLight() + 1);
