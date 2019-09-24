@@ -120,6 +120,16 @@
             <MenuItem name="stat-P3">类型3</MenuItem>
             <MenuItem name="stat-P2-P3">类型2-类型3</MenuItem>
         </Submenu>
+        <Submenu name="analyze2">
+            <template slot="title">
+                <Icon type="ios-stats" />
+                类型分析
+            </template>
+            <!--
+            <MenuItem name="stat-16-10">16&10</MenuItem>
+            -->
+            <MenuItem name="analyze2-1">分析1</MenuItem>
+        </Submenu>
         <Submenu name="comparision">
             <template slot="title">
                 <Icon type="ios-stats" />

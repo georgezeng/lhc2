@@ -268,18 +268,18 @@
                         case 0:
                             result.numArr0.push(info.num);
                             break;
-                        case 1:
-                        case 2:
-                            result.numArr12.push(info.num);
-                            break;
+                        // case 1:
+                        // case 2:
+                        //     result.numArr12.push(info.num);
+                        //     break;
                         default:
                             result.numArr3Plus.push(info.num);
                     }
                 });
 
                 data.push({colName: '0次', nums: result.numArr0});
-                data.push({colName: '1-2次', nums: result.numArr12});
-                data.push({colName: '3次+', nums: result.numArr3Plus});
+                // data.push({colName: '1-2次', nums: result.numArr12});
+                data.push({colName: '1次+', nums: result.numArr3Plus});
 
                 return result;
             },

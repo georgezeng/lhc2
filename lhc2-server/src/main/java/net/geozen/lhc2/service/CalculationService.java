@@ -10,6 +10,7 @@ import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 
 import lombok.Getter;
+import net.geozen.lhc2.jpa.AnalyzeYzRepository;
 import net.geozen.lhc2.jpa.ColorYz2Repository;
 import net.geozen.lhc2.jpa.ColorYzRepository;
 import net.geozen.lhc2.jpa.TimesYzRepository;
@@ -135,6 +136,9 @@ public class CalculationService {
 
 	@Autowired
 	private ColorYz2Repository colorYz2Repository;
+	
+	@Autowired
+	private AnalyzeYzRepository analyzeYzRepository;
 
 	@Async
 	public Future<List<String>> process() throws Exception {
@@ -186,6 +190,7 @@ public class CalculationService {
 		List<Future<Exception>> futures = new ArrayList<>();
 		futures.add(combineService.process());
 		pickNumFacade.process(futures);
+		analyzeYzRepository.deleteAll();
 		zvalueCalService.process();
 
 		CommonUtil.waitWithException(futures, ex -> {

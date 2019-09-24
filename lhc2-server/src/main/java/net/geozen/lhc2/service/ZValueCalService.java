@@ -1,5 +1,7 @@
 package net.geozen.lhc2.service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -17,11 +19,13 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import net.geozen.lhc2.domain.AnalyzeYz;
 import net.geozen.lhc2.domain.PickNum;
 import net.geozen.lhc2.domain.Tm;
 import net.geozen.lhc2.dto.PickNumCountInfo;
 import net.geozen.lhc2.dto.PickNumPayload;
 import net.geozen.lhc2.dto.ZInfo;
+import net.geozen.lhc2.jpa.AnalyzeYzRepository;
 import net.geozen.lhc2.jpa.PickNumRepository;
 import net.geozen.lhc2.jpa.TmRepository;
 import net.geozen.lhc2.service.ds.DsyzZValueCalService;
@@ -132,6 +136,8 @@ public class ZValueCalService {
 	private FdswZValueCalService fdswZValueCalService;
 	@Autowired
 	private PickNumRepository pickNumRepository;
+	@Autowired
+	private AnalyzeYzRepository analyzeYzRepository;
 
 	private ObjectMapper map = new ObjectMapper();
 
@@ -140,6 +146,9 @@ public class ZValueCalService {
 			Pageable pageable = PageRequest.of(0, 1000, Direction.ASC, "phase");
 			Page<Tm> pResult = null;
 			int index = 0;
+			AnalyzeYz lastAYzP1 = null;
+			AnalyzeYz lastAYzP2 = null;
+			AnalyzeYz lastAYzP3 = null;
 			do {
 				pResult = tmRepository.findAll(pageable);
 				if (pResult.hasContent()) {
@@ -215,21 +224,21 @@ public class ZValueCalService {
 //							System.out.print("{" + info.getOrder() + "}, ");
 //						}
 //						System.out.println();
-						
+
 						// P1
-						pickNum(tm, infos.subList(21, 25), 1, "P1");
-						pickNum(tm, infos.subList(25, 29), 2, "P1");
-						pickNum(tm, infos.subList(29, 33), 3, "P1");
-						pickNum(tm, infos.subList(21, 33), 12, "P1");
-						
+						pickNum(tm, infos.subList(0, 4), 1, "P1");
+						pickNum(tm, infos.subList(4, 8), 2, "P1");
+						pickNum(tm, infos.subList(8, 12), 3, "P1");
+						lastAYzP1 = pickNum(tm, infos.subList(0, 12), 12, "P1", lastAYzP1);
+
 						// P2
 //						pickNumForP2(tm, infos.subList(0, 1), 1);
 //						pickNumForP2(tm, infos.subList(0, 4), 4);
-						pickNum(tm, infos.subList(0, 4), 1, "P2");
-						pickNum(tm, infos.subList(4, 8), 2, "P2");
-						pickNum(tm, infos.subList(8, 12), 3, "P2");
+						pickNum(tm, infos.subList(11, 15), 1, "P2");
+						pickNum(tm, infos.subList(15, 19), 2, "P2");
+						pickNum(tm, infos.subList(19, 23), 3, "P2");
 //						pickNumForP2(tm, infos.subList(12, 16), 4);
-						pickNum(tm, infos.subList(0, 12), 12, "P2");
+						lastAYzP2 = pickNum(tm, infos.subList(11, 23), 12, "P2", lastAYzP2);
 
 						// pickNumForP2(tm, infos.subList(0, 2), 2);
 						// pickNumForP2(tm, infos.subList(0, 4), 4);
@@ -252,10 +261,10 @@ public class ZValueCalService {
 						// pickNumForP3(tm, infos.subList(8, 16), 8);
 
 //						pickNumForP3(tm, infos.subList(21, 25), 4);
-						pickNum(tm, infos.subList(13, 17), 1, "P3");
-						pickNum(tm, infos.subList(17, 21), 2, "P3");
-						pickNum(tm, infos.subList(21, 25), 3, "P3");
-						pickNum(tm, infos.subList(13, 25), 12, "P3");
+						pickNum(tm, infos.subList(21, 25), 1, "P3");
+						pickNum(tm, infos.subList(25, 29), 2, "P3");
+						pickNum(tm, infos.subList(29, 33), 3, "P3");
+						lastAYzP3 = pickNum(tm, infos.subList(21, 33), 12, "P3", lastAYzP3);
 
 						// String str = "phase: " + tm.getPhase() + ", infos:[";
 						// for(ZInfo info : infos) {
@@ -321,6 +330,135 @@ public class ZValueCalService {
 		pickNum.setTm(tm.getNum());
 		pickNum.setType(type);
 		pickNumRepository.save(pickNum);
+	}
+
+	private AnalyzeYz pickNum(Tm tm, List<ZInfo> subInfos, int expected, String type, AnalyzeYz lastAYz) throws Exception {
+		AnalyzeYz last6 = analyzeYzRepository.findByExpectedAndTypeAndPhase(expected, type, tm.getPhase() - 6);
+		AnalyzeYz last5 = analyzeYzRepository.findByExpectedAndTypeAndPhase(expected, type, tm.getPhase() - 5);
+		AnalyzeYz last4 = analyzeYzRepository.findByExpectedAndTypeAndPhase(expected, type, tm.getPhase() - 4);
+		AnalyzeYz last3 = analyzeYzRepository.findByExpectedAndTypeAndPhase(expected, type, tm.getPhase() - 3);
+		AnalyzeYz last2 = analyzeYzRepository.findByExpectedAndTypeAndPhase(expected, type, tm.getPhase() - 2);
+		AnalyzeYz last1 = lastAYz;
+		AnalyzeYz aYz = new AnalyzeYz();
+		aYz.setExpected(expected);
+		aYz.setPhase(tm.getPhase());
+		aYz.setTm(tm.getNum());
+		aYz.setType(type);
+		PickNumPayload payload = new PickNumPayload();
+		List<PickNumCountInfo> countInfos = new ArrayList<>();
+		List<Integer> count0 = new ArrayList<>();
+		List<Integer> count1p = new ArrayList<>();
+		boolean is1p = false;
+		for (int i = 1; i < 50; i++) {
+			PickNumCountInfo countInfo = new PickNumCountInfo();
+			countInfo.setNum(i);
+			for (ZInfo info : subInfos) {
+				if (info != null && info.getNums() != null && info.getNums().contains(i)) {
+					countInfo.setCount(countInfo.getCount() + 1);
+				}
+			}
+			countInfos.add(countInfo);
+			if (countInfo.getCount() > 0) {
+				if (tm.getNum() == countInfo.getNum()) {
+					is1p = true;
+				}
+				count1p.add(countInfo.getNum());
+			} else {
+				count0.add(countInfo.getNum());
+			}
+		}
+		if (is1p) {
+			aYz.setYz1p(0);
+			if (lastAYz != null) {
+				aYz.setYz0(lastAYz.getYz0() + 1);
+			} else {
+				aYz.setYz0(1);
+			}
+		} else {
+			aYz.setYz0(0);
+			if (lastAYz != null) {
+				aYz.setYz1p(lastAYz.getYz1p() + 1);
+			} else {
+				aYz.setYz1p(1);
+			}
+		}
+
+		aYz.setNums0(count0.size());
+		aYz.setNums1p(count1p.size());
+
+		if (last1 != null) {
+			aYz.setNums0Avg(aYz.getNums0() + last1.getNums0());
+			aYz.setNums1pAvg(aYz.getNums1p() + last1.getNums1p());
+			if (last2 != null) {
+				aYz.setNums0Avg(aYz.getNums0Avg() + last2.getNums0());
+				aYz.setNums1pAvg(aYz.getNums1pAvg() + last2.getNums1p());
+				if (last3 != null) {
+					aYz.setNums0Avg(aYz.getNums0Avg() + last3.getNums0());
+					aYz.setNums1pAvg(aYz.getNums1pAvg() + last3.getNums1p());
+					if (last4 != null) {
+						aYz.setNums0Avg(aYz.getNums0Avg() + last4.getNums0());
+						aYz.setNums1pAvg(aYz.getNums1pAvg() + last4.getNums1p());
+						if (last5 != null) {
+							aYz.setNums0Avg(aYz.getNums0Avg() + last5.getNums0());
+							aYz.setNums1pAvg(aYz.getNums1pAvg() + last5.getNums1p());
+							if (last6 != null) {
+								aYz.setNums0Avg(aYz.getNums0Avg() + last5.getNums0());
+								aYz.setNums1pAvg(aYz.getNums1pAvg() + last5.getNums1p());
+								aYz.setNums0Avg(new BigDecimal(aYz.getNums0Avg()).divide(new BigDecimal(7), 0, RoundingMode.HALF_UP).intValue());
+								aYz.setNums1pAvg(new BigDecimal(aYz.getNums1pAvg()).divide(new BigDecimal(7), RoundingMode.HALF_UP).intValue());
+							} else {
+								aYz.setNums0Avg(new BigDecimal(aYz.getNums0Avg()).divide(new BigDecimal(6), 0, RoundingMode.HALF_UP).intValue());
+								aYz.setNums1pAvg(new BigDecimal(aYz.getNums1pAvg()).divide(new BigDecimal(6), 0, RoundingMode.HALF_UP).intValue());
+							}
+						} else {
+							aYz.setNums0Avg(new BigDecimal(aYz.getNums0Avg()).divide(new BigDecimal(5), 0, RoundingMode.HALF_UP).intValue());
+							aYz.setNums1pAvg(new BigDecimal(aYz.getNums1pAvg()).divide(new BigDecimal(5), 0, RoundingMode.HALF_UP).intValue());
+						}
+					} else {
+						aYz.setNums0Avg(new BigDecimal(aYz.getNums0Avg()).divide(new BigDecimal(4), 0, RoundingMode.HALF_UP).intValue());
+						aYz.setNums1pAvg(new BigDecimal(aYz.getNums1pAvg()).divide(new BigDecimal(4), 0, RoundingMode.HALF_UP).intValue());
+					}
+				} else {
+					aYz.setNums0Avg(new BigDecimal(aYz.getNums0Avg()).divide(new BigDecimal(3), 0, RoundingMode.HALF_UP).intValue());
+					aYz.setNums1pAvg(new BigDecimal(aYz.getNums1pAvg()).divide(new BigDecimal(3), 0, RoundingMode.HALF_UP).intValue());
+				}
+			} else {
+				aYz.setNums0Avg(new BigDecimal(aYz.getNums0Avg()).divide(new BigDecimal(2), 0, RoundingMode.HALF_UP).intValue());
+				aYz.setNums1pAvg(new BigDecimal(aYz.getNums1pAvg()).divide(new BigDecimal(2), 0, RoundingMode.HALF_UP).intValue());
+			}
+		} else {
+			aYz.setNums0Avg(aYz.getNums0());
+			aYz.setNums1pAvg(aYz.getNums1p());
+		}
+
+		if (aYz.getNums0() < aYz.getNums0Avg()) {
+			aYz.setYz0light(0);
+		} else if (last1 != null) {
+			aYz.setYz0light(last1.getYz0light() + 1);
+		} else {
+			aYz.setYz0light(1);
+		}
+
+		if (aYz.getNums1p() < aYz.getNums1pAvg()) {
+			aYz.setYz1pLight(0);
+		} else if (last1 != null) {
+			aYz.setYz1pLight(last1.getYz1pLight() + 1);
+		} else {
+			aYz.setYz1pLight(1);
+		}
+		analyzeYzRepository.save(aYz);
+
+//		payload.setPhase(tm.getPhase() + "");
+		payload.setInfos(countInfos);
+
+		PickNum pickNum = new PickNum();
+		pickNum.setExpected(expected);
+		pickNum.setPayload(map.writeValueAsString(payload));
+		pickNum.setPhase(tm.getPhase());
+		pickNum.setTm(tm.getNum());
+		pickNum.setType(type);
+		pickNumRepository.save(pickNum);
+		return aYz;
 	}
 
 }

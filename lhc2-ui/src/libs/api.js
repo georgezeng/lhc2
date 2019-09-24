@@ -286,5 +286,16 @@ export default {
                 reject(ex);
             });
         });
+    },
+
+
+    getAnalyze1(queryInfo) {
+        return new Promise((resolve, reject) => {
+            util.ajax.post(`/analyze/list`, queryInfo).then(data => {
+                resolve(data);
+            }).catch(ex => {
+                reject(ex);
+            });
+        });
     }
 }
