@@ -26,6 +26,78 @@ public class AnalyzeYz {
 	private int nums1pAvg;
 	private String nums0arr;
 	private String nums1parr;
+	private int lastYz0;
+	private int lastYz1p;
+	private int lastYz0light;
+	private int lastYz1pLight;
+	private int lastNums0;
+	private int lastNums0Avg;
+	private int lastNums1p;
+	private int lastNums1pAvg;
+
+	public int getLastYz0() {
+		return lastYz0;
+	}
+
+	public void setLastYz0(int lastYz0) {
+		this.lastYz0 = lastYz0;
+	}
+
+	public int getLastYz1p() {
+		return lastYz1p;
+	}
+
+	public void setLastYz1p(int lastYz1p) {
+		this.lastYz1p = lastYz1p;
+	}
+
+	public int getLastYz0light() {
+		return lastYz0light;
+	}
+
+	public void setLastYz0light(int lastYz0light) {
+		this.lastYz0light = lastYz0light;
+	}
+
+	public int getLastYz1pLight() {
+		return lastYz1pLight;
+	}
+
+	public void setLastYz1pLight(int lastYz1pLight) {
+		this.lastYz1pLight = lastYz1pLight;
+	}
+
+	public int getLastNums0() {
+		return lastNums0;
+	}
+
+	public void setLastNums0(int lastNums0) {
+		this.lastNums0 = lastNums0;
+	}
+
+	public int getLastNums0Avg() {
+		return lastNums0Avg;
+	}
+
+	public void setLastNums0Avg(int lastNums0Avg) {
+		this.lastNums0Avg = lastNums0Avg;
+	}
+
+	public int getLastNums1p() {
+		return lastNums1p;
+	}
+
+	public void setLastNums1p(int lastNums1p) {
+		this.lastNums1p = lastNums1p;
+	}
+
+	public int getLastNums1pAvg() {
+		return lastNums1pAvg;
+	}
+
+	public void setLastNums1pAvg(int lastNums1pAvg) {
+		this.lastNums1pAvg = lastNums1pAvg;
+	}
 
 	public String getNums0arr() {
 		return nums0arr;

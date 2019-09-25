@@ -127,7 +127,7 @@
                       render(h, params) {
                           const style = {};
                           style['padding'] = '10px';
-                          const data = params.row.yz0light;
+                          const data = params.row.lastYz0light;
                           if (data == 0) {
                               style['background-color'] = 'orange';
                               style['color'] = 'white';
@@ -139,12 +139,12 @@
                   {
                       title: '0次个数',
                       width: 50,
-                      key: 'nums0'
+                      key: 'lastNums0'
                   },
                   {
                       title: '0次平均个数',
                       width: 50,
-                      key: 'nums0Avg'
+                      key: 'lastNums0Avg'
                   },
                   // {
                   //     title: '0次号码',
@@ -157,7 +157,7 @@
                       render(h, params) {
                           const style = {};
                           style['padding'] = '10px';
-                          const data = params.row.yz1pLight;
+                          const data = params.row.lastYz1pLight;
                           if (data == 0) {
                               style['background-color'] = 'orange';
                               style['color'] = 'white';
@@ -169,12 +169,12 @@
                   {
                       title: '1+次个数',
                       width: 50,
-                      key: 'nums1p'
+                      key: 'lastNums1p'
                   },
                   {
                       title: '1+次平均个数',
                       width: 50,
-                      key: 'nums1pAvg'
+                      key: 'lastNums1pAvg'
                   },
                   // {
                   //     title: '1+次号码',

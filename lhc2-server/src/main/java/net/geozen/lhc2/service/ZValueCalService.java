@@ -454,6 +454,14 @@ public class ZValueCalService {
 			} else {
 				aYz.setYz1pLight(last1.getYz1pLight() + 1);
 			}
+			aYz.setLastNums0(last1.getNums0());
+			aYz.setLastNums0Avg(last1.getNums0Avg());
+			aYz.setLastNums1p(last1.getNums1p());
+			aYz.setLastNums1pAvg(last1.getNums1pAvg());
+			aYz.setLastYz0(last1.getYz0());
+			aYz.setLastYz0light(last1.getYz0light());
+			aYz.setLastYz1p(last1.getYz1p());
+			aYz.setLastYz1pLight(last1.getYz1pLight());
 		} else {
 			aYz.setYz0light(1);
 			aYz.setYz1pLight(1);
