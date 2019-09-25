@@ -83,6 +83,7 @@
               columns: [
                   {
                       title: '期数',
+                      width: 50,
                       key: 'phase'
                   },
                   {

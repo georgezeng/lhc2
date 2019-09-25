@@ -365,10 +365,11 @@ public class ZValueCalService {
 			}
 		}
 		boolean is1p = false;
+		PickNumPayload lastPayload = null;
 		if(last1 != null) {
-			PickNum lastPick = pickNumRepository.findByExpectedAndTypeAndPhase(expected, type, tm.getPhase() -1 );
-			PickNumPayload payload2 = map.readValue(lastPick.getPayload(), PickNumPayload.class);
-			for (PickNumCountInfo countInfo : payload2.getInfos()) {
+			PickNum lastPick = pickNumRepository.findByExpectedAndTypeAndPhase(expected, type, tm.getPhase() -1);
+			lastPayload = map.readValue(lastPick.getPayload(), PickNumPayload.class);
+			for (PickNumCountInfo countInfo : lastPayload.getInfos()) {
 				if (countInfo.getCount() > 0) {
 					if (tm.getNum() == countInfo.getNum()) {
 						is1p = true;
@@ -442,19 +443,19 @@ public class ZValueCalService {
 			aYz.setNums1pAvg(aYz.getNums1p());
 		}
 
-		if (aYz.getYz0() == 0 && aYz.getNums0() < aYz.getNums0Avg()) {
-			aYz.setYz0light(0);
-		} else if (last1 != null) {
-			aYz.setYz0light(last1.getYz0light() + 1);
+		if (last1 != null) {
+			if (aYz.getYz0() == 0 && last1.getNums0() < last1.getNums0Avg()) {
+				aYz.setYz0light(0);
+			} else {
+				aYz.setYz0light(last1.getYz0light() + 1);
+			}
+			if (aYz.getYz1p() == 0 && aYz.getNums1p() < aYz.getNums1pAvg()) {
+				aYz.setYz1pLight(0);
+			} else {
+				aYz.setYz1pLight(last1.getYz1pLight() + 1);
+			}
 		} else {
 			aYz.setYz0light(1);
-		}
-
-		if (aYz.getYz1p() == 0 && aYz.getNums1p() < aYz.getNums1pAvg()) {
-			aYz.setYz1pLight(0);
-		} else if (last1 != null) {
-			aYz.setYz1pLight(last1.getYz1pLight() + 1);
-		} else {
 			aYz.setYz1pLight(1);
 		}
 		analyzeYzRepository.save(aYz);
