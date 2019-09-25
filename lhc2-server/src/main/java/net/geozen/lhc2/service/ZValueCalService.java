@@ -18,6 +18,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.base.Joiner;
 
 import net.geozen.lhc2.domain.AnalyzeYz;
 import net.geozen.lhc2.domain.PickNum;
@@ -382,7 +383,8 @@ public class ZValueCalService {
 				aYz.setYz1p(1);
 			}
 		}
-
+		aYz.setNums0arr(Joiner.on(",").join(count0));
+		aYz.setNums1parr(Joiner.on(",").join(count1p));
 		aYz.setNums0(count0.size());
 		aYz.setNums1p(count1p.size());
 

@@ -24,6 +24,24 @@ public class AnalyzeYz {
 	private int nums0Avg;
 	private int nums1p;
 	private int nums1pAvg;
+	private String nums0arr;
+	private String nums1parr;
+
+	public String getNums0arr() {
+		return nums0arr;
+	}
+
+	public void setNums0arr(String nums0arr) {
+		this.nums0arr = nums0arr;
+	}
+
+	public String getNums1parr() {
+		return nums1parr;
+	}
+
+	public void setNums1parr(String nums1parr) {
+		this.nums1parr = nums1parr;
+	}
 
 	public int getExpected() {
 		return expected;
