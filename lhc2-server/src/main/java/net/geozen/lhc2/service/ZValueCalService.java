@@ -346,10 +346,9 @@ public class ZValueCalService {
 		aYz.setTm(tm.getNum());
 		aYz.setType(type);
 		PickNumPayload payload = new PickNumPayload();
-		List<PickNumCountInfo> countInfos = new ArrayList<>();
 		List<Integer> count0 = new ArrayList<>();
 		List<Integer> count1p = new ArrayList<>();
-		boolean is1p = false;
+		List<PickNumCountInfo> countInfos = new ArrayList<>();
 		for (int i = 1; i < 50; i++) {
 			PickNumCountInfo countInfo = new PickNumCountInfo();
 			countInfo.setNum(i);
@@ -360,12 +359,22 @@ public class ZValueCalService {
 			}
 			countInfos.add(countInfo);
 			if (countInfo.getCount() > 0) {
-				if (tm.getNum() == countInfo.getNum()) {
-					is1p = true;
-				}
 				count1p.add(countInfo.getNum());
 			} else {
 				count0.add(countInfo.getNum());
+			}
+		}
+		boolean is1p = false;
+		if(last1 != null) {
+			PickNum lastPick = pickNumRepository.findByExpectedAndTypeAndPhase(expected, type, tm.getPhase() -1 );
+			PickNumPayload payload2 = map.readValue(lastPick.getPayload(), PickNumPayload.class);
+			for (PickNumCountInfo countInfo : payload2.getInfos()) {
+				if (countInfo.getCount() > 0) {
+					if (tm.getNum() == countInfo.getNum()) {
+						is1p = true;
+						break;
+					}
+				} 
 			}
 		}
 		if (is1p) {

@@ -145,11 +145,11 @@
                       width: 50,
                       key: 'nums0Avg'
                   },
-                  {
-                      title: '0次号码',
-                      width: 50,
-                      key: 'nums0arr'
-                  },
+                  // {
+                  //     title: '0次号码',
+                  //     width: 50,
+                  //     key: 'nums0arr'
+                  // },
                   {
                       title: '1+次(浅色)',
                       width: 50,
@@ -175,11 +175,11 @@
                       width: 50,
                       key: 'nums1pAvg'
                   },
-                  {
-                      title: '1+次号码',
-                      width: 50,
-                      key: 'nums1parr'
-                  },
+                  // {
+                  //     title: '1+次号码',
+                  //     width: 50,
+                  //     key: 'nums1parr'
+                  // },
               ]
           }
         },
