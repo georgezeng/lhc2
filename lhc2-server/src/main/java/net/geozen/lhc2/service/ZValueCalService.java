@@ -444,27 +444,27 @@ public class ZValueCalService {
 		}
 
 		if (last1 != null) {
-			if (aYz.getYz0() == 0 && last1.getNums0() < last1.getNums0Avg()) {
-				aYz.setYz0light(0);
-			} else {
-				aYz.setYz0light(last1.getYz0light() + 1);
-			}
-			if (aYz.getYz1p() == 0 && aYz.getNums1p() < aYz.getNums1pAvg()) {
-				aYz.setYz1pLight(0);
-			} else {
-				aYz.setYz1pLight(last1.getYz1pLight() + 1);
-			}
 			aYz.setLastNums0(last1.getNums0());
 			aYz.setLastNums0Avg(last1.getNums0Avg());
 			aYz.setLastNums1p(last1.getNums1p());
 			aYz.setLastNums1pAvg(last1.getNums1pAvg());
 			aYz.setLastYz0(last1.getYz0());
-			aYz.setLastYz0light(last1.getYz0light());
 			aYz.setLastYz1p(last1.getYz1p());
-			aYz.setLastYz1pLight(last1.getYz1pLight());
+			
+			if (aYz.getYz0() == 0 && aYz.getLastNums0() < aYz.getLastNums0Avg()) {
+				aYz.setLastYz0light(0);
+			} else {
+				aYz.setLastYz0light(last1.getYz0light() + 1);
+			}
+			if (aYz.getYz1p() == 0 && aYz.getLastNums1p() < aYz.getLastNums1pAvg()) {
+				aYz.setLastYz1pLight(0);
+			} else {
+				aYz.setLastYz1pLight(last1.getYz1pLight() + 1);
+			}
+			
 		} else {
-			aYz.setYz0light(1);
-			aYz.setYz1pLight(1);
+			aYz.setLastYz0light(1);
+			aYz.setLastYz1pLight(1);
 		}
 		analyzeYzRepository.save(aYz);
 
