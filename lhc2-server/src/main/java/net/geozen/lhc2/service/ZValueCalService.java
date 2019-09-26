@@ -451,15 +451,19 @@ public class ZValueCalService {
 			aYz.setLastYz0(last1.getYz0());
 			aYz.setLastYz1p(last1.getYz1p());
 			
-			if (aYz.getYz0() == 0 && aYz.getLastNums0() < aYz.getLastNums0Avg()) {
+			if (aYz.getYz0() == 0 && last1.getNums0() < last1.getNums0Avg()) {
 				aYz.setLastYz0light(0);
+				last1.setYz0light(0);
 			} else {
-				aYz.setLastYz0light(last1.getYz0light() + 1);
+				aYz.setLastYz0light(last1.getLastYz0light() + 1);
+				last1.setYz0light(last1.getLastYz0light() + 1);
 			}
-			if (aYz.getYz1p() == 0 && aYz.getLastNums1p() < aYz.getLastNums1pAvg()) {
+			if (aYz.getYz1p() == 0 && last1.getNums1p() < last1.getNums1pAvg()) {
 				aYz.setLastYz1pLight(0);
+				last1.setYz1pLight(0);
 			} else {
-				aYz.setLastYz1pLight(last1.getYz1pLight() + 1);
+				aYz.setLastYz1pLight(last1.getLastYz1pLight() + 1);
+				last1.setYz1pLight(last1.getLastYz1pLight() + 1);
 			}
 			
 		} else {
