@@ -56,6 +56,7 @@ public class Lhc3StakeService {
 					}
 				}
 				Lhc3Stake stake = new Lhc3Stake();
+				stake.setType(type);
 				stake.setNum(tm.getNum());
 				stake.setPhase(tm.getPhase());
 				stake.setCurrentAmount(new BigDecimal(count));
