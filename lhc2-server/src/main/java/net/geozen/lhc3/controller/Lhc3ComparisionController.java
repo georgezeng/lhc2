@@ -51,6 +51,7 @@ public class Lhc3ComparisionController {
 			list.add(0, topForTotal);
 
 			Lhc3TimesYz topForLimitedTotal = new Lhc3TimesYz();
+			topForLimitedTotal.setPhase("红白个数(有限)");
 			topForLimitedTotal.setTime0(first.getLt0());
 			topForLimitedTotal.setTime1(first.getLt1());
 			topForLimitedTotal.setTime2(first.getLt2());

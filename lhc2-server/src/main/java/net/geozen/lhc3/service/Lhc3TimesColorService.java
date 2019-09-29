@@ -15,7 +15,6 @@ import org.springframework.util.ReflectionUtils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import lombok.extern.slf4j.Slf4j;
 import net.geozen.lhc2.dto.PickNumCountInfo;
 import net.geozen.lhc2.dto.PickNumPayload;
 import net.geozen.lhc3.domain.Lhc3ColorYz;
@@ -51,11 +50,9 @@ public class Lhc3TimesColorService {
 		Exception t = null;
 		try {
 			for (Lhc3Tm tm : tmList) {
-				Optional<Lhc3PickNum> prevPnOp = pickNumRepository
-						.findFirstByExpectedAndTypeAndPhaseLessThanOrderByPhaseDesc(tables, type, tm.getPhase());
+				Optional<Lhc3PickNum> prevPnOp = pickNumRepository.findFirstByExpectedAndTypeAndPhaseLessThanOrderByPhaseDesc(tables, type, tm.getPhase());
 				if (prevPnOp.isPresent()) {
-					Optional<Lhc3PickNum> pnOp = pickNumRepository.findByExpectedAndTypeAndPhase(tables, type,
-							tm.getPhase());
+					Optional<Lhc3PickNum> pnOp = pickNumRepository.findByExpectedAndTypeAndPhase(tables, type, tm.getPhase());
 					if (pnOp.isPresent()) {
 						Lhc3PickNum prevNumInfo = prevPnOp.get();
 						Lhc3PickNum numInfo = pnOp.get();
@@ -78,13 +75,11 @@ public class Lhc3TimesColorService {
 						}
 						String color = null;
 
-						Optional<Lhc3TimesYz> lastTimesYzOp = timesYzRepository
-								.findFirstByTablesAndTypeAndPhaseLessThanOrderByPhaseDesc(tables + "", type,
-										tm.getPhase());
+						Optional<Lhc3TimesYz> lastTimesYzOp = timesYzRepository.findFirstByTablesAndTypeAndPhaseLessThanOrderByPhaseDesc(tables + "", type,
+								tm.getPhase());
 						Lhc3TimesYz lastTimesYz = lastTimesYzOp.orElseGet(Lhc3TimesYz::new);
-						List<Lhc3TimesYz> lastLimitedYzList = timesYzRepository
-								.findTop100ByTablesAndTypeAndPhaseLessThanOrderByPhaseDesc(tables + "", type,
-										tm.getPhase());
+						List<Lhc3TimesYz> lastLimitedYzList = timesYzRepository.findTop100ByTablesAndTypeAndPhaseLessThanOrderByPhaseDesc(tables + "", type,
+								tm.getPhase());
 						Lhc3TimesYz lastLmitedTimesYz = null;
 						if (lastLimitedYzList != null && lastLimitedYzList.size() == 100) {
 							lastLmitedTimesYz = lastLimitedYzList.get(99);
@@ -113,39 +108,62 @@ public class Lhc3TimesColorService {
 						} else {
 							color = "green";
 							timesYz.setLt0(lastTimesYz.getLt0());
-							timesYz.setLt1(lastTimesYz.getLt1());
-							timesYz.setLt2(lastTimesYz.getLt2());
-							if (tmInfo.getCount() > 2) {
-								timesYz.setTime3Plus(0);
+							switch (tmInfo.getCount()) {
+							case 1: {
+								if (lastLmitedTimesYz != null) {
+									timesYz.setLt1(lastTimesYz.getT1() + 1 - lastLmitedTimesYz.getT1());
+								}
+								timesYz.setLt2(lastTimesYz.getLt2());
+								timesYz.setT1(lastTimesYz.getT1() + 1);
+								timesYz.setT2(lastTimesYz.getT2());
+								timesYz.setT3Plus(lastTimesYz.getT3Plus() + 1);
+								timesYz.setTime1(0);
+								timesYz.setTime2(lastTimesYz.getTime2() + 1);
+								timesYz.setTime3Plus(lastTimesYz.getTime3Plus() + 1);
+							}
+								break;
+							case 2: {
+								timesYz.setLt1(lastTimesYz.getLt1());
+								if (lastLmitedTimesYz != null) {
+									timesYz.setLt2(lastTimesYz.getT2() + 1 - lastLmitedTimesYz.getT2());
+								}
+								timesYz.setT1(lastTimesYz.getT1());
+								timesYz.setT2(lastTimesYz.getT2() + 1);
+								timesYz.setT3Plus(lastTimesYz.getT3Plus() + 1);
+								timesYz.setTime1(lastTimesYz.getTime1() + 1);
+								timesYz.setTime2(0);
+								timesYz.setTime3Plus(lastTimesYz.getTime3Plus() + 1);
+							}
+								break;
+							default: {
+								timesYz.setLt1(lastTimesYz.getLt1());
+								timesYz.setLt2(lastTimesYz.getLt2());
 								if (lastLmitedTimesYz != null) {
 									timesYz.setLt3Plus(lastTimesYz.getT3Plus() + 1 - lastLmitedTimesYz.getT3Plus());
 								}
+								timesYz.setT1(lastTimesYz.getT1());
+								timesYz.setT2(lastTimesYz.getT2());
 								timesYz.setT3Plus(lastTimesYz.getT3Plus() + 1);
-							} else {
-								timesYz.setTime3Plus(lastTimesYz.getTime3Plus() + 1);
-								timesYz.setT3Plus(lastTimesYz.getT3Plus());
+								timesYz.setTime1(lastTimesYz.getTime1() + 1);
+								timesYz.setTime2(lastTimesYz.getTime2() + 1);
+								timesYz.setTime3Plus(0);
 							}
+							}
+							timesYz.setTime1Plus(0);
 							if (lastLmitedTimesYz != null) {
 								timesYz.setLt1Plus(lastTimesYz.getT1Plus() + 1 - lastLmitedTimesYz.getT1Plus());
 							}
 							timesYz.setT1Plus(lastTimesYz.getT1Plus() + 1);
 							timesYz.setT0(lastTimesYz.getT0());
-							timesYz.setT1(lastTimesYz.getT1());
-							timesYz.setT2(lastTimesYz.getT2());
 							timesYz.setTime0(lastTimesYz.getTime0() + 1);
-							timesYz.setTime1(lastTimesYz.getTime1() + 1);
-							timesYz.setTime2(lastTimesYz.getTime2() + 1);
-							timesYz.setTime1Plus(0);
 						}
 						timesYzRepository.save(timesYz);
 
-						Optional<Lhc3ColorYz> lastColorYzOp = colorYzRepository
-								.findFirstByTablesAndTypeAndPhaseLessThanOrderByPhaseDesc(tables + "", type,
-										tm.getPhase());
+						Optional<Lhc3ColorYz> lastColorYzOp = colorYzRepository.findFirstByTablesAndTypeAndPhaseLessThanOrderByPhaseDesc(tables + "", type,
+								tm.getPhase());
 						Lhc3ColorYz lastColorYz = lastColorYzOp.orElseGet(Lhc3ColorYz::new);
-						List<Lhc3ColorYz> lastLimitedColorYzList = colorYzRepository
-								.findTop100ByTablesAndTypeAndPhaseLessThanOrderByPhaseDesc(tables + "", type,
-										tm.getPhase());
+						List<Lhc3ColorYz> lastLimitedColorYzList = colorYzRepository.findTop100ByTablesAndTypeAndPhaseLessThanOrderByPhaseDesc(tables + "", type,
+								tm.getPhase());
 						Optional<Lhc3ColorYz> lastLimitedColorYzOp = Optional.empty();
 						if (lastLimitedColorYzList != null && lastLimitedColorYzList.size() == 100) {
 							lastLimitedColorYzOp = Optional.of(lastLimitedColorYzList.get(99));
@@ -1415,9 +1433,8 @@ public class Lhc3TimesColorService {
 
 						colorYzRepository.save(colorYz);
 
-						Optional<Lhc3ColorYz2> lastColorYz2Op = colorYz2Repository
-								.findFirstByTablesAndTypeAndPhaseLessThanOrderByPhaseDesc(tables + "", type,
-										tm.getPhase());
+						Optional<Lhc3ColorYz2> lastColorYz2Op = colorYz2Repository.findFirstByTablesAndTypeAndPhaseLessThanOrderByPhaseDesc(tables + "", type,
+								tm.getPhase());
 						Lhc3ColorYz2 colorYz2 = new Lhc3ColorYz2();
 						colorYz2.setPhase(tm.getPhase());
 						colorYz2.setTables(tables + "");
@@ -1427,7 +1444,7 @@ public class Lhc3TimesColorService {
 							colorYz2.setWrPos(0);
 							colorYz2.setWrBase(1);
 							colorYz2.setWrColor(colorYz.getWrColor());
-							if(colorYz.getWrColor().equals("red")) {
+							if (colorYz.getWrColor().equals("red")) {
 								colorYz2.setWrIncome(48.5 * colorYz2.getWr());
 							}
 							colorYz2.setYzr(1);
@@ -1464,9 +1481,8 @@ public class Lhc3TimesColorService {
 							colorYz2.setYzgIncomet(colorYz2.getYzgIncome());
 							colorYz2.setYzgIncomelt(colorYz2.getYzgIncome());
 						} else {
-							List<Lhc3ColorYz2> lastLimitedColorYz2List = colorYz2Repository
-									.findTop100ByTablesAndTypeAndPhaseLessThanOrderByPhaseDesc(tables + "", type,
-											tm.getPhase());
+							List<Lhc3ColorYz2> lastLimitedColorYz2List = colorYz2Repository.findTop100ByTablesAndTypeAndPhaseLessThanOrderByPhaseDesc(tables + "",
+									type, tm.getPhase());
 							Lhc3ColorYz2 lastLimitedYz = null;
 							if (lastLimitedColorYz2List != null && lastLimitedColorYz2List.size() == 100) {
 								lastLimitedYz = lastLimitedColorYz2List.get(99);
@@ -1489,10 +1505,10 @@ public class Lhc3TimesColorService {
 	}
 
 	private int[] whiteTimes = { 1, 3, 7, 15, 32, 67, 141, 293, 611, 611 };
-	private int[] redTimes = { 1 , 7, 17, 45, 45};
+	private int[] redTimes = { 1, 7, 17, 45, 45 };
 
-	private void setColor2(Lhc3ColorYz2 lastYz, Lhc3ColorYz yz, Lhc3ColorYz2 colorYz2, String method, String specColor,
-			Lhc3ColorYz2 lastLimitedYz) throws Exception {
+	private void setColor2(Lhc3ColorYz2 lastYz, Lhc3ColorYz yz, Lhc3ColorYz2 colorYz2, String method, String specColor, Lhc3ColorYz2 lastLimitedYz)
+			throws Exception {
 
 		Method colorGm = null;
 		if (method.equals("Wr")) {
