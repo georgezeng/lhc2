@@ -8,4 +8,5 @@ import net.geozen.lhc3.domain.Lhc3Stake;
 
 public interface Lhc3StakeRepository extends JpaRepository<Lhc3Stake, Long> {
 	Optional<Lhc3Stake> findFirstByTypeOrderByPhaseDesc(String type);
+	Optional<Lhc3Stake> findFirstByTypeAndPhaseLessThanOrderByPhaseDesc(String type, String phase);
 }

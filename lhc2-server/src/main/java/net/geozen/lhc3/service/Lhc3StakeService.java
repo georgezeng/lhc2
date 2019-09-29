@@ -55,12 +55,19 @@ public class Lhc3StakeService {
 						}
 					}
 				}
+				Optional<Lhc3Stake> lastOp = repository.findFirstByTypeAndPhaseLessThanOrderByPhaseDesc(type, tm.getPhase());
+				BigDecimal historyAmount = BigDecimal.ZERO;
+				BigDecimal historyBonus = BigDecimal.ZERO;
+				if (lastOp.isPresent()) {
+					historyAmount = lastOp.get().getHistoryAmount();
+					historyBonus = lastOp.get().getHistoryBonus();
+				}
 				Lhc3Stake stake = new Lhc3Stake();
 				stake.setType(type);
 				stake.setNum(tm.getNum());
 				stake.setPhase(tm.getPhase());
 				stake.setCurrentAmount(new BigDecimal(count));
-				stake.setHistoryAmount(stake.getHistoryAmount().add(stake.getCurrentAmount()));
+				stake.setHistoryAmount(historyAmount.add(stake.getCurrentAmount()));
 				Map.Entry<Integer, Integer> bonusEntry = null;
 				for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
 					if (entry.getKey() == tm.getNum()) {
@@ -71,7 +78,7 @@ public class Lhc3StakeService {
 				}
 				if (bonusEntry != null) {
 					stake.setLastBonus(new BigDecimal(bonusEntry.getValue()).multiply(new BigDecimal("48.5")));
-					stake.setHistoryBonus(stake.getHistoryBonus().add(stake.getLastBonus()));
+					stake.setHistoryBonus(historyBonus.add(stake.getLastBonus()));
 				}
 				repository.save(stake);
 			}
