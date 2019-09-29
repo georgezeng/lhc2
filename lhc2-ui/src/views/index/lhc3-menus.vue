@@ -119,6 +119,10 @@
                 <MenuItem name="lhc3-fd-sw">顺表</MenuItem>
             </MenuGroup>
         </Submenu>
+        <MenuItem name="lhc3-stake">
+            <Icon type="ios-paper" />
+            投注
+        </MenuItem>
         <Submenu name="stat">
             <template slot="title">
                 <Icon type="ios-stats" />

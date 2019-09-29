@@ -359,6 +359,7 @@ public class Lhc3PickNumService {
 				pickNumForP7P8(tm, infos.subList(47, 51), 4, "P8");
 				pickNumForP7P8(tm, infos.subList(51, 55), 5, "P8");
 				pickNumForP7P8(tm, infos.subList(35, 55), 20, "P8");
+				
 			}
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);

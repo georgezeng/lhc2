@@ -11,7 +11,7 @@
                 <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
-                         类型7A统计
+                         类型7统计
                     </p>
                     <Table stripe border size="small" :loading="loading" :columns="columns" :data="data"/>
                     <div class="page">
@@ -42,8 +42,8 @@
             return {
                 queryInfo: {
                     data: {
-                        expected: 16,
-                        type: 'P7A'
+                        expected: 12,
+                        type: 'P7'
                     },
                     page: {
                         num: 1,

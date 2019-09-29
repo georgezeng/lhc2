@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
-import lombok.extern.slf4j.Slf4j;
 import net.geozen.lhc2.utils.CommonUtil;
 import net.geozen.lhc3.constant.SystemConfigKeys;
 import net.geozen.lhc3.domain.Lhc3Tm;
@@ -102,6 +101,9 @@ public class Lhc3CalculationService {
 
 	@Autowired
 	private Lhc3PickNumService pickNumService;
+	
+	@Autowired
+	private Lhc3StakeService stakeService;
 
 	@Autowired
 	private Lhc3TimesColorService timesColorService;
@@ -143,6 +145,11 @@ public class Lhc3CalculationService {
 					CommonUtil.wait(futures);
 					futures.clear();
 					futures.add(pickNumService.cal(tmList));
+					CommonUtil.wait(futures);
+					futures.clear();
+					futures.add(stakeService.cal(tmList, "P7A", 4));
+					futures.add(stakeService.cal(tmList, "P7B", 3));
+					futures.add(stakeService.cal(tmList, "P8", 5));
 					CommonUtil.wait(futures);
 					futures.clear();
 //					futures.add(timesColorService.cal(tmList, 9, "P1"));

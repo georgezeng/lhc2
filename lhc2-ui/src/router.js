@@ -43,6 +43,30 @@ const RouterConfig = {
             component: (resolve) => require(['./views/lhc3/tm.vue'], resolve)
         },
         {
+            path: '/lhc3/stake/P7A',
+            name: 'lhc3-stake-P7A',
+            meta: {
+                title: `${prefix}类型7A-投注`
+            },
+            component: (resolve) => require(['./views/lhc3/stake/stake-P7A.vue'], resolve)
+        },
+        {
+            path: '/lhc3/stake/P7B',
+            name: 'lhc3-stake-P7B',
+            meta: {
+                title: `${prefix}类型7B-投注`
+            },
+            component: (resolve) => require(['./views/lhc3/stake/stake-P7B.vue'], resolve)
+        },
+        {
+            path: '/lhc3/stake/P8',
+            name: 'lhc3-stake-P8',
+            meta: {
+                title: `${prefix}类型8-投注`
+            },
+            component: (resolve) => require(['./views/lhc3/stake/stake-P8.vue'], resolve)
+        },
+        {
             path: '/stat-s2-s3',
             name: 'stat-s2-s3',
             meta: {

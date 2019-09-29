@@ -288,10 +288,19 @@ export default {
         });
     },
 
-
     getAnalyze1(queryInfo) {
         return new Promise((resolve, reject) => {
             util.ajax.post(`/analyze/list`, queryInfo).then(data => {
+                resolve(data);
+            }).catch(ex => {
+                reject(ex);
+            });
+        });
+    },
+
+    getLhc3Stake(type) {
+        return new Promise((resolve, reject) => {
+            util.ajax.get(`/lhc3/stake/` + type).then(data => {
                 resolve(data);
             }).catch(ex => {
                 reject(ex);
