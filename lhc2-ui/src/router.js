@@ -270,7 +270,7 @@ const RouterConfig = {
             path: '/lhc3/comparision-1-P7B',
             name: 'lhc3-comparision-1-P7B',
             meta: {
-                title: `${prefix}数据对比-P7B-3表-1`
+                title: `${prefix}数据对比-P7B-5表-1`
             },
             component: (resolve) => require(['./views/lhc3/comparision/comparision-1-P7B.vue'], resolve)
         },
@@ -286,7 +286,7 @@ const RouterConfig = {
             path: '/lhc3/comparision-2-P7B',
             name: 'lhc3-comparision-2-P7B',
             meta: {
-                title: `${prefix}数据对比-P7B-3表-2`
+                title: `${prefix}数据对比-P7B-5表-2`
             },
             component: (resolve) => require(['./views/lhc3/comparision/comparision-2-P7B.vue'], resolve)
         },
@@ -302,7 +302,7 @@ const RouterConfig = {
             path: '/lhc3/comparision-3-P7B',
             name: 'lhc3-comparision-3-P7B',
             meta: {
-                title: `${prefix}数据对比-P7B-3表-3`
+                title: `${prefix}数据对比-P7B-5表-3`
             },
             component: (resolve) => require(['./views/lhc3/comparision/comparision-3-P7B.vue'], resolve)
         },
@@ -334,7 +334,7 @@ const RouterConfig = {
             path: '/lhc3/comparision-1-P8',
             name: 'lhc3-comparision-1-P8',
             meta: {
-                title: `${prefix}数据对比-5表-1`
+                title: `${prefix}数据对比-4表-1`
             },
             component: (resolve) => require(['./views/lhc3/comparision/comparision-1-P8.vue'], resolve)
         },
@@ -342,7 +342,7 @@ const RouterConfig = {
             path: '/lhc3/comparision-2-P8',
             name: 'lhc3-comparision-2-P8',
             meta: {
-                title: `${prefix}数据对比-5表-2`
+                title: `${prefix}数据对比-4表-2`
             },
             component: (resolve) => require(['./views/lhc3/comparision/comparision-2-P8.vue'], resolve)
         },
@@ -350,7 +350,7 @@ const RouterConfig = {
             path: '/lhc3/comparision-3-P8',
             name: 'lhc3-comparision-3-P8',
             meta: {
-                title: `${prefix}数据对比-5表-3`
+                title: `${prefix}数据对比-4表-3`
             },
             component: (resolve) => require(['./views/lhc3/comparision/comparision-3-P8.vue'], resolve)
         },
@@ -358,7 +358,7 @@ const RouterConfig = {
             path: '/lhc3/comparision-4-P8',
             name: 'lhc3-comparision-4-P8',
             meta: {
-                title: `${prefix}数据对比-5表-4`
+                title: `${prefix}数据对比-4表-4`
             },
             component: (resolve) => require(['./views/lhc3/comparision/comparision-4-P8.vue'], resolve)
         },
@@ -366,7 +366,7 @@ const RouterConfig = {
             path: '/lhc3/comparision-5-P8',
             name: 'lhc3-comparision-5-P8',
             meta: {
-                title: `${prefix}数据对比-5表-5`
+                title: `${prefix}数据对比-4表-5`
             },
             component: (resolve) => require(['./views/lhc3/comparision/comparision-5-P8.vue'], resolve)
         },

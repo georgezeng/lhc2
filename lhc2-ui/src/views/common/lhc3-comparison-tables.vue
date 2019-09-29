@@ -7,7 +7,7 @@
             <Icon type="ios-stats-outline"/>
             {{tables}}表次数/颜色遗值表
         </p>
-        <Table class="times-colors" style="float:left; width: 400px;" stripe border size="small" :loading="loading1"
+        <Table class="times-colors" style="float:left; width: 450px;" stripe border size="small" :loading="loading1"
                :columns="columns1" :data="data1"/>
         <Table class="times-colors" style="float:left; width: 1235px;" stripe border size="small" :loading="loading2"
                :columns="columns2" :data="data2"/>
