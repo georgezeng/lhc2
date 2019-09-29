@@ -338,20 +338,27 @@ public class Lhc3PickNumService {
 						return compare;
 					}
 				});
-				pickNumForP1(tm, infos);
-				pickNum(tm, infos.subList(0, 12), 9, "P2");
-				pickNum(tm, infos.subList(12, 24), 9, "P3");
-				pickNumForP4(tm, infos);
-				pickNumForP5(tm, infos);
-				pickNumForP6(tm, infos);
-				pickNumForP7P8(tm, infos.subList(0, 4), 1, "P7");
-				pickNumForP7P8(tm, infos.subList(4, 8), 2, "P7");
-				pickNumForP7P8(tm, infos.subList(8, 12), 3, "P7");
-				pickNumForP7P8(tm, infos.subList(0, 12), 12, "P7");
-				pickNumForP7P8(tm, infos.subList(43, 47), 1, "P8");
-				pickNumForP7P8(tm, infos.subList(47, 51), 2, "P8");
-				pickNumForP7P8(tm, infos.subList(51, 55), 3, "P8");
-				pickNumForP7P8(tm, infos.subList(43, 55), 12, "P8");
+//				pickNumForP1(tm, infos);
+//				pickNum(tm, infos.subList(0, 12), 9, "P2");
+//				pickNum(tm, infos.subList(12, 24), 9, "P3");
+//				pickNumForP4(tm, infos);
+//				pickNumForP5(tm, infos);
+//				pickNumForP6(tm, infos);
+				pickNumForP7P8(tm, infos.subList(0, 4), 1, "P7A");
+				pickNumForP7P8(tm, infos.subList(4, 8), 2, "P7A");
+				pickNumForP7P8(tm, infos.subList(8, 12), 3, "P7A");
+				pickNumForP7P8(tm, infos.subList(12, 16), 4, "P7A");
+				pickNumForP7P8(tm, infos.subList(0, 16), 16, "P7A");
+				pickNumForP7P8(tm, infos.subList(0, 5), 1, "P7B");
+				pickNumForP7P8(tm, infos.subList(5, 10), 2, "P7B");
+				pickNumForP7P8(tm, infos.subList(10, 15), 3, "P7B");
+				pickNumForP7P8(tm, infos.subList(0, 15), 15, "P7B");
+				pickNumForP7P8(tm, infos.subList(35, 39), 1, "P8");
+				pickNumForP7P8(tm, infos.subList(39, 43), 2, "P8");
+				pickNumForP7P8(tm, infos.subList(43, 47), 3, "P8");
+				pickNumForP7P8(tm, infos.subList(47, 51), 4, "P8");
+				pickNumForP7P8(tm, infos.subList(51, 55), 5, "P8");
+				pickNumForP7P8(tm, infos.subList(35, 55), 20, "P8");
 			}
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);

@@ -89,61 +89,52 @@ public class Lhc3TimesColorService {
 						if (lastLimitedYzList != null && lastLimitedYzList.size() == 100) {
 							lastLmitedTimesYz = lastLimitedYzList.get(99);
 						}
-						if (tmInfo.getCount() == 0 || tmInfo.getCount() > 2) {
+						if (tmInfo.getCount() == 0) {
 							color = "red";
 							int lastLimitedCount = 0;
 							if (lastLmitedTimesYz != null) {
-								lastLimitedCount = lastLmitedTimesYz.getT03Plus();
+								lastLimitedCount = lastLmitedTimesYz.getT0();
 							}
-							timesYz.setLt12(lastTimesYz.getLt12());
-							timesYz.setLt2Plus(lastTimesYz.getLt2Plus());
-							timesYz.setLt03Plus(lastTimesYz.getT03Plus() + 1 - lastLimitedCount);
-							timesYz.setT12(lastTimesYz.getT12());
-							timesYz.setT2Plus(lastTimesYz.getT2Plus());
-							timesYz.setT03Plus(lastTimesYz.getT03Plus() + 1);
-							timesYz.setTime03Plus(0);
-							timesYz.setTime12(lastTimesYz.getTime12() + 1);
+							timesYz.setLt0(lastTimesYz.getT0() + 1 - lastLimitedCount);
+							timesYz.setLt1(lastTimesYz.getLt1());
+							timesYz.setLt2(lastTimesYz.getLt2());
+							timesYz.setLt3Plus(lastTimesYz.getLt3Plus());
+							timesYz.setLt1Plus(lastTimesYz.getLt1Plus());
+							timesYz.setT0(lastTimesYz.getT0() + 1);
+							timesYz.setT1(lastTimesYz.getT1());
+							timesYz.setT2(lastTimesYz.getT2());
+							timesYz.setT3Plus(lastTimesYz.getT3Plus());
+							timesYz.setT1Plus(lastTimesYz.getT1Plus());
+							timesYz.setTime0(0);
+							timesYz.setTime1(lastTimesYz.getTime1() + 1);
+							timesYz.setTime2(lastTimesYz.getTime2() + 1);
+							timesYz.setTime3Plus(lastTimesYz.getTime3Plus() + 1);
+							timesYz.setTime1Plus(lastTimesYz.getTime1Plus() + 1);
 						} else {
 							color = "green";
-							timesYz.setTime03Plus(lastTimesYz.getTime03Plus() + 1);
-							timesYz.setTime12(0);
-							int lastLimitedCount = 0;
-							if (lastLmitedTimesYz != null) {
-								lastLimitedCount = lastLmitedTimesYz.getT12();
-							}
-							timesYz.setLt12(lastTimesYz.getT12() + 1 - lastLimitedCount);
-							timesYz.setLt2Plus(lastTimesYz.getLt2Plus());
-							timesYz.setLt03Plus(lastTimesYz.getLt03Plus());
-							timesYz.setT12(lastTimesYz.getT12() + 1);
-							timesYz.setT2Plus(lastTimesYz.getT2Plus());
-							timesYz.setT03Plus(lastTimesYz.getT03Plus());
-						}
-						if (tmInfo.getCount() > 1) {
-							timesYz.setTime2Plus(0);
+							timesYz.setLt0(lastTimesYz.getLt0());
+							timesYz.setLt1(lastTimesYz.getLt1());
+							timesYz.setLt2(lastTimesYz.getLt2());
 							if (tmInfo.getCount() > 2) {
-								timesYz.setLt12(lastTimesYz.getLt12());
-								timesYz.setT12(lastTimesYz.getT12());
-							} else {
-								timesYz.setLt03Plus(lastTimesYz.getLt03Plus());
-								timesYz.setT03Plus(lastTimesYz.getT03Plus());
-							}
-							int lastLimitedCount = 0;
+								timesYz.setTime3Plus(0);
+								if (lastLmitedTimesYz != null) {
+									timesYz.setLt3Plus(lastTimesYz.getT3Plus() + 1 - lastLmitedTimesYz.getT3Plus());
+								}
+								timesYz.setT3Plus(lastTimesYz.getT3Plus() + 1);
+								timesYz.setT0(lastTimesYz.getT0());
+							} 
 							if (lastLmitedTimesYz != null) {
-								lastLimitedCount = lastLmitedTimesYz.getT2Plus();
+								timesYz.setLt1Plus(lastTimesYz.getT1Plus() + 1 - lastLmitedTimesYz.getT1Plus());
 							}
-							timesYz.setLt2Plus(lastTimesYz.getT2Plus() + 1 - lastLimitedCount);
-							timesYz.setT2Plus(lastTimesYz.getT2Plus() + 1);
-						} else {
-							timesYz.setTime2Plus(lastTimesYz.getTime2Plus() + 1);
-							if (tmInfo.getCount() == 0) {
-								timesYz.setLt12(lastTimesYz.getLt12());
-								timesYz.setT12(lastTimesYz.getT12());
-							} else {
-								timesYz.setLt03Plus(lastTimesYz.getLt03Plus());
-								timesYz.setT03Plus(lastTimesYz.getT03Plus());
-							}
-							timesYz.setLt2Plus(lastTimesYz.getLt2Plus());
-							timesYz.setT2Plus(lastTimesYz.getT2Plus());
+							timesYz.setT1Plus(lastTimesYz.getT1Plus() + 1);
+							timesYz.setT0(lastTimesYz.getT0());
+							timesYz.setT1(lastTimesYz.getT1());
+							timesYz.setT2(lastTimesYz.getT2());
+							timesYz.setTime0(lastTimesYz.getTime0() + 1);
+							timesYz.setTime1(lastTimesYz.getTime1() + 1);
+							timesYz.setTime2(lastTimesYz.getTime2() + 1);
+							timesYz.setTime3Plus(lastTimesYz.getTime3Plus() + 1);
+							timesYz.setTime1Plus(lastTimesYz.getTime1Plus() + 1);
 						}
 						timesYzRepository.save(timesYz);
 

@@ -44,16 +44,17 @@ public class Lhc3ComparisionController {
 
 			Lhc3TimesYz topForTotal = new Lhc3TimesYz();
 			topForTotal.setPhase("红白个数(无限)");
-			topForTotal.setTime03Plus(first.getT03Plus());
-			topForTotal.setTime12(first.getT12());
-			topForTotal.setTime2Plus(first.getT2Plus());
+			topForTotal.setTime0(first.getT0());
+			topForTotal.setTime1(first.getT1());
+			topForTotal.setTime2(first.getT2());
+			topForTotal.setTime3Plus(first.getT3Plus());
 			list.add(0, topForTotal);
 
 			Lhc3TimesYz topForLimitedTotal = new Lhc3TimesYz();
-			topForLimitedTotal.setPhase("红白个数(有限)");
-			topForLimitedTotal.setTime03Plus(first.getLt03Plus());
-			topForLimitedTotal.setTime12(first.getLt12());
-			topForLimitedTotal.setTime2Plus(first.getLt2Plus());
+			topForLimitedTotal.setTime0(first.getLt0());
+			topForLimitedTotal.setTime1(first.getLt1());
+			topForLimitedTotal.setTime2(first.getLt2());
+			topForLimitedTotal.setTime3Plus(first.getLt3Plus());
 			list.add(0, topForLimitedTotal);
 			return Result.genSuccessResult(new PageResult<>(list, result.getTotalElements()));
 		}

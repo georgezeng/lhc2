@@ -6,8 +6,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import lombok.Data;
-
 @Entity
 @Table(name = "lhc3_times_yz")
 public class Lhc3TimesYz {
@@ -35,65 +33,101 @@ public class Lhc3TimesYz {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public int getTime12() {
-		return time12;
-	}
-	public void setTime12(int time12) {
-		this.time12 = time12;
-	}
-	public int getTime2Plus() {
-		return time2Plus;
-	}
-	public void setTime2Plus(int time2Plus) {
-		this.time2Plus = time2Plus;
-	}
-	public int getTime03Plus() {
-		return time03Plus;
-	}
-	public void setTime03Plus(int time03Plus) {
-		this.time03Plus = time03Plus;
-	}
 	public int getNum() {
 		return num;
 	}
 	public void setNum(int num) {
 		this.num = num;
 	}
-	public int getLt12() {
-		return lt12;
+	public int getTime0() {
+		return time0;
 	}
-	public void setLt12(int lt12) {
-		this.lt12 = lt12;
+	public void setTime0(int time0) {
+		this.time0 = time0;
 	}
-	public int getLt2Plus() {
-		return lt2Plus;
+	public int getTime1() {
+		return time1;
 	}
-	public void setLt2Plus(int lt2Plus) {
-		this.lt2Plus = lt2Plus;
+	public void setTime1(int time1) {
+		this.time1 = time1;
 	}
-	public int getLt03Plus() {
-		return lt03Plus;
+	public int getTime2() {
+		return time2;
 	}
-	public void setLt03Plus(int lt03Plus) {
-		this.lt03Plus = lt03Plus;
+	public void setTime2(int time2) {
+		this.time2 = time2;
 	}
-	public int getT12() {
-		return t12;
+	public int getTime3Plus() {
+		return time3Plus;
 	}
-	public void setT12(int t12) {
-		this.t12 = t12;
+	public void setTime3Plus(int time3Plus) {
+		this.time3Plus = time3Plus;
 	}
-	public int getT2Plus() {
-		return t2Plus;
+	public int getLt0() {
+		return lt0;
 	}
-	public void setT2Plus(int t2Plus) {
-		this.t2Plus = t2Plus;
+	public void setLt0(int lt0) {
+		this.lt0 = lt0;
 	}
-	public int getT03Plus() {
-		return t03Plus;
+	public int getLt1() {
+		return lt1;
 	}
-	public void setT03Plus(int t03Plus) {
-		this.t03Plus = t03Plus;
+	public void setLt1(int lt1) {
+		this.lt1 = lt1;
+	}
+	public int getLt2() {
+		return lt2;
+	}
+	public void setLt2(int lt2) {
+		this.lt2 = lt2;
+	}
+	public int getLt3Plus() {
+		return lt3Plus;
+	}
+	public void setLt3Plus(int lt3Plus) {
+		this.lt3Plus = lt3Plus;
+	}
+	public int getT0() {
+		return t0;
+	}
+	public void setT0(int t0) {
+		this.t0 = t0;
+	}
+	public int getT1() {
+		return t1;
+	}
+	public void setT1(int t1) {
+		this.t1 = t1;
+	}
+	public int getT2() {
+		return t2;
+	}
+	public void setT2(int t2) {
+		this.t2 = t2;
+	}
+	public int getT3Plus() {
+		return t3Plus;
+	}
+	public void setT3Plus(int t3Plus) {
+		this.t3Plus = t3Plus;
+	}
+	public int getTime1Plus() {
+		return time1Plus;
+	}
+	public void setTime1Plus(int time1Plus) {
+		this.time1Plus = time1Plus;
+	}
+	public int getLt1Plus() {
+		return lt1Plus;
+	}
+	public void setLt1Plus(int lt1Plus) {
+		this.lt1Plus = lt1Plus;
+	}
+	public int getT1Plus() {
+		return t1Plus;
+	}
+	public void setT1Plus(int t1Plus) {
+		this.t1Plus = t1Plus;
 	}
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -101,14 +135,20 @@ public class Lhc3TimesYz {
 	private String phase;
 	private String tables;
 	private String type;
-	private int time12;
-	private int time2Plus;
-	private int time03Plus;
 	private int num;
-	private int lt12;
-	private int lt2Plus;
-	private int lt03Plus;
-	private int t12;
-	private int t2Plus;
-	private int t03Plus;
+	private int time0;
+	private int time1;
+	private int time2;
+	private int time3Plus;
+	private int time1Plus;
+	private int lt0;
+	private int lt1;
+	private int lt2;
+	private int lt3Plus;
+	private int lt1Plus;
+	private int t0;
+	private int t1;
+	private int t2;
+	private int t3Plus;
+	private int t1Plus;
 }

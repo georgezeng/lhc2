@@ -57,12 +57,12 @@
                         key: 'num'
                     },
                     {
-                        title: '0次/3+次',
+                        title: '0次',
                         width: 70,
                         render(h, params) {
                             const style = {};
                             style['padding'] = '10px';
-                            const data = params.row.time03Plus;
+                            const data = params.row.time0;
                             if (data == 0) {
                                 style['background-color'] = 'red';
                                 style['color'] = 'white';
@@ -72,12 +72,12 @@
                         }
                     },
                     {
-                        title: '1-2次',
+                        title: '1次',
                         width: 70,
                         render(h, params) {
                             const style = {};
                             style['padding'] = '10px';
-                            const data = params.row.time12;
+                            const data = params.row.time1;
                             if (data == 0) {
                                 style['background-color'] = 'red';
                                 style['color'] = 'white';
@@ -87,12 +87,27 @@
                         }
                     },
                     {
-                        title: '2+次',
+                        title: '2次',
                         width: 70,
                         render(h, params) {
                             const style = {};
                             style['padding'] = '10px';
-                            const data = params.row.time2Plus;
+                            const data = params.row.time2;
+                            if (data == 0) {
+                                style['background-color'] = 'red';
+                                style['color'] = 'white';
+                                style['font-weight'] = 'bold';
+                            }
+                            return h('span', {style}, data);
+                        }
+                    },
+                    {
+                        title: '3+次',
+                        width: 70,
+                        render(h, params) {
+                            const style = {};
+                            style['padding'] = '10px';
+                            const data = params.row.time3Plus;
                             if (data == 0) {
                                 style['background-color'] = 'red';
                                 style['color'] = 'white';
