@@ -11,7 +11,7 @@
                 <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
-                         类型7B-4表-2统计
+                         类型7B-3表-2统计
                     </p>
                     <Table stripe border size="small" :loading="loading" :columns="columns" :data="data"/>
                     <div class="page">
@@ -93,7 +93,7 @@
                 this.loading = true;
                 this.queryInfo.data.expected = 2
                 API.getLhc3PickNums(this.queryInfo).then(b1 => {
-                    this.queryInfo.data.expected = 16
+                    this.queryInfo.data.expected = 15
                     API.getLhc3PickNums(this.queryInfo).then(result => {
                         this.total = result.total
                         this.data = []
