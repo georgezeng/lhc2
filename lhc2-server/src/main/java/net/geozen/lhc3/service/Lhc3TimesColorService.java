@@ -125,6 +125,7 @@ public class Lhc3TimesColorService {
 								}
 								timesYz.setLt1(lastTimesYz.getT1() + 1 - lastLimitedCount);
 								timesYz.setLt2(lastTimesYz.getLt2());
+								timesYz.setLt3Plus(lastTimesYz.getLt3Plus());
 								timesYz.setT1(lastTimesYz.getT1() + 1);
 								timesYz.setT2(lastTimesYz.getT2());
 								timesYz.setT3Plus(lastTimesYz.getT3Plus());
@@ -140,6 +141,7 @@ public class Lhc3TimesColorService {
 									lastLimitedCount = lastLmitedTimesYz.getT2();
 								}
 								timesYz.setLt2(lastTimesYz.getT2() + 1 - lastLimitedCount);
+								timesYz.setLt3Plus(lastTimesYz.getLt3Plus());
 								timesYz.setT1(lastTimesYz.getT1());
 								timesYz.setT2(lastTimesYz.getT2() + 1);
 								timesYz.setT3Plus(lastTimesYz.getT3Plus());
