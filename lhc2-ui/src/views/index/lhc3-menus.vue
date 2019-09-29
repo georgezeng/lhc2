@@ -192,7 +192,7 @@
                 <MenuItem name="lhc3-comparision-3-P8">4表-3</MenuItem>
                 <MenuItem name="lhc3-comparision-4-P8">4表-4</MenuItem>
                 <MenuItem name="lhc3-comparision-5-P8">4表-5</MenuItem>
-                <MenuItem name="lhc3-comparision-16-P8">20表</MenuItem>
+                <MenuItem name="lhc3-comparision-20-P8">20表</MenuItem>
             </MenuGroup>
         </Submenu>
         <!--
