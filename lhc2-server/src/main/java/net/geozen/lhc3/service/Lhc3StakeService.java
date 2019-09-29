@@ -65,7 +65,7 @@ public class Lhc3StakeService {
 					if (entry.getKey() == tm.getNum()) {
 						bonusEntry = entry;
 					}
-					Method m = Lhc3Stake.class.getDeclaredMethod("setTime" + entry.getKey(), Integer.class);
+					Method m = Lhc3Stake.class.getDeclaredMethod("setTime" + entry.getKey(), int.class);
 					m.invoke(stake, entry.getValue());
 				}
 				if (bonusEntry != null) {
