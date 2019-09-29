@@ -151,14 +151,21 @@ public class Lhc3CalculationService {
 //					futures.add(timesColorService.cal(tmList, 9, "P4"));
 //					futures.add(timesColorService.cal(tmList, 9, "P5"));
 //					futures.add(timesColorService.cal(tmList, 9, "P6"));
-					futures.add(timesColorService.cal(tmList, 1, "P7"));
-					futures.add(timesColorService.cal(tmList, 2, "P7"));
-					futures.add(timesColorService.cal(tmList, 3, "P7"));
-					futures.add(timesColorService.cal(tmList, 12, "P7"));
+					futures.add(timesColorService.cal(tmList, 1, "P7A"));
+					futures.add(timesColorService.cal(tmList, 2, "P7A"));
+					futures.add(timesColorService.cal(tmList, 3, "P7A"));
+					futures.add(timesColorService.cal(tmList, 4, "P7A"));
+					futures.add(timesColorService.cal(tmList, 16, "P7A"));
+					futures.add(timesColorService.cal(tmList, 1, "P7B"));
+					futures.add(timesColorService.cal(tmList, 2, "P7B"));
+					futures.add(timesColorService.cal(tmList, 3, "P7B"));
+					futures.add(timesColorService.cal(tmList, 15, "P7B"));
 					futures.add(timesColorService.cal(tmList, 1, "P8"));
 					futures.add(timesColorService.cal(tmList, 2, "P8"));
 					futures.add(timesColorService.cal(tmList, 3, "P8"));
-					futures.add(timesColorService.cal(tmList, 12, "P8"));
+					futures.add(timesColorService.cal(tmList, 4, "P8"));
+					futures.add(timesColorService.cal(tmList, 5, "P8"));
+					futures.add(timesColorService.cal(tmList, 20, "P8"));
 					CommonUtil.wait(futures);
 				}
 			} catch (Exception e) {

@@ -11,7 +11,7 @@
                 <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
-                         类型8-5表-3统计
+                         类型8-4表-3统计
                     </p>
                     <Table stripe border size="small" :loading="loading" :columns="columns" :data="data"/>
                     <div class="page">
