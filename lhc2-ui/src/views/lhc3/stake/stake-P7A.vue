@@ -13,15 +13,20 @@
                         <Icon type="ios-albums-outline"/>
                         类型7A - 投注
                     </p>
-                    <Table style="margin-bottom: 10px;" stripe border size="small" :loading="loading" :columns="columns1"
+                    <Table style="margin-bottom: 10px;" stripe border size="small" :loading="loading"
+                           :columns="columns1"
                            :data="data1"/>
-                    <Table style="margin-bottom: 10px;" stripe border size="small" :loading="loading" :columns="columns2"
+                    <Table style="margin-bottom: 10px;" stripe border size="small" :loading="loading"
+                           :columns="columns2"
                            :data="data2"/>
-                    <Table style="margin-bottom: 10px;" stripe border size="small" :loading="loading" :columns="columns3"
+                    <Table style="margin-bottom: 10px;" stripe border size="small" :loading="loading"
+                           :columns="columns3"
                            :data="data3"/>
-                    <Table style="margin-bottom: 10px;" stripe border size="small" :loading="loading" :columns="columns4"
+                    <Table style="margin-bottom: 10px;" stripe border size="small" :loading="loading"
+                           :columns="columns4"
                            :data="data4"/>
-                    <Table style="margin-bottom: 10px;" stripe border size="small" :loading="loading" :columns="columns5"
+                    <Table style="margin-bottom: 10px;" stripe border size="small" :loading="loading"
+                           :columns="columns5"
                            :data="data5"/>
                     <Table stripe border size="small" :loading="loading" :columns="columns6"
                            :data="data6"/>
@@ -68,11 +73,14 @@
                         width: 50,
                         key: 'time1',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time1 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time1)
                         }
                     },
@@ -81,11 +89,14 @@
                         width: 50,
                         key: 'time2',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time2 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time2)
                         }
                     },
@@ -94,11 +105,14 @@
                         width: 50,
                         key: 'time3',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time3 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time3)
                         }
                     },
@@ -107,11 +121,14 @@
                         width: 50,
                         key: 'time4',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time4 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time4)
                         }
                     },
@@ -120,11 +137,14 @@
                         width: 50,
                         key: 'time5',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time5 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time5)
                         }
                     },
@@ -133,11 +153,14 @@
                         width: 50,
                         key: 'time6',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time6 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time6)
                         }
                     },
@@ -146,11 +169,14 @@
                         width: 50,
                         key: 'time7',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time7 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time7)
                         }
                     },
@@ -159,11 +185,14 @@
                         width: 50,
                         key: 'time8',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time8 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time8)
                         }
                     },
@@ -172,11 +201,14 @@
                         width: 50,
                         key: 'time9',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time9 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time9)
                         }
                     },
@@ -185,13 +217,19 @@
                         width: 50,
                         key: 'time10',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time10 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time10)
                         }
+                    },
+                    {
+                        title: '',
                     }
                 ],
                 columns2: [
@@ -210,11 +248,14 @@
                         width: 50,
                         key: 'time11',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time11 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time11)
                         }
                     },
@@ -223,11 +264,14 @@
                         width: 50,
                         key: 'time12',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time12 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time12)
                         }
                     },
@@ -236,11 +280,14 @@
                         width: 50,
                         key: 'time13',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time13 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time13)
                         }
                     },
@@ -249,11 +296,14 @@
                         width: 50,
                         key: 'time14',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time14 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time14)
                         }
                     },
@@ -262,11 +312,14 @@
                         width: 50,
                         key: 'time15',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time15 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time15)
                         }
                     },
@@ -275,11 +328,14 @@
                         width: 50,
                         key: 'time16',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time16 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time16)
                         }
                     },
@@ -288,11 +344,14 @@
                         width: 50,
                         key: 'time17',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time17 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time17)
                         }
                     },
@@ -301,11 +360,14 @@
                         width: 50,
                         key: 'time18',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time18 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time18)
                         }
                     },
@@ -314,11 +376,14 @@
                         width: 50,
                         key: 'time19',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time19 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time19)
                         }
                     },
@@ -327,13 +392,19 @@
                         width: 50,
                         key: 'time20',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time20 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time20)
                         }
+                    },
+                    {
+                        title: '',
                     }
                 ],
                 columns3: [
@@ -352,11 +423,14 @@
                         width: 50,
                         key: 'time21',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time21 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time21)
                         }
                     },
@@ -365,11 +439,14 @@
                         width: 50,
                         key: 'time22',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time22 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time22)
                         }
                     },
@@ -378,11 +455,14 @@
                         width: 50,
                         key: 'time23',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time23 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time23)
                         }
                     },
@@ -391,11 +471,14 @@
                         width: 50,
                         key: 'time24',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time24 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time24)
                         }
                     },
@@ -404,11 +487,14 @@
                         width: 50,
                         key: 'time25',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time25 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time25)
                         }
                     },
@@ -417,11 +503,14 @@
                         width: 50,
                         key: 'time26',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time26 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time26)
                         }
                     },
@@ -430,11 +519,14 @@
                         width: 50,
                         key: 'time27',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time27 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time27)
                         }
                     },
@@ -443,11 +535,14 @@
                         width: 50,
                         key: 'time28',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time28 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time28)
                         }
                     },
@@ -456,11 +551,14 @@
                         width: 50,
                         key: 'time29',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time29 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time29)
                         }
                     },
@@ -469,13 +567,19 @@
                         width: 50,
                         key: 'time30',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time30 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time30)
                         }
+                    },
+                    {
+                        title: '',
                     }
                 ],
                 columns4: [
@@ -494,11 +598,14 @@
                         width: 50,
                         key: 'time31',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time31 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time31)
                         }
                     },
@@ -507,11 +614,14 @@
                         width: 50,
                         key: 'time32',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time32 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time32)
                         }
                     },
@@ -520,11 +630,14 @@
                         width: 50,
                         key: 'time33',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time33 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time33)
                         }
                     },
@@ -533,11 +646,14 @@
                         width: 50,
                         key: 'time34',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time34 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time34)
                         }
                     },
@@ -546,11 +662,14 @@
                         width: 50,
                         key: 'time35',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time35 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time35)
                         }
                     },
@@ -559,11 +678,14 @@
                         width: 50,
                         key: 'time36',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time36 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time36)
                         }
                     },
@@ -572,11 +694,14 @@
                         width: 50,
                         key: 'time37',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time37 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time37)
                         }
                     },
@@ -585,11 +710,14 @@
                         width: 50,
                         key: 'time38',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time38 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time38)
                         }
                     },
@@ -598,11 +726,14 @@
                         width: 50,
                         key: 'time39',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time39 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time39)
                         }
                     },
@@ -611,13 +742,19 @@
                         width: 50,
                         key: 'time40',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time40 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time40)
                         }
+                    },
+                    {
+                        title: '',
                     }
                 ],
                 columns5: [
@@ -636,11 +773,14 @@
                         width: 50,
                         key: 'time41',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time41 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time41)
                         }
                     },
@@ -649,11 +789,14 @@
                         width: 50,
                         key: 'time42',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time42 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time42)
                         }
                     },
@@ -662,11 +805,14 @@
                         width: 50,
                         key: 'time43',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time43 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time43)
                         }
                     },
@@ -675,11 +821,14 @@
                         width: 50,
                         key: 'time4',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time44 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '45px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time44)
                         }
                     },
@@ -688,11 +837,14 @@
                         width: 50,
                         key: 'time45',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time45 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time45)
                         }
                     },
@@ -701,11 +853,14 @@
                         width: 50,
                         key: 'time46',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time46 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time46)
                         }
                     },
@@ -714,11 +869,14 @@
                         width: 50,
                         key: 'time47',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time47 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time47)
                         }
                     },
@@ -727,11 +885,14 @@
                         width: 50,
                         key: 'time48',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time48 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time48)
                         }
                     },
@@ -740,17 +901,19 @@
                         width: 50,
                         key: 'time49',
                         render: (h, params) => {
+                            const style = {
+                                padding: '5px',
+                            }
+                            if (params.row.time49 > 0) {
+                                style.backgroundColor = 'red'
+                            }
                             return h('span', {
-                                style: {
-                                    padding: '5px',
-                                    backgroundColor: 'red'
-                                }
+                                style
                             }, params.row.time49)
                         }
                     },
                     {
                         title: '',
-                        width: 50,
                     }
                 ],
                 columns6: [
@@ -787,12 +950,13 @@
             loadData() {
                 this.loading = true;
                 API.getLhc3Stake('P7A').then(result => {
-                    this.data1 = result
-                    this.data2 = result
-                    this.data3 = result
-                    this.data4 = result
-                    this.data5 = result
-                    this.data6 = result
+                    const arr = [result]
+                    this.data1 = arr
+                    this.data2 = arr
+                    this.data3 = arr
+                    this.data4 = arr
+                    this.data5 = arr
+                    this.data6 = arr
                     this.loading = false;
                 }).catch(e => {
                     this.loading = false;
