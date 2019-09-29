@@ -77,6 +77,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time1 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -93,6 +94,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time2 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -109,6 +111,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time3 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -125,6 +128,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time4 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -141,6 +145,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time5 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -157,6 +162,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time6 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -173,6 +179,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time7 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -189,6 +196,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time8 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -205,6 +213,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time9 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -221,6 +230,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time10 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -252,6 +262,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time11 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -268,6 +279,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time12 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -284,6 +296,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time13 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -300,6 +313,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time14 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -316,6 +330,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time15 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -332,6 +347,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time16 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -348,6 +364,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time17 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -364,6 +381,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time18 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -380,6 +398,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time19 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -396,6 +415,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time20 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -427,6 +447,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time21 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -443,6 +464,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time22 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -459,6 +481,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time23 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -475,6 +498,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time24 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -491,6 +515,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time25 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -507,6 +532,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time26 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -523,6 +549,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time27 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -539,6 +566,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time28 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -555,6 +583,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time29 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -571,6 +600,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time30 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -602,6 +632,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time31 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -618,6 +649,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time32 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -634,6 +666,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time33 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -650,6 +683,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time34 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -666,6 +700,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time35 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -682,6 +717,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time36 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -698,6 +734,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time37 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -714,6 +751,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time38 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -730,6 +768,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time39 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -746,6 +785,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time40 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -777,6 +817,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time41 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -793,6 +834,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time42 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -809,6 +851,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time43 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -825,6 +868,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time44 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -841,6 +885,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time45 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -857,6 +902,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time46 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -873,6 +919,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time47 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -889,6 +936,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time48 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {
@@ -905,6 +953,7 @@
                                 padding: '5px',
                             }
                             if (params.row.time49 > 0) {
+                                style.color = "#fff"
                                 style.backgroundColor = 'red'
                             }
                             return h('span', {

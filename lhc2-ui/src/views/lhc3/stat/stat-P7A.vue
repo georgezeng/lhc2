@@ -43,7 +43,7 @@
                 queryInfo: {
                     data: {
                         expected: 16,
-                        type: 'P7'
+                        type: 'P7A'
                     },
                     page: {
                         num: 1,
