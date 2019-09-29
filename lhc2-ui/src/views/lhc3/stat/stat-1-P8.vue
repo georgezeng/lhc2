@@ -75,7 +75,7 @@
                         }
                     },
                     {
-                        title: '(1-2)次 - 1+次',
+                        title: '1+次 - 1+次',
                         minWidth: 350,
                         render(h, params) {
                             return h('span', {
@@ -93,7 +93,7 @@
                 this.loading = true;
                 this.queryInfo.data.expected = 1
                 API.getLhc3PickNums(this.queryInfo).then(b1 => {
-                    this.queryInfo.data.expected = 12
+                    this.queryInfo.data.expected = 16
                     API.getLhc3PickNums(this.queryInfo).then(result => {
                         this.total = result.total
                         this.data = []
@@ -107,6 +107,9 @@
                             }
                             if (tempb12.time2) {
                                 time12 += ',' + tempb12.time2
+                            }
+                            if (tempb12.time3Plus) {
+                                time12 += ',' + tempb12.time3Plus
                             }
                             time12 = time12.split(',')
                             const tempb1 = b1.list[i]

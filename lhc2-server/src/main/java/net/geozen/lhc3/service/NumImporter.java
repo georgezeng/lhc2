@@ -43,6 +43,7 @@ public class NumImporter {
 		}
 		String host = "https://" + domain + "/";
 		int index = 1;
+		int size = 100;
 		ObjectMapper mapper = new ObjectMapper();
 		ResponseObject response = null;
 		List<Lhc3Tm> list = new ArrayList<>();
@@ -68,7 +69,7 @@ public class NumImporter {
 									Integer num = Integer.valueOf(nums[6]);
 									tm.setNum(num);
 									list.add(tm);
-									if (list.size() == 3000) {
+									if (list.size() == size) {
 										break out;
 									}
 								}
@@ -81,7 +82,7 @@ public class NumImporter {
 				response.setCode(-1);
 			}
 			index++;
-		} while (list.size() < 3000);
+		} while (list.size() < size);
 		list.sort(new Comparator<Lhc3Tm>() {
 
 			@Override

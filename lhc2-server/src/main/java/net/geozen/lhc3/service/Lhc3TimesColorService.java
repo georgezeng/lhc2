@@ -121,8 +121,10 @@ public class Lhc3TimesColorService {
 									timesYz.setLt3Plus(lastTimesYz.getT3Plus() + 1 - lastLmitedTimesYz.getT3Plus());
 								}
 								timesYz.setT3Plus(lastTimesYz.getT3Plus() + 1);
-								timesYz.setT0(lastTimesYz.getT0());
-							} 
+							} else {
+								timesYz.setTime3Plus(lastTimesYz.getTime3Plus() + 1);
+								timesYz.setT3Plus(lastTimesYz.getT3Plus());
+							}
 							if (lastLmitedTimesYz != null) {
 								timesYz.setLt1Plus(lastTimesYz.getT1Plus() + 1 - lastLmitedTimesYz.getT1Plus());
 							}
@@ -133,8 +135,7 @@ public class Lhc3TimesColorService {
 							timesYz.setTime0(lastTimesYz.getTime0() + 1);
 							timesYz.setTime1(lastTimesYz.getTime1() + 1);
 							timesYz.setTime2(lastTimesYz.getTime2() + 1);
-							timesYz.setTime3Plus(lastTimesYz.getTime3Plus() + 1);
-							timesYz.setTime1Plus(lastTimesYz.getTime1Plus() + 1);
+							timesYz.setTime1Plus(0);
 						}
 						timesYzRepository.save(timesYz);
 

@@ -131,36 +131,76 @@ const RouterConfig = {
             component: (resolve) => require(['./views/lhc3/stat/stat-P6.vue'], resolve)
         },
         {
-            path: '/lhc3/stat-1-P7',
-            name: 'lhc3-stat-1-P7',
+            path: '/lhc3/stat-1-P7A',
+            name: 'lhc3-stat-1-P7A',
             meta: {
-                title: `${prefix}数据统计-类型7-1`
+                title: `${prefix}数据统计-类型7A-1`
             },
-            component: (resolve) => require(['./views/lhc3/stat/stat-1-P7.vue'], resolve)
+            component: (resolve) => require(['./views/lhc3/stat/stat-1-P7A.vue'], resolve)
         },
         {
-            path: '/lhc3/stat-2-P7',
-            name: 'lhc3-stat-2-P7',
+            path: '/lhc3/stat-1-P7B',
+            name: 'lhc3-stat-1-P7B',
             meta: {
-                title: `${prefix}数据统计-类型7-2`
+                title: `${prefix}数据统计-类型7B-1`
             },
-            component: (resolve) => require(['./views/lhc3/stat/stat-2-P7.vue'], resolve)
+            component: (resolve) => require(['./views/lhc3/stat/stat-1-P7B.vue'], resolve)
         },
         {
-            path: '/lhc3/stat-3-P7',
-            name: 'lhc3-stat-3-P7',
+            path: '/lhc3/stat-2-P7A',
+            name: 'lhc3-stat-2-P7A',
             meta: {
-                title: `${prefix}数据统计-类型7-3`
+                title: `${prefix}数据统计-类型7A-2`
             },
-            component: (resolve) => require(['./views/lhc3/stat/stat-3-P7.vue'], resolve)
+            component: (resolve) => require(['./views/lhc3/stat/stat-2-P7A.vue'], resolve)
         },
         {
-            path: '/lhc3/stat-P7',
-            name: 'lhc3-stat-P7',
+            path: '/lhc3/stat-2-P7B',
+            name: 'lhc3-stat-2-P7B',
             meta: {
-                title: `${prefix}数据统计-类型7-12`
+                title: `${prefix}数据统计-类型7B-2`
             },
-            component: (resolve) => require(['./views/lhc3/stat/stat-P7.vue'], resolve)
+            component: (resolve) => require(['./views/lhc3/stat/stat-2-P7B.vue'], resolve)
+        },
+        {
+            path: '/lhc3/stat-3-P7A',
+            name: 'lhc3-stat-3-P7A',
+            meta: {
+                title: `${prefix}数据统计-类型7A-3`
+            },
+            component: (resolve) => require(['./views/lhc3/stat/stat-3-P7A.vue'], resolve)
+        },
+        {
+            path: '/lhc3/stat-3-P7B',
+            name: 'lhc3-stat-3-P7B',
+            meta: {
+                title: `${prefix}数据统计-类型7B-3`
+            },
+            component: (resolve) => require(['./views/lhc3/stat/stat-3-P7B.vue'], resolve)
+        },
+        {
+            path: '/lhc3/stat-4-P7A',
+            name: 'lhc3-stat-4-P7A',
+            meta: {
+                title: `${prefix}数据统计-类型7A-4`
+            },
+            component: (resolve) => require(['./views/lhc3/stat/stat-4-P7A.vue'], resolve)
+        },
+        {
+            path: '/lhc3/stat-P7A',
+            name: 'lhc3-stat-P7A',
+            meta: {
+                title: `${prefix}数据统计-类型7A-16`
+            },
+            component: (resolve) => require(['./views/lhc3/stat/stat-P7A.vue'], resolve)
+        },
+        {
+            path: '/lhc3/stat-P7B',
+            name: 'lhc3-stat-P7B',
+            meta: {
+                title: `${prefix}数据统计-类型7B-15`
+            },
+            component: (resolve) => require(['./views/lhc3/stat/stat-P7B.vue'], resolve)
         },
         {
             path: '/lhc3/stat-1-P8',
@@ -187,6 +227,14 @@ const RouterConfig = {
             component: (resolve) => require(['./views/lhc3/stat/stat-3-P8.vue'], resolve)
         },
         {
+            path: '/lhc3/stat-4-P8',
+            name: 'lhc3-stat-4-P8',
+            meta: {
+                title: `${prefix}数据统计-类型8-4`
+            },
+            component: (resolve) => require(['./views/lhc3/stat/stat-4-P8.vue'], resolve)
+        },
+        {
             path: '/lhc3/stat-P8',
             name: 'lhc3-stat-P8',
             meta: {
@@ -203,36 +251,76 @@ const RouterConfig = {
             component: (resolve) => require(['./views/stat/stat-P2-P3.vue'], resolve)
         },
         {
-            path: '/lhc3/comparision-1-P7',
-            name: 'lhc3-comparision-1-P7',
+            path: '/lhc3/comparision-1-P7A',
+            name: 'lhc3-comparision-1-P7A',
             meta: {
-                title: `${prefix}数据对比-4表-1`
+                title: `${prefix}数据对比-P7A-4表-1`
             },
-            component: (resolve) => require(['./views/lhc3/comparision/comparision-1-P7.vue'], resolve)
+            component: (resolve) => require(['./views/lhc3/comparision/comparision-1-P7A.vue'], resolve)
         },
         {
-            path: '/lhc3/comparision-2-P7',
-            name: 'lhc3-comparision-2-P7',
+            path: '/lhc3/comparision-1-P7B',
+            name: 'lhc3-comparision-1-P7B',
             meta: {
-                title: `${prefix}数据对比-4表-2`
+                title: `${prefix}数据对比-P7B-5表-1`
             },
-            component: (resolve) => require(['./views/lhc3/comparision/comparision-2-P7.vue'], resolve)
+            component: (resolve) => require(['./views/lhc3/comparision/comparision-1-P7B.vue'], resolve)
         },
         {
-            path: '/lhc3/comparision-3-P7',
-            name: 'lhc3-comparision-3-P7',
+            path: '/lhc3/comparision-2-P7A',
+            name: 'lhc3-comparision-2-P7A',
             meta: {
-                title: `${prefix}数据对比-4表-3`
+                title: `${prefix}数据对比-P7A-4表-2`
             },
-            component: (resolve) => require(['./views/lhc3/comparision/comparision-3-P7.vue'], resolve)
+            component: (resolve) => require(['./views/lhc3/comparision/comparision-2-P7A.vue'], resolve)
         },
         {
-            path: '/lhc3/comparision-12-P7',
-            name: 'lhc3-comparision-12-P7',
+            path: '/lhc3/comparision-2-P7B',
+            name: 'lhc3-comparision-2-P7B',
             meta: {
-                title: `${prefix}数据对比-12表`
+                title: `${prefix}数据对比-P7B-5表-2`
             },
-            component: (resolve) => require(['./views/lhc3/comparision/comparision-12-P7.vue'], resolve)
+            component: (resolve) => require(['./views/lhc3/comparision/comparision-2-P7B.vue'], resolve)
+        },
+        {
+            path: '/lhc3/comparision-3-P7A',
+            name: 'lhc3-comparision-3-P7A',
+            meta: {
+                title: `${prefix}数据对比-P7A-4表-3`
+            },
+            component: (resolve) => require(['./views/lhc3/comparision/comparision-3-P7A.vue'], resolve)
+        },
+        {
+            path: '/lhc3/comparision-3-P7B',
+            name: 'lhc3-comparision-3-P7B',
+            meta: {
+                title: `${prefix}数据对比-P7B-5表-3`
+            },
+            component: (resolve) => require(['./views/lhc3/comparision/comparision-3-P7B.vue'], resolve)
+        },
+        {
+            path: '/lhc3/comparision-4-P7A',
+            name: 'lhc3-comparision-4-P7A',
+            meta: {
+                title: `${prefix}数据对比-P7A-4表-4`
+            },
+            component: (resolve) => require(['./views/lhc3/comparision/comparision-4-P7A.vue'], resolve)
+        },
+        {
+            path: '/lhc3/comparision-16-P7A',
+            name: 'lhc3-comparision-16-P7A',
+            meta: {
+                title: `${prefix}数据对比-16表`
+            },
+            component: (resolve) => require(['./views/lhc3/comparision/comparision-16-P7A.vue'], resolve)
+        },
+        {
+            path: '/lhc3/comparision-15-P7B',
+            name: 'lhc3-comparision-15-P7B',
+            meta: {
+                title: `${prefix}数据对比-15表`
+            },
+            component: (resolve) => require(['./views/lhc3/comparision/comparision-15-P7B.vue'], resolve)
         },
         {
             path: '/lhc3/comparision-1-P8',
@@ -259,12 +347,20 @@ const RouterConfig = {
             component: (resolve) => require(['./views/lhc3/comparision/comparision-3-P8.vue'], resolve)
         },
         {
-            path: '/lhc3/comparision-12-P8',
-            name: 'lhc3-comparision-12-P8',
+            path: '/lhc3/comparision-4-P8',
+            name: 'lhc3-comparision-4-P8',
             meta: {
-                title: `${prefix}数据对比-12表`
+                title: `${prefix}数据对比-4表-4`
             },
-            component: (resolve) => require(['./views/lhc3/comparision/comparision-12-P8.vue'], resolve)
+            component: (resolve) => require(['./views/lhc3/comparision/comparision-4-P8.vue'], resolve)
+        },
+        {
+            path: '/lhc3/comparision-16-P8',
+            name: 'lhc3-comparision-16-P8',
+            meta: {
+                title: `${prefix}数据对比-16表`
+            },
+            component: (resolve) => require(['./views/lhc3/comparision/comparision-16-P8.vue'], resolve)
         },
         {
             path: '/lhc3/comparision-9-P1',

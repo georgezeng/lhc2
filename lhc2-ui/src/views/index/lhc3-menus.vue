@@ -124,26 +124,35 @@
                 <Icon type="ios-stats" />
                 数据统计
             </template>
+            <!--
             <MenuItem name="lhc3-stat-P1">类型1</MenuItem>
             <MenuItem name="lhc3-stat-P2">类型2</MenuItem>
             <MenuItem name="lhc3-stat-P3">类型3</MenuItem>
             <MenuItem name="lhc3-stat-P4">类型4</MenuItem>
             <MenuItem name="lhc3-stat-P5">类型5</MenuItem>
             <MenuItem name="lhc3-stat-P6">类型6</MenuItem>
-            <MenuItem name="lhc3-stat-1-P7">类型7-1</MenuItem>
-            <MenuItem name="lhc3-stat-2-P7">类型7-2</MenuItem>
-            <MenuItem name="lhc3-stat-3-P7">类型7-3</MenuItem>
-            <MenuItem name="lhc3-stat-P7">类型7-12</MenuItem>
+            -->
+            <MenuItem name="lhc3-stat-1-P7A">类型7A-1</MenuItem>
+            <MenuItem name="lhc3-stat-2-P7A">类型7A-2</MenuItem>
+            <MenuItem name="lhc3-stat-3-P7A">类型7A-3</MenuItem>
+            <MenuItem name="lhc3-stat-4-P7A">类型7A-4</MenuItem>
+            <MenuItem name="lhc3-stat-P7A">类型7A-16</MenuItem>
+            <MenuItem name="lhc3-stat-1-P7B">类型7B-1</MenuItem>
+            <MenuItem name="lhc3-stat-2-P7B">类型7B-2</MenuItem>
+            <MenuItem name="lhc3-stat-3-P7B">类型7B-3</MenuItem>
+            <MenuItem name="lhc3-stat-P7B">类型7B-15</MenuItem>
             <MenuItem name="lhc3-stat-1-P8">类型8-1</MenuItem>
             <MenuItem name="lhc3-stat-2-P8">类型8-2</MenuItem>
             <MenuItem name="lhc3-stat-3-P8">类型8-3</MenuItem>
-            <MenuItem name="lhc3-stat-P8">类型8-12</MenuItem>
+            <MenuItem name="lhc3-stat-4-P8">类型8-4</MenuItem>
+            <MenuItem name="lhc3-stat-P8">类型8-16</MenuItem>
         </Submenu>
         <Submenu name="comparision">
             <template slot="title">
                 <Icon type="ios-stats" />
                 数据对比
             </template>
+            <!--
             <MenuGroup title="类型1">
                 <MenuItem name="lhc3-comparision-9-P1">9表-1</MenuItem>
             </MenuGroup>
@@ -162,19 +171,29 @@
             <MenuGroup title="类型6">
                 <MenuItem name="lhc3-comparision-3-P6">9表-6</MenuItem>
             </MenuGroup>
-            <MenuGroup title="类型7">
-                <MenuItem name="lhc3-comparision-1-P7">4表-1</MenuItem>
-                <MenuItem name="lhc3-comparision-2-P7">4表-2</MenuItem>
-                <MenuItem name="lhc3-comparision-3-P7">4表-3</MenuItem>
-                <MenuItem name="lhc3-comparision-12-P7">12表</MenuItem>
+            -->
+            <MenuGroup title="类型7A">
+                <MenuItem name="lhc3-comparision-1-P7A">4表-1</MenuItem>
+                <MenuItem name="lhc3-comparision-2-P7A">4表-2</MenuItem>
+                <MenuItem name="lhc3-comparision-3-P7A">4表-3</MenuItem>
+                <MenuItem name="lhc3-comparision-4-P7A">4表-4</MenuItem>
+                <MenuItem name="lhc3-comparision-16-P7A">16表</MenuItem>
+            </MenuGroup>
+            <MenuGroup title="类型7B">
+                <MenuItem name="lhc3-comparision-1-P7B">5表-1</MenuItem>
+                <MenuItem name="lhc3-comparision-2-P7B">5表-2</MenuItem>
+                <MenuItem name="lhc3-comparision-3-P7B">5表-3</MenuItem>
+                <MenuItem name="lhc3-comparision-15-P7B">15表</MenuItem>
             </MenuGroup>
             <MenuGroup title="类型8">
                 <MenuItem name="lhc3-comparision-1-P8">4表-1</MenuItem>
                 <MenuItem name="lhc3-comparision-2-P8">4表-2</MenuItem>
                 <MenuItem name="lhc3-comparision-3-P8">4表-3</MenuItem>
-                <MenuItem name="lhc3-comparision-12-P8">12表</MenuItem>
+                <MenuItem name="lhc3-comparision-4-P8">4表-4</MenuItem>
+                <MenuItem name="lhc3-comparision-16-P8">16表</MenuItem>
             </MenuGroup>
         </Submenu>
+        <!--
         <Submenu name="emulate">
             <template slot="title">
                 <Icon type="ios-stats" />
@@ -199,6 +218,7 @@
                 <MenuItem name="lhc3-emulate-3-P6">9表-6</MenuItem>
             </MenuGroup>
         </Submenu>
+        -->
         <MenuItem name="tm">
             <Icon type="ios-paper" />
             版本2

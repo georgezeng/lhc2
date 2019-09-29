@@ -1,5 +1,9 @@
 <style scoped>
     @import "../../../styles/common.less";
+
+    .ivu-table {
+        font-size: 16px;
+    }
 </style>
 <template>
     <div class="layout">
@@ -11,7 +15,7 @@
                 <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
-                         类型8-4表-2统计
+                         类型7A-4表-1统计
                     </p>
                     <Table stripe border size="small" :loading="loading" :columns="columns" :data="data"/>
                     <div class="page">
@@ -42,8 +46,8 @@
             return {
                 queryInfo: {
                     data: {
-                        expected: 2,
-                        type: 'P8'
+                        expected: 1,
+                        type: 'P7A'
                     },
                     page: {
                         num: 1,
@@ -91,7 +95,7 @@
         methods: {
             loadData() {
                 this.loading = true;
-                this.queryInfo.data.expected = 2
+                this.queryInfo.data.expected = 1
                 API.getLhc3PickNums(this.queryInfo).then(b1 => {
                     this.queryInfo.data.expected = 16
                     API.getLhc3PickNums(this.queryInfo).then(result => {

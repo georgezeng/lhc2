@@ -1,9 +1,5 @@
 <style scoped>
     @import "../../../styles/common.less";
-
-    .ivu-table {
-        font-size: 16px;
-    }
 </style>
 <template>
     <div class="layout">
@@ -15,7 +11,7 @@
                 <Card>
                     <p slot="title">
                         <Icon type="ios-stats-outline"/>
-                         类型7-4表-1统计
+                         类型7A-4表-4统计
                     </p>
                     <Table stripe border size="small" :loading="loading" :columns="columns" :data="data"/>
                     <div class="page">
@@ -46,8 +42,8 @@
             return {
                 queryInfo: {
                     data: {
-                        expected: 1,
-                        type: 'P7'
+                        expected: 4,
+                        type: 'P7A'
                     },
                     page: {
                         num: 1,
@@ -79,7 +75,7 @@
                         }
                     },
                     {
-                        title: '(1-2)次 - 1+次',
+                        title: '1+次 - 1+次',
                         minWidth: 350,
                         render(h, params) {
                             return h('span', {
@@ -95,9 +91,9 @@
         methods: {
             loadData() {
                 this.loading = true;
-                this.queryInfo.data.expected = 1
+                this.queryInfo.data.expected = 4
                 API.getLhc3PickNums(this.queryInfo).then(b1 => {
-                    this.queryInfo.data.expected = 12
+                    this.queryInfo.data.expected = 16
                     API.getLhc3PickNums(this.queryInfo).then(result => {
                         this.total = result.total
                         this.data = []
@@ -111,6 +107,9 @@
                             }
                             if (tempb12.time2) {
                                 time12 += ',' + tempb12.time2
+                            }
+                            if (tempb12.time3Plus) {
+                                time12 += ',' + tempb12.time3Plus
                             }
                             time12 = time12.split(',')
                             const tempb1 = b1.list[i]
