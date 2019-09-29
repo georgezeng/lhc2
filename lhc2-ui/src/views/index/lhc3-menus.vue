@@ -119,10 +119,23 @@
                 <MenuItem name="lhc3-fd-sw">顺表</MenuItem>
             </MenuGroup>
         </Submenu>
-        <MenuItem name="lhc3-stake">
-            <Icon type="ios-paper" />
-            投注
-        </MenuItem>
+        <Submenu name="stake">
+            <template slot="title">
+                <Icon type="ios-stats" />
+                投注
+            </template>
+            <!--
+            <MenuItem name="lhc3-stat-P1">类型1</MenuItem>
+            <MenuItem name="lhc3-stat-P2">类型2</MenuItem>
+            <MenuItem name="lhc3-stat-P3">类型3</MenuItem>
+            <MenuItem name="lhc3-stat-P4">类型4</MenuItem>
+            <MenuItem name="lhc3-stat-P5">类型5</MenuItem>
+            <MenuItem name="lhc3-stat-P6">类型6</MenuItem>
+            -->
+            <MenuItem name="lhc3-stake-P7A">类型7A-投注</MenuItem>
+            <MenuItem name="lhc3-stake-P7B">类型7B-投注</MenuItem>
+            <MenuItem name="lhc3-stake-P8">类型8-投注</MenuItem>
+        </Submenu>
         <Submenu name="stat">
             <template slot="title">
                 <Icon type="ios-stats" />
