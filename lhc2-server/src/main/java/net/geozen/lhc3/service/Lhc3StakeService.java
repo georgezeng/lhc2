@@ -2,6 +2,7 @@ package net.geozen.lhc3.service;
 
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -33,7 +34,7 @@ public class Lhc3StakeService {
 	private Lhc3StakeRepository repository;
 
 	@Async
-	public Future<Exception> cal(List<Lhc3Tm> tmList, String type, int tables) {
+	public Future<Exception> cal(List<Lhc3Tm> tmList, String type, int tables, int totalTables) {
 		Exception t = null;
 		try {
 			for (Lhc3Tm tm : tmList) {
@@ -42,13 +43,30 @@ public class Lhc3StakeService {
 					map.put(i, 0);
 				}
 				int count = 0;
+				Optional<Lhc3PickNum> lastOpTotal = pickNumRepository.findFirstByExpectedAndTypeAndPhaseLessThanOrderByPhaseDesc(totalTables, type,
+						tm.getPhase());
+				List<Integer> time1PlusNums = new ArrayList<>();
+				if (lastOpTotal.isPresent()) {
+					List<String> time0Nums = Arrays.asList(lastOpTotal.get().getTime0().split(","));
+					for (int j = 1; j < 50; j++) {
+						if (!time0Nums.contains(j + "")) {
+							time1PlusNums.add(j);
+						}
+					}
+				}
 				for (int i = 1; i <= tables; i++) {
 					Optional<Lhc3PickNum> op = pickNumRepository.findFirstByExpectedAndTypeAndPhaseLessThanOrderByPhaseDesc(i, type, tm.getPhase());
 					if (op.isPresent()) {
+						List<Integer> currentTime1PlusNums = new ArrayList<>();
 						Lhc3PickNum lastPn = op.get();
 						List<String> time0Nums = Arrays.asList(lastPn.getTime0().split(","));
 						for (int j = 1; j < 50; j++) {
 							if (!time0Nums.contains(j + "")) {
+								currentTime1PlusNums.add(j);
+							}
+						}
+						for (Integer j : time1PlusNums) {
+							if (!currentTime1PlusNums.contains(j)) {
 								map.put(j, map.get(j) + 1);
 								count++;
 							}
