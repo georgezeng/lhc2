@@ -38,11 +38,12 @@ public class Lhc3StakeService {
 		Exception t = null;
 		try {
 			for (Lhc3Tm tm : tmList) {
+				Map<Integer, Integer> lastMap = new HashMap<>();
 				Map<Integer, Integer> map = new HashMap<>();
 				for (int i = 1; i < 50; i++) {
+					lastMap.put(i, 0);
 					map.put(i, 0);
 				}
-				int count = 0;
 				Optional<Lhc3PickNum> lastOpTotal = pickNumRepository.findFirstByExpectedAndTypeAndPhaseLessThanOrderByPhaseDesc(totalTables, type,
 						tm.getPhase());
 				List<Integer> time1PlusNums = new ArrayList<>();
@@ -67,12 +68,44 @@ public class Lhc3StakeService {
 						}
 						for (Integer j : time1PlusNums) {
 							if (!currentTime1PlusNums.contains(j)) {
+								lastMap.put(j, lastMap.get(j) + 1);
+							}
+						}
+					}
+				}
+				
+				int count = 0;
+				Optional<Lhc3PickNum> opTotal = pickNumRepository.findByExpectedAndTypeAndPhase(totalTables, type,
+						tm.getPhase());
+				time1PlusNums = new ArrayList<>();
+				if (opTotal.isPresent()) {
+					List<String> time0Nums = Arrays.asList(opTotal.get().getTime0().split(","));
+					for (int j = 1; j < 50; j++) {
+						if (!time0Nums.contains(j + "")) {
+							time1PlusNums.add(j);
+						}
+					}
+				}
+				for (int i = 1; i <= tables; i++) {
+					Optional<Lhc3PickNum> op = pickNumRepository.findByExpectedAndTypeAndPhase(i, type, tm.getPhase());
+					if (op.isPresent()) {
+						List<Integer> currentTime1PlusNums = new ArrayList<>();
+						Lhc3PickNum pn = op.get();
+						List<String> time0Nums = Arrays.asList(pn.getTime0().split(","));
+						for (int j = 1; j < 50; j++) {
+							if (!time0Nums.contains(j + "")) {
+								currentTime1PlusNums.add(j);
+							}
+						}
+						for (Integer j : time1PlusNums) {
+							if (!currentTime1PlusNums.contains(j)) {
 								map.put(j, map.get(j) + 1);
 								count++;
 							}
 						}
 					}
 				}
+				
 				Optional<Lhc3Stake> lastOp = repository.findFirstByTypeAndPhaseLessThanOrderByPhaseDesc(type, tm.getPhase());
 				BigDecimal historyAmount = BigDecimal.ZERO;
 				BigDecimal historyBonus = BigDecimal.ZERO;
@@ -86,13 +119,18 @@ public class Lhc3StakeService {
 				stake.setPhase(tm.getPhase());
 				stake.setCurrentAmount(new BigDecimal(count));
 				stake.setHistoryAmount(historyAmount.add(stake.getCurrentAmount()));
-				Map.Entry<Integer, Integer> bonusEntry = null;
 				for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
-					if (entry.getKey() == tm.getNum()) {
-						bonusEntry = entry;
-					}
 					Method m = Lhc3Stake.class.getDeclaredMethod("setTime" + entry.getKey(), int.class);
 					m.invoke(stake, entry.getValue());
+				}
+				Map.Entry<Integer, Integer> bonusEntry = null;
+				for (Map.Entry<Integer, Integer> entry : lastMap.entrySet()) {
+					if (entry.getKey() == tm.getNum()) {
+						bonusEntry = entry;
+						break;
+					}
+//					Method m = Lhc3Stake.class.getDeclaredMethod("setTime" + entry.getKey(), int.class);
+//					m.invoke(stake, entry.getValue());
 				}
 				if (bonusEntry != null) {
 					stake.setLastBonus(new BigDecimal(bonusEntry.getValue()).multiply(new BigDecimal("48.5")));
