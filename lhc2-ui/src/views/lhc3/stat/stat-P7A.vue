@@ -65,28 +65,28 @@
                     },
                     {
                         title: '0次',
-                        minWidth: 350,
+                        minWidth: 250,
                         render(h, params) {
                             return h('span', {}, params.row.time0);
                         }
                     },
                     {
                         title: '1次',
-                        minWidth: 350,
+                        minWidth: 250,
                         render(h, params) {
                             return h('span', {}, params.row.time1);
                         }
                     },
                     {
                         title: '2次',
-                        width: 300,
+                        width: 250,
                         render(h, params) {
                             return h('span', {}, params.row.time2);
                         }
                     },
                     {
                         title: '3+次',
-                        width: 200,
+                        width: 250,
                         render(h, params) {
                             return h('span', {}, params.row.time3Plus);
                         }

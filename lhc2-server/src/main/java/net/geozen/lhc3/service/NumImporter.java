@@ -43,7 +43,7 @@ public class NumImporter {
 		}
 		String host = "https://" + domain + "/";
 		int index = 1;
-		int size = 5000;
+		int size = 20000;
 		ObjectMapper mapper = new ObjectMapper();
 		ResponseObject response = null;
 		List<Lhc3Tm> list = new ArrayList<>();
