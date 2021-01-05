@@ -11,7 +11,7 @@
   "author": "GeorgeZeng",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "iview": "^3.0.1",
     "js-cookie": "^2.2.0",
     "lodash": "^4.17.10",
